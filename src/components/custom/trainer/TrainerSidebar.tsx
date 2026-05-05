@@ -80,11 +80,9 @@ export default function TrainerSidebar({
 						/* Expanded state - show logo and collapse button */
 						<>
 							<div className="flex items-center gap-3">
-								<img
-									className="h-8 w-auto"
-									src="/logo.png"
-									alt="Kavach"
-								/>
+								<div className="text-xl font-bold tracking-tight text-slate-900 uppercase">
+									Kavach
+								</div>
 								<span className="text-base font-semibold text-slate-800 tracking-tight">Trainer</span>
 							</div>
 							<button

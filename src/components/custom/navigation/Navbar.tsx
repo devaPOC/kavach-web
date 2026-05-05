@@ -139,11 +139,9 @@ export default function Navbar({
           {showLogo && (
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <img
-                  className="h-8 w-auto"
-                  src="/logo.png"
-                  alt="Kavach"
-                />
+                <div className="text-2xl font-bold tracking-tight text-slate-900 uppercase">
+                  Kavach
+                </div>
               </div>
             </div>
           )}

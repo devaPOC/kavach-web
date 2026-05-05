@@ -19,7 +19,7 @@ export function CurrencyExample() {
 
   return (
     <div className="p-6 max-w-md mx-auto bg-white rounded-lg shadow-md">
-      <h2 className="text-xl font-semibold mb-4">OMR Currency Examples</h2>
+      <h2 className="text-xl font-semibold mb-4">INR Currency Examples</h2>
       
       {/* Display Examples */}
       <div className="space-y-2 mb-6">

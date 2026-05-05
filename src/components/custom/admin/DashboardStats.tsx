@@ -221,9 +221,9 @@ export default function DashboardStats() {
 
       <StatsCard
         title="Monthly Revenue"
-        value={`OMR ${salesStats.monthlyRevenue.toFixed(2)}`}
+        value={`₹${salesStats.monthlyRevenue.toFixed(2)}`}
         description={`${salesStats.acceptedQuotes} quotes accepted`}
-        icon={<span className="text-[10px] font-semibold">OMR</span>}
+        icon={<span className="text-[10px] font-semibold">₹</span>}
         trend={{
           value: 15,
           label: 'from last month',

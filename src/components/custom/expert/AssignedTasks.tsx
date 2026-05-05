@@ -334,7 +334,7 @@ export default function AssignedTasks() {
                 {/* Pricing Information */}
                 {task.pricing && (
                   <div className="flex items-center gap-2 p-2 bg-green-50 rounded-md border border-green-200">
-                    <span className="h-4 inline-flex items-center justify-center text-[10px] font-semibold text-green-700">OMR</span>
+                    <span className="h-4 inline-flex items-center justify-center text-[10px] font-semibold text-green-700">₹</span>
                     <div className="text-sm">
                       {task.pricing.type === 'fixed' ? (
                         <span className="font-medium text-green-700">
@@ -522,7 +522,7 @@ export default function AssignedTasks() {
                     <h4 className="font-semibold mb-2">Pricing Information</h4>
                     <div className="bg-green-50 p-3 rounded-lg border border-green-200">
                       <div className="flex items-center gap-2 mb-2">
-                        <span className="h-5 inline-flex items-center justify-center text-xs font-semibold text-green-700">OMR</span>
+                        <span className="h-5 inline-flex items-center justify-center text-xs font-semibold text-green-700">₹</span>
                         <span className="font-medium text-green-700">
                           {selectedTask.pricing.type === 'fixed' ? 'Fixed Pricing' : 'Variable Pricing'}
                         </span>

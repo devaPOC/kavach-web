@@ -192,11 +192,7 @@ export const generateNewRequestNotificationHTML = (
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo">
-                <img src="${
-                  process.env.NEXT_PUBLIC_APP_URL || "https://kavach.com"
-                }/logo.png" alt="Kavach" />
-            </div>
+            <div class="logo">Kavach</div>
             <h1 class="title">New Awareness Session Request</h1>
             <p class="subtitle">Admin Review Required</p>
         </div>
@@ -511,11 +507,7 @@ export const generateExpertAssignmentNotificationHTML = (
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo">
-                <img src="${
-                  process.env.NEXT_PUBLIC_APP_URL || "https://kavach.com"
-                }/logo.png" alt="Kavach" />
-            </div>
+            <div class="logo">Kavach</div>
             <h1 class="title">New Awareness Session Assignment</h1>
             <p class="subtitle">Expert Response Required</p>
         </div>
@@ -880,11 +872,7 @@ export const generateStatusChangeNotificationHTML = (
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo">
-                <img src="${
-                  process.env.NEXT_PUBLIC_APP_URL || "https://kavach.com"
-                }/logo.png" alt="Kavach" />
-            </div>
+            <div class="logo">Kavach</div>
             <h1 class="title">${statusInfo.title}</h1>
             <p class="subtitle">Request Status Update</p>
         </div>

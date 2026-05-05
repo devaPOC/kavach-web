@@ -9,7 +9,7 @@ export function useCurrency() {
     return formatCurrency(amount, showSymbol);
   }, []);
 
-  const formatIntl = useCallback((amount: number | string, locale: string = 'en-OM') => {
+  const formatIntl = useCallback((amount: number | string, locale: string = 'en-IN') => {
     return formatCurrencyIntl(amount, locale);
   }, []);
 
@@ -26,7 +26,7 @@ export function useCurrency() {
     formatIntl,
     parse,
     validate,
-    currencyCode: 'OMR',
-    currencySymbol: 'OMR'
+    currencyCode: 'INR',
+    currencySymbol: '₹'
   };
 }

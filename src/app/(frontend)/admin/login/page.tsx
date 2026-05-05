@@ -202,11 +202,9 @@ export default function AdminLoginPage() {
         <div className="text-center">
           {/* Logo */}
           <div className="flex justify-center mb-4">
-            <img
-              src="/logo-light.png"
-              alt="Kavach"
-              className="h-16 w-auto"
-            />
+            <div className="text-4xl font-bold tracking-tight text-slate-900 uppercase">
+              Kavach
+            </div>
           </div>
 
           {/* Admin Shield Icon */}

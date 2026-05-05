@@ -1,12 +1,12 @@
 /**
- * Currency formatting utilities for OMR (Omani Rial)
+ * Currency formatting utilities for INR (Indian Rupee)
  */
 
-export const CURRENCY_CODE = 'OMR';
-export const CURRENCY_SYMBOL = 'OMR';
+export const CURRENCY_CODE = 'INR';
+export const CURRENCY_SYMBOL = '₹';
 
 /**
- * Format a number as OMR currency
+ * Format a number as INR currency
  * @param amount - The amount to format
  * @param showSymbol - Whether to show the currency symbol (default: true)
  * @returns Formatted currency string
@@ -15,36 +15,38 @@ export function formatCurrency(amount: number | string, showSymbol: boolean = tr
   const numericAmount = typeof amount === 'string' ? parseFloat(amount) : amount;
   
   if (isNaN(numericAmount)) {
-    return showSymbol ? `OMR 0.00` : '0.00';
+    return showSymbol ? `₹0.00` : '0.00';
   }
 
-  // Format with 2 decimal places for simplicity
+  // Format with 2 decimal places
   const formatted = numericAmount.toFixed(2);
   
-  return showSymbol ? `OMR ${formatted}` : formatted;
+  return showSymbol ? `₹${formatted}` : formatted;
 }
 
 /**
  * Format currency using Intl.NumberFormat for proper localization
  * @param amount - The amount to format
- * @param locale - The locale to use (default: 'en-OM' for Oman)
+ * @param locale - The locale to use (default: 'en-IN' for India)
  * @returns Formatted currency string
  */
-export function formatCurrencyIntl(amount: number | string, locale: string = 'en-OM'): string {
+export function formatCurrencyIntl(amount: number | string, locale: string = 'en-IN'): string {
   const numericAmount = typeof amount === 'string' ? parseFloat(amount) : amount;
   
   if (isNaN(numericAmount)) {
-    return `OMR 0.00`;
+    return `₹0.00`;
   }
 
-  // Simple formatting without Intl to avoid currency symbols
-  const formatted = numericAmount.toFixed(2);
-  return `OMR ${formatted}`;
+  // Use Intl.NumberFormat for INR
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency: 'INR'
+  }).format(numericAmount);
 }
 
 /**
  * Parse a currency string to a number
- * @param currencyString - The currency string to parse (e.g., "OMR 10.500" or "10.500")
+ * @param currencyString - The currency string to parse (e.g., "₹10.50" or "10.50")
  * @returns The numeric value
  */
 export function parseCurrency(currencyString: string): number {
@@ -52,7 +54,7 @@ export function parseCurrency(currencyString: string): number {
   
   // Remove currency symbol and extra spaces
   const cleanString = currencyString
-    .replace(/OMR/gi, '')
+    .replace(/₹|INR/gi, '')
     .replace(/[^\d.-]/g, '')
     .trim();
   
@@ -66,27 +68,27 @@ export function parseCurrency(currencyString: string): number {
  * @returns True if valid currency amount
  */
 export function isValidCurrencyAmount(value: string): boolean {
-  const cleaned = value.replace(/OMR/gi, '').trim();
+  const cleaned = value.replace(/₹|INR/gi, '').trim();
   const number = parseFloat(cleaned);
   return !isNaN(number) && number >= 0;
 }
 
 /**
- * Convert currency amount to the smallest unit (baisa for OMR)
- * 1 OMR = 1000 baisa
- * @param omrAmount - Amount in OMR
- * @returns Amount in baisa
+ * Convert currency amount to the smallest unit (paise for INR)
+ * 1 INR = 100 paise
+ * @param inrAmount - Amount in INR
+ * @returns Amount in paise
  */
-export function omrToBaisa(omrAmount: number | string): number {
-  const amount = typeof omrAmount === 'string' ? parseFloat(omrAmount) : omrAmount;
-  return Math.round(amount * 1000);
+export function inrToPaise(inrAmount: number | string): number {
+  const amount = typeof inrAmount === 'string' ? parseFloat(inrAmount) : inrAmount;
+  return Math.round(amount * 100);
 }
 
 /**
- * Convert from smallest unit (baisa) to OMR
- * @param baisaAmount - Amount in baisa
- * @returns Amount in OMR
+ * Convert from smallest unit (paise) to INR
+ * @param paiseAmount - Amount in paise
+ * @returns Amount in INR
  */
-export function baisaToOmr(baisaAmount: number): number {
-  return baisaAmount / 1000;
+export function paiseToInr(paiseAmount: number): number {
+  return paiseAmount / 100;
 }

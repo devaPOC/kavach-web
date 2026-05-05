@@ -92,7 +92,7 @@ export default function ServicePricingDisplay({ serviceType, className = '' }: S
     if (pricing.pricingType === 'fixed' && pricing.fixedPrice) {
       return {
         title: 'Fixed Price',
-        price: `OMR ${Number(pricing.fixedPrice).toFixed(2)}`,
+        price: `₹${Number(pricing.fixedPrice).toFixed(2)}`,
         description: 'This service has a fixed price',
         color: 'green',
       };
@@ -142,7 +142,7 @@ export default function ServicePricingDisplay({ serviceType, className = '' }: S
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-3">
             <div className={`h-10 w-10 rounded-full flex items-center justify-center ${colors.card.replace('bg-', 'bg-').replace('-50', '-100')}`}>
-              <span className={`text-sm font-semibold ${colors.icon}`}>OMR</span>
+              <span className={`text-sm font-semibold ${colors.icon}`}>₹</span>
             </div>
             <div>
               <div className="flex items-center gap-2 mb-1">

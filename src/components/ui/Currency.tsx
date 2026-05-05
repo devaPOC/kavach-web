@@ -12,14 +12,14 @@ interface CurrencyProps {
 }
 
 /**
- * Currency component for displaying OMR amounts consistently
+ * Currency component for displaying INR amounts consistently
  */
 export function Currency({ 
   amount, 
   className, 
   showSymbol = true, 
   useIntlFormat = false,
-  locale = 'en-OM',
+  locale = 'en-IN',
   variant = 'default'
 }: CurrencyProps) {
   const formattedAmount = useIntlFormat 
@@ -71,9 +71,9 @@ export function CurrencyInput({
       inputValue = parts[0] + '.' + parts.slice(1).join('');
     }
     
-    // Limit to 3 decimal places for OMR
-    if (parts[1] && parts[1].length > 3) {
-      inputValue = parts[0] + '.' + parts[1].substring(0, 3);
+    // Limit to 2 decimal places for INR
+    if (parts[1] && parts[1].length > 2) {
+      inputValue = parts[0] + '.' + parts[1].substring(0, 2);
     }
     
     onChange(inputValue);
@@ -82,7 +82,7 @@ export function CurrencyInput({
   return (
     <div className="relative">
       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-        <span className="text-gray-500 sm:text-sm">OMR</span>
+        <span className="text-gray-500 sm:text-sm">₹</span>
       </div>
       <input
         type="text"
@@ -93,7 +93,7 @@ export function CurrencyInput({
           error && 'border-red-300 focus:ring-red-500 focus:border-red-500',
           className
         )}
-        placeholder="0.000"
+        placeholder="0.00"
         {...props}
       />
       {error && (

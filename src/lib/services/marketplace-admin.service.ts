@@ -39,7 +39,7 @@ export const createProductSchema = z.object({
 		.or(z.literal('')),
 	price: z.string().regex(/^\d+(\.\d{1,2})?$/, 'Invalid price format'),
 	compareAtPrice: z.string().regex(/^\d+(\.\d{1,2})?$/).optional().nullable(),
-	currency: z.string().length(3).default('USD'),
+	currency: z.string().length(3).default('INR'),
 	status: z.enum(['draft', 'active', 'archived']).default('draft'),
 	stockQuantity: z.number().int().min(0).default(0),
 	lowStockThreshold: z.number().int().min(0).default(5),

@@ -11,7 +11,7 @@ export const serviceQuotes = pgTable('service_quotes', {
   adminId: uuid('admin_id').references(() => admins.id, { onDelete: 'set null' }),
   quoteNumber: varchar('quote_number', { length: 50 }).notNull().unique(),
   quotedPrice: numeric('quoted_price', { precision: 10, scale: 2 }).notNull(),
-  currency: varchar('currency', { length: 3 }).notNull().default('OMR'),
+  currency: varchar('currency', { length: 3 }).notNull().default('INR'),
   status: varchar('status', { length: 30 }).notNull().default('pending').$type<'draft' | 'sent' | 'pending' | 'accepted' | 'rejected' | 'expired' | 'superseded'>(),
   description: text('description'),
   validUntil: timestamp('valid_until', { withTimezone: true }),
@@ -37,7 +37,7 @@ export const quoteNegotiations = pgTable('quote_negotiations', {
   senderId: uuid('sender_id').notNull(), // No FK - polymorphic field (can be user or admin, determined by isFromCustomer)
   message: text('message').notNull(),
   isFromCustomer: boolean('is_from_customer').notNull(),
-  currency: varchar('currency', { length: 3 }).notNull().default('OMR'),
+  currency: varchar('currency', { length: 3 }).notNull().default('INR'),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
 }, (table) => ({
   quoteIdIdx: index('quote_negotiations_quote_id_idx').on(table.quoteId),
@@ -52,7 +52,7 @@ export const servicePayments = pgTable('service_payments', {
   customerId: uuid('customer_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
   quoteId: uuid('quote_id').references(() => serviceQuotes.id),
   amount: numeric('amount', { precision: 10, scale: 2 }).notNull(),
-  currency: varchar('currency', { length: 3 }).notNull().default('OMR'),
+  currency: varchar('currency', { length: 3 }).notNull().default('INR'),
   status: varchar('status', { length: 20 }).notNull().default('pending').$type<'pending' | 'completed' | 'failed' | 'refunded'>(),
   paymentMethod: varchar('payment_method', { length: 50 }),
   transactionId: varchar('transaction_id', { length: 100 }),

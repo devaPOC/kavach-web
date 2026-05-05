@@ -753,7 +753,7 @@ export class ExpertService extends BaseService {
       for (const task of filteredTasks) {
         // For now, use a base rate per completed task
         // In a real system, you'd get this from pricing/payment data
-        const baseRate = 50; // 50 OMR per completed task (placeholder)
+        const baseRate = 50; // 50 INR per completed task (placeholder)
         const taskEarning = baseRate;
 
         totalEarnings += taskEarning;
@@ -782,7 +782,7 @@ export class ExpertService extends BaseService {
 
       const earningsData = {
         totalEarnings,
-        currency: 'OMR',
+        currency: 'INR',
         completedTasks: filteredTasks.length,
         averagePerTask: filteredTasks.length > 0 ? totalEarnings / filteredTasks.length : 0,
         currentPeriodEarnings,

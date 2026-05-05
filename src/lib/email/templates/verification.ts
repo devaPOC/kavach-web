@@ -95,11 +95,7 @@ export const generateVerificationEmailHTML = (
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo">
-                <img src="${
-                  process.env.NEXT_PUBLIC_APP_URL || "https://kavach.com"
-                }/logo.png" alt="Kavach" />
-            </div>
+            <div class="logo">Kavach</div>
             <h1 class="title">Verify Your Email Address</h1>
         </div>
 

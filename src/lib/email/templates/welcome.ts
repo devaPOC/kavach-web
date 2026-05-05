@@ -150,11 +150,7 @@ export const generateWelcomeEmailHTML = (data: WelcomeEmailData): string => {
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo">
-                <img src="${
-                  process.env.NEXT_PUBLIC_APP_URL || "https://kavach.com"
-                }/logo.png" alt="Kavach" />
-            </div>
+            <div class="logo">Kavach</div>
             <h1 class="title">${roleSpecificContent.title}</h1>
             <p class="subtitle">${roleSpecificContent.description}</p>
         </div>

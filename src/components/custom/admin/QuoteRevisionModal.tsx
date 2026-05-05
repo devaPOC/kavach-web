@@ -51,7 +51,7 @@ export default function QuoteRevisionModal({
 }: QuoteRevisionModalProps) {
   const [formData, setFormData] = useState({
     quotedPrice: '',
-    currency: 'OMR',
+    currency: 'INR',
     description: '',
     validUntil: undefined as Date | undefined,
   });
@@ -128,7 +128,7 @@ export default function QuoteRevisionModal({
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <span className="text-blue-700 text-sm font-semibold tracking-wide">OMR</span>
+            <span className="text-blue-700 text-sm font-semibold tracking-wide">₹</span>
             Revise Quote - {quote.quoteNumber}
           </DialogTitle>
           <DialogDescription>
@@ -182,7 +182,7 @@ export default function QuoteRevisionModal({
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="OMR">OMR</SelectItem>
+                  <SelectItem value="INR">INR</SelectItem>
                 </SelectContent>
               </Select>
             </div>

@@ -406,7 +406,7 @@ export default function ServiceManagement() {
               {/* Quote information */}
               {buttonVisibility.showQuoteStatus && buttonVisibility.quoteStatusInfo.latestQuote && (
                 <div className="flex items-center gap-2">
-                  <span className="text-[10px] font-semibold text-green-700">OMR</span>
+                  <span className="text-[10px] font-semibold text-green-700">₹</span>
                   <span>
                     Latest Quote: {buttonVisibility.quoteStatusInfo.latestQuote.quotedPrice} {buttonVisibility.quoteStatusInfo.latestQuote.currency}
                     {requestQuotes.length > 1 && ` (${requestQuotes.length} total)`}
@@ -447,7 +447,7 @@ export default function ServiceManagement() {
                 className="border-green-200 text-green-600 hover:bg-green-50"
                 title="Create a new quote for this service request"
               >
-                <span className="text-[10px] font-semibold mr-1">OMR</span>
+                <span className="text-[10px] font-semibold mr-1">₹</span>
                 Create Quote
               </Button>
             )}
@@ -607,7 +607,7 @@ export default function ServiceManagement() {
                                     className="border-green-200 text-green-600 hover:bg-green-50"
                                     title="Create a new quote for this service request"
                                   >
-                                    <span className="text-[10px] font-semibold mr-1">OMR</span>
+                                    <span className="text-[10px] font-semibold mr-1">₹</span>
                                     Quote
                                   </Button>
                                 )}

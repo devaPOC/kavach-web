@@ -26,7 +26,7 @@ export async function GET(
         data: {
           pricingType: 'variable',
           requiresQuote: true,
-          currency: 'OMR',
+          currency: 'INR',
           message: 'No pricing configured for this service. A custom quote will be provided.',
         },
       });

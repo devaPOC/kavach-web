@@ -167,11 +167,7 @@ export const generateUserDeletionEmailHTML = (
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo">
-                <img src="${
-                  process.env.NEXT_PUBLIC_APP_URL || "https://kavach.com"
-                }/logo.png" alt="Kavach" />
-            </div>
+            <div class="logo">Kavach</div>
             <h1 class="title">Account Deletion Notification</h1>
             <p class="subtitle">Your account has been removed from our platform</p>
         </div>

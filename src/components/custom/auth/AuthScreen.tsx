@@ -139,11 +139,9 @@ const AuthScreen: React.FC<AuthScreenProps> = ({
 			<div className="relative z-10 flex min-h-screen items-center justify-center px-4 py-10">
 				<div className="w-full max-w-3xl space-y-8 text-center">
 					<div className="flex flex-col items-center gap-3">
-						<img
-							src="/logo-light.png"
-							alt="Kavach"
-							className="h-16 w-auto drop-shadow-2xl"
-						/>
+						<div className="text-4xl font-bold tracking-tight text-white drop-shadow-2xl font-sans uppercase">
+							Kavach
+						</div>
 
 						{pill ? (
 							<div className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[11px] uppercase tracking-[2px] text-white/90">

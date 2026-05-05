@@ -322,7 +322,7 @@ export default function ServiceRequestManageModal({
                 }}
                 className="justify-start"
               >
-                <span className="text-[10px] font-semibold mr-2">OMR</span>
+                <span className="text-[10px] font-semibold mr-2">₹</span>
                 View Quotes
               </Button>
 

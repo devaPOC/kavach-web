@@ -58,7 +58,7 @@ export default function ServicePricingManagement() {
     serviceType: '',
     pricingType: 'fixed',
     fixedPrice: '',
-    currency: 'OMR',
+    currency: 'INR',
     description: '',
   });
 
@@ -291,7 +291,7 @@ export default function ServicePricingManagement() {
       serviceType: '',
       pricingType: 'fixed',
       fixedPrice: '',
-      currency: 'OMR',
+      currency: 'INR',
       description: '',
     });
     setEditingPricing(null);
@@ -309,7 +309,7 @@ export default function ServicePricingManagement() {
 
   const formatPriceDisplay = (pricing: ServicePricing) => {
     if (pricing.pricingType === 'fixed' && pricing.fixedPrice) {
-      return `OMR ${Number(pricing.fixedPrice).toFixed(2)}`;
+      return `₹${Number(pricing.fixedPrice).toFixed(2)}`;
     }
     if (pricing.pricingType === 'variable') {
       return 'Custom Quotation';
@@ -540,7 +540,7 @@ export default function ServicePricingManagement() {
             {pricingList.length === 0 ? (
               <div className="text-center py-8">
                 <div className="h-12 w-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-gray-400 font-semibold">OMR</span>
+                  <span className="text-gray-400 font-semibold">₹</span>
                 </div>
                 <p className="text-gray-500 font-medium">No pricing configurations found</p>
                 <p className="text-gray-400 text-sm">Add your first service pricing to get started</p>

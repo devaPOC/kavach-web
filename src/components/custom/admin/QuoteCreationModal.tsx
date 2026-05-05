@@ -38,7 +38,7 @@ export default function QuoteCreationModal({
 }: QuoteCreationModalProps) {
   const [formData, setFormData] = useState({
     quotedPrice: '',
-    currency: 'OMR',
+    currency: 'INR',
     description: '',
     validUntil: undefined as Date | undefined,
   });
@@ -81,7 +81,7 @@ export default function QuoteCreationModal({
         // Reset form
         setFormData({
           quotedPrice: '',
-          currency: 'OMR',
+          currency: 'INR',
           description: '',
           validUntil: undefined,
         });
@@ -101,7 +101,7 @@ export default function QuoteCreationModal({
     if (!isSubmitting) {
       setFormData({
         quotedPrice: '',
-        currency: 'OMR',
+        currency: 'INR',
         description: '',
         validUntil: undefined,
       });
@@ -115,7 +115,7 @@ export default function QuoteCreationModal({
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <span className="text-green-700 text-sm font-semibold tracking-wide">OMR</span>
+            <span className="text-green-700 text-sm font-semibold tracking-wide">₹</span>
             Create Quote
           </DialogTitle>
           <DialogDescription>
@@ -175,7 +175,7 @@ export default function QuoteCreationModal({
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="OMR">OMR</SelectItem>
+                  <SelectItem value="INR">INR</SelectItem>
                 </SelectContent>
               </Select>
             </div>

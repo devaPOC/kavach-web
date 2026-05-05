@@ -224,7 +224,7 @@ export default function QuoteDetailsModal({
               }}
               className="bg-blue-600 hover:bg-blue-700"
             >
-              <span className="text-[10px] font-semibold mr-1">OMR</span>
+              <span className="text-[10px] font-semibold mr-1">₹</span>
               Revise Quote
             </Button>
           )}

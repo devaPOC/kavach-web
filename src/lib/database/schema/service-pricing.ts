@@ -9,7 +9,7 @@ export const servicePricing = pgTable('service_pricing', {
   fixedPrice: numeric('fixed_price', { precision: 10, scale: 2 }),
   minPrice: numeric('min_price', { precision: 10, scale: 2 }),
   maxPrice: numeric('max_price', { precision: 10, scale: 2 }),
-  currency: varchar('currency', { length: 3 }).notNull().default('OMR'),
+  currency: varchar('currency', { length: 3 }).notNull().default('INR'),
   isActive: boolean('is_active').notNull().default(true),
   description: text('description'),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),

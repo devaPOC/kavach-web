@@ -4,14 +4,14 @@ import { cookieManager } from '@/lib/auth/unified-session-manager';
 import { z } from 'zod';
 
 // Price bounds (business rule)
-const MIN_PRICE = 0.1; // OMR
-const MAX_PRICE = 100000; // OMR
+const MIN_PRICE = 1; // INR
+const MAX_PRICE = 100000; // INR
 
 const createPricingSchema = z.object({
   serviceType: z.string().min(1, 'Service type is required'),
   pricingType: z.enum(['fixed', 'variable']),
   fixedPrice: z.number().min(MIN_PRICE, `Fixed price must be >= ${MIN_PRICE}`).max(MAX_PRICE, `Fixed price must be <= ${MAX_PRICE}`).optional().nullable(),
-  currency: z.string().length(3).default('OMR'),
+  currency: z.string().length(3).default('INR'),
   description: z.string().max(1000, 'Description too long').optional().nullable(),
 }).refine(data => {
   // If variable pricing, fixedPrice must be null/undefined

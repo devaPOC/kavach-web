@@ -82,6 +82,9 @@ export default function SuperAdminSidebar({
 								<div className="h-9 w-9 bg-gradient-to-br from-purple-500 to-purple-700 rounded-xl flex items-center justify-center shadow-sm">
 									<Shield className="h-5 w-5 text-white" />
 								</div>
+								<div className="text-xl font-bold tracking-tight text-slate-900 uppercase">
+									Kavach
+								</div>
 								<span className="text-base font-semibold text-slate-800 tracking-tight">Super Admin</span>
 							</div>
 							<button

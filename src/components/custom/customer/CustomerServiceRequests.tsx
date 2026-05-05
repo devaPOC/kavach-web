@@ -378,8 +378,8 @@ export default function CustomerServiceRequests() {
     );
   };
 
-  const formatPrice = (amount: string, currency: string = 'OMR') => {
-    return `${currency} ${parseFloat(amount).toFixed(2)}`;
+  const formatPrice = (amount: string, currency: string = 'INR') => {
+    return `₹${parseFloat(amount).toFixed(2)}`;
   };
 
   const isQuoteExpired = (validUntil?: Date) => {

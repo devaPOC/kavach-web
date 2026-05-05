@@ -218,11 +218,11 @@ export default function ExpertDashboardOverview({ expertId, userRole }: ExpertDa
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-slate-600">Monthly Earnings</CardTitle>
             <div className="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center">
-              <span className="text-[10px] font-bold text-emerald-600">OMR</span>
+              <span className="text-[10px] font-bold text-emerald-600">₹</span>
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-emerald-600">OMR {(earningsStats.monthlyEarnings || 0).toFixed(2)}</div>
+            <div className="text-2xl font-bold text-emerald-600">₹ {(earningsStats.monthlyEarnings || 0).toFixed(2)}</div>
             <p className="text-xs text-slate-500 mt-1">
               {earningsStats.completedTasks || 0} tasks completed
             </p>
