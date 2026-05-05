@@ -1,0 +1,153 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1761296210586,
+      "tag": "0000_steep_lionheart",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1761304944843,
+      "tag": "0001_brave_ken_ellis",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1762680501582,
+      "tag": "0002_daily_aqueduct",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1762885218656,
+      "tag": "0003_previous_randall_flagg",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1765292830678,
+      "tag": "0004_woozy_cannonball",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1766733072796,
+      "tag": "0005_skinny_ghost_rider",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1766735652684,
+      "tag": "0006_fine_aqueduct",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1766736260857,
+      "tag": "0007_powerful_beyonder",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1766736499394,
+      "tag": "0008_wealthy_bastion",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1766736977649,
+      "tag": "0009_zippy_mentor",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1766737272607,
+      "tag": "0010_long_star_brand",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1766737515082,
+      "tag": "0011_robust_charles_xavier",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1766738649831,
+      "tag": "0012_striped_rhodey",
+      "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "7",
+      "when": 1766739060452,
+      "tag": "0013_shocking_risque",
+      "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "7",
+      "when": 1766739738188,
+      "tag": "0014_fat_dust",
+      "breakpoints": true
+    },
+    {
+      "idx": 15,
+      "version": "7",
+      "when": 1766740350999,
+      "tag": "0015_deep_rafael_vega",
+      "breakpoints": true
+    },
+    {
+      "idx": 16,
+      "version": "7",
+      "when": 1767684472494,
+      "tag": "0016_chilly_pride",
+      "breakpoints": true
+    },
+    {
+      "idx": 17,
+      "version": "7",
+      "when": 1767686727917,
+      "tag": "0017_lyrical_stepford_cuckoos",
+      "breakpoints": true
+    },
+    {
+      "idx": 18,
+      "version": "7",
+      "when": 1768024509451,
+      "tag": "0018_add_device_tokens",
+      "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "7",
+      "when": 1768033156072,
+      "tag": "0019_migrate-fk-to-admins",
+      "breakpoints": true
+    },
+    {
+      "idx": 20,
+      "version": "7",
+      "when": 1768033473376,
+      "tag": "0020_fix-admin-fk-refs",
+      "breakpoints": true
+    }
+  ]
+}

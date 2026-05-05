@@ -1,0 +1,3 @@
+ALTER TABLE "awareness_session_status_history" DROP CONSTRAINT "awareness_session_status_history_session_request_id_awareness_session_requests_id_fk";
+--> statement-breakpoint
+ALTER TABLE "awareness_session_status_history" ADD CONSTRAINT "fk_session_status_history_request_id" FOREIGN KEY ("session_request_id") REFERENCES "public"."awareness_session_requests"("id") ON DELETE no action ON UPDATE no action;

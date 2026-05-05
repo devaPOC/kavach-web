@@ -1,0 +1,1 @@
+ALTER TABLE "awareness_session_requests" ALTER COLUMN "audience_types" SET DATA TYPE jsonb;

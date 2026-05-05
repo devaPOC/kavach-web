@@ -1,0 +1,2 @@
+ALTER TABLE "service_data" DROP CONSTRAINT "service_data_status_check";--> statement-breakpoint
+ALTER TABLE "service_data" ADD CONSTRAINT "service_data_status_check" CHECK (status IN ('pending', 'assigned', 'in_progress', 'completed', 'cancelled', 'closed'));

@@ -1,0 +1,301 @@
+/* Enhanced Arabic Typography Support */
+
+/* Arabic font family definitions */
+.font-arabic {
+  font-family: var(--font-noto-sans-arabic), var(--font-cairo), var(--font-tajawal), var(--font-amiri), var(--font-scheherazade-new), sans-serif;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* RTL layout utilities */
+.rtl {
+  direction: rtl;
+  text-align: right;
+}
+
+.ltr {
+  direction: ltr;
+  text-align: left;
+}
+
+/* Enhanced Arabic typography classes */
+.font-arabic.text-xs {
+  font-size: 0.75rem;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
+.font-arabic.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+}
+
+.font-arabic.text-base {
+  font-size: 1rem;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+}
+
+.font-arabic.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+}
+
+.font-arabic.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+}
+
+.font-arabic.text-2xl {
+  font-size: 1.5rem;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+}
+
+.font-arabic.text-3xl {
+  font-size: 1.875rem;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+}
+
+.font-arabic.text-4xl {
+  font-size: 2.25rem;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+}
+
+/* Arabic heading optimizations */
+.font-arabic h1,
+.font-arabic h2,
+.font-arabic h3,
+.font-arabic h4,
+.font-arabic h5,
+.font-arabic h6 {
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* Arabic paragraph optimizations */
+.font-arabic p {
+  line-height: 1.8;
+  word-spacing: 0.05em;
+}
+
+/* Arabic list optimizations */
+.font-arabic ul,
+.font-arabic ol {
+  line-height: 1.7;
+}
+
+.font-arabic li {
+  margin-bottom: 0.25rem;
+}
+
+/* Button text optimizations for Arabic */
+.font-arabic button,
+.font-arabic .btn {
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+/* Form input optimizations for Arabic */
+.font-arabic input,
+.font-arabic textarea,
+.font-arabic select {
+  line-height: 1.5;
+  text-align: right;
+}
+
+/* Mixed content support */
+.mixed-content {
+  font-family: var(--font-noto-sans-arabic), var(--font-geist-sans), sans-serif;
+  line-height: 1.7;
+}
+
+/* RTL-specific spacing utilities */
+.rtl .space-x-reverse > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 1;
+}
+
+.rtl .space-x-1 > :not([hidden]) ~ :not([hidden]) {
+  margin-right: calc(0.25rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.25rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.rtl .space-x-2 > :not([hidden]) ~ :not([hidden]) {
+  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.rtl .space-x-3 > :not([hidden]) ~ :not([hidden]) {
+  margin-right: calc(0.75rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.rtl .space-x-4 > :not([hidden]) ~ :not([hidden]) {
+  margin-right: calc(1rem * var(--tw-space-x-reverse));
+  margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+/* RTL flex utilities */
+.rtl .flex-row {
+  flex-direction: row-reverse;
+}
+
+.rtl .flex-row-reverse {
+  flex-direction: row;
+}
+
+/* RTL margin and padding utilities */
+.rtl .ml-auto {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.rtl .mr-auto {
+  margin-right: auto;
+  margin-left: 0;
+}
+
+.rtl .pl-2 {
+  padding-left: 0;
+  padding-right: 0.5rem;
+}
+
+.rtl .pr-2 {
+  padding-right: 0;
+  padding-left: 0.5rem;
+}
+
+.rtl .pl-3 {
+  padding-left: 0;
+  padding-right: 0.75rem;
+}
+
+.rtl .pr-3 {
+  padding-right: 0;
+  padding-left: 0.75rem;
+}
+
+.rtl .pl-4 {
+  padding-left: 0;
+  padding-right: 1rem;
+}
+
+.rtl .pr-4 {
+  padding-right: 0;
+  padding-left: 1rem;
+}
+
+/* RTL border utilities */
+.rtl .border-l {
+  border-left: 0;
+  border-right: 1px solid;
+}
+
+.rtl .border-r {
+  border-right: 0;
+  border-left: 1px solid;
+}
+
+.rtl .rounded-l {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 0.375rem;
+  border-bottom-right-radius: 0.375rem;
+}
+
+.rtl .rounded-r {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 0.375rem;
+  border-bottom-left-radius: 0.375rem;
+}
+
+/* Touch target improvements for mobile */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Arabic number formatting */
+.arabic-numerals {
+  font-feature-settings: "lnum" 0, "tnum" 0;
+}
+
+/* Improved readability for Arabic text */
+.font-arabic .prose {
+  line-height: 1.8;
+  word-spacing: 0.05em;
+}
+
+.font-arabic .prose h1,
+.font-arabic .prose h2,
+.font-arabic .prose h3,
+.font-arabic .prose h4 {
+  line-height: 1.4;
+  margin-top: 1.5em;
+  margin-bottom: 0.75em;
+}
+
+.font-arabic .prose p {
+  margin-bottom: 1.25em;
+}
+
+/* Quiz-specific Arabic styling */
+.quiz-question.font-arabic {
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.quiz-option.font-arabic {
+  line-height: 1.6;
+  padding: 0.75rem 1rem;
+}
+
+.quiz-navigation.rtl {
+  flex-direction: row-reverse;
+}
+
+.quiz-navigation.rtl .space-x-reverse > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 1;
+}
+
+/* Responsive Arabic typography */
+@media (max-width: 640px) {
+  .font-arabic.text-lg {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  
+  .font-arabic.text-xl {
+    font-size: 1.125rem;
+    line-height: 1.75;
+  }
+  
+  .font-arabic.text-2xl {
+    font-size: 1.25rem;
+    line-height: 1.7;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .font-arabic {
+    font-weight: 500;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .font-arabic * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

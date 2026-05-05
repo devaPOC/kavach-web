@@ -1,0 +1,710 @@
+@import "tailwindcss";
+@import "../styles/arabic-fonts.css";
+
+:root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+  --primary: #4f46e5;
+  --primary-foreground: #ffffff;
+  --secondary: #059669;
+  --secondary-foreground: #ffffff;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --accent: #f59e0b;
+  --accent-foreground: #0f172a;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #e2e8f0;
+  --input: #94a3b8;
+  --ring: #a5b4fc;
+  --chart-1: #4f46e5;
+  --chart-2: #059669;
+  --chart-3: #f59e0b;
+  --chart-4: #ec4899;
+  --chart-5: #22c55e;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0f172a;
+  --sidebar-primary: #4f46e5;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f59e0b;
+  --sidebar-accent-foreground: #0f172a;
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: #a5b4fc;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-serif: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, monospace;
+  --radius: 0.75rem;
+  --shadow-2xs: 0 1px 2px 0 rgb(0 0 0 / 0.03);
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.04);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.06), 0 1px 2px -1px rgb(0 0 0 / 0.06);
+  --shadow: 0 2px 4px -1px rgb(0 0 0 / 0.06), 0 1px 2px -1px rgb(0 0 0 / 0.04);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.04);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.08), 0 8px 10px -6px rgb(0 0 0 / 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.15);
+  --tracking-normal: 0;
+  --spacing: 0.25rem;
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark {
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #1a212b;
+  --card-foreground: #ffffff;
+  --popover: #1a212b;
+  --popover-foreground: #ffffff;
+  --primary: #818cf8;
+  --primary-foreground: #000000;
+  --secondary: #2dd4bf;
+  --secondary-foreground: #000000;
+  --muted: #333333;
+  --muted-foreground: #cccccc;
+  --accent: #fcd34d;
+  --accent-foreground: #000000;
+  --destructive: #f87171;
+  --destructive-foreground: #000000;
+  --border: #545454;
+  --input: #ffffff;
+  --ring: #818cf8;
+  --chart-1: #818cf8;
+  --chart-2: #2dd4bf;
+  --chart-3: #fcd34d;
+  --chart-4: #f472b6;
+  --chart-5: #4ade80;
+  --sidebar: #000000;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #818cf8;
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent: #fcd34d;
+  --sidebar-accent-foreground: #000000;
+  --sidebar-border: #ffffff;
+  --sidebar-ring: #818cf8;
+  --font-sans: DM Sans, sans-serif;
+  --font-serif: DM Sans, sans-serif;
+  --font-mono: Space Mono, monospace;
+  --radius: 1rem;
+  --shadow-2xs: 0px 0px 0px 0px hsl(0 0% 10.1961% / 0.03);
+  --shadow-xs: 0px 0px 0px 0px hsl(0 0% 10.1961% / 0.03);
+  --shadow-sm: 0px 0px 0px 0px hsl(0 0% 10.1961% / 0.05), 0px 1px 2px -1px hsl(0 0% 10.1961% / 0.05);
+  --shadow: 0px 0px 0px 0px hsl(0 0% 10.1961% / 0.05), 0px 1px 2px -1px hsl(0 0% 10.1961% / 0.05);
+  --shadow-md: 0px 0px 0px 0px hsl(0 0% 10.1961% / 0.05), 0px 2px 4px -1px hsl(0 0% 10.1961% / 0.05);
+  --shadow-lg: 0px 0px 0px 0px hsl(0 0% 10.1961% / 0.05), 0px 4px 6px -1px hsl(0 0% 10.1961% / 0.05);
+  --shadow-xl: 0px 0px 0px 0px hsl(0 0% 10.1961% / 0.05), 0px 8px 10px -1px hsl(0 0% 10.1961% / 0.05);
+  --shadow-2xl: 0px 0px 0px 0px hsl(0 0% 10.1961% / 0.13);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-serif: var(--font-serif);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --shadow-2xs: var(--shadow-2xs);
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow: var(--shadow);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-2xl: var(--shadow-2xl);
+
+  --tracking-tighter: calc(var(--tracking-normal) - 0.05em);
+  --tracking-tight: calc(var(--tracking-normal) - 0.025em);
+  --tracking-normal: var(--tracking-normal);
+  --tracking-wide: calc(var(--tracking-normal) + 0.025em);
+  --tracking-wider: calc(var(--tracking-normal) + 0.05em);
+  --tracking-widest: calc(var(--tracking-normal) + 0.1em);
+}
+
+body {
+  letter-spacing: var(--tracking-normal);
+}
+
+/* Arabic font family - Enhanced */
+.font-arabic {
+  font-family: var(--font-noto-sans-arabic), var(--font-cairo), var(--font-amiri), var(--font-scheherazade-new), sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-feature-settings: "liga", "kern", "calt", "dlig";
+  font-feature-settings: "liga", "kern", "calt", "dlig";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-variant-ligatures: common-ligatures contextual;
+}
+
+/* RTL text direction utilities */
+.rtl {
+  direction: rtl;
+  text-align: right;
+}
+
+.ltr {
+  direction: ltr;
+  text-align: left;
+}
+
+/* RTL layout adjustments */
+.rtl .flex-row-reverse {
+  flex-direction: row-reverse;
+}
+
+.rtl .space-x-reverse>*+* {
+  margin-right: var(--tw-space-x-reverse);
+  margin-left: calc(var(--tw-space-x-reverse) * 0);
+}
+
+/* Arabic text improvements - Enhanced */
+.font-arabic h1,
+.font-arabic h2,
+.font-arabic h3,
+.font-arabic h4,
+.font-arabic h5,
+.font-arabic h6 {
+  font-weight: 600;
+  line-height: 1.4;
+  word-spacing: 0.1em;
+}
+
+.font-arabic .font-light {
+  font-weight: 300;
+}
+
+.font-arabic .font-normal {
+  font-weight: 400;
+}
+
+.font-arabic .font-medium {
+  font-weight: 500;
+}
+
+.font-arabic .font-semibold {
+  font-weight: 600;
+}
+
+.font-arabic .font-bold {
+  font-weight: 700;
+}
+
+/* Enhanced Arabic text rendering with better typography */
+.font-arabic p,
+.font-arabic div,
+.font-arabic span {
+  word-spacing: 0.05em;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/* Arabic text size adjustments for better readability */
+.font-arabic .text-xs {
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.font-arabic .text-sm {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.font-arabic .text-base {
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.font-arabic .text-lg {
+  font-size: 1.15rem;
+  line-height: 1.8;
+}
+
+.font-arabic .text-xl {
+  font-size: 1.3rem;
+  line-height: 1.8;
+}
+
+.font-arabic .text-2xl {
+  font-size: 1.6rem;
+  line-height: 1.7;
+}
+
+/* Arabic button text optimization */
+.font-arabic button,
+.font-arabic .btn {
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* Arabic form elements */
+.font-arabic input,
+.font-arabic textarea,
+.font-arabic select {
+  font-family: var(--font-noto-sans-arabic), var(--font-cairo), sans-serif;
+  text-align: right;
+  font-weight: 400;
+}
+
+.font-arabic input::placeholder,
+.font-arabic textarea::placeholder {
+  text-align: right;
+  opacity: 0.7;
+  font-weight: 300;
+}
+
+/* Enhanced RTL-specific spacing utilities */
+.rtl .mr-auto {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.rtl .ml-auto {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.rtl .pl-4 {
+  padding-left: 0;
+  padding-right: 1rem;
+}
+
+.rtl .pr-4 {
+  padding-right: 0;
+  padding-left: 1rem;
+}
+
+.rtl .ml-2 {
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
+
+.rtl .mr-2 {
+  margin-right: 0;
+  margin-left: 0.5rem;
+}
+
+.rtl .ml-3 {
+  margin-left: 0;
+  margin-right: 0.75rem;
+}
+
+.rtl .mr-3 {
+  margin-right: 0;
+  margin-left: 0.75rem;
+}
+
+/* RTL button and form adjustments */
+.rtl .text-left {
+  text-align: right;
+}
+
+.rtl .text-right {
+  text-align: left;
+}
+
+/* RTL flex adjustments */
+.rtl .justify-start {
+  justify-content: flex-end;
+}
+
+.rtl .justify-end {
+  justify-content: flex-start;
+}
+
+.rtl .items-start {
+  align-items: flex-end;
+}
+
+.rtl .items-end {
+  align-items: flex-start;
+}
+
+/* RTL grid adjustments */
+.rtl .grid-cols-1,
+.rtl .grid-cols-2,
+.rtl .grid-cols-3,
+.rtl .grid-cols-4 {
+  direction: rtl;
+}
+
+.rtl .grid>* {
+  direction: ltr;
+}
+
+/* Arabic number formatting */
+.font-arabic .tabular-nums {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* RTL card and component adjustments */
+.rtl .rounded-l-lg {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.rtl .rounded-r-lg {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+
+/* RTL border adjustments */
+.rtl .border-l {
+  border-left-width: 0;
+  border-right-width: 1px;
+}
+
+.rtl .border-r {
+  border-right-width: 0;
+  border-left-width: 1px;
+}
+
+/* Arabic-specific quiz styling */
+.font-arabic .quiz-question {
+  font-size: 1.1em;
+  line-height: 1.8;
+}
+
+.font-arabic .quiz-option {
+  font-size: 1em;
+  line-height: 1.6;
+}
+
+/* RTL animation adjustments */
+.rtl .animate-slide-in-right {
+  animation: slideInLeft 0.3s ease-out;
+}
+
+.rtl .animate-slide-in-left {
+  animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Improve Arabic input fields */
+.font-arabic input,
+.font-arabic textarea,
+.font-arabic select {
+  font-family: 'Noto Sans Arabic', 'Cairo', sans-serif;
+  text-align: right;
+}
+
+.font-arabic input::placeholder,
+.font-arabic textarea::placeholder {
+  text-align: right;
+  opacity: 0.7;
+}
+
+/* RTL dropdown and menu adjustments */
+.rtl .dropdown-menu {
+  left: auto;
+  right: 0;
+}
+
+/* Enhanced RTL component adjustments */
+.rtl .dropdown-menu,
+.rtl .popover-content {
+  left: auto;
+  right: 0;
+}
+
+.rtl .tooltip {
+  transform-origin: right center;
+}
+
+/* RTL table adjustments */
+.rtl table {
+  direction: rtl;
+}
+
+.rtl th:first-child,
+.rtl td:first-child {
+  text-align: right;
+}
+
+.rtl th:last-child,
+.rtl td:last-child {
+  text-align: left;
+}
+
+/* RTL navigation adjustments */
+.rtl .breadcrumb {
+  direction: rtl;
+}
+
+.rtl .breadcrumb-separator {
+  transform: scaleX(-1);
+}
+
+/* Enhanced Arabic quiz-specific styling */
+.font-arabic .quiz-question {
+  font-size: 1.15em;
+  line-height: 1.8;
+  word-spacing: 0.08em;
+  text-align: justify;
+  text-justify: inter-word;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.font-arabic .quiz-option {
+  font-size: 1.05em;
+  line-height: 1.7;
+  word-spacing: 0.05em;
+  font-weight: 400;
+}
+
+.font-arabic .quiz-timer {
+  font-family: var(--font-cairo), var(--font-noto-sans-arabic), monospace;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.font-arabic .quiz-score {
+  font-family: var(--font-cairo), var(--font-noto-sans-arabic), sans-serif;
+  font-weight: 700;
+  font-size: 1.2em;
+}
+
+/* Arabic badge and label styling */
+.font-arabic .badge,
+.font-arabic .label {
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* RTL-specific quiz improvements */
+.rtl .quiz-navigation {
+  direction: rtl;
+}
+
+.rtl .quiz-progress .question-indicators {
+  direction: ltr;
+  text-align: center;
+}
+
+.rtl .quiz-option-text {
+  text-align: right;
+  width: 100%;
+}
+
+.rtl .quiz-submit-dialog {
+  text-align: right;
+}
+
+/* Enhanced RTL button spacing */
+.rtl .quiz-navigation .space-x-2>*+* {
+  margin-right: 0.5rem;
+  margin-left: 0;
+}
+
+.rtl .quiz-navigation .space-x-3>*+* {
+  margin-right: 0.75rem;
+  margin-left: 0;
+}
+
+/* Arabic quiz text improvements */
+.font-arabic .quiz-option-text {
+  font-family: var(--font-noto-sans-arabic), var(--font-cairo), sans-serif;
+  line-height: 1.7;
+  word-spacing: 0.05em;
+  font-weight: 400;
+  text-align: right;
+}
+
+.font-arabic .quiz-explanation {
+  font-family: var(--font-noto-sans-arabic), var(--font-cairo), sans-serif;
+  line-height: 1.8;
+  word-spacing: 0.08em;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/* Improved Arabic badge styling in quiz context */
+.font-arabic .quiz-badge {
+  font-family: var(--font-cairo), var(--font-noto-sans-arabic), sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* Arabic card content optimization */
+.font-arabic .card-title {
+  font-weight: 600;
+  line-height: 1.4;
+  word-spacing: 0.05em;
+}
+
+.font-arabic .card-description {
+  font-weight: 400;
+  line-height: 1.7;
+  opacity: 0.9;
+}
+
+/* Arabic alert and notification styling */
+.font-arabic .alert {
+  text-align: right;
+}
+
+.font-arabic .alert-title {
+  font-weight: 600;
+}
+
+.font-arabic .alert-description {
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* Enhanced Arabic animation support */
+.rtl .animate-slide-in-right {
+  animation: slideInLeft 0.3s ease-out;
+}
+
+.rtl .animate-slide-in-left {
+  animation: slideInRight 0.3s ease-out;
+}
+
+.rtl .animate-fade-in-right {
+  animation: fadeInLeft 0.5s ease-out;
+}
+
+.rtl .animate-fade-in-left {
+  animation: fadeInRight 0.5s ease-out;
+}
+
+@keyframes fadeInLeft {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Arabic number and time display */
+.font-arabic .number-display {
+  font-family: var(--font-cairo), var(--font-noto-sans-arabic), monospace;
+  font-variant-numeric: tabular-nums;
+  direction: ltr;
+  display: inline-block;
+}
+
+/* Arabic progress indicators */
+.font-arabic .progress-text {
+  font-weight: 500;
+  font-size: 0.9em;
+}
+
+/* Enhanced Arabic responsive typography */
+@media (max-width: 640px) {
+  .font-arabic .text-lg {
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+
+  .font-arabic .text-xl {
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+
+  .font-arabic .text-2xl {
+    font-size: 1.4rem;
+    line-height: 1.5;
+  }
+}
+
+/* Arabic dark mode adjustments */
+.dark .font-arabic {
+  font-weight: 400;
+}
+
+.dark .font-arabic h1,
+.dark .font-arabic h2,
+.dark .font-arabic h3,
+.dark .font-arabic h4,
+.dark .font-arabic h5,
+.dark .font-arabic h6 {
+  font-weight: 500;
+}

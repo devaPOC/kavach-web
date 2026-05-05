@@ -1,0 +1,5 @@
+ALTER TABLE "users" ADD CONSTRAINT "users_role_check" CHECK (role IN ('customer', 'expert', 'trainer', 'admin'));--> statement-breakpoint
+ALTER TABLE "service_data" ADD CONSTRAINT "service_data_status_check" CHECK (status IN ('pending', 'in_progress', 'completed', 'cancelled'));--> statement-breakpoint
+ALTER TABLE "service_data" ADD CONSTRAINT "service_data_priority_check" CHECK (priority IS NULL OR priority IN ('low', 'normal', 'high', 'urgent'));--> statement-breakpoint
+ALTER TABLE "service_payments" ADD CONSTRAINT "service_payments_status_check" CHECK (status IN ('pending', 'completed', 'failed', 'refunded'));--> statement-breakpoint
+ALTER TABLE "service_quotes" ADD CONSTRAINT "service_quotes_status_check" CHECK (status IN ('draft', 'sent', 'pending', 'accepted', 'rejected', 'expired', 'superseded'));
