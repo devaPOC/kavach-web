@@ -252,6 +252,7 @@ export const defaultAdminSidebarItems: SidebarItem[] = [
     description: 'Configure service pricing',
     href: '/admin/pricing'
   },
+  /*
   {
     id: 'marketplace',
     label: 'Marketplace',
@@ -259,6 +260,7 @@ export const defaultAdminSidebarItems: SidebarItem[] = [
     description: 'Manage marketplace products and orders',
     href: '/admin/marketplace'
   },
+  */
   {
     id: 'recycle-bin',
     label: 'Recycle Bin',
