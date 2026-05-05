@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Noto_Sans_Arabic, Cairo, Amiri, Scheherazade_New, Tajawal } from "next/font/google";
+import { Geist, Geist_Mono, Noto_Sans_Arabic, Cairo, Amiri, Scheherazade_New, Tajawal, Inter } from "next/font/google";
 import { NonceProvider } from "@/lib/security/nonce-provider";
 import { LanguageProvider } from "@/lib/contexts/LanguageContext";
 
@@ -8,6 +8,11 @@ import "./globals.css";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+});
+
+const fontSans = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
 });
 
 const geistMono = Geist_Mono({
@@ -58,7 +63,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${notoSansArabic.variable} ${cairo.variable} ${amiri.variable} ${scheherazadeNew.variable} ${tajawal.variable} antialiased`}
+        className={`${fontSans.variable} ${geistSans.variable} ${geistMono.variable} ${notoSansArabic.variable} ${cairo.variable} ${amiri.variable} ${scheherazadeNew.variable} ${tajawal.variable} antialiased`}
       >
         <NonceProvider>
           <LanguageProvider>
