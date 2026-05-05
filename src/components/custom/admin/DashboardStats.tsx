@@ -29,7 +29,7 @@ function StatsCard({ title, value, description, icon, trend }: StatsCardProps) {
         {trend && (
           <div className="flex items-center pt-1">
             <span
-              className={`text-xs font-medium ${trend.isPositive ? 'text-green-600' : 'text-red-600'
+              className={`text-xs font-medium ${trend.isPositive ? 'text-secondary' : 'text-destructive'
                 }`}
             >
               {trend.isPositive ? '+' : ''}{trend.value}%
@@ -164,7 +164,7 @@ export default function DashboardStats() {
         {[...Array(5)].map((_, i) => (
           <Card key={i}>
             <CardContent className="flex items-center justify-center h-24">
-              <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+              <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary/50"></div>
             </CardContent>
           </Card>
         ))}
@@ -176,7 +176,7 @@ export default function DashboardStats() {
     return (
       <Card>
         <CardContent className="flex items-center justify-center h-24">
-          <p className="text-sm text-red-600">{error}</p>
+          <p className="text-sm text-destructive">{error}</p>
         </CardContent>
       </Card>
     )

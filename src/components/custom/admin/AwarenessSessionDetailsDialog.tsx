@@ -53,12 +53,12 @@ export default function AwarenessSessionDetailsDialog({
 
   const getStatusBadgeColor = (status: string) => {
     switch (status) {
-      case 'pending_admin_review': return 'bg-yellow-100 text-yellow-800 border-yellow-200'
-      case 'forwarded_to_expert': return 'bg-blue-100 text-blue-800 border-blue-200'
-      case 'confirmed': return 'bg-green-100 text-green-800 border-green-200'
-      case 'rejected': return 'bg-red-100 text-red-800 border-red-200'
-      case 'expert_declined': return 'bg-orange-100 text-orange-800 border-orange-200'
-      default: return 'bg-gray-100 text-gray-800 border-gray-200'
+      case 'pending_admin_review': return 'bg-accent/10 text-accent border-accent/50'
+      case 'forwarded_to_expert': return 'bg-primary/10 text-primary border-primary/50'
+      case 'confirmed': return 'bg-secondary/10 text-secondary border-secondary/50'
+      case 'rejected': return 'bg-destructive/10 text-destructive border-destructive'
+      case 'expert_declined': return 'bg-accent/10 text-accent border-accent/50'
+      default: return 'bg-muted text-foreground border-border'
     }
   }
 
@@ -80,7 +80,7 @@ export default function AwarenessSessionDetailsDialog({
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-lg font-semibold">{request.organizationName}</h3>
-              <p className="text-sm text-gray-500">Request ID: {request.id}</p>
+              <p className="text-sm text-muted-foreground">Request ID: {request.id}</p>
             </div>
             <Badge className={getStatusBadgeColor(request.status)}>
               {STATUS_LABELS[request.status]}
@@ -91,7 +91,7 @@ export default function AwarenessSessionDetailsDialog({
 
           {/* Session Information */}
           <div className="space-y-4">
-            <h4 className="font-medium text-gray-900 flex items-center gap-2">
+            <h4 className="font-medium text-foreground flex items-center gap-2">
               <Calendar className="h-4 w-4" />
               Session Information
             </h4>
@@ -99,18 +99,18 @@ export default function AwarenessSessionDetailsDialog({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-3">
                 <div className="flex items-start gap-3">
-                  <FileText className="h-4 w-4 text-gray-400 mt-0.5" />
+                  <FileText className="h-4 w-4 text-muted-foreground/80 mt-0.5" />
                   <div>
-                    <p className="text-sm font-medium text-gray-700">Subject/Topic</p>
-                    <p className="text-sm text-gray-900">{request.subject}</p>
+                    <p className="text-sm font-medium text-foreground/80">Subject/Topic</p>
+                    <p className="text-sm text-foreground">{request.subject}</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <Calendar className="h-4 w-4 text-gray-400 mt-0.5" />
+                  <Calendar className="h-4 w-4 text-muted-foreground/80 mt-0.5" />
                   <div>
-                    <p className="text-sm font-medium text-gray-700">Session Date</p>
-                    <p className="text-sm text-gray-900">
+                    <p className="text-sm font-medium text-foreground/80">Session Date</p>
+                    <p className="text-sm text-foreground">
                       {new Date(request.sessionDate).toLocaleDateString('en-US', {
                         weekday: 'long',
                         year: 'numeric',
@@ -122,43 +122,43 @@ export default function AwarenessSessionDetailsDialog({
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <Clock className="h-4 w-4 text-gray-400 mt-0.5" />
+                  <Clock className="h-4 w-4 text-muted-foreground/80 mt-0.5" />
                   <div>
-                    <p className="text-sm font-medium text-gray-700">Duration</p>
-                    <p className="text-sm text-gray-900">{DURATION_LABELS[request.duration]}</p>
+                    <p className="text-sm font-medium text-foreground/80">Duration</p>
+                    <p className="text-sm text-foreground">{DURATION_LABELS[request.duration]}</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <MapPin className="h-4 w-4 text-gray-400 mt-0.5" />
+                  <MapPin className="h-4 w-4 text-muted-foreground/80 mt-0.5" />
                   <div>
-                    <p className="text-sm font-medium text-gray-700">Location</p>
-                    <p className="text-sm text-gray-900">{request.location}</p>
+                    <p className="text-sm font-medium text-foreground/80">Location</p>
+                    <p className="text-sm text-foreground">{request.location}</p>
                   </div>
                 </div>
               </div>
 
               <div className="space-y-3">
                 <div className="flex items-start gap-3">
-                  <Globe className="h-4 w-4 text-gray-400 mt-0.5" />
+                  <Globe className="h-4 w-4 text-muted-foreground/80 mt-0.5" />
                   <div>
-                    <p className="text-sm font-medium text-gray-700">Session Mode</p>
-                    <p className="text-sm text-gray-900">{SESSION_MODE_LABELS[request.sessionMode]}</p>
+                    <p className="text-sm font-medium text-foreground/80">Session Mode</p>
+                    <p className="text-sm text-foreground">{SESSION_MODE_LABELS[request.sessionMode]}</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <Users className="h-4 w-4 text-gray-400 mt-0.5" />
+                  <Users className="h-4 w-4 text-muted-foreground/80 mt-0.5" />
                   <div>
-                    <p className="text-sm font-medium text-gray-700">Audience Size</p>
-                    <p className="text-sm text-gray-900">{request.audienceSize} people</p>
+                    <p className="text-sm font-medium text-foreground/80">Audience Size</p>
+                    <p className="text-sm text-foreground">{request.audienceSize} people</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <Users className="h-4 w-4 text-gray-400 mt-0.5" />
+                  <Users className="h-4 w-4 text-muted-foreground/80 mt-0.5" />
                   <div>
-                    <p className="text-sm font-medium text-gray-700">Audience Types</p>
+                    <p className="text-sm font-medium text-foreground/80">Audience Types</p>
                     <div className="flex flex-wrap gap-1 mt-1">
                       {request.audienceTypes.map((type) => (
                         <Badge key={type} variant="outline" className="text-xs">
@@ -174,10 +174,10 @@ export default function AwarenessSessionDetailsDialog({
             {/* Special Requirements */}
             {request.specialRequirements && (
               <div className="flex items-start gap-3">
-                <FileText className="h-4 w-4 text-gray-400 mt-0.5" />
+                <FileText className="h-4 w-4 text-muted-foreground/80 mt-0.5" />
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-gray-700">Special Requirements</p>
-                  <p className="text-sm text-gray-900 mt-1 whitespace-pre-wrap">{request.specialRequirements}</p>
+                  <p className="text-sm font-medium text-foreground/80">Special Requirements</p>
+                  <p className="text-sm text-foreground mt-1 whitespace-pre-wrap">{request.specialRequirements}</p>
                 </div>
               </div>
             )}
@@ -187,25 +187,25 @@ export default function AwarenessSessionDetailsDialog({
 
           {/* Contact Information */}
           <div className="space-y-4">
-            <h4 className="font-medium text-gray-900 flex items-center gap-2">
+            <h4 className="font-medium text-foreground flex items-center gap-2">
               <Building className="h-4 w-4" />
               Contact Information
             </h4>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="flex items-start gap-3">
-                <Mail className="h-4 w-4 text-gray-400 mt-0.5" />
+                <Mail className="h-4 w-4 text-muted-foreground/80 mt-0.5" />
                 <div>
-                  <p className="text-sm font-medium text-gray-700">Email</p>
-                  <p className="text-sm text-gray-900">{request.contactEmail}</p>
+                  <p className="text-sm font-medium text-foreground/80">Email</p>
+                  <p className="text-sm text-foreground">{request.contactEmail}</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
-                <Phone className="h-4 w-4 text-gray-400 mt-0.5" />
+                <Phone className="h-4 w-4 text-muted-foreground/80 mt-0.5" />
                 <div>
-                  <p className="text-sm font-medium text-gray-700">Phone</p>
-                  <p className="text-sm text-gray-900">{request.contactPhone}</p>
+                  <p className="text-sm font-medium text-foreground/80">Phone</p>
+                  <p className="text-sm text-foreground">{request.contactPhone}</p>
                 </div>
               </div>
             </div>
@@ -216,21 +216,21 @@ export default function AwarenessSessionDetailsDialog({
             <>
               <Separator />
               <div className="space-y-4">
-                <h4 className="font-medium text-gray-900 flex items-center gap-2">
+                <h4 className="font-medium text-foreground flex items-center gap-2">
                   <User className="h-4 w-4" />
                   Assigned Expert
                 </h4>
                 
-                <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                <div className="p-4 bg-primary/10 border border-primary/50 rounded-lg">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
+                    <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
                       <User className="h-5 w-5 text-white" />
                     </div>
                     <div>
-                      <p className="font-medium text-gray-900">
+                      <p className="font-medium text-foreground">
                         {expert.firstName} {expert.lastName}
                       </p>
-                      <p className="text-sm text-gray-600">{expert.email}</p>
+                      <p className="text-sm text-muted-foreground">{expert.email}</p>
                     </div>
                   </div>
                 </div>
@@ -243,30 +243,30 @@ export default function AwarenessSessionDetailsDialog({
             <>
               <Separator />
               <div className="space-y-4">
-                <h4 className="font-medium text-gray-900 flex items-center gap-2">
+                <h4 className="font-medium text-foreground flex items-center gap-2">
                   <FileText className="h-4 w-4" />
                   Notes & Comments
                 </h4>
                 
                 <div className="space-y-3">
                   {request.adminNotes && (
-                    <div className="p-3 bg-blue-50 border border-blue-200 rounded-md">
-                      <p className="text-sm font-medium text-blue-800 mb-1">Admin Notes</p>
-                      <p className="text-sm text-blue-700 whitespace-pre-wrap">{request.adminNotes}</p>
+                    <div className="p-3 bg-primary/10 border border-primary/50 rounded-md">
+                      <p className="text-sm font-medium text-primary mb-1">Admin Notes</p>
+                      <p className="text-sm text-primary whitespace-pre-wrap">{request.adminNotes}</p>
                     </div>
                   )}
 
                   {request.expertNotes && (
-                    <div className="p-3 bg-green-50 border border-green-200 rounded-md">
-                      <p className="text-sm font-medium text-green-800 mb-1">Expert Notes</p>
-                      <p className="text-sm text-green-700 whitespace-pre-wrap">{request.expertNotes}</p>
+                    <div className="p-3 bg-secondary/10 border border-secondary/50 rounded-md">
+                      <p className="text-sm font-medium text-secondary mb-1">Expert Notes</p>
+                      <p className="text-sm text-secondary whitespace-pre-wrap">{request.expertNotes}</p>
                     </div>
                   )}
 
                   {request.rejectionReason && (
-                    <div className="p-3 bg-red-50 border border-red-200 rounded-md">
-                      <p className="text-sm font-medium text-red-800 mb-1">Rejection Reason</p>
-                      <p className="text-sm text-red-700 whitespace-pre-wrap">{request.rejectionReason}</p>
+                    <div className="p-3 bg-destructive/10 border border-destructive rounded-md">
+                      <p className="text-sm font-medium text-destructive mb-1">Rejection Reason</p>
+                      <p className="text-sm text-destructive whitespace-pre-wrap">{request.rejectionReason}</p>
                     </div>
                   )}
                 </div>
@@ -278,15 +278,15 @@ export default function AwarenessSessionDetailsDialog({
 
           {/* Timestamps */}
           <div className="space-y-4">
-            <h4 className="font-medium text-gray-900 flex items-center gap-2">
+            <h4 className="font-medium text-foreground flex items-center gap-2">
               <Clock className="h-4 w-4" />
               Timeline
             </h4>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
               <div>
-                <p className="font-medium text-gray-700">Created</p>
-                <p className="text-gray-600">
+                <p className="font-medium text-foreground/80">Created</p>
+                <p className="text-muted-foreground">
                   {new Date(request.createdAt).toLocaleDateString()} at{' '}
                   {new Date(request.createdAt).toLocaleTimeString()}
                 </p>
@@ -294,8 +294,8 @@ export default function AwarenessSessionDetailsDialog({
 
               {request.reviewedAt && (
                 <div>
-                  <p className="font-medium text-gray-700">Reviewed</p>
-                  <p className="text-gray-600">
+                  <p className="font-medium text-foreground/80">Reviewed</p>
+                  <p className="text-muted-foreground">
                     {new Date(request.reviewedAt).toLocaleDateString()} at{' '}
                     {new Date(request.reviewedAt).toLocaleTimeString()}
                   </p>
@@ -304,8 +304,8 @@ export default function AwarenessSessionDetailsDialog({
 
               {request.confirmedAt && (
                 <div>
-                  <p className="font-medium text-gray-700">Confirmed</p>
-                  <p className="text-gray-600">
+                  <p className="font-medium text-foreground/80">Confirmed</p>
+                  <p className="text-muted-foreground">
                     {new Date(request.confirmedAt).toLocaleDateString()} at{' '}
                     {new Date(request.confirmedAt).toLocaleTimeString()}
                   </p>

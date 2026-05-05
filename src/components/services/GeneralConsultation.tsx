@@ -43,36 +43,36 @@ export function GeneralConsultation({ onClose, serviceType }: GeneralConsultatio
     <div className="w-full">
       <form action={handleSubmit} className="space-y-5">
         <DialogHeader className="space-y-2 pb-2">
-          <DialogTitle className="text-xl font-semibold text-slate-800">
+          <DialogTitle className="text-xl font-semibold text-foreground">
             Security Consultation
           </DialogTitle>
-          <DialogDescription className="text-slate-600 text-sm">
+          <DialogDescription className="text-muted-foreground text-sm">
             Expert cybersecurity consultation for personal and family security guidance
           </DialogDescription>
         </DialogHeader>
 
-        <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-          <p className="text-sm font-medium text-slate-700 mb-1">What to expect</p>
-          <p className="text-sm text-slate-600">
+        <div className="bg-muted/50 border border-border rounded-lg p-4">
+          <p className="text-sm font-medium text-foreground/80 mb-1">What to expect</p>
+          <p className="text-sm text-muted-foreground">
             Consultation report with personalized recommendations and action plan
           </p>
         </div>
 
         <div className="space-y-5">
           <div className="space-y-4">
-            <h3 className="text-sm font-medium text-slate-800 pb-2 border-b border-slate-100">
+            <h3 className="text-sm font-medium text-foreground pb-2 border-b border-border/50">
               Consultation Details
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="consultationType" className="text-sm font-medium text-slate-700">
-                  Consultation Type <span className="text-slate-400">*</span>
+                <Label htmlFor="consultationType" className="text-sm font-medium text-foreground/80">
+                  Consultation Type <span className="text-muted-foreground/80">*</span>
                 </Label>
                 <select
                   id="consultationType"
                   name="consultationType"
                   required
-                  className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-slate-400 focus:ring-1 focus:ring-slate-400 bg-white"
+                  className="w-full border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-border/80 focus:ring-1 focus:ring-ring bg-card"
                 >
                   <option value="">Select consultation type</option>
                   <option value="personal-security">Personal Security Assessment</option>
@@ -91,76 +91,76 @@ export function GeneralConsultation({ onClose, serviceType }: GeneralConsultatio
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="familyMembers" className="text-sm font-medium text-slate-700">
-                  Family Members <span className="text-slate-400">*</span>
+                <Label htmlFor="familyMembers" className="text-sm font-medium text-foreground/80">
+                  Family Members <span className="text-muted-foreground/80">*</span>
                 </Label>
                 <Input
                   id="familyMembers"
                   name="familyMembers"
                   placeholder="e.g., 2 adults, 3 children (ages 8, 12, 16)"
                   required
-                  className="border-slate-200 focus:border-slate-400 focus:ring-slate-400"
+                  className="border-border focus:border-border/80 focus:ring-ring"
                 />
-                <p className="text-xs text-slate-500">Include ages for age-appropriate recommendations</p>
+                <p className="text-xs text-muted-foreground">Include ages for age-appropriate recommendations</p>
               </div>
             </div>
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="specificQuestions" className="text-sm font-medium text-slate-700">
-              Questions or Concerns <span className="text-slate-400">*</span>
+            <Label htmlFor="specificQuestions" className="text-sm font-medium text-foreground/80">
+              Questions or Concerns <span className="text-muted-foreground/80">*</span>
             </Label>
             <Textarea
               id="specificQuestions"
               name="specificQuestions"
               placeholder="Describe your specific cybersecurity questions, concerns, or situations you need guidance on"
-              className="min-h-[100px] resize-none border-slate-200 focus:border-slate-400 focus:ring-slate-400 rounded-lg"
+              className="min-h-[100px] resize-none border-border focus:border-border/80 focus:ring-ring rounded-lg"
               required
               rows={4}
             />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="currentSecuritySetup" className="text-sm font-medium text-slate-700">
-              Current Security Setup <span className="text-slate-400">*</span>
+            <Label htmlFor="currentSecuritySetup" className="text-sm font-medium text-foreground/80">
+              Current Security Setup <span className="text-muted-foreground/80">*</span>
             </Label>
             <Textarea
               id="currentSecuritySetup"
               name="currentSecuritySetup"
               placeholder="Describe your current security measures (antivirus, password managers, 2FA usage, network setup, backup solutions)"
-              className="min-h-[100px] resize-none border-slate-200 focus:border-slate-400 focus:ring-slate-400 rounded-lg"
+              className="min-h-[100px] resize-none border-border focus:border-border/80 focus:ring-ring rounded-lg"
               required
               rows={4}
             />
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-sm font-medium text-slate-800 pb-2 border-b border-slate-100">
+            <h3 className="text-sm font-medium text-foreground pb-2 border-b border-border/50">
               Technical Environment
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="devicesUsed" className="text-sm font-medium text-slate-700">
-                  Devices Used <span className="text-slate-400">(Optional)</span>
+                <Label htmlFor="devicesUsed" className="text-sm font-medium text-foreground/80">
+                  Devices Used <span className="text-muted-foreground/80">(Optional)</span>
                 </Label>
                 <Textarea
                   id="devicesUsed"
                   name="devicesUsed"
                   placeholder="List devices used by family members"
-                  className="min-h-[60px] resize-none border-slate-200 focus:border-slate-400 focus:ring-slate-400 rounded-lg"
+                  className="min-h-[60px] resize-none border-border focus:border-border/80 focus:ring-ring rounded-lg"
                   rows={3}
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="internetUsage" className="text-sm font-medium text-slate-700">
-                  Internet Usage <span className="text-slate-400">(Optional)</span>
+                <Label htmlFor="internetUsage" className="text-sm font-medium text-foreground/80">
+                  Internet Usage <span className="text-muted-foreground/80">(Optional)</span>
                 </Label>
                 <Textarea
                   id="internetUsage"
                   name="internetUsage"
                   placeholder="Typical internet activities (banking, social media, work, etc.)"
-                  className="min-h-[60px] resize-none border-slate-200 focus:border-slate-400 focus:ring-slate-400 rounded-lg"
+                  className="min-h-[60px] resize-none border-border focus:border-border/80 focus:ring-ring rounded-lg"
                   rows={3}
                 />
               </div>
@@ -168,19 +168,19 @@ export function GeneralConsultation({ onClose, serviceType }: GeneralConsultatio
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-sm font-medium text-slate-800 pb-2 border-b border-slate-100">
+            <h3 className="text-sm font-medium text-foreground pb-2 border-b border-border/50">
               Priority and Timeline
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="urgencyLevel" className="text-sm font-medium text-slate-700">
-                  Urgency Level <span className="text-slate-400">*</span>
+                <Label htmlFor="urgencyLevel" className="text-sm font-medium text-foreground/80">
+                  Urgency Level <span className="text-muted-foreground/80">*</span>
                 </Label>
                 <select
                   id="urgencyLevel"
                   name="urgencyLevel"
                   required
-                  className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-slate-400 focus:ring-1 focus:ring-slate-400 bg-white"
+                  className="w-full border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-border/80 focus:ring-1 focus:ring-ring bg-card"
                 >
                   <option value="">Select urgency level</option>
                   <option value="emergency">Emergency (Immediate response)</option>
@@ -192,13 +192,13 @@ export function GeneralConsultation({ onClose, serviceType }: GeneralConsultatio
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="contactMethod" className="text-sm font-medium text-slate-700">
-                  Contact Method <span className="text-slate-400">(Optional)</span>
+                <Label htmlFor="contactMethod" className="text-sm font-medium text-foreground/80">
+                  Contact Method <span className="text-muted-foreground/80">(Optional)</span>
                 </Label>
                 <select
                   id="contactMethod"
                   name="contactMethod"
-                  className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-slate-400 focus:ring-1 focus:ring-slate-400 bg-white"
+                  className="w-full border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-border/80 focus:ring-1 focus:ring-ring bg-card"
                 >
                   <option value="">Select preferred method</option>
                   <option value="email">Email</option>
@@ -212,25 +212,25 @@ export function GeneralConsultation({ onClose, serviceType }: GeneralConsultatio
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="additionalInfo" className="text-sm font-medium text-slate-700">
-              Additional Information <span className="text-slate-400">(Optional)</span>
+            <Label htmlFor="additionalInfo" className="text-sm font-medium text-foreground/80">
+              Additional Information <span className="text-muted-foreground/80">(Optional)</span>
             </Label>
             <Textarea
               id="additionalInfo"
               name="additionalInfo"
               placeholder="Any other relevant information or special requirements"
-              className="min-h-[60px] resize-none border-slate-200 focus:border-slate-400 focus:ring-slate-400 rounded-lg"
+              className="min-h-[60px] resize-none border-border focus:border-border/80 focus:ring-ring rounded-lg"
               rows={2}
             />
           </div>
         </div>
 
-        <DialogFooter className="pt-4 border-t border-slate-100 flex gap-3">
+        <DialogFooter className="pt-4 border-t border-border/50 flex gap-3">
           <DialogClose asChild>
             <Button
               variant="outline"
               type="button"
-              className="border-slate-200 text-slate-600 hover:bg-slate-50"
+              className="border-border text-muted-foreground hover:bg-muted/50"
             >
               Cancel
             </Button>
@@ -238,7 +238,7 @@ export function GeneralConsultation({ onClose, serviceType }: GeneralConsultatio
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="bg-slate-800 hover:bg-slate-900 text-white"
+            className="bg-secondary hover:bg-primary text-white"
           >
             {isSubmitting ? 'Submitting...' : 'Schedule Consultation'}
           </Button>

@@ -73,7 +73,7 @@ export default function QuizDeleteDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-md">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2 text-red-600">
+          <DialogTitle className="flex items-center gap-2 text-destructive">
             <AlertTriangle className="h-5 w-5" />
             Delete Quiz
           </DialogTitle>
@@ -84,40 +84,40 @@ export default function QuizDeleteDialog({
 
         <div className="space-y-4">
           {/* Quiz Information */}
-          <div className="p-4 bg-gray-50 rounded-lg border">
+          <div className="p-4 bg-muted/50 rounded-lg border">
             <div className="space-y-2">
               <div>
-                <div className="text-sm font-medium text-gray-700">Quiz Title</div>
+                <div className="text-sm font-medium text-foreground/80">Quiz Title</div>
                 <div className="text-sm">{quiz.title}</div>
               </div>
               
               <div className="flex items-center gap-4">
                 <div>
-                  <div className="text-xs text-gray-500">Status</div>
+                  <div className="text-xs text-muted-foreground">Status</div>
                   <Badge className={quiz.isPublished ? 
-                    'bg-green-100 text-green-800 border-green-200' : 
-                    'bg-gray-100 text-gray-800 border-gray-200'}>
+                    'bg-secondary/10 text-secondary border-secondary/50' : 
+                    'bg-muted text-foreground border-border'}>
                     {quiz.isPublished ? 'Published' : 'Draft'}
                   </Badge>
                 </div>
                 
                 <div>
-                  <div className="text-xs text-gray-500">Questions</div>
+                  <div className="text-xs text-muted-foreground">Questions</div>
                   <div className="text-sm font-medium">{quiz.questionCount}</div>
                 </div>
                 
                 <div>
-                  <div className="text-xs text-gray-500">Language</div>
+                  <div className="text-xs text-muted-foreground">Language</div>
                   <Badge className={quiz.language === 'ar' ? 
-                    'bg-purple-100 text-purple-800 border-purple-200' : 
-                    'bg-blue-100 text-blue-800 border-blue-200'}>
+                    'bg-primary/10 text-primary border-primary/50' : 
+                    'bg-primary/10 text-primary border-primary/50'}>
                     {quiz.language === 'ar' ? 'Arabic' : 'English'}
                   </Badge>
                 </div>
               </div>
               
               <div>
-                <div className="text-xs text-gray-500">Created</div>
+                <div className="text-xs text-muted-foreground">Created</div>
                 <div className="text-sm">{new Date(quiz.createdAt).toLocaleDateString()}</div>
               </div>
             </div>
@@ -126,10 +126,10 @@ export default function QuizDeleteDialog({
           {/* Warning Messages */}
           <div className="space-y-3">
             {quiz.isPublished && (
-              <div className="p-3 bg-red-50 border border-red-200 rounded-md">
+              <div className="p-3 bg-destructive/10 border border-destructive rounded-md">
                 <div className="flex items-start gap-2">
-                  <AlertTriangle className="h-4 w-4 text-red-600 mt-0.5 flex-shrink-0" />
-                  <div className="text-sm text-red-700">
+                  <AlertTriangle className="h-4 w-4 text-destructive mt-0.5 flex-shrink-0" />
+                  <div className="text-sm text-destructive">
                     <div className="font-medium">Published Quiz Warning</div>
                     <div>This quiz is currently published and visible to users. Deleting it will remove access for all users.</div>
                   </div>
@@ -137,10 +137,10 @@ export default function QuizDeleteDialog({
               </div>
             )}
 
-            <div className="p-3 bg-orange-50 border border-orange-200 rounded-md">
+            <div className="p-3 bg-accent/10 border border-accent/50 rounded-md">
               <div className="flex items-start gap-2">
-                <AlertTriangle className="h-4 w-4 text-orange-600 mt-0.5 flex-shrink-0" />
-                <div className="text-sm text-orange-700">
+                <AlertTriangle className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" />
+                <div className="text-sm text-accent">
                   <div className="font-medium">Data Loss Warning</div>
                   <div>All quiz questions, user attempts, and analytics data will be permanently deleted.</div>
                 </div>
@@ -150,8 +150,8 @@ export default function QuizDeleteDialog({
 
           {/* Error Display */}
           {error && (
-            <div className="p-3 bg-red-50 border border-red-200 rounded-md">
-              <p className="text-sm text-red-600">{error}</p>
+            <div className="p-3 bg-destructive/10 border border-destructive rounded-md">
+              <p className="text-sm text-destructive">{error}</p>
             </div>
           )}
 

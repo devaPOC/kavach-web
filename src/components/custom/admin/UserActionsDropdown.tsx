@@ -56,7 +56,7 @@ export default function UserActionsDropdown({
           variant="ghost"
           size="sm"
           disabled={isProcessing}
-          className="h-8 w-8 p-0 hover:bg-gray-100"
+          className="h-8 w-8 p-0 hover:bg-muted"
         >
           <MoreHorizontal className="h-4 w-4" />
           <span className="sr-only">Open actions menu</span>
@@ -79,7 +79,7 @@ export default function UserActionsDropdown({
             <DropdownMenuItem
               onClick={() => handleAction(() => onUnlockAccount(user))}
               disabled={isProcessing}
-              className="text-green-600 focus:text-green-600"
+              className="text-secondary focus:text-secondary"
             >
               <LockOpen className="h-4 w-4" />
               {isProcessing ? 'Processing...' : 'Unlock Account'}
@@ -98,7 +98,7 @@ export default function UserActionsDropdown({
                 <DropdownMenuItem
                   onClick={() => handleAction(() => onApproveExpert(user))}
                   disabled={isProcessing}
-                  className="text-green-600 focus:text-green-600"
+                  className="text-secondary focus:text-secondary"
                 >
                   <CheckCircle className="h-4 w-4" />
                   {isProcessing ? 'Processing...' : 'Approve Expert'}
@@ -119,7 +119,7 @@ export default function UserActionsDropdown({
               <DropdownMenuItem
                 onClick={() => handleAction(() => onUnbanExpert(user))}
                 disabled={isProcessing}
-                className="text-green-600 focus:text-green-600"
+                className="text-secondary focus:text-secondary"
               >
                 <Play className="h-4 w-4" />
                 {isProcessing ? 'Processing...' : 'Unban Expert'}
@@ -145,7 +145,7 @@ export default function UserActionsDropdown({
               <DropdownMenuItem
                 onClick={() => handleAction(() => onDemoteFromTrainer(user))}
                 disabled={isProcessing}
-                className="text-orange-600 focus:text-orange-600"
+                className="text-accent focus:text-accent"
               >
                 <UserX className="h-4 w-4" />
                 {isProcessing ? 'Processing...' : 'Demote from Trainer'}
@@ -154,7 +154,7 @@ export default function UserActionsDropdown({
               <DropdownMenuItem
                 onClick={() => handleAction(() => onPromoteToTrainer(user))}
                 disabled={isProcessing}
-                className="text-purple-600 focus:text-purple-600"
+                className="text-accent focus:text-accent"
               >
                 <GraduationCap className="h-4 w-4" />
                 {isProcessing ? 'Processing...' : 'Promote to Trainer'}
@@ -173,7 +173,7 @@ export default function UserActionsDropdown({
               <DropdownMenuItem
                 onClick={() => handleAction(() => onUnpauseCustomer(user))}
                 disabled={isProcessing}
-                className="text-green-600 focus:text-green-600"
+                className="text-secondary focus:text-secondary"
               >
                 <Play className="h-4 w-4" />
                 {isProcessing ? 'Processing...' : 'Unpause Customer'}
@@ -182,7 +182,7 @@ export default function UserActionsDropdown({
               <DropdownMenuItem
                 onClick={() => handleAction(() => onPauseCustomer(user))}
                 disabled={isProcessing}
-                className="text-orange-600 focus:text-orange-600"
+                className="text-accent focus:text-accent"
               >
                 <Pause className="h-4 w-4" />
                 {isProcessing ? 'Processing...' : 'Pause Customer'}
@@ -210,8 +210,8 @@ export default function UserActionsDropdown({
         {user.role === 'admin' && (
           <>
             <DropdownMenuSeparator />
-            <div className="px-2 py-1.5 text-xs text-gray-500 flex items-center gap-2">
-              <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">Protected</span>
+            <div className="px-2 py-1.5 text-xs text-muted-foreground flex items-center gap-2">
+              <span className="bg-muted text-muted-foreground px-2 py-1 rounded text-xs">Protected</span>
             </div>
           </>
         )}

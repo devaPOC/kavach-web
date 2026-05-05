@@ -138,8 +138,8 @@ export default function UsersListPage() {
 					</Button>
 				</Link>
 				<div>
-					<h1 className="text-2xl font-bold text-gray-900">Customers</h1>
-					<p className="text-gray-500">Manage marketplace users</p>
+					<h1 className="text-2xl font-bold text-foreground">Customers</h1>
+					<p className="text-muted-foreground">Manage marketplace users</p>
 				</div>
 			</div>
 
@@ -148,7 +148,7 @@ export default function UsersListPage() {
 				<CardContent className="p-4">
 					<form onSubmit={handleSearch}>
 						<div className="relative max-w-md">
-							<Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+							<Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground/80" />
 							<Input
 								placeholder="Search by email..."
 								value={search}
@@ -165,38 +165,38 @@ export default function UsersListPage() {
 				<CardContent className="p-0">
 					{loading ? (
 						<div className="flex items-center justify-center py-12">
-							<Loader2 className="h-8 w-8 animate-spin text-gray-400" />
+							<Loader2 className="h-8 w-8 animate-spin text-muted-foreground/80" />
 						</div>
 					) : users.length === 0 ? (
 						<div className="text-center py-12">
-							<Users className="h-12 w-12 mx-auto mb-4 text-gray-300" />
-							<p className="text-gray-500">No users found</p>
+							<Users className="h-12 w-12 mx-auto mb-4 text-muted-foreground/80" />
+							<p className="text-muted-foreground">No users found</p>
 						</div>
 					) : (
 						<div className="overflow-x-auto">
 							<table className="w-full">
-								<thead className="bg-gray-50 border-b">
+								<thead className="bg-muted/50 border-b">
 									<tr>
-										<th className="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase">User</th>
-										<th className="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase">Status</th>
-										<th className="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase">Last Login</th>
-										<th className="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase">Joined</th>
-										<th className="text-right px-6 py-3 text-xs font-medium text-gray-500 uppercase">Actions</th>
+										<th className="text-left px-6 py-3 text-xs font-medium text-muted-foreground uppercase">User</th>
+										<th className="text-left px-6 py-3 text-xs font-medium text-muted-foreground uppercase">Status</th>
+										<th className="text-left px-6 py-3 text-xs font-medium text-muted-foreground uppercase">Last Login</th>
+										<th className="text-left px-6 py-3 text-xs font-medium text-muted-foreground uppercase">Joined</th>
+										<th className="text-right px-6 py-3 text-xs font-medium text-muted-foreground uppercase">Actions</th>
 									</tr>
 								</thead>
 								<tbody className="divide-y divide-gray-200">
 									{users.map((user) => (
-										<tr key={user.id} className="hover:bg-gray-50">
+										<tr key={user.id} className="hover:bg-muted/50">
 											<td className="px-6 py-4">
 												<div className="flex items-center gap-3">
-													<div className="p-2 bg-gray-100 rounded-full">
-														<Mail className="h-4 w-4 text-gray-400" />
+													<div className="p-2 bg-muted rounded-full">
+														<Mail className="h-4 w-4 text-muted-foreground/80" />
 													</div>
-													<span className="font-medium text-gray-900">{user.email}</span>
+													<span className="font-medium text-foreground">{user.email}</span>
 												</div>
 											</td>
 											<td className="px-6 py-4">
-												<Badge className={user.isActive ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}>
+												<Badge className={user.isActive ? 'bg-secondary/10 text-secondary' : 'bg-destructive/10 text-destructive'}>
 													{user.isActive ? (
 														<><CheckCircle className="h-3 w-3 mr-1" /> Active</>
 													) : (
@@ -204,10 +204,10 @@ export default function UsersListPage() {
 													)}
 												</Badge>
 											</td>
-											<td className="px-6 py-4 text-sm text-gray-500">
+											<td className="px-6 py-4 text-sm text-muted-foreground">
 												{formatDate(user.lastLoginAt)}
 											</td>
-											<td className="px-6 py-4 text-sm text-gray-500">
+											<td className="px-6 py-4 text-sm text-muted-foreground">
 												{formatDate(user.createdAt)}
 											</td>
 											<td className="px-6 py-4 text-right">
@@ -225,7 +225,7 @@ export default function UsersListPage() {
 														{user.isActive ? (
 															<DropdownMenuItem
 																onClick={() => toggleUserStatus(user.id, false)}
-																className="text-orange-600"
+																className="text-accent"
 															>
 																<XCircle className="h-4 w-4 mr-2" />
 																Deactivate
@@ -233,7 +233,7 @@ export default function UsersListPage() {
 														) : (
 															<DropdownMenuItem
 																onClick={() => toggleUserStatus(user.id, true)}
-																className="text-green-600"
+																className="text-secondary"
 															>
 																<CheckCircle className="h-4 w-4 mr-2" />
 																Activate
@@ -241,7 +241,7 @@ export default function UsersListPage() {
 														)}
 														<DropdownMenuItem
 															onClick={() => handleDelete(user.id, user.email)}
-															className="text-red-600"
+															className="text-destructive"
 															disabled={deleting === user.id}
 														>
 															{deleting === user.id ? (
@@ -265,7 +265,7 @@ export default function UsersListPage() {
 
 			{/* Pagination Info */}
 			{pagination.total > 0 && (
-				<div className="text-center text-sm text-gray-500">
+				<div className="text-center text-sm text-muted-foreground">
 					Showing {users.length} of {pagination.total} customers
 				</div>
 			)}

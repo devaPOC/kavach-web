@@ -116,11 +116,11 @@ export default function CompletedTasks() {
 
   const getPriorityColor = (priority: string) => {
     const colors = {
-      emergency: 'bg-red-100 text-red-800',
-      urgent: 'bg-orange-100 text-orange-800',
-      high: 'bg-yellow-100 text-yellow-800',
-      normal: 'bg-blue-100 text-blue-800',
-      low: 'bg-green-100 text-green-800'
+      emergency: 'bg-destructive/10 text-destructive',
+      urgent: 'bg-accent/10 text-accent',
+      high: 'bg-accent/10 text-accent',
+      normal: 'bg-primary/10 text-primary',
+      low: 'bg-secondary/10 text-secondary'
     }
     return colors[priority as keyof typeof colors] || colors.normal
   }
@@ -128,18 +128,18 @@ export default function CompletedTasks() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'completed':
-        return 'bg-green-100 text-green-800'
+        return 'bg-secondary/10 text-secondary'
       case 'closed':
-        return 'bg-gray-100 text-gray-800'
+        return 'bg-muted text-foreground'
       default:
-        return 'bg-blue-100 text-blue-800'
+        return 'bg-primary/10 text-primary'
     }
   }
 
   if (loading) {
     return (
       <div className="flex items-center justify-center py-8">
-        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary/50"></div>
       </div>
     )
   }
@@ -149,9 +149,9 @@ export default function CompletedTasks() {
       {tasks.length === 0 ? (
         <Card>
           <CardContent className="py-8 text-center">
-            <CheckCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-            <p className="text-gray-500">No completed tasks</p>
-            <p className="text-sm text-gray-400 mt-2">
+            <CheckCircle className="h-12 w-12 text-muted-foreground/80 mx-auto mb-4" />
+            <p className="text-muted-foreground">No completed tasks</p>
+            <p className="text-sm text-muted-foreground/80 mt-2">
               Tasks that you've completed and submitted reports for will appear here.
             </p>
           </CardContent>
@@ -193,7 +193,7 @@ export default function CompletedTasks() {
                         setSelectedTask(task)
                         setShowReportModal(true)
                       }}
-                      className="bg-blue-50 hover:bg-blue-100"
+                      className="bg-primary/10 hover:bg-primary/10"
                     >
                       <FileText className="h-4 w-4 mr-1" />
                       View Report
@@ -204,8 +204,8 @@ export default function CompletedTasks() {
             </CardHeader>
             <CardContent className="pt-0">
               <div className="space-y-3">
-                <p className="text-gray-600 line-clamp-2">{task.description}</p>
-                <div className="flex items-center justify-between text-sm text-gray-500">
+                <p className="text-muted-foreground line-clamp-2">{task.description}</p>
+                <div className="flex items-center justify-between text-sm text-muted-foreground">
                   <div className="flex items-center gap-4">
                     <div className="flex items-center gap-1">
                       <User className="h-4 w-4" />
@@ -221,14 +221,14 @@ export default function CompletedTasks() {
                       <Button
                         size="sm"
                         onClick={() => handleRequestClosure(task.id)}
-                        className="bg-orange-600 hover:bg-orange-700"
+                        className="bg-accent hover:bg-accent"
                       >
                         <MessageSquare className="h-4 w-4 mr-1" />
                         Request Closure
                       </Button>
                     )}
                     {task.status === 'closed' && (
-                      <div className="text-green-600 font-medium">Task Closed</div>
+                      <div className="text-secondary font-medium">Task Closed</div>
                     )}
                   </div>
                 </div>
@@ -241,7 +241,7 @@ export default function CompletedTasks() {
       {/* Pagination */}
       {totalPages > 1 && (
         <div className="flex items-center justify-between mt-6">
-          <div className="text-sm text-gray-500">
+          <div className="text-sm text-muted-foreground">
             Showing {((currentPage - 1) * limit) + 1} to {Math.min(currentPage * limit, totalTasks)} of {totalTasks} tasks
           </div>
           <div className="flex items-center gap-2">
@@ -255,7 +255,7 @@ export default function CompletedTasks() {
               <ChevronLeft className="h-3 w-3" />
               Previous
             </Button>
-            <span className="text-sm text-gray-500">
+            <span className="text-sm text-muted-foreground">
               Page {currentPage} of {totalPages}
             </span>
             <Button
@@ -279,7 +279,7 @@ export default function CompletedTasks() {
             <>
               <DialogHeader>
                 <DialogTitle className="flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-green-600" />
+                  <CheckCircle className="h-5 w-5 text-secondary" />
                   {selectedTask.status === 'closed' ? 'Closed Task' : 'Completed Task'} - {selectedTask.title}
                 </DialogTitle>
                 <DialogDescription>
@@ -292,14 +292,14 @@ export default function CompletedTasks() {
 
               <div className="space-y-6">
                 {/* Task Status Summary */}
-                <div className={`${selectedTask.status === 'closed' ? 'bg-green-50 border-green-200' : 'bg-blue-50 border-blue-200'} border p-4 rounded-lg`}>
+                <div className={`${selectedTask.status === 'closed' ? 'bg-secondary/10 border-secondary/50' : 'bg-primary/10 border-primary/50'} border p-4 rounded-lg`}>
                   <div className="flex items-center gap-2 mb-2">
-                    <CheckCircle className={`h-5 w-5 ${selectedTask.status === 'closed' ? 'text-green-600' : 'text-blue-600'}`} />
-                    <h3 className={`font-semibold ${selectedTask.status === 'closed' ? 'text-green-800' : 'text-blue-800'}`}>
+                    <CheckCircle className={`h-5 w-5 ${selectedTask.status === 'closed' ? 'text-secondary' : 'text-primary'}`} />
+                    <h3 className={`font-semibold ${selectedTask.status === 'closed' ? 'text-secondary' : 'text-primary'}`}>
                       {selectedTask.status === 'closed' ? 'Task Successfully Closed' : 'Task Completed'}
                     </h3>
                   </div>
-                  <p className={`${selectedTask.status === 'closed' ? 'text-green-700' : 'text-blue-700'} text-sm`}>
+                  <p className={`${selectedTask.status === 'closed' ? 'text-secondary' : 'text-primary'} text-sm`}>
                     {selectedTask.status === 'closed'
                       ? 'This task has been approved and closed by the customer. Great work!'
                       : 'You have completed this task and submitted your report. You can request closure when ready.'
@@ -334,7 +334,7 @@ export default function CompletedTasks() {
                 {/* Request Details */}
                 <div>
                   <h4 className="font-semibold mb-2">Request Description</h4>
-                  <p className="text-gray-700 bg-gray-50 p-3 rounded-lg">
+                  <p className="text-foreground/80 bg-muted/50 p-3 rounded-lg">
                     {selectedTask.description}
                   </p>
                 </div>
@@ -343,12 +343,12 @@ export default function CompletedTasks() {
                 {selectedTask.completionReport && (
                   <div>
                     <h4 className="font-semibold mb-2">Your Completion Report</h4>
-                    <div className="bg-green-50 p-4 rounded-lg space-y-3">
+                    <div className="bg-secondary/10 p-4 rounded-lg space-y-3">
                       <div>
-                        <p className="text-sm text-gray-600 mb-2">
+                        <p className="text-sm text-muted-foreground mb-2">
                           Submitted: {format(new Date(selectedTask.completionReport.submittedAt), 'MMM dd, yyyy HH:mm')}
                         </p>
-                        <div className="bg-white p-3 rounded border">
+                        <div className="bg-card p-3 rounded border">
                           <p className="text-sm whitespace-pre-wrap">{selectedTask.completionReport.report}</p>
                         </div>
                       </div>
@@ -358,11 +358,11 @@ export default function CompletedTasks() {
                           <h5 className="font-medium mb-2">Attached Files:</h5>
                           <div className="space-y-2">
                             {selectedTask.completionReport.files.map((file) => (
-                              <div key={file.id} className="flex items-center justify-between bg-white p-2 rounded border">
+                              <div key={file.id} className="flex items-center justify-between bg-card p-2 rounded border">
                                 <div className="flex items-center gap-2">
                                   <FileText className="h-4 w-4" />
                                   <span className="text-sm">{file.originalName}</span>
-                                  <span className="text-xs text-gray-500">
+                                  <span className="text-xs text-muted-foreground">
                                     ({(file.size / 1024 / 1024).toFixed(2)} MB)
                                   </span>
                                 </div>
@@ -375,16 +375,16 @@ export default function CompletedTasks() {
 
                     {/* Action Section */}
                     {selectedTask.status === 'completed' && (
-                      <div className="mt-4 p-4 bg-blue-50 rounded-lg">
-                        <h5 className="font-medium text-blue-800 mb-2">Request Task Closure</h5>
-                        <p className="text-sm text-blue-700 mb-3">
+                      <div className="mt-4 p-4 bg-primary/10 rounded-lg">
+                        <h5 className="font-medium text-primary mb-2">Request Task Closure</h5>
+                        <p className="text-sm text-primary mb-3">
                           Your completion report has been submitted. Click "Request Task Closure" to notify the customer
                           that this task is ready to be finalized. The customer will review your work and
                           close the task once they approve it.
                         </p>
                         <Button
                           onClick={() => handleRequestClosure(selectedTask.id)}
-                          className="bg-orange-600 hover:bg-orange-700"
+                          className="bg-accent hover:bg-accent"
                         >
                           <MessageSquare className="h-4 w-4 mr-2" />
                           Request Task Closure
@@ -416,7 +416,7 @@ export default function CompletedTasks() {
 
               <div className="space-y-6">
                 {/* Task Summary */}
-                <div className="bg-gray-50 p-4 rounded-lg">
+                <div className="bg-muted/50 p-4 rounded-lg">
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>
                       <span className="font-medium">Status:</span>
@@ -442,8 +442,8 @@ export default function CompletedTasks() {
                 {/* Report Content */}
                 <div>
                   <h4 className="font-semibold mb-3">Expert's Completion Report</h4>
-                  <div className="bg-white border rounded-lg p-4">
-                    <p className="whitespace-pre-wrap text-gray-700">
+                  <div className="bg-card border rounded-lg p-4">
+                    <p className="whitespace-pre-wrap text-foreground/80">
                       {selectedTask.completionReport.report || 'No written report provided.'}
                     </p>
                   </div>
@@ -455,12 +455,12 @@ export default function CompletedTasks() {
                     <h4 className="font-semibold mb-3">Attached Files</h4>
                     <div className="space-y-3">
                       {selectedTask.completionReport.files.map((file) => (
-                        <div key={file.id} className="flex items-center justify-between bg-gray-50 p-3 rounded-lg border">
+                        <div key={file.id} className="flex items-center justify-between bg-muted/50 p-3 rounded-lg border">
                           <div className="flex items-center gap-3">
-                            <FileText className="h-5 w-5 text-gray-500" />
+                            <FileText className="h-5 w-5 text-muted-foreground" />
                             <div>
-                              <p className="font-medium text-gray-900">{file.originalName}</p>
-                              <p className="text-sm text-gray-500">
+                              <p className="font-medium text-foreground">{file.originalName}</p>
+                              <p className="text-sm text-muted-foreground">
                                 {(file.size / 1024 / 1024).toFixed(2)} MB • {format(new Date(file.uploadedAt), 'MMM dd, yyyy')}
                               </p>
                             </div>

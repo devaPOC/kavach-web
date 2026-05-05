@@ -81,8 +81,8 @@ function DashboardLayoutContent({ children }: { children: React.ReactNode }) {
 
 	if (loading) {
 		return (
-			<div className="flex items-center justify-center min-h-screen bg-slate-50">
-				<div className="animate-spin rounded-full h-8 w-8 border-2 border-emerald-200 border-t-emerald-600"></div>
+			<div className="flex items-center justify-center min-h-screen bg-muted/50">
+				<div className="animate-spin rounded-full h-8 w-8 border-2 border-secondary/50 border-t-emerald-600"></div>
 			</div>
 		)
 	}
@@ -93,7 +93,7 @@ function DashboardLayoutContent({ children }: { children: React.ReactNode }) {
 	}
 
 	return (
-		<div className="min-h-screen bg-slate-50">
+		<div className="min-h-screen bg-muted/50">
 			{/* Reuse top navbar for branding + quick profile */}
 			<Navbar user={user} showProfileMenu={true} showLogo={false} />
 			{/* Sidebar */}
@@ -111,17 +111,17 @@ function DashboardLayoutContent({ children }: { children: React.ReactNode }) {
 			{/* Main content area offset by sidebar similar to admin */}
 			<div className={`transition-all duration-300 ease-out ${sidebarCollapsed ? 'lg:ml-[72px]' : 'lg:ml-64'} min-h-screen`}>
 				{/* Mobile header when sidebar hidden */}
-				<div className="lg:hidden flex items-center justify-between h-14 px-4 bg-white/80 backdrop-blur-sm border-b border-slate-100 sticky top-0 z-40">
+				<div className="lg:hidden flex items-center justify-between h-14 px-4 bg-card/80 backdrop-blur-sm border-b border-border/50 sticky top-0 z-40">
 					<button
 						onClick={() => setSidebarOpen(true)}
-						className="p-2 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-50 transition-all duration-200"
+						className="p-2 rounded-lg text-muted-foreground/80 hover:text-muted-foreground hover:bg-muted/50 transition-all duration-200"
 					>
 						{/* Hamburger icon reused from sidebar collapse logic */}
 						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
 							<path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
 						</svg>
 					</button>
-					<h1 className="text-base font-semibold text-slate-800">{getCurrentPageTitle()}</h1>
+					<h1 className="text-base font-semibold text-foreground">{getCurrentPageTitle()}</h1>
 					<div className="w-10" />
 				</div>
 				<div className="p-4 md:p-6 lg:p-8">
@@ -135,8 +135,8 @@ function DashboardLayoutContent({ children }: { children: React.ReactNode }) {
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<Suspense fallback={
-			<div className="flex items-center justify-center min-h-screen bg-slate-50">
-				<div className="animate-spin rounded-full h-8 w-8 border-2 border-emerald-200 border-t-emerald-600"></div>
+			<div className="flex items-center justify-center min-h-screen bg-muted/50">
+				<div className="animate-spin rounded-full h-8 w-8 border-2 border-secondary/50 border-t-emerald-600"></div>
 			</div>
 		}>
 			<DashboardLayoutContent>{children}</DashboardLayoutContent>

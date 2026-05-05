@@ -115,7 +115,7 @@ export default function QuoteCreationModal({
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <span className="text-green-700 text-sm font-semibold tracking-wide">₹</span>
+            <span className="text-secondary text-sm font-semibold tracking-wide">₹</span>
             Create Quote
           </DialogTitle>
           <DialogDescription>
@@ -124,9 +124,9 @@ export default function QuoteCreationModal({
         </DialogHeader>
 
         {serviceRequest && (
-          <div className="bg-gray-50 p-4 rounded-lg mb-4">
-            <h4 className="font-medium text-gray-900 mb-2">Service Request Details</h4>
-            <div className="space-y-1 text-sm text-gray-600">
+          <div className="bg-muted/50 p-4 rounded-lg mb-4">
+            <h4 className="font-medium text-foreground mb-2">Service Request Details</h4>
+            <div className="space-y-1 text-sm text-muted-foreground">
               <p><span className="font-medium">Customer:</span> {serviceRequest.customerName} ({serviceRequest.customerEmail})</p>
               {serviceRequest.title && (
                 <p><span className="font-medium">Title:</span> {serviceRequest.title}</p>
@@ -143,7 +143,7 @@ export default function QuoteCreationModal({
 
         <form onSubmit={handleSubmit} className="space-y-4">
           {error && (
-            <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-md text-sm">
+            <div className="bg-destructive/10 border border-destructive text-destructive px-4 py-3 rounded-md text-sm">
               {error}
             </div>
           )}
@@ -233,7 +233,7 @@ export default function QuoteCreationModal({
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="bg-green-600 hover:bg-green-700"
+              className="bg-secondary hover:bg-secondary"
             >
               {isSubmitting ? 'Creating Quote...' : 'Create Quote'}
             </Button>

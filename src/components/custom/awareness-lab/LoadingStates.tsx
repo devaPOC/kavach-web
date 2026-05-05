@@ -109,19 +109,19 @@ function ErrorState({ error, onRetry, isRetrying }: ErrorStateProps) {
   return (
     <Card>
       <CardContent className="p-6 text-center space-y-4">
-        <div className="mx-auto w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+        <div className="mx-auto w-12 h-12 bg-destructive/10 rounded-full flex items-center justify-center">
           {isNetworkError ? (
-            <WifiOff className="w-6 h-6 text-red-600" />
+            <WifiOff className="w-6 h-6 text-destructive" />
           ) : (
-            <AlertTriangle className="w-6 h-6 text-red-600" />
+            <AlertTriangle className="w-6 h-6 text-destructive" />
           )}
         </div>
         
         <div>
-          <h3 className="font-medium text-gray-900 mb-2">
+          <h3 className="font-medium text-foreground mb-2">
             {isNetworkError ? 'Connection Problem' : 'Something went wrong'}
           </h3>
-          <p className="text-sm text-gray-600 mb-4">{error}</p>
+          <p className="text-sm text-muted-foreground mb-4">{error}</p>
         </div>
 
         {/* Network status info */}
@@ -162,10 +162,10 @@ function EmptyState({ message }: { message: string }) {
   return (
     <Card>
       <CardContent className="p-6 text-center">
-        <div className="mx-auto w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-4">
-          <AlertTriangle className="w-6 h-6 text-gray-400" />
+        <div className="mx-auto w-12 h-12 bg-muted rounded-full flex items-center justify-center mb-4">
+          <AlertTriangle className="w-6 h-6 text-muted-foreground/80" />
         </div>
-        <p className="text-gray-600">{message}</p>
+        <p className="text-muted-foreground">{message}</p>
       </CardContent>
     </Card>
   );
@@ -254,12 +254,12 @@ export function ProgressiveLoadingState({
     return (
       <Card>
         <CardContent className="p-6 text-center space-y-4">
-          <div className="mx-auto w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
-            <Clock className="w-6 h-6 text-yellow-600" />
+          <div className="mx-auto w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center">
+            <Clock className="w-6 h-6 text-accent" />
           </div>
           <div>
-            <h3 className="font-medium text-gray-900 mb-2">Taking longer than expected</h3>
-            <p className="text-sm text-gray-600">
+            <h3 className="font-medium text-foreground mb-2">Taking longer than expected</h3>
+            <p className="text-sm text-muted-foreground">
               This is taking longer than usual. Please check your connection and try again.
             </p>
           </div>
@@ -297,12 +297,12 @@ export function SuccessState({
   return (
     <Card>
       <CardContent className="p-6 text-center space-y-4">
-        <div className="mx-auto w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-          <CheckCircle className="w-6 h-6 text-green-600" />
+        <div className="mx-auto w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center">
+          <CheckCircle className="w-6 h-6 text-secondary" />
         </div>
         <div>
-          <h3 className="font-medium text-gray-900 mb-2">Success!</h3>
-          <p className="text-sm text-gray-600">{message}</p>
+          <h3 className="font-medium text-foreground mb-2">Success!</h3>
+          <p className="text-sm text-muted-foreground">{message}</p>
         </div>
         {action && (
           <Button onClick={action}>

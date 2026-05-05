@@ -77,7 +77,7 @@ export default function EditProductPage() {
 	if (loading) {
 		return (
 			<div className="flex items-center justify-center min-h-[400px]">
-				<Loader2 className="h-8 w-8 animate-spin text-gray-400" />
+				<Loader2 className="h-8 w-8 animate-spin text-muted-foreground/80" />
 			</div>
 		);
 	}
@@ -86,9 +86,9 @@ export default function EditProductPage() {
 		return (
 			<div className="p-6">
 				<Card className="p-8 text-center max-w-md mx-auto">
-					<Package className="h-12 w-12 mx-auto mb-4 text-gray-300" />
+					<Package className="h-12 w-12 mx-auto mb-4 text-muted-foreground/80" />
 					<h1 className="text-xl font-semibold mb-2">Product Not Found</h1>
-					<p className="text-gray-500 mb-6">{error}</p>
+					<p className="text-muted-foreground mb-6">{error}</p>
 					<Link href="/admin/marketplace/products">
 						<Button variant="outline">
 							<ArrowLeft className="h-4 w-4 mr-2" />

@@ -79,11 +79,11 @@ export default function ViewProductPage() {
 	const getStatusBadge = (status: string) => {
 		switch (status) {
 			case 'active':
-				return <Badge className="bg-green-100 text-green-800 border-green-200">Active</Badge>;
+				return <Badge className="bg-secondary/10 text-secondary border-secondary/50">Active</Badge>;
 			case 'draft':
-				return <Badge className="bg-yellow-100 text-yellow-800 border-yellow-200">Draft</Badge>;
+				return <Badge className="bg-accent/10 text-accent border-accent/50">Draft</Badge>;
 			case 'archived':
-				return <Badge className="bg-gray-100 text-gray-800 border-gray-200">Archived</Badge>;
+				return <Badge className="bg-muted text-foreground border-border">Archived</Badge>;
 			default:
 				return <Badge>{status}</Badge>;
 		}
@@ -102,7 +102,7 @@ export default function ViewProductPage() {
 	if (loading) {
 		return (
 			<div className="flex items-center justify-center min-h-[400px]">
-				<Loader2 className="h-8 w-8 animate-spin text-gray-400" />
+				<Loader2 className="h-8 w-8 animate-spin text-muted-foreground/80" />
 			</div>
 		);
 	}
@@ -111,9 +111,9 @@ export default function ViewProductPage() {
 		return (
 			<div className="p-6">
 				<Card className="p-8 text-center max-w-md mx-auto">
-					<Package className="h-12 w-12 mx-auto mb-4 text-gray-300" />
+					<Package className="h-12 w-12 mx-auto mb-4 text-muted-foreground/80" />
 					<h1 className="text-xl font-semibold mb-2">Product Not Found</h1>
-					<p className="text-gray-500 mb-6">{error}</p>
+					<p className="text-muted-foreground mb-6">{error}</p>
 					<Link href="/admin/marketplace/products">
 						<Button variant="outline">
 							<ArrowLeft className="h-4 w-4 mr-2" />
@@ -143,21 +143,21 @@ export default function ViewProductPage() {
 					</Link>
 					<div>
 						<div className="flex items-center gap-3 flex-wrap">
-							<h1 className="text-2xl font-bold text-gray-900">{product.name}</h1>
+							<h1 className="text-2xl font-bold text-foreground">{product.name}</h1>
 							{getStatusBadge(product.status)}
 							{product.isFeatured && (
-								<Badge className="bg-amber-100 text-amber-800 border-amber-200 flex items-center gap-1">
+								<Badge className="bg-accent/10 text-accent border-accent/50 flex items-center gap-1">
 									<Star className="h-3 w-3" />
 									Featured
 								</Badge>
 							)}
 							{hasDiscount && (
-								<Badge className="bg-red-100 text-red-700 border-red-200">
+								<Badge className="bg-destructive/10 text-destructive border-destructive">
 									{discountPercent}% OFF
 								</Badge>
 							)}
 						</div>
-						<p className="text-gray-500 mt-1">/{product.slug}</p>
+						<p className="text-muted-foreground mt-1">/{product.slug}</p>
 					</div>
 				</div>
 				<div className="flex gap-2">
@@ -195,7 +195,7 @@ export default function ViewProductPage() {
 							{product.images && product.images.length > 0 ? (
 								<div className="space-y-4">
 									{/* Main Image */}
-									<div className="aspect-video bg-gray-100 rounded-lg overflow-hidden relative">
+									<div className="aspect-video bg-muted rounded-lg overflow-hidden relative">
 										<img
 											src={product.images[selectedImage]?.url || primaryImage?.url}
 											alt={product.images[selectedImage]?.altText || product.name}
@@ -205,12 +205,12 @@ export default function ViewProductPage() {
 										{/* Badges on image */}
 										<div className="absolute top-3 left-3 flex flex-col gap-2">
 											{product.isFeatured && (
-												<span className="bg-amber-500 text-white text-xs px-2 py-1 rounded-full font-medium">
+												<span className="bg-accent text-white text-xs px-2 py-1 rounded-full font-medium">
 													Featured
 												</span>
 											)}
 											{hasDiscount && (
-												<span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full font-medium">
+												<span className="bg-destructive text-white text-xs px-2 py-1 rounded-full font-medium">
 													-{discountPercent}%
 												</span>
 											)}
@@ -227,7 +227,7 @@ export default function ViewProductPage() {
 													className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${
 														selectedImage === index
 															? 'border-primary ring-2 ring-primary/20'
-															: 'border-gray-200 hover:border-gray-300'
+															: 'border-border hover:border-border'
 													}`}
 												>
 													<img
@@ -242,10 +242,10 @@ export default function ViewProductPage() {
 									)}
 								</div>
 							) : (
-								<div className="aspect-video bg-gray-50 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-200">
+								<div className="aspect-video bg-muted/50 rounded-lg flex items-center justify-center border-2 border-dashed border-border">
 									<div className="text-center">
-										<ImageIcon className="h-12 w-12 mx-auto text-gray-300 mb-2" />
-										<p className="text-gray-400">No images uploaded</p>
+										<ImageIcon className="h-12 w-12 mx-auto text-muted-foreground/80 mb-2" />
+										<p className="text-muted-foreground/80">No images uploaded</p>
 										<Link href={`/admin/marketplace/products/${product.id}/edit`} className="mt-2 inline-block">
 											<Button variant="outline" size="sm">
 												Add Images
@@ -265,17 +265,17 @@ export default function ViewProductPage() {
 						<CardContent>
 							{product.shortDescription && (
 								<div className="mb-4">
-									<h4 className="text-sm font-medium text-gray-500 mb-1">Short Description</h4>
-									<p className="text-gray-700">{product.shortDescription}</p>
+									<h4 className="text-sm font-medium text-muted-foreground mb-1">Short Description</h4>
+									<p className="text-foreground/80">{product.shortDescription}</p>
 								</div>
 							)}
 							{product.description ? (
 								<div>
-									<h4 className="text-sm font-medium text-gray-500 mb-1">Full Description</h4>
-									<p className="text-gray-700 whitespace-pre-wrap">{product.description}</p>
+									<h4 className="text-sm font-medium text-muted-foreground mb-1">Full Description</h4>
+									<p className="text-foreground/80 whitespace-pre-wrap">{product.description}</p>
 								</div>
 							) : !product.shortDescription && (
-								<p className="text-gray-400 italic">No description provided</p>
+								<p className="text-muted-foreground/80 italic">No description provided</p>
 							)}
 						</CardContent>
 					</Card>
@@ -290,27 +290,27 @@ export default function ViewProductPage() {
 						</CardHeader>
 						<CardContent>
 							<div className="grid gap-4 sm:grid-cols-3">
-								<div className="p-4 bg-gray-50 rounded-lg">
-									<p className="text-sm text-gray-500">Track Inventory</p>
+								<div className="p-4 bg-muted/50 rounded-lg">
+									<p className="text-sm text-muted-foreground">Track Inventory</p>
 									<p className="text-lg font-semibold">{product.trackInventory ? 'Yes' : 'No'}</p>
 								</div>
-								<div className="p-4 bg-gray-50 rounded-lg">
-									<p className="text-sm text-gray-500">Stock Quantity</p>
+								<div className="p-4 bg-muted/50 rounded-lg">
+									<p className="text-sm text-muted-foreground">Stock Quantity</p>
 									<div className="flex items-center gap-2">
 										<span className={`w-2 h-2 rounded-full ${
 											product.stockQuantity <= product.lowStockThreshold
-												? 'bg-red-500'
+												? 'bg-destructive'
 												: product.stockQuantity <= product.lowStockThreshold * 2
-												? 'bg-yellow-500'
-												: 'bg-green-500'
+												? 'bg-accent'
+												: 'bg-secondary'
 										}`}></span>
-										<p className={`text-lg font-semibold ${product.stockQuantity <= product.lowStockThreshold ? 'text-red-600' : ''}`}>
+										<p className={`text-lg font-semibold ${product.stockQuantity <= product.lowStockThreshold ? 'text-destructive' : ''}`}>
 											{product.stockQuantity}
 										</p>
 									</div>
 								</div>
-								<div className="p-4 bg-gray-50 rounded-lg">
-									<p className="text-sm text-gray-500">Low Stock Alert</p>
+								<div className="p-4 bg-muted/50 rounded-lg">
+									<p className="text-sm text-muted-foreground">Low Stock Alert</p>
 									<p className="text-lg font-semibold">{product.lowStockThreshold}</p>
 								</div>
 							</div>
@@ -330,25 +330,25 @@ export default function ViewProductPage() {
 						</div>
 						<CardContent className="p-6 space-y-4">
 							<div className="text-center">
-								<p className="text-sm text-gray-500 mb-1">Selling Price</p>
-								<p className="text-4xl font-bold text-green-600">
+								<p className="text-sm text-muted-foreground mb-1">Selling Price</p>
+								<p className="text-4xl font-bold text-secondary">
 									${parseFloat(product.price).toFixed(2)}
 								</p>
 							</div>
 							{product.compareAtPrice && (
 								<>
 									<div className="border-t pt-4 text-center">
-										<p className="text-sm text-gray-500 mb-1">Compare at Price</p>
-										<p className="text-2xl text-gray-400 line-through">
+										<p className="text-sm text-muted-foreground mb-1">Compare at Price</p>
+										<p className="text-2xl text-muted-foreground/80 line-through">
 											${parseFloat(product.compareAtPrice).toFixed(2)}
 										</p>
 									</div>
 									{hasDiscount && (
-										<div className="bg-red-50 border border-red-200 rounded-lg p-3 text-center">
-											<p className="text-red-700 font-semibold text-lg">
+										<div className="bg-destructive/10 border border-destructive rounded-lg p-3 text-center">
+											<p className="text-destructive font-semibold text-lg">
 												{discountPercent}% OFF
 											</p>
-											<p className="text-red-600 text-sm">
+											<p className="text-destructive text-sm">
 												Customers save ${(parseFloat(product.compareAtPrice) - parseFloat(product.price)).toFixed(2)}
 											</p>
 										</div>
@@ -361,14 +361,14 @@ export default function ViewProductPage() {
 					{/* Product Preview Card */}
 					<Card>
 						<CardHeader className="pb-2">
-							<CardTitle className="text-sm font-medium text-gray-500 uppercase tracking-wider">
+							<CardTitle className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
 								Customer Preview
 							</CardTitle>
 						</CardHeader>
 						<CardContent>
-							<div className="rounded-lg border border-dashed border-gray-200 overflow-hidden">
+							<div className="rounded-lg border border-dashed border-border overflow-hidden">
 								{/* Mini preview card */}
-								<div className="aspect-square bg-gray-100 relative">
+								<div className="aspect-square bg-muted relative">
 									{primaryImage ? (
 										<img
 											src={primaryImage.url}
@@ -378,11 +378,11 @@ export default function ViewProductPage() {
 										/>
 									) : (
 										<div className="w-full h-full flex items-center justify-center">
-											<Package className="h-8 w-8 text-gray-300" />
+											<Package className="h-8 w-8 text-muted-foreground/80" />
 										</div>
 									)}
 									{hasDiscount && (
-										<span className="absolute top-2 right-2 bg-red-500 text-white text-xs px-1.5 py-0.5 rounded-full font-medium">
+										<span className="absolute top-2 right-2 bg-destructive text-white text-xs px-1.5 py-0.5 rounded-full font-medium">
 											-{discountPercent}%
 										</span>
 									)}
@@ -390,18 +390,18 @@ export default function ViewProductPage() {
 								<div className="p-3 space-y-2">
 									<p className="font-medium text-sm line-clamp-2">{product.name}</p>
 									<div className="flex items-baseline gap-2">
-										<span className="font-bold text-green-600">
+										<span className="font-bold text-secondary">
 											${parseFloat(product.price).toFixed(2)}
 										</span>
 										{product.compareAtPrice && (
-											<span className="text-xs text-gray-400 line-through">
+											<span className="text-xs text-muted-foreground/80 line-through">
 												${parseFloat(product.compareAtPrice).toFixed(2)}
 											</span>
 										)}
 									</div>
 								</div>
 							</div>
-							<p className="text-xs text-gray-400 text-center mt-2">
+							<p className="text-xs text-muted-foreground/80 text-center mt-2">
 								As shown in marketplace
 							</p>
 						</CardContent>
@@ -414,11 +414,11 @@ export default function ViewProductPage() {
 						</CardHeader>
 						<CardContent className="space-y-3 text-sm">
 							<div>
-								<p className="text-gray-500">Created</p>
+								<p className="text-muted-foreground">Created</p>
 								<p className="font-medium">{formatDate(product.createdAt)}</p>
 							</div>
 							<div>
-								<p className="text-gray-500">Last Updated</p>
+								<p className="text-muted-foreground">Last Updated</p>
 								<p className="font-medium">{formatDate(product.updatedAt)}</p>
 							</div>
 						</CardContent>

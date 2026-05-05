@@ -118,10 +118,10 @@ function SignupPageInner() {
       pill={`Join as ${getRoleDisplayName(role)}`}
       footer={
         <div className="flex items-center justify-center gap-2 text-sm">
-          <span className="text-slate-200">Already have an account?</span>
+          <span className="text-muted-foreground/80">Already have an account?</span>
           <button
             type="button"
-            className="font-semibold text-white hover:text-indigo-200 underline-offset-4"
+            className="font-semibold text-white hover:text-primary underline-offset-4"
             onClick={handleBackToLogin}
           >
             Login
@@ -129,32 +129,32 @@ function SignupPageInner() {
         </div>
       }
     >
-      <Card className="border border-white/40 bg-white/95 shadow-2xl backdrop-blur-lg">
+      <Card className="border border-white/40 bg-card/95 shadow-2xl backdrop-blur-lg">
         <CardContent className="space-y-6 p-6 md:p-8">
           <div className="space-y-1 text-left">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-indigo-600">Choose your path</p>
-            <h2 className="text-2xl font-semibold text-slate-900">I want to join as a {getRoleDisplayName(role)}</h2>
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-primary">Choose your path</p>
+            <h2 className="text-2xl font-semibold text-foreground">I want to join as a {getRoleDisplayName(role)}</h2>
           </div>
 
           <ClientOnly fallback={
             <div className="w-full">
-              <div className="grid w-full grid-cols-2 rounded-xl bg-slate-100 p-1">
-                <div className="rounded-lg bg-white py-2 text-center text-sm font-semibold text-slate-700 shadow">Customer</div>
-                <div className="py-2 text-center text-sm font-semibold text-slate-500">Expert</div>
+              <div className="grid w-full grid-cols-2 rounded-xl bg-muted p-1">
+                <div className="rounded-lg bg-card py-2 text-center text-sm font-semibold text-foreground/80 shadow">Customer</div>
+                <div className="py-2 text-center text-sm font-semibold text-muted-foreground">Expert</div>
               </div>
             </div>
           }>
             <Tabs value={role} onValueChange={handleTabChange} className="w-full">
-              <TabsList className="grid w-full grid-cols-2 rounded-xl bg-slate-100 p-1">
+              <TabsList className="grid w-full grid-cols-2 rounded-xl bg-muted p-1">
                 <TabsTrigger
                   value="customer"
-                  className="rounded-lg data-[state=active]:bg-emerald-600 data-[state=active]:text-white data-[state=active]:shadow-lg"
+                  className="rounded-lg data-[state=active]:bg-secondary data-[state=active]:text-white data-[state=active]:shadow-lg"
                 >
                   Customer
                 </TabsTrigger>
                 <TabsTrigger
                   value="expert"
-                  className="rounded-lg data-[state=active]:bg-indigo-600 data-[state=active]:text-white data-[state=active]:shadow-lg"
+                  className="rounded-lg data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-lg"
                 >
                   Expert
                 </TabsTrigger>

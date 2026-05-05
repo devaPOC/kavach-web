@@ -100,7 +100,7 @@ export default function TrainerResourcesPage() {
 	if (loading) {
 		return (
 			<div className="flex items-center justify-center min-h-[50vh]">
-				<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600"></div>
+				<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary/50"></div>
 			</div>
 		);
 	}
@@ -109,9 +109,9 @@ export default function TrainerResourcesPage() {
 		<>
 			{/* Success notification */}
 			{downloadSuccess && (
-				<div className="fixed top-4 right-4 bg-green-50 border border-green-200 rounded-lg p-4 shadow-lg z-50 flex items-center gap-2">
-					<CheckCircle className="h-5 w-5 text-green-600" />
-					<span className="text-green-800">Downloaded: {downloadSuccess}</span>
+				<div className="fixed top-4 right-4 bg-secondary/10 border border-secondary/50 rounded-lg p-4 shadow-lg z-50 flex items-center gap-2">
+					<CheckCircle className="h-5 w-5 text-secondary" />
+					<span className="text-secondary">Downloaded: {downloadSuccess}</span>
 				</div>
 			)}
 
@@ -124,7 +124,7 @@ export default function TrainerResourcesPage() {
 
 			<div className="flex gap-4 mb-6 flex-col sm:flex-row">
 				<div className="relative flex-1">
-					<Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+					<Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground/80 w-4 h-4" />
 					<Input
 						placeholder="Search resources..."
 						value={searchTerm}
@@ -150,8 +150,8 @@ export default function TrainerResourcesPage() {
 
 			{filteredResources.length === 0 ? (
 				<div className="text-center py-12">
-					<div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-purple-100 mb-4">
-						<Filter className="w-8 h-8 text-purple-600" />
+					<div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
+						<Filter className="w-8 h-8 text-accent" />
 					</div>
 					<h3 className="text-lg font-semibold mb-2">No resources found</h3>
 					<p className="text-muted-foreground mb-4">
@@ -200,20 +200,20 @@ export default function TrainerResourcesPage() {
 					{selectedResource && (
 						<div className="py-4">
 							<h3 className="font-medium text-lg mb-2">{selectedResource.title}</h3>
-							<p className="text-sm text-gray-500 mb-4">{selectedResource.description}</p>
+							<p className="text-sm text-muted-foreground mb-4">{selectedResource.description}</p>
 
-							<div className="bg-gray-50 p-4 rounded-md break-all">
-								<p className="text-xs font-medium text-gray-500 mb-1">Resource Link:</p>
+							<div className="bg-muted/50 p-4 rounded-md break-all">
+								<p className="text-xs font-medium text-muted-foreground mb-1">Resource Link:</p>
 								<div className="flex items-center gap-2">
 									<a
 										href={selectedResource.contentUrl || '#'}
 										target="_blank"
 										rel="noopener noreferrer"
-										className="text-purple-600 hover:text-purple-800 underline text-sm"
+										className="text-accent hover:text-primary underline text-sm"
 									>
 										{selectedResource.contentUrl}
 									</a>
-									<ExternalLink className="w-3 h-3 text-purple-600" />
+									<ExternalLink className="w-3 h-3 text-accent" />
 								</div>
 							</div>
 						</div>

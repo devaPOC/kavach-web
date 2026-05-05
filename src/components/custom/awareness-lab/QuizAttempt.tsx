@@ -52,10 +52,10 @@ const QuizTimer: React.FC<QuizTimerProps> = ({ timeRemaining, isActive, isArabic
   const isCriticalTime = timeRemaining <= 60 // 1 minute
 
   const timerColor = isCriticalTime
-    ? 'text-red-600 bg-red-50 border-red-200'
+    ? 'text-destructive bg-destructive/10 border-destructive'
     : isLowTime
-      ? 'text-orange-600 bg-orange-50 border-orange-200'
-      : 'text-blue-600 bg-blue-50 border-blue-200'
+      ? 'text-accent bg-accent/10 border-accent/50'
+      : 'text-primary bg-primary/10 border-primary/50'
 
   const effectiveIsArabic = isArabic || language === 'ar'
 
@@ -94,7 +94,7 @@ const QuizProgress: React.FC<QuizProgressProps> = ({
 
   return (
     <div className={`space-y-3 ${effectiveIsArabic ? 'font-arabic' : ''}`}>
-      <div className={`flex items-center justify-between text-xs sm:text-sm text-gray-600 ${effectiveIsArabic ? 'flex-row-reverse' : ''}`}>
+      <div className={`flex items-center justify-between text-xs sm:text-sm text-muted-foreground ${effectiveIsArabic ? 'flex-row-reverse' : ''}`}>
         <span className="font-medium">
           {effectiveIsArabic
             ? `السؤال ${currentIndex + 1} من ${totalQuestions}`
@@ -109,9 +109,9 @@ const QuizProgress: React.FC<QuizProgressProps> = ({
         </span>
       </div>
 
-      <div className="w-full bg-gray-200 rounded-full h-2 sm:h-3">
+      <div className="w-full bg-muted/80 rounded-full h-2 sm:h-3">
         <div
-          className="bg-blue-600 h-2 sm:h-3 rounded-full transition-all duration-300"
+          className="bg-primary h-2 sm:h-3 rounded-full transition-all duration-300"
           style={{ width: `${progressPercentage}%` }}
         />
       </div>
@@ -127,10 +127,10 @@ const QuizProgress: React.FC<QuizProgressProps> = ({
             <div
               key={index}
               className={`w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center text-xs font-medium border-2 transition-all touch-target ${isCurrent
-                  ? 'border-blue-600 bg-blue-600 text-white'
+                  ? 'border-primary/50 bg-primary text-white'
                   : isAnswered
-                    ? 'border-green-500 bg-green-500 text-white'
-                    : 'border-gray-300 bg-white text-gray-600'
+                    ? 'border-secondary/50 bg-secondary text-white'
+                    : 'border-border bg-card text-muted-foreground'
                 }`}
             >
               {index + 1}
@@ -188,7 +188,7 @@ const QuizNavigation: React.FC<QuizNavigationProps> = ({
             onClick={onSubmit}
             disabled={!canSubmit || isSubmitting}
             size="lg"
-            className="bg-green-600 hover:bg-green-700 text-white touch-target min-h-[44px] w-full sm:w-auto"
+            className="bg-secondary hover:bg-secondary text-white touch-target min-h-[44px] w-full sm:w-auto"
             startIcon={isSubmitting ? (
               <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
             ) : (
@@ -375,7 +375,7 @@ export const QuizAttempt: React.FC<QuizAttemptProps> = ({ quiz, attempt, onBack 
                 {quiz.title}
               </MultilingualHeading>
               {quiz.description && (
-                <MultilingualText className="text-gray-600 mt-1 break-words" adaptToContent>
+                <MultilingualText className="text-muted-foreground mt-1 break-words" adaptToContent>
                   {quiz.description}
                 </MultilingualText>
               )}
@@ -436,14 +436,14 @@ export const QuizAttempt: React.FC<QuizAttemptProps> = ({ quiz, attempt, onBack 
             <Card className="max-w-md mx-4">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <Flag className="h-5 w-5 text-orange-500" />
+                  <Flag className="h-5 w-5 text-accent" />
                   <MultilingualText weight="semibold">
                     {isArabic ? 'إرسال الاختبار؟' : 'Submit Quiz?'}
                   </MultilingualText>
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <MultilingualText className="text-gray-600">
+                <MultilingualText className="text-muted-foreground">
                   {isArabic
                     ? `لديك ${quiz.questions.length - answeredQuestions.size} أسئلة لم يتم الإجابة عليها. هل أنت متأكد من أنك تريد إرسال اختبارك؟`
                     : `You have ${quiz.questions.length - answeredQuestions.size} unanswered questions. Are you sure you want to submit your quiz?`
@@ -461,7 +461,7 @@ export const QuizAttempt: React.FC<QuizAttemptProps> = ({ quiz, attempt, onBack 
                   <MultilingualButton
                     onClick={handleSubmitQuiz}
                     disabled={isSubmitting}
-                    className="flex-1 bg-orange-600 hover:bg-orange-700"
+                    className="flex-1 bg-accent hover:bg-accent"
                   >
                     {isSubmitting ? (isArabic ? 'جاري الإرسال...' : 'Submitting...') : (isArabic ? 'إرسال على أي حال' : 'Submit Anyway')}
                   </MultilingualButton>
@@ -475,13 +475,13 @@ export const QuizAttempt: React.FC<QuizAttemptProps> = ({ quiz, attempt, onBack 
       {/* Low Time Warning */}
       {quizTimer.timeRemaining <= 300 && quizTimer.timeRemaining > 60 && (
         <MultilingualWrapper>
-          <Alert className="border-orange-200 bg-orange-50">
-            <Clock className="h-4 w-4 text-orange-600" />
+          <Alert className="border-accent/50 bg-accent/10">
+            <Clock className="h-4 w-4 text-accent" />
             <AlertDescription>
-              <MultilingualText className="text-orange-800" weight="semibold">
+              <MultilingualText className="text-accent" weight="semibold">
                 {isArabic ? 'تحذير الوقت:' : 'Time Warning:'}
               </MultilingualText>
-              <MultilingualText className="text-orange-800">
+              <MultilingualText className="text-accent">
                 {' '}{isArabic ? 'لديك أقل من 5 دقائق متبقية.' : 'You have less than 5 minutes remaining.'}
               </MultilingualText>
             </AlertDescription>

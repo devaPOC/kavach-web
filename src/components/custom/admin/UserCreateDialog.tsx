@@ -80,8 +80,8 @@ export default function UserCreateDialog({
 
         <form onSubmit={handleSubmit} className="space-y-4">
           {error && (
-            <div className="p-3 bg-red-50 border border-red-200 rounded-md">
-              <p className="text-sm text-red-600">{error}</p>
+            <div className="p-3 bg-destructive/10 border border-destructive rounded-md">
+              <p className="text-sm text-destructive">{error}</p>
             </div>
           )}
 

@@ -27,15 +27,15 @@ export const ErrorDisplay: React.FC<ErrorDisplayProps> = ({
   const getSeverityColor = (severity: ErrorSeverity): string => {
     switch (severity) {
       case ErrorSeverity.LOW:
-        return 'bg-blue-100 text-blue-800 border-blue-200';
+        return 'bg-primary/10 text-primary border-primary/50';
       case ErrorSeverity.MEDIUM:
-        return 'bg-yellow-100 text-yellow-800 border-yellow-200';
+        return 'bg-accent/10 text-accent border-accent/50';
       case ErrorSeverity.HIGH:
-        return 'bg-orange-100 text-orange-800 border-orange-200';
+        return 'bg-accent/10 text-accent border-accent/50';
       case ErrorSeverity.CRITICAL:
-        return 'bg-red-100 text-red-800 border-red-200';
+        return 'bg-destructive/10 text-destructive border-destructive';
       default:
-        return 'bg-gray-100 text-gray-800 border-gray-200';
+        return 'bg-muted text-foreground border-border';
     }
   };
 
@@ -59,7 +59,7 @@ export const ErrorDisplay: React.FC<ErrorDisplayProps> = ({
       <Card className="w-full max-w-2xl">
         <CardHeader>
           <div className="flex items-center gap-3">
-            <AlertTriangle className="h-6 w-6 text-orange-500" />
+            <AlertTriangle className="h-6 w-6 text-accent" />
             <div className="flex-1">
               <CardTitle className="text-lg">Something went wrong</CardTitle>
               <CardDescription className="mt-1">
@@ -102,7 +102,7 @@ export const ErrorDisplay: React.FC<ErrorDisplayProps> = ({
           {/* Recovery Actions */}
           {recoveryActions.length > 0 && (
             <div className="space-y-3">
-              <h4 className="font-medium text-sm text-gray-700">Available Actions:</h4>
+              <h4 className="font-medium text-sm text-foreground/80">Available Actions:</h4>
               <div className="flex flex-wrap gap-2">
                 {recoveryActions.map((action, index) => (
                   <Button
@@ -126,22 +126,22 @@ export const ErrorDisplay: React.FC<ErrorDisplayProps> = ({
             <CollapsibleTrigger asChild>
               <Button variant="ghost" size="sm" className="w-full justify-between">
                 Technical Details
-                <span className="text-xs text-gray-500">
+                <span className="text-xs text-muted-foreground">
                   {showDetails ? 'Hide' : 'Show'}
                 </span>
               </Button>
             </CollapsibleTrigger>
             <CollapsibleContent className="space-y-3 mt-3">
-              <div className="bg-gray-50 p-3 rounded-md text-sm space-y-2">
+              <div className="bg-muted/50 p-3 rounded-md text-sm space-y-2">
                 <div>
                   <span className="font-medium">Error ID:</span>
-                  <code className="ml-2 bg-white px-2 py-1 rounded text-xs">
+                  <code className="ml-2 bg-card px-2 py-1 rounded text-xs">
                     {errorId}
                   </code>
                 </div>
                 <div>
                   <span className="font-medium">Error Code:</span>
-                  <code className="ml-2 bg-white px-2 py-1 rounded text-xs">
+                  <code className="ml-2 bg-card px-2 py-1 rounded text-xs">
                     {error.code}
                   </code>
                 </div>
@@ -152,12 +152,12 @@ export const ErrorDisplay: React.FC<ErrorDisplayProps> = ({
                 {error.details && (
                   <div>
                     <span className="font-medium">Additional Info:</span>
-                    <pre className="ml-2 bg-white p-2 rounded text-xs overflow-auto max-h-32">
+                    <pre className="ml-2 bg-card p-2 rounded text-xs overflow-auto max-h-32">
                       {JSON.stringify(error.details, null, 2)}
                     </pre>
                   </div>
                 )}
-                <div className="text-xs text-gray-500">
+                <div className="text-xs text-muted-foreground">
                   <span className="font-medium">Technical Message:</span>
                   <span className="ml-2">{classification.technicalMessage}</span>
                 </div>
@@ -166,7 +166,7 @@ export const ErrorDisplay: React.FC<ErrorDisplayProps> = ({
           </Collapsible>
 
           {/* Help Text */}
-          <div className="text-sm text-gray-600 bg-blue-50 p-3 rounded-md">
+          <div className="text-sm text-muted-foreground bg-primary/10 p-3 rounded-md">
             <p className="font-medium mb-1">Need Help?</p>
             <p>
               If this problem persists, please contact support with the error ID above. 

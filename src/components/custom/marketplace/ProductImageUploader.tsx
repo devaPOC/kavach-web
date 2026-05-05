@@ -196,8 +196,8 @@ export function ProductImageUploader({
 				{/* Upload Area */}
 				<div
 					className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors cursor-pointer ${isDragging
-						? 'border-blue-500 bg-blue-50'
-						: 'border-gray-300 hover:border-gray-400'
+						? 'border-primary/50 bg-primary/10'
+						: 'border-border hover:border-border/80'
 						} ${isUploading ? 'opacity-50 pointer-events-none' : ''}`}
 					onDragOver={handleDragOver}
 					onDragLeave={handleDragLeave}
@@ -213,16 +213,16 @@ export function ProductImageUploader({
 					/>
 					{isUploading ? (
 						<div className="flex flex-col items-center gap-2">
-							<Loader2 className="h-8 w-8 animate-spin text-gray-400" />
-							<p className="text-gray-500">Uploading...</p>
+							<Loader2 className="h-8 w-8 animate-spin text-muted-foreground/80" />
+							<p className="text-muted-foreground">Uploading...</p>
 						</div>
 					) : (
 						<div className="flex flex-col items-center gap-2">
-							<Upload className="h-8 w-8 text-gray-400" />
-							<p className="text-gray-600 font-medium">
+							<Upload className="h-8 w-8 text-muted-foreground/80" />
+							<p className="text-muted-foreground font-medium">
 								Drop an image here or click to upload
 							</p>
-							<p className="text-sm text-gray-400">
+							<p className="text-sm text-muted-foreground/80">
 								JPEG, PNG, WebP, or GIF (max 5MB)
 							</p>
 						</div>
@@ -231,7 +231,7 @@ export function ProductImageUploader({
 
 				{/* Error Message */}
 				{error && (
-					<p className="text-sm text-red-600 bg-red-50 rounded-lg px-4 py-2">
+					<p className="text-sm text-destructive bg-destructive/10 rounded-lg px-4 py-2">
 						{error}
 					</p>
 				)}
@@ -242,10 +242,10 @@ export function ProductImageUploader({
 						{images.map((image) => (
 							<div
 								key={image.id}
-								className={`relative group rounded-lg overflow-hidden border-2 ${image.isPrimary ? 'border-yellow-400' : 'border-gray-200'
+								className={`relative group rounded-lg overflow-hidden border-2 ${image.isPrimary ? 'border-accent/50' : 'border-border'
 									}`}
 							>
-								<div className="aspect-square bg-gray-100">
+								<div className="aspect-square bg-muted">
 									<img
 										src={image.url}
 										alt={image.altText || 'Product image'}
@@ -256,7 +256,7 @@ export function ProductImageUploader({
 
 								{/* Primary Badge */}
 								{image.isPrimary && (
-									<div className="absolute top-2 left-2 bg-yellow-400 text-yellow-900 px-2 py-0.5 rounded text-xs font-medium flex items-center gap-1">
+									<div className="absolute top-2 left-2 bg-accent text-accent px-2 py-0.5 rounded text-xs font-medium flex items-center gap-1">
 										<Star className="h-3 w-3" />
 										Primary
 									</div>
@@ -298,7 +298,7 @@ export function ProductImageUploader({
 
 				{/* Empty State */}
 				{images.length === 0 && !isUploading && (
-					<p className="text-center text-gray-400 text-sm py-4">
+					<p className="text-center text-muted-foreground/80 text-sm py-4">
 						No images uploaded yet
 					</p>
 				)}

@@ -186,7 +186,7 @@ export default function QuizPreviewDialog({
       <Dialog open={open} onOpenChange={onOpenChange}>
         <DialogContent className="max-w-md">
           <div className="flex items-center justify-center py-8">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary/50"></div>
             <span className="ml-3">Loading quiz preview...</span>
           </div>
         </DialogContent>
@@ -199,11 +199,11 @@ export default function QuizPreviewDialog({
       <Dialog open={open} onOpenChange={onOpenChange}>
         <DialogContent className="max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-red-600">Error</DialogTitle>
+            <DialogTitle className="text-destructive">Error</DialogTitle>
             <DialogDescription>Failed to load quiz preview</DialogDescription>
           </DialogHeader>
-          <div className="p-3 bg-red-50 border border-red-200 rounded-md">
-            <p className="text-sm text-red-600">{error}</p>
+          <div className="p-3 bg-destructive/10 border border-destructive rounded-md">
+            <p className="text-sm text-destructive">{error}</p>
           </div>
           <div className="flex justify-end">
             <Button onClick={() => onOpenChange(false)}>Close</Button>
@@ -250,34 +250,34 @@ export default function QuizPreviewDialog({
                 {/* Quiz Information */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   <div className="flex items-center gap-2">
-                    <FileText className="h-4 w-4 text-gray-500" />
+                    <FileText className="h-4 w-4 text-muted-foreground" />
                     <div>
                       <div className="text-sm font-medium">{quizData.questions?.length || 0}</div>
-                      <div className="text-xs text-gray-500">Questions</div>
+                      <div className="text-xs text-muted-foreground">Questions</div>
                     </div>
                   </div>
                   
                   <div className="flex items-center gap-2">
-                    <Clock className="h-4 w-4 text-gray-500" />
+                    <Clock className="h-4 w-4 text-muted-foreground" />
                     <div>
                       <div className="text-sm font-medium">{quizData.timeLimitMinutes} min</div>
-                      <div className="text-xs text-gray-500">Time Limit</div>
+                      <div className="text-xs text-muted-foreground">Time Limit</div>
                     </div>
                   </div>
                   
                   <div className="flex items-center gap-2">
-                    <Users className="h-4 w-4 text-gray-500" />
+                    <Users className="h-4 w-4 text-muted-foreground" />
                     <div>
                       <div className="text-sm font-medium">{quizData.maxAttempts}</div>
-                      <div className="text-xs text-gray-500">Max Attempts</div>
+                      <div className="text-xs text-muted-foreground">Max Attempts</div>
                     </div>
                   </div>
                   
                   <div className="flex items-center gap-2">
-                    <Globe className="h-4 w-4 text-gray-500" />
+                    <Globe className="h-4 w-4 text-muted-foreground" />
                     <div>
                       <Badge className={quizData.language === 'ar' ? 
-                        'bg-purple-100 text-purple-800' : 'bg-blue-100 text-blue-800'}>
+                        'bg-primary/10 text-primary' : 'bg-primary/10 text-primary'}>
                         {quizData.language === 'ar' ? 'Arabic' : 'English'}
                       </Badge>
                     </div>
@@ -289,7 +289,7 @@ export default function QuizPreviewDialog({
                 {/* Instructions */}
                 <div className="space-y-2">
                   <h4 className="font-medium">Instructions:</h4>
-                  <ul className="text-sm text-gray-600 space-y-1 list-disc list-inside">
+                  <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside">
                     <li>You have {quizData.timeLimitMinutes} minutes to complete this quiz</li>
                     <li>Answer all questions to the best of your ability</li>
                     <li>You can navigate between questions using the Next/Previous buttons</li>
@@ -311,26 +311,26 @@ export default function QuizPreviewDialog({
           // Quiz Questions
           <div className="space-y-6">
             {/* Timer and Progress */}
-            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+            <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg">
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-2">
-                  <Clock className="h-4 w-4 text-gray-500" />
+                  <Clock className="h-4 w-4 text-muted-foreground" />
                   <span className={`font-mono text-lg ${
-                    timeRemaining < 300 ? 'text-red-600' : 'text-gray-900'
+                    timeRemaining < 300 ? 'text-destructive' : 'text-foreground'
                   }`}>
                     {formatTime(timeRemaining)}
                   </span>
                 </div>
                 
-                <div className="text-sm text-gray-500">
+                <div className="text-sm text-muted-foreground">
                   Question {currentQuestion + 1} of {quizData.questions?.length || 0}
                 </div>
               </div>
               
               <div className="flex items-center gap-2">
-                <div className="w-32 bg-gray-200 rounded-full h-2">
+                <div className="w-32 bg-muted/80 rounded-full h-2">
                   <div 
-                    className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                    className="bg-primary h-2 rounded-full transition-all duration-300"
                     style={{ 
                       width: `${((currentQuestion + 1) / (quizData.questions?.length || 1)) * 100}%` 
                     }}
@@ -368,7 +368,7 @@ export default function QuizPreviewDialog({
                     {currentQuestionData.questionType === 'true_false' ? (
                       <div className="space-y-2">
                         {['true', 'false'].map((option) => (
-                          <label key={option} className="flex items-center gap-3 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                          <label key={option} className="flex items-center gap-3 p-3 border rounded-lg cursor-pointer hover:bg-muted/50">
                             <input
                               type="radio"
                               name={`question-${currentQuestionData.id}`}
@@ -384,7 +384,7 @@ export default function QuizPreviewDialog({
                     ) : (
                       <div className="space-y-2">
                         {(currentQuestionData.questionData.options || []).map((option: string, index: number) => (
-                          <label key={index} className="flex items-center gap-3 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                          <label key={index} className="flex items-center gap-3 p-3 border rounded-lg cursor-pointer hover:bg-muted/50">
                             {currentQuestionData.questionType === 'mcq' ? (
                               <input
                                 type="radio"
@@ -422,9 +422,9 @@ export default function QuizPreviewDialog({
                       Previous
                     </Button>
                     
-                    <div className="text-sm text-gray-500">
+                    <div className="text-sm text-muted-foreground">
                       {userAnswers[currentQuestionData.id]?.length > 0 ? (
-                        <span className="text-green-600">✓ Answered</span>
+                        <span className="text-secondary">✓ Answered</span>
                       ) : (
                         <span>Not answered</span>
                       )}
@@ -456,7 +456,7 @@ export default function QuizPreviewDialog({
                       onClick={() => setCurrentQuestion(index)}
                       className={`w-8 h-8 p-0 ${
                         userAnswers[quizData.questions[index]?.id]?.length > 0 
-                          ? 'bg-green-50 border-green-200 text-green-700' 
+                          ? 'bg-secondary/10 border-secondary/50 text-secondary' 
                           : ''
                       }`}
                     >

@@ -43,7 +43,7 @@ export default function ModuleDeleteDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2 text-red-600">
+          <DialogTitle className="flex items-center gap-2 text-destructive">
             <AlertTriangle className="h-5 w-5" />
             Delete Learning Module
           </DialogTitle>
@@ -53,15 +53,15 @@ export default function ModuleDeleteDialog({
         </DialogHeader>
         
         <div className="space-y-4">
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+          <div className="bg-destructive/10 border border-destructive rounded-lg p-4">
             <div className="flex items-start gap-3">
-              <BookOpen className="h-5 w-5 text-red-600 mt-0.5" />
+              <BookOpen className="h-5 w-5 text-destructive mt-0.5" />
               <div className="flex-1">
-                <h4 className="font-medium text-red-900">{module.title}</h4>
+                <h4 className="font-medium text-destructive">{module.title}</h4>
                 {module.description && (
-                  <p className="text-sm text-red-700 mt-1">{module.description}</p>
+                  <p className="text-sm text-destructive mt-1">{module.description}</p>
                 )}
-                <div className="flex items-center gap-4 mt-2 text-sm text-red-600">
+                <div className="flex items-center gap-4 mt-2 text-sm text-destructive">
                   <span>Category: {module.category}</span>
                   <span>Status: {module.isPublished ? 'Published' : 'Draft'}</span>
                 </div>
@@ -70,24 +70,24 @@ export default function ModuleDeleteDialog({
           </div>
 
           {hasContent && (
-            <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+            <div className="bg-accent/10 border border-accent/50 rounded-lg p-4">
               <div className="flex items-start gap-3">
-                <FileText className="h-5 w-5 text-amber-600 mt-0.5" />
+                <FileText className="h-5 w-5 text-accent mt-0.5" />
                 <div className="flex-1">
-                  <h4 className="font-medium text-amber-900">Content Warning</h4>
-                  <p className="text-sm text-amber-700 mt-1">
+                  <h4 className="font-medium text-accent">Content Warning</h4>
+                  <p className="text-sm text-accent mt-1">
                     This module contains <strong>{module.materials.length}</strong> learning materials that will also be permanently deleted:
                   </p>
                   <ul className="mt-2 space-y-1">
                     {module.materials.slice(0, 3).map((material) => (
-                      <li key={material.id} className="text-sm text-amber-700 flex items-center gap-2">
-                        <span className="w-1 h-1 bg-amber-600 rounded-full"></span>
+                      <li key={material.id} className="text-sm text-accent flex items-center gap-2">
+                        <span className="w-1 h-1 bg-accent rounded-full"></span>
                         {material.title} ({material.materialType})
                       </li>
                     ))}
                     {module.materials.length > 3 && (
-                      <li className="text-sm text-amber-700 flex items-center gap-2">
-                        <span className="w-1 h-1 bg-amber-600 rounded-full"></span>
+                      <li className="text-sm text-accent flex items-center gap-2">
+                        <span className="w-1 h-1 bg-accent rounded-full"></span>
                         ... and {module.materials.length - 3} more materials
                       </li>
                     )}
@@ -97,33 +97,33 @@ export default function ModuleDeleteDialog({
             </div>
           )}
 
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-            <h4 className="font-medium text-gray-900 mb-2">What will be deleted:</h4>
-            <ul className="space-y-1 text-sm text-gray-600">
+          <div className="bg-muted/50 border border-border rounded-lg p-4">
+            <h4 className="font-medium text-foreground mb-2">What will be deleted:</h4>
+            <ul className="space-y-1 text-sm text-muted-foreground">
               <li className="flex items-center gap-2">
-                <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
+                <span className="w-1 h-1 bg-muted/80 rounded-full"></span>
                 Module information and settings
               </li>
               <li className="flex items-center gap-2">
-                <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
+                <span className="w-1 h-1 bg-muted/80 rounded-full"></span>
                 All {module.materials.length} learning materials
               </li>
               <li className="flex items-center gap-2">
-                <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
+                <span className="w-1 h-1 bg-muted/80 rounded-full"></span>
                 User progress data for this module
               </li>
               <li className="flex items-center gap-2">
-                <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
+                <span className="w-1 h-1 bg-muted/80 rounded-full"></span>
                 Module categorization and ordering
               </li>
             </ul>
           </div>
 
           <div className="text-center">
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-muted-foreground">
               Type the module title to confirm deletion:
             </p>
-            <p className="font-medium text-gray-900 mt-1">"{module.title}"</p>
+            <p className="font-medium text-foreground mt-1">"{module.title}"</p>
           </div>
         </div>
 
@@ -139,7 +139,7 @@ export default function ModuleDeleteDialog({
             variant="destructive"
             onClick={handleDelete}
             disabled={isLoading}
-            className="bg-red-600 hover:bg-red-700"
+            className="bg-destructive hover:bg-destructive"
           >
             {isLoading ? 'Deleting...' : 'Delete Module'}
           </Button>

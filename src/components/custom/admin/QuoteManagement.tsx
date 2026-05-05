@@ -173,13 +173,13 @@ export default function QuoteManagement() {
 
   const getStatusBadge = (status: string) => {
     const statusConfig = {
-      draft: { color: 'bg-gray-100 text-gray-800', icon: FileText, label: 'Draft' },
-      sent: { color: 'bg-blue-100 text-blue-800', icon: Clock, label: 'Sent' },
-      pending: { color: 'bg-yellow-100 text-yellow-800', icon: Clock, label: 'Pending' },
-      accepted: { color: 'bg-green-100 text-green-800', icon: CheckCircle2, label: 'Accepted' },
-      rejected: { color: 'bg-red-100 text-red-800', icon: X, label: 'Rejected' },
-      expired: { color: 'bg-orange-100 text-orange-800', icon: AlertCircle, label: 'Expired' },
-      superseded: { color: 'bg-purple-100 text-purple-800', icon: FileText, label: 'Superseded' },
+      draft: { color: 'bg-muted text-foreground', icon: FileText, label: 'Draft' },
+      sent: { color: 'bg-primary/10 text-primary', icon: Clock, label: 'Sent' },
+      pending: { color: 'bg-accent/10 text-accent', icon: Clock, label: 'Pending' },
+      accepted: { color: 'bg-secondary/10 text-secondary', icon: CheckCircle2, label: 'Accepted' },
+      rejected: { color: 'bg-destructive/10 text-destructive', icon: X, label: 'Rejected' },
+      expired: { color: 'bg-accent/10 text-accent', icon: AlertCircle, label: 'Expired' },
+      superseded: { color: 'bg-primary/10 text-primary', icon: FileText, label: 'Superseded' },
     };
 
     const config = statusConfig[status as keyof typeof statusConfig] || statusConfig.pending;
@@ -194,18 +194,18 @@ export default function QuoteManagement() {
   };
 
   const renderQuoteCard = (quote: Quote) => (
-    <div key={quote.id} className="bg-white rounded-lg p-4 border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-200">
+    <div key={quote.id} className="bg-card rounded-lg p-4 border border-border shadow-sm hover:shadow-md transition-shadow duration-200">
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-3">
         <div className="flex-1 space-y-2">
           <div className="flex items-center gap-2 flex-wrap">
-            <h4 className="font-medium text-gray-900">{quote.quoteNumber}</h4>
+            <h4 className="font-medium text-foreground">{quote.quoteNumber}</h4>
             {getStatusBadge(quote.status)}
-            <Badge className="bg-green-100 text-green-800">
+            <Badge className="bg-secondary/10 text-secondary">
               {quote.quotedPrice} {quote.currency}
             </Badge>
           </div>
 
-          <div className="text-sm text-gray-600 space-y-1">
+          <div className="text-sm text-muted-foreground space-y-1">
             {quote.serviceTitle && (
               <div className="flex items-center gap-2">
                 <FileText size={12} />
@@ -225,7 +225,7 @@ export default function QuoteManagement() {
           </div>
 
           {quote.description && (
-            <p className="text-sm text-gray-700 bg-gray-50 p-2 rounded line-clamp-2">
+            <p className="text-sm text-foreground/80 bg-muted/50 p-2 rounded line-clamp-2">
               {quote.description}
             </p>
           )}
@@ -251,7 +251,7 @@ export default function QuoteManagement() {
                 setSelectedQuote(quote);
                 setShowRevisionModal(true);
               }}
-              className="border-blue-200 text-blue-600 hover:bg-blue-50"
+              className="border-primary/50 text-primary hover:bg-primary/10"
             >
               <Edit size={14} className="mr-1" />
               Revise Quote
@@ -270,33 +270,33 @@ export default function QuoteManagement() {
 
       return (
         <Collapsible key={customerEmail} open={isCustomerOpen} onOpenChange={() => toggleCustomer(customerEmail)}>
-          <div className="border border-gray-200 rounded-lg overflow-hidden bg-gradient-to-r from-blue-50 to-indigo-50">
+          <div className="border border-border rounded-lg overflow-hidden bg-gradient-to-r from-blue-50 to-indigo-50">
             <CollapsibleTrigger asChild>
               <div className="w-full p-4 hover:from-blue-100 hover:to-indigo-100 transition-all duration-200 cursor-pointer">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="flex items-center gap-1 transition-transform duration-200">
                       {isCustomerOpen ? (
-                        <ChevronDown size={16} className="text-blue-600" />
+                        <ChevronDown size={16} className="text-primary" />
                       ) : (
-                        <ChevronRight size={16} className="text-blue-600" />
+                        <ChevronRight size={16} className="text-primary" />
                       )}
                     </div>
                     <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                        <User size={16} className="text-blue-600" />
+                      <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                        <User size={16} className="text-primary" />
                       </div>
                       <div>
-                        <span className="font-semibold text-gray-900">{customerData.customer.name}</span>
-                        <div className="text-sm text-gray-600">{customerData.customer.email}</div>
+                        <span className="font-semibold text-foreground">{customerData.customer.name}</span>
+                        <div className="text-sm text-muted-foreground">{customerData.customer.email}</div>
                       </div>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Badge className="bg-blue-100 text-blue-800 border border-blue-200 shadow-sm">
+                    <Badge className="bg-primary/10 text-primary border border-primary/50 shadow-sm">
                       {serviceCount} Service{serviceCount > 1 ? 's' : ''}
                     </Badge>
-                    <Badge className="bg-green-100 text-green-800 border border-green-200 shadow-sm">
+                    <Badge className="bg-secondary/10 text-secondary border border-secondary/50 shadow-sm">
                       {totalQuotesForCustomer} Quote{totalQuotesForCustomer > 1 ? 's' : ''}
                     </Badge>
                   </div>
@@ -305,8 +305,8 @@ export default function QuoteManagement() {
             </CollapsibleTrigger>
 
             <CollapsibleContent>
-              <div className="border-t border-gray-200">
-                <div className="p-4 space-y-4 bg-gray-50">
+              <div className="border-t border-border">
+                <div className="p-4 space-y-4 bg-muted/50">
                   {Object.entries(customerData.services).map(([serviceType, serviceQuotes]) => {
                     const serviceKey = `${customerEmail}-${serviceType}`;
                     const isServiceOpen = openServices.has(serviceKey);
@@ -315,7 +315,7 @@ export default function QuoteManagement() {
                       // Single quote - render directly
                       return (
                         <div key={serviceType} className="space-y-2">
-                          <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
+                          <div className="flex items-center gap-2 text-sm font-medium text-foreground/80">
                             <FileText size={14} />
                             <span>{serviceType}</span>
                           </div>
@@ -327,22 +327,22 @@ export default function QuoteManagement() {
                     // Multiple quotes - create collapsible service group
                     return (
                       <Collapsible key={serviceType} open={isServiceOpen} onOpenChange={() => toggleService(serviceKey)}>
-                        <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                        <div className="bg-card rounded-lg border border-border overflow-hidden">
                           <CollapsibleTrigger asChild>
-                            <div className="w-full p-3 hover:bg-gray-50 transition-colors duration-200 cursor-pointer">
+                            <div className="w-full p-3 hover:bg-muted/50 transition-colors duration-200 cursor-pointer">
                               <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-2">
                                   <div className="flex items-center gap-1">
                                     {isServiceOpen ? (
-                                      <ChevronDown size={14} className="text-gray-600" />
+                                      <ChevronDown size={14} className="text-muted-foreground" />
                                     ) : (
-                                      <ChevronRight size={14} className="text-gray-600" />
+                                      <ChevronRight size={14} className="text-muted-foreground" />
                                     )}
                                   </div>
-                                  <FileText size={14} className="text-gray-600" />
-                                  <span className="font-medium text-gray-900">{serviceType}</span>
+                                  <FileText size={14} className="text-muted-foreground" />
+                                  <span className="font-medium text-foreground">{serviceType}</span>
                                 </div>
-                                <Badge className="bg-gray-100 text-gray-800">
+                                <Badge className="bg-muted text-foreground">
                                   {serviceQuotes.length} Quote{serviceQuotes.length > 1 ? 's' : ''}
                                 </Badge>
                               </div>
@@ -350,7 +350,7 @@ export default function QuoteManagement() {
                           </CollapsibleTrigger>
 
                           <CollapsibleContent>
-                            <div className="border-t border-gray-200 p-3 space-y-3 bg-gray-50">
+                            <div className="border-t border-border p-3 space-y-3 bg-muted/50">
                               {serviceQuotes.map((quote) => renderQuoteCard(quote))}
                             </div>
                           </CollapsibleContent>
@@ -370,7 +370,7 @@ export default function QuoteManagement() {
   if (loading) {
     return (
       <div className="flex items-center justify-center p-8">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary/50"></div>
       </div>
     );
   }
@@ -378,9 +378,9 @@ export default function QuoteManagement() {
   if (error) {
     return (
       <div className="p-4">
-        <Card className="border-red-200">
+        <Card className="border-destructive">
           <CardContent className="pt-6">
-            <p className="text-red-600">{error}</p>
+            <p className="text-destructive">{error}</p>
           </CardContent>
         </Card>
       </div>
@@ -393,8 +393,8 @@ export default function QuoteManagement() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h3 className="text-xl font-semibold text-gray-900">Quote Management</h3>
-          <p className="text-gray-600">Manage quotes grouped by customers and services</p>
+          <h3 className="text-xl font-semibold text-foreground">Quote Management</h3>
+          <p className="text-muted-foreground">Manage quotes grouped by customers and services</p>
         </div>
       </div>
 
@@ -407,8 +407,8 @@ export default function QuoteManagement() {
         <TabsContent value="grouped" className="space-y-6">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
-              <h3 className="text-xl font-semibold text-gray-900">Quotes by Customer & Service</h3>
-              <p className="text-gray-600">Organized view of all quotes grouped by customer and service type</p>
+              <h3 className="text-xl font-semibold text-foreground">Quotes by Customer & Service</h3>
+              <p className="text-muted-foreground">Organized view of all quotes grouped by customer and service type</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
               <Button
@@ -424,7 +424,7 @@ export default function QuoteManagement() {
                     setOpenCustomers(new Set(allCustomers));
                   }
                 }}
-                className="border-blue-200 text-blue-600 hover:bg-blue-50"
+                className="border-primary/50 text-primary hover:bg-primary/10"
               >
                 {Object.keys(groupedQuotes).every(key => openCustomers.has(key)) ? 'Collapse All' : 'Expand All'}
               </Button>
@@ -452,10 +452,10 @@ export default function QuoteManagement() {
               <CardContent className="pt-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-gray-600">Total Quotes</p>
-                    <p className="text-2xl font-bold text-gray-900">{totalQuotes}</p>
+                    <p className="text-sm font-medium text-muted-foreground">Total Quotes</p>
+                    <p className="text-2xl font-bold text-foreground">{totalQuotes}</p>
                   </div>
-                  <FileText className="h-8 w-8 text-blue-600" />
+                  <FileText className="h-8 w-8 text-primary" />
                 </div>
               </CardContent>
             </Card>
@@ -463,12 +463,12 @@ export default function QuoteManagement() {
               <CardContent className="pt-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-gray-600">Pending</p>
-                    <p className="text-2xl font-bold text-yellow-600">
+                    <p className="text-sm font-medium text-muted-foreground">Pending</p>
+                    <p className="text-2xl font-bold text-accent">
                       {quotes.filter(q => ['sent', 'pending'].includes(q.status)).length}
                     </p>
                   </div>
-                  <Clock className="h-8 w-8 text-yellow-600" />
+                  <Clock className="h-8 w-8 text-accent" />
                 </div>
               </CardContent>
             </Card>
@@ -476,12 +476,12 @@ export default function QuoteManagement() {
               <CardContent className="pt-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-gray-600">Accepted</p>
-                    <p className="text-2xl font-bold text-green-600">
+                    <p className="text-sm font-medium text-muted-foreground">Accepted</p>
+                    <p className="text-2xl font-bold text-secondary">
                       {quotes.filter(q => q.status === 'accepted').length}
                     </p>
                   </div>
-                  <CheckCircle2 className="h-8 w-8 text-green-600" />
+                  <CheckCircle2 className="h-8 w-8 text-secondary" />
                 </div>
               </CardContent>
             </Card>
@@ -489,12 +489,12 @@ export default function QuoteManagement() {
               <CardContent className="pt-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-gray-600">Customers</p>
-                    <p className="text-2xl font-bold text-blue-600">
+                    <p className="text-sm font-medium text-muted-foreground">Customers</p>
+                    <p className="text-2xl font-bold text-primary">
                       {Object.keys(groupedQuotes).length}
                     </p>
                   </div>
-                  <User className="h-8 w-8 text-blue-600" />
+                  <User className="h-8 w-8 text-primary" />
                 </div>
               </CardContent>
             </Card>
@@ -511,7 +511,7 @@ export default function QuoteManagement() {
             <CardContent>
               <div className="space-y-4">
                 {Object.keys(groupedQuotes).length === 0 ? (
-                  <p className="text-center text-gray-500 py-8">No quotes found</p>
+                  <p className="text-center text-muted-foreground py-8">No quotes found</p>
                 ) : (
                   renderGroupedQuotes(groupedQuotes)
                 )}
@@ -523,8 +523,8 @@ export default function QuoteManagement() {
         <TabsContent value="list" className="space-y-6">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
-              <h3 className="text-xl font-semibold text-gray-900">All Quotes</h3>
-              <p className="text-gray-600">Complete list of all quotes</p>
+              <h3 className="text-xl font-semibold text-foreground">All Quotes</h3>
+              <p className="text-muted-foreground">Complete list of all quotes</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
               <Select value={statusFilter} onValueChange={setStatusFilter}>
@@ -554,21 +554,21 @@ export default function QuoteManagement() {
             <CardContent>
               <div className="space-y-4">
                 {quotes.length === 0 ? (
-                  <p className="text-center text-gray-500 py-8">No quotes found</p>
+                  <p className="text-center text-muted-foreground py-8">No quotes found</p>
                 ) : (
                   quotes.map((quote) => (
-                    <div key={quote.id} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition-colors">
+                    <div key={quote.id} className="border border-border rounded-lg p-4 hover:bg-muted/50 transition-colors">
                       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
                         <div className="flex-1 space-y-2">
                           <div className="flex items-center gap-2 flex-wrap">
-                            <h3 className="font-semibold text-gray-900">{quote.quoteNumber}</h3>
+                            <h3 className="font-semibold text-foreground">{quote.quoteNumber}</h3>
                             {getStatusBadge(quote.status)}
-                            <Badge className="bg-green-100 text-green-800">
+                            <Badge className="bg-secondary/10 text-secondary">
                               {quote.quotedPrice} {quote.currency}
                             </Badge>
                           </div>
 
-                          <div className="text-sm text-gray-600 space-y-1">
+                          <div className="text-sm text-muted-foreground space-y-1">
                             <div className="flex items-center gap-2">
                               <User size={14} />
                               <span>{quote.customerName} {quote.customerLastName} ({quote.customerEmail})</span>
@@ -586,7 +586,7 @@ export default function QuoteManagement() {
                           </div>
 
                           {quote.description && (
-                            <p className="text-sm text-gray-700 line-clamp-2">
+                            <p className="text-sm text-foreground/80 line-clamp-2">
                               {quote.description}
                             </p>
                           )}
@@ -612,7 +612,7 @@ export default function QuoteManagement() {
                                 setSelectedQuote(quote);
                                 setShowRevisionModal(true);
                               }}
-                              className="border-blue-200 text-blue-600 hover:bg-blue-50"
+                              className="border-primary/50 text-primary hover:bg-primary/10"
                             >
                               <Edit size={16} className="mr-1" />
                               Revise Quote

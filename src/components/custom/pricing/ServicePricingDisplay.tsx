@@ -54,11 +54,11 @@ export default function ServicePricingDisplay({ serviceType, className = '' }: S
 
   if (loading) {
     return (
-      <Card className={`border-blue-200 bg-blue-50 ${className}`}>
+      <Card className={`border-primary/50 bg-primary/10 ${className}`}>
         <CardContent className="pt-4">
           <div className="flex items-center gap-2">
-            <Clock className="h-4 w-4 text-blue-600 animate-spin" />
-            <span className="text-sm text-blue-700">Loading pricing information...</span>
+            <Clock className="h-4 w-4 text-primary animate-spin" />
+            <span className="text-sm text-primary">Loading pricing information...</span>
           </div>
         </CardContent>
       </Card>
@@ -67,14 +67,14 @@ export default function ServicePricingDisplay({ serviceType, className = '' }: S
 
   if (error) {
     return (
-      <Card className={`border-red-200 bg-red-50 ${className}`}>
+      <Card className={`border-destructive bg-destructive/10 ${className}`}>
         <CardContent className="pt-4">
           <div className="flex items-center gap-2 justify-between">
-            <AlertCircle className="h-4 w-4 text-red-600" />
-            <span className="text-sm text-red-700">Unable to load pricing information</span>
+            <AlertCircle className="h-4 w-4 text-destructive" />
+            <span className="text-sm text-destructive">Unable to load pricing information</span>
             <button
               onClick={() => setRetryCount(c => c + 1)}
-              className="text-sm text-red-700 underline hover:opacity-80"
+              className="text-sm text-destructive underline hover:opacity-80"
             >
               Retry
             </button>
@@ -109,28 +109,28 @@ export default function ServicePricingDisplay({ serviceType, className = '' }: S
   const display = getPricingDisplay();
   const colorClasses = {
     green: {
-      card: 'border-green-200 bg-green-50',
-      icon: 'text-green-600',
-      title: 'text-green-800',
-      price: 'text-green-900',
-      description: 'text-green-700',
-      badge: 'bg-green-100 text-green-800',
+      card: 'border-secondary/50 bg-secondary/10',
+      icon: 'text-secondary',
+      title: 'text-secondary',
+      price: 'text-secondary',
+      description: 'text-secondary',
+      badge: 'bg-secondary/10 text-secondary',
     },
     blue: {
-      card: 'border-blue-200 bg-blue-50',
-      icon: 'text-blue-600',
-      title: 'text-blue-800',
-      price: 'text-blue-900',
-      description: 'text-blue-700',
-      badge: 'bg-blue-100 text-blue-800',
+      card: 'border-primary/50 bg-primary/10',
+      icon: 'text-primary',
+      title: 'text-primary',
+      price: 'text-primary',
+      description: 'text-primary',
+      badge: 'bg-primary/10 text-primary',
     },
     yellow: {
-      card: 'border-yellow-200 bg-yellow-50',
-      icon: 'text-yellow-600',
-      title: 'text-yellow-800',
-      price: 'text-yellow-900',
-      description: 'text-yellow-700',
-      badge: 'bg-yellow-100 text-yellow-800',
+      card: 'border-accent/50 bg-accent/10',
+      icon: 'text-accent',
+      title: 'text-accent',
+      price: 'text-accent',
+      description: 'text-accent',
+      badge: 'bg-accent/10 text-accent',
     },
   };
 

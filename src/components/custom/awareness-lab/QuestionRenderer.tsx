@@ -54,33 +54,33 @@ const MCQOption: React.FC<MCQOptionProps> = ({
   const getOptionStyles = () => {
     if (showFeedback) {
       if (isCorrect) {
-        return 'border-green-500 bg-green-50 text-green-900'
+        return 'border-secondary/50 bg-secondary/10 text-secondary'
       }
       if (isIncorrect) {
-        return 'border-red-500 bg-red-50 text-red-900'
+        return 'border-destructive bg-destructive/10 text-destructive'
       }
     }
 
     if (isSelected) {
-      return 'border-blue-500 bg-blue-50 text-blue-900'
+      return 'border-primary/50 bg-primary/10 text-primary'
     }
 
-    return 'border-gray-200 bg-white text-gray-900 hover:border-gray-300 hover:bg-gray-50'
+    return 'border-border bg-card text-foreground hover:border-border hover:bg-muted/50'
   }
 
   const getIcon = () => {
     if (showFeedback) {
       if (isCorrect) {
-        return <CheckCircle className="h-5 w-5 text-green-600" />
+        return <CheckCircle className="h-5 w-5 text-secondary" />
       }
       if (isIncorrect) {
-        return <X className="h-5 w-5 text-red-600" />
+        return <X className="h-5 w-5 text-destructive" />
       }
     }
 
     return isSelected
-      ? <CheckCircle className="h-5 w-5 text-blue-600" />
-      : <Circle className="h-5 w-5 text-gray-400" />
+      ? <CheckCircle className="h-5 w-5 text-primary" />
+      : <Circle className="h-5 w-5 text-muted-foreground/80" />
   }
 
   return (
@@ -97,7 +97,7 @@ const MCQOption: React.FC<MCQOptionProps> = ({
         </div>
         <div className="flex-1 min-w-0">
           <div className={`flex items-center space-x-2 ${isArabic ? 'flex-row-reverse space-x-reverse' : ''}`}>
-            <span className="text-sm font-medium text-gray-500">
+            <span className="text-sm font-medium text-muted-foreground">
               {optionLabel}.
             </span>
             <span className={`font-medium quiz-option-text ${isArabic ? 'font-arabic text-right' : ''}`}>
@@ -135,33 +135,33 @@ const TrueFalseOption: React.FC<TrueFalseOptionProps> = ({
   const getOptionStyles = () => {
     if (showFeedback) {
       if (isCorrect) {
-        return 'border-green-500 bg-green-50 text-green-900'
+        return 'border-secondary/50 bg-secondary/10 text-secondary'
       }
       if (isIncorrect) {
-        return 'border-red-500 bg-red-50 text-red-900'
+        return 'border-destructive bg-destructive/10 text-destructive'
       }
     }
 
     if (isSelected) {
-      return 'border-blue-500 bg-blue-50 text-blue-900'
+      return 'border-primary/50 bg-primary/10 text-primary'
     }
 
-    return 'border-gray-200 bg-white text-gray-900 hover:border-gray-300 hover:bg-gray-50'
+    return 'border-border bg-card text-foreground hover:border-border hover:bg-muted/50'
   }
 
   const getIcon = () => {
     if (showFeedback) {
       if (isCorrect) {
-        return <CheckCircle className="h-6 w-6 text-green-600" />
+        return <CheckCircle className="h-6 w-6 text-secondary" />
       }
       if (isIncorrect) {
-        return <X className="h-6 w-6 text-red-600" />
+        return <X className="h-6 w-6 text-destructive" />
       }
     }
 
     return isSelected
-      ? <CheckCircle className="h-6 w-6 text-blue-600" />
-      : <Circle className="h-6 w-6 text-gray-400" />
+      ? <CheckCircle className="h-6 w-6 text-primary" />
+      : <Circle className="h-6 w-6 text-muted-foreground/80" />
   }
 
   return (
@@ -177,7 +177,7 @@ const TrueFalseOption: React.FC<TrueFalseOptionProps> = ({
         <span className={`text-lg font-semibold ${isArabic ? 'font-arabic' : ''}`}>
           {label}
         </span>
-        <span className={`text-sm text-gray-600 ${isArabic ? 'font-arabic' : ''}`}>
+        <span className={`text-sm text-muted-foreground ${isArabic ? 'font-arabic' : ''}`}>
           {value ? t('true') : t('false')}
         </span>
       </div>
@@ -211,33 +211,33 @@ const MultipleSelectOption: React.FC<MultipleSelectOptionProps> = ({
   const getOptionStyles = () => {
     if (showFeedback) {
       if (isCorrect) {
-        return 'border-green-500 bg-green-50 text-green-900'
+        return 'border-secondary/50 bg-secondary/10 text-secondary'
       }
       if (isIncorrect) {
-        return 'border-red-500 bg-red-50 text-red-900'
+        return 'border-destructive bg-destructive/10 text-destructive'
       }
     }
 
     if (isSelected) {
-      return 'border-blue-500 bg-blue-50 text-blue-900'
+      return 'border-primary/50 bg-primary/10 text-primary'
     }
 
-    return 'border-gray-200 bg-white text-gray-900 hover:border-gray-300 hover:bg-gray-50'
+    return 'border-border bg-card text-foreground hover:border-border hover:bg-muted/50'
   }
 
   const getIcon = () => {
     if (showFeedback) {
       if (isCorrect) {
-        return <CheckSquare className="h-5 w-5 text-green-600" />
+        return <CheckSquare className="h-5 w-5 text-secondary" />
       }
       if (isIncorrect) {
-        return <X className="h-5 w-5 text-red-600" />
+        return <X className="h-5 w-5 text-destructive" />
       }
     }
 
     return isSelected
-      ? <CheckSquare className="h-5 w-5 text-blue-600" />
-      : <Square className="h-5 w-5 text-gray-400" />
+      ? <CheckSquare className="h-5 w-5 text-primary" />
+      : <Square className="h-5 w-5 text-muted-foreground/80" />
   }
 
   return (
@@ -254,7 +254,7 @@ const MultipleSelectOption: React.FC<MultipleSelectOptionProps> = ({
         </div>
         <div className="flex-1 min-w-0">
           <div className={`flex items-center space-x-2 ${isArabic ? 'flex-row-reverse space-x-reverse' : ''}`}>
-            <span className="text-sm font-medium text-gray-500">
+            <span className="text-sm font-medium text-muted-foreground">
               {optionLabel}.
             </span>
             <span className={`font-medium quiz-option-text ${isArabic ? 'font-arabic text-right' : ''}`}>
@@ -403,7 +403,7 @@ export const QuestionRenderer: React.FC<QuestionRendererProps> = ({
 
     return (
       <div className="space-y-3">
-        <div className={`text-sm text-gray-600 mb-4 ${effectiveIsArabic ? 'font-arabic text-right' : ''}`}>
+        <div className={`text-sm text-muted-foreground mb-4 ${effectiveIsArabic ? 'font-arabic text-right' : ''}`}>
           {t('select_all_correct')}
         </div>
         {options.map((option, index) => {
@@ -439,7 +439,7 @@ export const QuestionRenderer: React.FC<QuestionRendererProps> = ({
         return renderMultipleSelect()
       default:
         return (
-          <div className="text-center py-8 text-gray-500">
+          <div className="text-center py-8 text-muted-foreground">
             Unsupported question type: {questionType}
           </div>
         )
@@ -456,13 +456,13 @@ export const QuestionRenderer: React.FC<QuestionRendererProps> = ({
             <span>{getQuestionTypeLabel()}</span>
           </Badge>
 
-          <span className="text-sm text-gray-500">
+          <span className="text-sm text-muted-foreground">
             {questionIndex + 1} / {totalQuestions}
           </span>
         </div>
 
         <div className={`${effectiveIsArabic ? 'text-right' : 'text-left'}`}>
-          <h3 className={`text-lg font-semibold text-gray-900 leading-relaxed quiz-question ${languageClasses} ${effectiveIsArabic ? 'font-arabic' : ''}`}>
+          <h3 className={`text-lg font-semibold text-foreground leading-relaxed quiz-question ${languageClasses} ${effectiveIsArabic ? 'font-arabic' : ''}`}>
             {questionData.question}
           </h3>
         </div>
@@ -475,17 +475,17 @@ export const QuestionRenderer: React.FC<QuestionRendererProps> = ({
 
       {/* Explanation (if in review mode) */}
       {showCorrectAnswers && questionData.explanation && (
-        <Card className="bg-blue-50 border-blue-200">
+        <Card className="bg-primary/10 border-primary/50">
           <CardContent className="pt-4">
             <div className={`flex items-start space-x-2 ${effectiveIsArabic ? 'flex-row-reverse space-x-reverse' : ''}`}>
               <div className="flex-shrink-0 mt-0.5">
-                <HelpCircle className="h-5 w-5 text-blue-600" />
+                <HelpCircle className="h-5 w-5 text-primary" />
               </div>
               <div className="flex-1">
-                <h4 className={`font-medium text-blue-900 mb-1 ${languageClasses}`}>
+                <h4 className={`font-medium text-primary mb-1 ${languageClasses}`}>
                   {t('explanation')}:
                 </h4>
-                <p className={`text-blue-800 ${languageClasses}`}>
+                <p className={`text-primary ${languageClasses}`}>
                   {questionData.explanation}
                 </p>
               </div>
@@ -496,7 +496,7 @@ export const QuestionRenderer: React.FC<QuestionRendererProps> = ({
 
       {/* Answer Status */}
       {currentAnswer.length > 0 && !showCorrectAnswers && (
-        <div className={`flex items-center space-x-2 text-sm text-green-600 ${effectiveIsArabic ? 'flex-row-reverse space-x-reverse justify-end' : ''}`}>
+        <div className={`flex items-center space-x-2 text-sm text-secondary ${effectiveIsArabic ? 'flex-row-reverse space-x-reverse justify-end' : ''}`}>
           <Check className="h-4 w-4" />
           <span className={languageClasses}>
             {t('answered')}

@@ -174,7 +174,7 @@ export function AwarenessSessionRequestForm({
                   step.id === currentStep
                     ? 'bg-primary text-primary-foreground'
                     : step.id < currentStep
-                    ? 'bg-green-500 text-white'
+                    ? 'bg-secondary text-white'
                     : 'bg-muted text-muted-foreground'
                 }`}
               >
@@ -183,7 +183,7 @@ export function AwarenessSessionRequestForm({
               {index < FORM_STEPS.length - 1 && (
                 <div
                   className={`w-16 h-0.5 mx-2 ${
-                    step.id < currentStep ? 'bg-green-500' : 'bg-muted'
+                    step.id < currentStep ? 'bg-secondary' : 'bg-muted'
                   }`}
                 />
               )}

@@ -296,7 +296,7 @@ describe('AwarenessLabTab', () => {
     render(<AwarenessLabTab />)
     
     const progressBars = screen.getAllByRole('generic').filter(el => 
-      el.className?.includes('bg-blue-600')
+      el.className?.includes('bg-primary')
     )
     
     // Should have progress bars for both quizzes and modules

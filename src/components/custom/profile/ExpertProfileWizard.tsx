@@ -444,13 +444,13 @@ export function ExpertProfileWizard({ onComplete }: ExpertProfileWizardProps) {
             value={formData.phoneNumber || ''}
             onChange={(value) => updateFormData('phoneNumber', value)}
             placeholder="Enter phone number"
-            className={validationErrors.phoneNumber ? 'border-red-500' : ''}
+            className={validationErrors.phoneNumber ? 'border-destructive' : ''}
             disabled={loadingState.isSubmitting}
             defaultCountry="OM"
             required
           />
           {validationErrors.phoneNumber && (
-            <p className="text-sm text-red-500 mt-1">{validationErrors.phoneNumber}</p>
+            <p className="text-sm text-destructive mt-1">{validationErrors.phoneNumber}</p>
           )}
         </div>
         <div>
@@ -460,12 +460,12 @@ export function ExpertProfileWizard({ onComplete }: ExpertProfileWizardProps) {
             type="date"
             value={formData.dateOfBirth || ''}
             onChange={(e) => updateFormData('dateOfBirth', e.target.value)}
-            className={validationErrors.dateOfBirth ? 'border-red-500' : ''}
+            className={validationErrors.dateOfBirth ? 'border-destructive' : ''}
             disabled={loadingState.isSubmitting}
             required
           />
           {validationErrors.dateOfBirth && (
-            <p className="text-sm text-red-500 mt-1">{validationErrors.dateOfBirth}</p>
+            <p className="text-sm text-destructive mt-1">{validationErrors.dateOfBirth}</p>
           )}
         </div>
       </div>
@@ -479,7 +479,7 @@ export function ExpertProfileWizard({ onComplete }: ExpertProfileWizardProps) {
             disabled={loadingState.isSubmitting}
             required
           >
-            <SelectTrigger className={validationErrors.gender ? 'border-red-500' : ''}>
+            <SelectTrigger className={validationErrors.gender ? 'border-destructive' : ''}>
               <SelectValue placeholder="Select gender" />
             </SelectTrigger>
             <SelectContent>
@@ -489,7 +489,7 @@ export function ExpertProfileWizard({ onComplete }: ExpertProfileWizardProps) {
             </SelectContent>
           </Select>
           {validationErrors.gender && (
-            <p className="text-sm text-red-500 mt-1">{validationErrors.gender}</p>
+            <p className="text-sm text-destructive mt-1">{validationErrors.gender}</p>
           )}
         </div>
       </div>
@@ -540,7 +540,7 @@ export function ExpertProfileWizard({ onComplete }: ExpertProfileWizardProps) {
               disabled={loadingState.isSubmitting}
               required
             >
-              <SelectTrigger className={validationErrors.governorate ? 'border-red-500' : ''}>
+              <SelectTrigger className={validationErrors.governorate ? 'border-destructive' : ''}>
                 <SelectValue placeholder="Select governorate" />
               </SelectTrigger>
               <SelectContent>
@@ -552,7 +552,7 @@ export function ExpertProfileWizard({ onComplete }: ExpertProfileWizardProps) {
               </SelectContent>
             </Select>
           {validationErrors.governorate && (
-            <p className="text-sm text-red-500 mt-1">{validationErrors.governorate}</p>
+            <p className="text-sm text-destructive mt-1">{validationErrors.governorate}</p>
           )}
         </div>
       )}
@@ -566,7 +566,7 @@ export function ExpertProfileWizard({ onComplete }: ExpertProfileWizardProps) {
             disabled={loadingState.isSubmitting}
             required
           >
-            <SelectTrigger className={validationErrors.wilayat ? 'border-red-500' : ''}>
+            <SelectTrigger className={validationErrors.wilayat ? 'border-destructive' : ''}>
               <SelectValue placeholder="Select wilayat" />
             </SelectTrigger>
             <SelectContent>
@@ -578,7 +578,7 @@ export function ExpertProfileWizard({ onComplete }: ExpertProfileWizardProps) {
             </SelectContent>
           </Select>
           {validationErrors.wilayat && (
-            <p className="text-sm text-red-500 mt-1">{validationErrors.wilayat}</p>
+            <p className="text-sm text-destructive mt-1">{validationErrors.wilayat}</p>
           )}
         </div>
       )}
@@ -594,10 +594,10 @@ export function ExpertProfileWizard({ onComplete }: ExpertProfileWizardProps) {
           otherSpecialization={otherSpecialization}
           onOtherSpecializationChange={handleOtherSpecializationChange}
           title="Areas of Specialization *"
-          className={validationErrors.areasOfSpecialization ? 'border-red-500' : ''}
+          className={validationErrors.areasOfSpecialization ? 'border-destructive' : ''}
         />
         {validationErrors.areasOfSpecialization && (
-          <p className="text-sm text-red-500 mt-1">{validationErrors.areasOfSpecialization}</p>
+          <p className="text-sm text-destructive mt-1">{validationErrors.areasOfSpecialization}</p>
         )}
       </div>
 
@@ -605,7 +605,7 @@ export function ExpertProfileWizard({ onComplete }: ExpertProfileWizardProps) {
         <Label htmlFor="professionalExperience">Professional Experience *</Label>
         <textarea
           id="professionalExperience"
-          className={`w-full px-3 py-2 text-sm rounded-md border border-input bg-background ${validationErrors.professionalExperience ? 'border-red-500' : ''
+          className={`w-full px-3 py-2 text-sm rounded-md border border-input bg-background ${validationErrors.professionalExperience ? 'border-destructive' : ''
             }`}
           rows={4}
           value={formData.professionalExperience || ''}
@@ -615,7 +615,7 @@ export function ExpertProfileWizard({ onComplete }: ExpertProfileWizardProps) {
           required
         />
         {validationErrors.professionalExperience && (
-          <p className="text-sm text-red-500 mt-1">{validationErrors.professionalExperience}</p>
+          <p className="text-sm text-destructive mt-1">{validationErrors.professionalExperience}</p>
         )}
       </div>
 
@@ -626,12 +626,12 @@ export function ExpertProfileWizard({ onComplete }: ExpertProfileWizardProps) {
           value={formData.relevantCertifications || ''}
           onChange={(e) => updateFormData('relevantCertifications', e.target.value)}
           placeholder="e.g., CISSP, CEH, AWS Solutions Architect"
-          className={validationErrors.relevantCertifications ? 'border-red-500' : ''}
+          className={validationErrors.relevantCertifications ? 'border-destructive' : ''}
           disabled={loadingState.isSubmitting}
           required
         />
         {validationErrors.relevantCertifications && (
-          <p className="text-sm text-red-500 mt-1">{validationErrors.relevantCertifications}</p>
+          <p className="text-sm text-destructive mt-1">{validationErrors.relevantCertifications}</p>
         )}
       </div>
 
@@ -644,7 +644,7 @@ export function ExpertProfileWizard({ onComplete }: ExpertProfileWizardProps) {
             disabled={loadingState.isSubmitting}
             required
           >
-            <SelectTrigger className={validationErrors.currentEmploymentStatus ? 'border-red-500' : ''}>
+            <SelectTrigger className={validationErrors.currentEmploymentStatus ? 'border-destructive' : ''}>
               <SelectValue placeholder="Select status" />
             </SelectTrigger>
             <SelectContent>
@@ -655,7 +655,7 @@ export function ExpertProfileWizard({ onComplete }: ExpertProfileWizardProps) {
             </SelectContent>
           </Select>
           {validationErrors.currentEmploymentStatus && (
-            <p className="text-sm text-red-500 mt-1">{validationErrors.currentEmploymentStatus}</p>
+            <p className="text-sm text-destructive mt-1">{validationErrors.currentEmploymentStatus}</p>
           )}
         </div>
         <div>
@@ -667,7 +667,7 @@ export function ExpertProfileWizard({ onComplete }: ExpertProfileWizardProps) {
                 value={formData.currentEmployer || ''}
                 onChange={(e) => updateFormData('currentEmployer', e.target.value)}
                 placeholder="University/Institute name"
-                className={validationErrors.currentEmployer ? 'border-red-500' : ''}
+                className={validationErrors.currentEmployer ? 'border-destructive' : ''}
                 disabled={loadingState.isSubmitting}
                 required
               />
@@ -682,14 +682,14 @@ export function ExpertProfileWizard({ onComplete }: ExpertProfileWizardProps) {
                 value={formData.currentEmployer || ''}
                 onChange={(e) => updateFormData('currentEmployer', e.target.value)}
                 placeholder={formData.currentEmploymentStatus === 'unemployed' ? 'Previous employer (optional)' : 'Company name'}
-                className={validationErrors.currentEmployer ? 'border-red-500' : ''}
+                className={validationErrors.currentEmployer ? 'border-destructive' : ''}
                 disabled={loadingState.isSubmitting}
                 required={formData.currentEmploymentStatus !== 'unemployed'}
               />
             </>
           )}
           {validationErrors.currentEmployer && (
-            <p className="text-sm text-red-500 mt-1">{validationErrors.currentEmployer}</p>
+            <p className="text-sm text-destructive mt-1">{validationErrors.currentEmployer}</p>
           )}
         </div>
       </div>
@@ -707,7 +707,7 @@ export function ExpertProfileWizard({ onComplete }: ExpertProfileWizardProps) {
             disabled={loadingState.isSubmitting}
             required
           >
-            <SelectTrigger className={validationErrors.availability ? 'border-red-500' : ''}>
+            <SelectTrigger className={validationErrors.availability ? 'border-destructive' : ''}>
               <SelectValue placeholder="Select availability" />
             </SelectTrigger>
             <SelectContent>
@@ -717,7 +717,7 @@ export function ExpertProfileWizard({ onComplete }: ExpertProfileWizardProps) {
             </SelectContent>
           </Select>
           {validationErrors.availability && (
-            <p className="text-sm text-red-500 mt-1">{validationErrors.availability}</p>
+            <p className="text-sm text-destructive mt-1">{validationErrors.availability}</p>
           )}
         </div>
         <div>
@@ -728,7 +728,7 @@ export function ExpertProfileWizard({ onComplete }: ExpertProfileWizardProps) {
             disabled={loadingState.isSubmitting}
             required
           >
-            <SelectTrigger className={validationErrors.preferredWorkArrangement ? 'border-red-500' : ''}>
+            <SelectTrigger className={validationErrors.preferredWorkArrangement ? 'border-destructive' : ''}>
               <SelectValue placeholder="Select arrangement" />
             </SelectTrigger>
             <SelectContent>
@@ -738,7 +738,7 @@ export function ExpertProfileWizard({ onComplete }: ExpertProfileWizardProps) {
             </SelectContent>
           </Select>
           {validationErrors.preferredWorkArrangement && (
-            <p className="text-sm text-red-500 mt-1">{validationErrors.preferredWorkArrangement}</p>
+            <p className="text-sm text-destructive mt-1">{validationErrors.preferredWorkArrangement}</p>
           )}
         </div>
       </div>
@@ -751,7 +751,7 @@ export function ExpertProfileWizard({ onComplete }: ExpertProfileWizardProps) {
           disabled={loadingState.isSubmitting}
           required
         >
-          <SelectTrigger className={validationErrors.preferredPaymentMethods ? 'border-red-500' : ''}>
+          <SelectTrigger className={validationErrors.preferredPaymentMethods ? 'border-destructive' : ''}>
             <SelectValue placeholder="Select payment method" />
           </SelectTrigger>
           <SelectContent>
@@ -764,7 +764,7 @@ export function ExpertProfileWizard({ onComplete }: ExpertProfileWizardProps) {
           </SelectContent>
         </Select>
         {validationErrors.preferredPaymentMethods && (
-          <p className="text-sm text-red-500 mt-1">{validationErrors.preferredPaymentMethods}</p>
+          <p className="text-sm text-destructive mt-1">{validationErrors.preferredPaymentMethods}</p>
         )}
       </div>
     </div>
@@ -928,7 +928,7 @@ export function ExpertProfileWizard({ onComplete }: ExpertProfileWizardProps) {
                 return (
                   <div key={step.id} className="flex items-center">
                     <div className={`flex items-center justify-center w-8 h-8 rounded-full flex-shrink-0 ${isActive ? 'bg-primary text-primary-foreground' :
-                      isCompleted ? 'bg-green-500 text-white' : 'bg-muted text-muted-foreground'
+                      isCompleted ? 'bg-secondary text-white' : 'bg-muted text-muted-foreground'
                       }`}>
                       <Icon className="w-4 h-4" />
                     </div>
@@ -955,7 +955,7 @@ export function ExpertProfileWizard({ onComplete }: ExpertProfileWizardProps) {
                 return (
                   <div key={step.id} className="flex items-center">
                     <div className={`flex items-center justify-center w-10 h-10 rounded-full ${isActive ? 'bg-primary text-primary-foreground' :
-                      isCompleted ? 'bg-green-500 text-white' : 'bg-muted text-muted-foreground'
+                      isCompleted ? 'bg-secondary text-white' : 'bg-muted text-muted-foreground'
                       }`}>
                       <Icon className="w-5 h-5" />
                     </div>
@@ -963,7 +963,7 @@ export function ExpertProfileWizard({ onComplete }: ExpertProfileWizardProps) {
                       {step.title}
                     </span>
                     {index < steps.length - 1 && (
-                      <div className={`w-8 h-px mx-4 ${isCompleted ? 'bg-green-500' : 'bg-muted'
+                      <div className={`w-8 h-px mx-4 ${isCompleted ? 'bg-secondary' : 'bg-muted'
                         }`} />
                     )}
                   </div>
@@ -1028,10 +1028,10 @@ export function ExpertProfileWizard({ onComplete }: ExpertProfileWizardProps) {
 
           {/* Loading Progress */}
           {loadingState.currentOperation && (
-            <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-md">
+            <div className="mb-4 p-4 bg-primary/10 border border-primary/50 rounded-md">
               <div className="flex items-center space-x-2">
-                <Loader2 className="h-4 w-4 animate-spin text-blue-600" />
-                <span className="text-sm text-blue-800">{loadingState.currentOperation}</span>
+                <Loader2 className="h-4 w-4 animate-spin text-primary" />
+                <span className="text-sm text-primary">{loadingState.currentOperation}</span>
               </div>
             </div>
           )}

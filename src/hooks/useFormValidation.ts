@@ -34,7 +34,7 @@ export interface FieldErrors {
  * };
  *
  * // Get error styling
- * className={fieldErrors.fieldName ? 'border-red-500' : ''}
+ * className={fieldErrors.fieldName ? 'border-destructive' : ''}
  */
 export function useFormValidation() {
 	const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
@@ -98,7 +98,7 @@ export function useFormValidation() {
 	 */
 	const getInputClassName = useCallback((fieldName: string, baseClassName: string = ''): string => {
 		const hasError = fieldErrors[fieldName];
-		const errorClasses = 'border-red-500 focus:border-red-500 focus:ring-red-500/20';
+		const errorClasses = 'border-destructive focus:border-destructive focus:ring-destructive/20';
 		return hasError ? `${baseClassName} ${errorClasses}` : baseClassName;
 	}, [fieldErrors]);
 
@@ -126,6 +126,6 @@ export interface ValidatedInputProps {
  */
 export function getErrorInputClasses(hasError: boolean): string {
 	return hasError
-		? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
+		? 'border-destructive focus:border-destructive focus:ring-destructive/20'
 		: '';
 }

@@ -216,11 +216,11 @@ export function CustomerAwarenessSessionDashboard({
 					{Array.from({ length: 3 }).map((_, i) => (
 						<Card key={i}>
 							<CardContent className="p-6">
-								<div className="h-4 bg-gray-100 rounded w-1/3 mb-3" />
-								<div className="h-3 bg-gray-100 rounded w-1/4 mb-5" />
+								<div className="h-4 bg-muted rounded w-1/3 mb-3" />
+								<div className="h-3 bg-muted rounded w-1/4 mb-5" />
 								<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
 									{Array.from({ length: 4 }).map((_, j) => (
-										<div key={j} className="h-3 bg-gray-100 rounded w-3/4" />
+										<div key={j} className="h-3 bg-muted rounded w-3/4" />
 									))}
 								</div>
 							</CardContent>
@@ -370,12 +370,12 @@ export function CustomerAwarenessSessionDashboard({
 
 								{/* Expert Information (if assigned and confirmed) */}
 								{request.status === 'confirmed' && request.assignedExpertId && (
-									<div className="bg-green-50 border border-green-200 rounded-lg p-3">
-										<div className="flex items-center gap-2 text-green-800 font-medium mb-1">
+									<div className="bg-secondary/10 border border-secondary/50 rounded-lg p-3">
+										<div className="flex items-center gap-2 text-secondary font-medium mb-1">
 											<User className="w-4 h-4" />
 											Expert Assigned
 										</div>
-										<div className="text-sm text-green-700">
+										<div className="text-sm text-secondary">
 											Your session has been confirmed. Expert contact details will be shared via email.
 										</div>
 									</div>
@@ -383,11 +383,11 @@ export function CustomerAwarenessSessionDashboard({
 
 								{/* Rejection Reason */}
 								{(request.status === 'rejected' || request.status === 'expert_declined') && request.rejectionReason && (
-									<div className="bg-red-50 border border-red-200 rounded-lg p-3">
-										<div className="text-red-800 font-medium mb-1">
+									<div className="bg-destructive/10 border border-destructive rounded-lg p-3">
+										<div className="text-destructive font-medium mb-1">
 											{request.status === 'rejected' ? 'Rejection Reason' : 'Expert Declined'}
 										</div>
-										<div className="text-sm text-red-700">
+										<div className="text-sm text-destructive">
 											{request.rejectionReason}
 										</div>
 									</div>
@@ -395,9 +395,9 @@ export function CustomerAwarenessSessionDashboard({
 
 								{/* Admin Notes */}
 								{request.adminNotes && (
-									<div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-										<div className="text-blue-800 font-medium mb-1">Admin Notes</div>
-										<div className="text-sm text-blue-700">{request.adminNotes}</div>
+									<div className="bg-primary/10 border border-primary/50 rounded-lg p-3">
+										<div className="text-primary font-medium mb-1">Admin Notes</div>
+										<div className="text-sm text-primary">{request.adminNotes}</div>
 									</div>
 								)}
 

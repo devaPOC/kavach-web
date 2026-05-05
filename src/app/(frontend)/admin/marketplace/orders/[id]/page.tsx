@@ -76,13 +76,13 @@ interface Order {
 }
 
 const STATUS_OPTIONS = [
-	{ value: 'pending', label: 'Pending', color: 'bg-yellow-100 text-yellow-800' },
-	{ value: 'confirmed', label: 'Confirmed', color: 'bg-blue-100 text-blue-800' },
-	{ value: 'processing', label: 'Processing', color: 'bg-purple-100 text-purple-800' },
-	{ value: 'shipped', label: 'Shipped', color: 'bg-indigo-100 text-indigo-800' },
-	{ value: 'delivered', label: 'Delivered', color: 'bg-green-100 text-green-800' },
-	{ value: 'cancelled', label: 'Cancelled', color: 'bg-red-100 text-red-800' },
-	{ value: 'refunded', label: 'Refunded', color: 'bg-gray-100 text-gray-800' },
+	{ value: 'pending', label: 'Pending', color: 'bg-accent/10 text-accent' },
+	{ value: 'confirmed', label: 'Confirmed', color: 'bg-primary/10 text-primary' },
+	{ value: 'processing', label: 'Processing', color: 'bg-primary/10 text-primary' },
+	{ value: 'shipped', label: 'Shipped', color: 'bg-primary/10 text-primary' },
+	{ value: 'delivered', label: 'Delivered', color: 'bg-secondary/10 text-secondary' },
+	{ value: 'cancelled', label: 'Cancelled', color: 'bg-destructive/10 text-destructive' },
+	{ value: 'refunded', label: 'Refunded', color: 'bg-muted text-foreground' },
 ];
 
 export default function OrderDetailPage() {
@@ -189,7 +189,7 @@ export default function OrderDetailPage() {
 	if (loading) {
 		return (
 			<div className="flex items-center justify-center min-h-[400px]">
-				<Loader2 className="h-8 w-8 animate-spin text-gray-400" />
+				<Loader2 className="h-8 w-8 animate-spin text-muted-foreground/80" />
 			</div>
 		);
 	}
@@ -198,9 +198,9 @@ export default function OrderDetailPage() {
 		return (
 			<div className="p-6">
 				<Card className="p-8 text-center">
-					<Package className="h-12 w-12 mx-auto mb-4 text-gray-300" />
+					<Package className="h-12 w-12 mx-auto mb-4 text-muted-foreground/80" />
 					<h1 className="text-xl font-semibold mb-2">Order Not Found</h1>
-					<p className="text-gray-500 mb-6">{error}</p>
+					<p className="text-muted-foreground mb-6">{error}</p>
 					<Link href="/admin/marketplace/orders">
 						<Button variant="outline">
 							<ArrowLeft className="h-4 w-4 mr-2" />
@@ -228,10 +228,10 @@ export default function OrderDetailPage() {
 					</Link>
 					<div>
 						<div className="flex items-center gap-3">
-							<h1 className="text-2xl font-bold text-gray-900">{order.orderNumber}</h1>
+							<h1 className="text-2xl font-bold text-foreground">{order.orderNumber}</h1>
 							<Badge className={currentStatus?.color}>{order.status}</Badge>
 						</div>
-						<p className="text-gray-500">Placed on {formatDate(order.createdAt)}</p>
+						<p className="text-muted-foreground">Placed on {formatDate(order.createdAt)}</p>
 					</div>
 				</div>
 			</div>
@@ -248,14 +248,14 @@ export default function OrderDetailPage() {
 						<CardContent>
 							<div className="space-y-4">
 								{order.items.map((item) => (
-									<div key={item.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+									<div key={item.id} className="flex items-center justify-between p-4 bg-muted/50 rounded-lg">
 										<div className="flex items-center gap-4">
-											<div className="p-2 bg-white rounded-lg">
-												<Package className="h-5 w-5 text-gray-400" />
+											<div className="p-2 bg-card rounded-lg">
+												<Package className="h-5 w-5 text-muted-foreground/80" />
 											</div>
 											<div>
 												<p className="font-medium">{item.productName}</p>
-												<p className="text-sm text-gray-500">
+												<p className="text-sm text-muted-foreground">
 													${parseFloat(item.unitPrice).toFixed(2)} × {item.quantity}
 												</p>
 											</div>
@@ -268,19 +268,19 @@ export default function OrderDetailPage() {
 							{/* Order Summary */}
 							<div className="mt-6 pt-6 border-t space-y-2">
 								<div className="flex justify-between text-sm">
-									<span className="text-gray-500">Subtotal</span>
+									<span className="text-muted-foreground">Subtotal</span>
 									<span>${parseFloat(order.subtotal).toFixed(2)}</span>
 								</div>
 								<div className="flex justify-between text-sm">
-									<span className="text-gray-500">Shipping</span>
+									<span className="text-muted-foreground">Shipping</span>
 									<span>${parseFloat(order.shippingCost).toFixed(2)}</span>
 								</div>
 								<div className="flex justify-between text-sm">
-									<span className="text-gray-500">Tax</span>
+									<span className="text-muted-foreground">Tax</span>
 									<span>${parseFloat(order.tax).toFixed(2)}</span>
 								</div>
 								{parseFloat(order.discount) > 0 && (
-									<div className="flex justify-between text-sm text-green-600">
+									<div className="flex justify-between text-sm text-secondary">
 										<span>Discount</span>
 										<span>-${parseFloat(order.discount).toFixed(2)}</span>
 									</div>
@@ -300,7 +300,7 @@ export default function OrderDetailPage() {
 								<CardTitle>Customer Notes</CardTitle>
 							</CardHeader>
 							<CardContent>
-								<p className="text-gray-600">{order.customerNotes}</p>
+								<p className="text-muted-foreground">{order.customerNotes}</p>
 							</CardContent>
 						</Card>
 					)}
@@ -320,12 +320,12 @@ export default function OrderDetailPage() {
 							{order.customer ? (
 								<div>
 									<p className="font-medium">{order.customer.email}</p>
-									<p className="text-sm text-gray-500">
+									<p className="text-sm text-muted-foreground">
 										Member since {new Date(order.customer.createdAt).toLocaleDateString()}
 									</p>
 								</div>
 							) : (
-								<p className="text-gray-500">Customer info not available</p>
+								<p className="text-muted-foreground">Customer info not available</p>
 							)}
 						</CardContent>
 					</Card>
@@ -407,18 +407,18 @@ export default function OrderDetailPage() {
 									rows={3}
 								/>
 								{fieldErrors.adminNotes && (
-									<p className="text-sm text-red-500">{fieldErrors.adminNotes}</p>
+									<p className="text-sm text-destructive">{fieldErrors.adminNotes}</p>
 								)}
 							</div>
 
 							{error && (
-								<div className="p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+								<div className="p-3 bg-destructive/10 border border-destructive rounded-lg text-destructive text-sm">
 									{error}
 								</div>
 							)}
 
 							{success && (
-								<div className="p-3 bg-green-50 border border-green-200 rounded-lg text-green-700 text-sm">
+								<div className="p-3 bg-secondary/10 border border-secondary/50 rounded-lg text-secondary text-sm">
 									{success}
 								</div>
 							)}

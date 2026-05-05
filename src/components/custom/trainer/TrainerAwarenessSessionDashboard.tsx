@@ -233,7 +233,7 @@ export default function TrainerAwarenessSessionDashboard({ className }: TrainerA
   if (loading) {
     return (
       <div className="flex items-center justify-center p-8">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary/50"></div>
       </div>
     )
   }
@@ -242,7 +242,7 @@ export default function TrainerAwarenessSessionDashboard({ className }: TrainerA
     return (
       <Card className="w-full">
         <CardHeader>
-          <CardTitle className="text-red-600">Error</CardTitle>
+          <CardTitle className="text-destructive">Error</CardTitle>
           <CardDescription>{error}</CardDescription>
         </CardHeader>
         <CardContent>
@@ -257,8 +257,8 @@ export default function TrainerAwarenessSessionDashboard({ className }: TrainerA
   return (
     <div className={className}>
       <div className="mb-6">
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">Awareness Session Requests</h2>
-        <p className="text-gray-600">
+        <h2 className="text-2xl font-bold text-foreground mb-2">Awareness Session Requests</h2>
+        <p className="text-muted-foreground">
           Manage your assigned awareness session requests and respond to new assignments.
         </p>
       </div>
@@ -270,7 +270,7 @@ export default function TrainerAwarenessSessionDashboard({ className }: TrainerA
             <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
               <div className="flex items-center gap-2 flex-1">
                 <div className="relative w-full md:max-w-sm">
-                  <Search className="h-4 w-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                  <Search className="h-4 w-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground/80" />
                   <Input
                     placeholder="Search by subject, organization, or location"
                     value={searchTerm}
@@ -357,9 +357,9 @@ export default function TrainerAwarenessSessionDashboard({ className }: TrainerA
           {pendingRequests.length === 0 ? (
             <Card>
               <CardContent className="p-8 text-center">
-                <AlertCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">No Pending Requests</h3>
-                <p className="text-gray-600">
+                <AlertCircle className="h-12 w-12 text-muted-foreground/80 mx-auto mb-4" />
+                <h3 className="text-lg font-medium text-foreground mb-2">No Pending Requests</h3>
+                <p className="text-muted-foreground">
                   You don't have any awareness session requests waiting for your response.
                 </p>
               </CardContent>
@@ -379,7 +379,7 @@ export default function TrainerAwarenessSessionDashboard({ className }: TrainerA
           {/* Pagination for Pending */}
           {totalPages > 1 && (
             <div className="flex items-center justify-between mt-6">
-              <div className="text-sm text-gray-500">
+              <div className="text-sm text-muted-foreground">
                 Showing {((currentPage - 1) * limit) + 1} to {Math.min((currentPage - 1) * limit + pendingRequests.length, currentPage * limit)} on this page
               </div>
               <div className="flex items-center gap-2">
@@ -393,7 +393,7 @@ export default function TrainerAwarenessSessionDashboard({ className }: TrainerA
                   <ChevronLeft className="h-3 w-3" />
                   Previous
                 </Button>
-                <span className="text-sm text-gray-500">
+                <span className="text-sm text-muted-foreground">
                   Page {currentPage} of {totalPages}
                 </span>
                 <Button
@@ -415,9 +415,9 @@ export default function TrainerAwarenessSessionDashboard({ className }: TrainerA
           {confirmedRequests.length === 0 ? (
             <Card>
               <CardContent className="p-8 text-center">
-                <CheckCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">No Confirmed Sessions</h3>
-                <p className="text-gray-600">
+                <CheckCircle className="h-12 w-12 text-muted-foreground/80 mx-auto mb-4" />
+                <h3 className="text-lg font-medium text-foreground mb-2">No Confirmed Sessions</h3>
+                <p className="text-muted-foreground">
                   You don't have any confirmed awareness sessions yet.
                 </p>
               </CardContent>
@@ -437,7 +437,7 @@ export default function TrainerAwarenessSessionDashboard({ className }: TrainerA
           {/* Pagination for Confirmed */}
           {totalPages > 1 && (
             <div className="flex items-center justify-between mt-6">
-              <div className="text-sm text-gray-500">
+              <div className="text-sm text-muted-foreground">
                 Showing {((currentPage - 1) * limit) + 1} to {Math.min((currentPage - 1) * limit + confirmedRequests.length, currentPage * limit)} on this page
               </div>
               <div className="flex items-center gap-2">
@@ -451,7 +451,7 @@ export default function TrainerAwarenessSessionDashboard({ className }: TrainerA
                   <ChevronLeft className="h-3 w-3" />
                   Previous
                 </Button>
-                <span className="text-sm text-gray-500">
+                <span className="text-sm text-muted-foreground">
                   Page {currentPage} of {totalPages}
                 </span>
                 <Button
@@ -473,9 +473,9 @@ export default function TrainerAwarenessSessionDashboard({ className }: TrainerA
           {declinedRequests.length === 0 ? (
             <Card>
               <CardContent className="p-8 text-center">
-                <XCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">No Declined Requests</h3>
-                <p className="text-gray-600">
+                <XCircle className="h-12 w-12 text-muted-foreground/80 mx-auto mb-4" />
+                <h3 className="text-lg font-medium text-foreground mb-2">No Declined Requests</h3>
+                <p className="text-muted-foreground">
                   You haven't declined any awareness session requests.
                 </p>
               </CardContent>
@@ -495,7 +495,7 @@ export default function TrainerAwarenessSessionDashboard({ className }: TrainerA
           {/* Pagination for Declined */}
           {totalPages > 1 && (
             <div className="flex items-center justify-between mt-6">
-              <div className="text-sm text-gray-500">
+              <div className="text-sm text-muted-foreground">
                 Showing {((currentPage - 1) * limit) + 1} to {Math.min((currentPage - 1) * limit + declinedRequests.length, currentPage * limit)} on this page
               </div>
               <div className="flex items-center gap-2">
@@ -509,7 +509,7 @@ export default function TrainerAwarenessSessionDashboard({ className }: TrainerA
                   <ChevronLeft className="h-3 w-3" />
                   Previous
                 </Button>
-                <span className="text-sm text-gray-500">
+                <span className="text-sm text-muted-foreground">
                   Page {currentPage} of {totalPages}
                 </span>
                 <Button
@@ -620,22 +620,22 @@ function RequestCard({ request, onViewDetails, onRespond, showActions }: Request
       <CardContent className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
           <div className="flex items-center gap-2">
-            <Calendar className="h-4 w-4 text-gray-500" />
+            <Calendar className="h-4 w-4 text-muted-foreground" />
             <span>{formatDate(request.sessionDate)}</span>
           </div>
 
           <div className="flex items-center gap-2">
-            <Clock className="h-4 w-4 text-gray-500" />
+            <Clock className="h-4 w-4 text-muted-foreground" />
             <span>{DURATION_LABELS[request.duration]}</span>
           </div>
 
           <div className="flex items-center gap-2">
-            <MapPin className="h-4 w-4 text-gray-500" />
+            <MapPin className="h-4 w-4 text-muted-foreground" />
             <span>{SESSION_MODE_LABELS[request.sessionMode]} - {request.location}</span>
           </div>
 
           <div className="flex items-center gap-2">
-            <Users className="h-4 w-4 text-gray-500" />
+            <Users className="h-4 w-4 text-muted-foreground" />
             <span>{request.audienceSize} participants</span>
           </div>
         </div>
@@ -646,35 +646,35 @@ function RequestCard({ request, onViewDetails, onRespond, showActions }: Request
           </div>
 
           <div className="flex items-center gap-2 text-sm">
-            <Mail className="h-4 w-4 text-gray-500" />
+            <Mail className="h-4 w-4 text-muted-foreground" />
             <span>{request.contactEmail}</span>
           </div>
 
           <div className="flex items-center gap-2 text-sm">
-            <Phone className="h-4 w-4 text-gray-500" />
+            <Phone className="h-4 w-4 text-muted-foreground" />
             <span>{request.contactPhone}</span>
           </div>
         </div>
 
         {request.specialRequirements && (
-          <div className="bg-gray-50 p-3 rounded-md">
+          <div className="bg-muted/50 p-3 rounded-md">
             <div className="flex items-start gap-2 text-sm">
-              <FileText className="h-4 w-4 text-gray-500 mt-0.5" />
+              <FileText className="h-4 w-4 text-muted-foreground mt-0.5" />
               <div>
                 <span className="font-medium">Special Requirements:</span>
-                <p className="mt-1 text-gray-700">{request.specialRequirements}</p>
+                <p className="mt-1 text-foreground/80">{request.specialRequirements}</p>
               </div>
             </div>
           </div>
         )}
 
         {request.adminNotes && (
-          <div className="bg-blue-50 p-3 rounded-md">
+          <div className="bg-primary/10 p-3 rounded-md">
             <div className="flex items-start gap-2 text-sm">
-              <FileText className="h-4 w-4 text-blue-500 mt-0.5" />
+              <FileText className="h-4 w-4 text-primary mt-0.5" />
               <div>
-                <span className="font-medium text-blue-700">Admin Notes:</span>
-                <p className="mt-1 text-blue-700">{request.adminNotes}</p>
+                <span className="font-medium text-primary">Admin Notes:</span>
+                <p className="mt-1 text-primary">{request.adminNotes}</p>
               </div>
             </div>
           </div>
@@ -697,7 +697,7 @@ function RequestCard({ request, onViewDetails, onRespond, showActions }: Request
                 variant="outline"
                 size="sm"
                 onClick={() => onRespond(request, 'decline')}
-                className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                className="text-destructive hover:text-destructive hover:bg-destructive/10"
               >
                 <XCircle className="h-4 w-4 mr-1" />
                 Decline
@@ -705,7 +705,7 @@ function RequestCard({ request, onViewDetails, onRespond, showActions }: Request
               <Button
                 size="sm"
                 onClick={() => onRespond(request, 'accept')}
-                className="bg-green-600 hover:bg-green-700"
+                className="bg-secondary hover:bg-secondary"
               >
                 <CheckCircle className="h-4 w-4 mr-1" />
                 Accept

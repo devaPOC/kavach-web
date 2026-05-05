@@ -86,8 +86,8 @@ export default function TrainerLayout({
 
 	if (loading) {
 		return (
-			<div className="flex items-center justify-center min-h-screen bg-slate-50">
-				<div className="animate-spin rounded-full h-8 w-8 border-2 border-violet-200 border-t-violet-600"></div>
+			<div className="flex items-center justify-center min-h-screen bg-muted/50">
+				<div className="animate-spin rounded-full h-8 w-8 border-2 border-primary/50 border-t-violet-600"></div>
 			</div>
 		)
 	}
@@ -104,7 +104,7 @@ export default function TrainerLayout({
 	}
 
 	return (
-		<div className="min-h-screen bg-slate-50">
+		<div className="min-h-screen bg-muted/50">
 			{/* Unified Navbar */}
 			<Navbar user={user} showProfileMenu={true} showLogo={false} />
 
@@ -122,14 +122,14 @@ export default function TrainerLayout({
 			{/* Main content - offset by sidebar width */}
 			<div className={`min-h-screen transition-all duration-300 ease-out ${sidebarCollapsed ? 'lg:ml-[72px]' : 'lg:ml-64'}`}>
 				{/* Mobile header */}
-				<div className="lg:hidden flex items-center justify-between h-14 px-4 bg-white/80 backdrop-blur-sm border-b border-slate-100 sticky top-0 z-40">
+				<div className="lg:hidden flex items-center justify-between h-14 px-4 bg-card/80 backdrop-blur-sm border-b border-border/50 sticky top-0 z-40">
 					<button
 						onClick={() => setSidebarOpen(true)}
-						className="p-2 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-50 transition-all duration-200"
+						className="p-2 rounded-lg text-muted-foreground/80 hover:text-muted-foreground hover:bg-muted/50 transition-all duration-200"
 					>
 						<Menu className="h-5 w-5" />
 					</button>
-					<h1 className="text-base font-semibold text-slate-800">
+					<h1 className="text-base font-semibold text-foreground">
 						{getCurrentPageTitle()}
 					</h1>
 					<div className="w-10" /> {/* Spacer for centering */}

@@ -114,14 +114,14 @@ function VerifyEmailPageInner() {
         title="Email verified"
         subtitle="Your account is ready. We’re redirecting you to your dashboard."
       >
-        <Card className="mx-auto w-full max-w-xl border border-white/40 bg-white/95 shadow-2xl backdrop-blur-lg">
+        <Card className="mx-auto w-full max-w-xl border border-white/40 bg-card/95 shadow-2xl backdrop-blur-lg">
           <CardContent className="space-y-6 p-6 md:p-8 text-center">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100">
-              <svg className="h-7 w-7 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-secondary/10">
+              <svg className="h-7 w-7 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <p className="text-slate-600">If you are not redirected automatically, continue to your dashboard.</p>
+            <p className="text-muted-foreground">If you are not redirected automatically, continue to your dashboard.</p>
             <Button
               onClick={() => router.push('/')}
               className="w-full"
@@ -138,10 +138,10 @@ function VerifyEmailPageInner() {
   if (isMagicLink && loading) {
     return (
       <AuthScreen title="Verifying your email" subtitle="Please wait while we confirm your account.">
-        <Card className="mx-auto w-full max-w-xl border border-white/40 bg-white/95 shadow-2xl backdrop-blur-lg">
-          <CardContent className="flex flex-col items-center justify-center gap-4 p-6 text-slate-700">
-            <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-indigo-600" />
-            <p className="text-center text-slate-600">Verifying your email address...</p>
+        <Card className="mx-auto w-full max-w-xl border border-white/40 bg-card/95 shadow-2xl backdrop-blur-lg">
+          <CardContent className="flex flex-col items-center justify-center gap-4 p-6 text-foreground/80">
+            <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-primary/50" />
+            <p className="text-center text-muted-foreground">Verifying your email address...</p>
           </CardContent>
         </Card>
       </AuthScreen>
@@ -158,10 +158,10 @@ function VerifyEmailPageInner() {
           : 'Please check your email for a verification link'}
       footer={
         <div className="flex items-center justify-center gap-2 text-sm">
-          <span className="text-slate-200">Need to log in?</span>
+          <span className="text-muted-foreground/80">Need to log in?</span>
           <button
             type="button"
-            className="font-semibold text-white hover:text-indigo-200 underline-offset-4"
+            className="font-semibold text-white hover:text-primary underline-offset-4"
             onClick={() => router.push('/')}
           >
             Back to login
@@ -169,7 +169,7 @@ function VerifyEmailPageInner() {
         </div>
       }
     >
-      <Card className="mx-auto w-full max-w-xl border border-white/40 bg-white/95 shadow-2xl backdrop-blur-lg">
+      <Card className="mx-auto w-full max-w-xl border border-white/40 bg-card/95 shadow-2xl backdrop-blur-lg">
         <CardContent className="space-y-6 p-6 md:p-8">
           {error && (
             <Alert variant="destructive">
@@ -190,7 +190,7 @@ function VerifyEmailPageInner() {
           <div className="space-y-4">
             {showEmailInput && (
               <div className="space-y-2">
-                <label htmlFor="email" className="block text-sm font-medium text-slate-800">
+                <label htmlFor="email" className="block text-sm font-medium text-foreground">
                   Email address
                 </label>
                 <Input

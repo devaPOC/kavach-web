@@ -180,11 +180,11 @@ export function AttemptLimitDisplay({
     
     switch (attemptStatus.improvementTrend) {
       case 'improving':
-        return <TrendingUp className="h-4 w-4 text-green-500" />;
+        return <TrendingUp className="h-4 w-4 text-secondary" />;
       case 'declining':
-        return <TrendingDown className="h-4 w-4 text-red-500" />;
+        return <TrendingDown className="h-4 w-4 text-destructive" />;
       case 'stable':
-        return <Minus className="h-4 w-4 text-gray-500" />;
+        return <Minus className="h-4 w-4 text-muted-foreground" />;
       default:
         return null;
     }
@@ -210,7 +210,7 @@ export function AttemptLimitDisplay({
       <Card className={className}>
         <CardContent className="p-6">
           <div className="flex items-center justify-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary/50"></div>
             <span className="ml-2">Loading attempt status...</span>
           </div>
         </CardContent>
@@ -222,9 +222,9 @@ export function AttemptLimitDisplay({
     return (
       <Card className={className}>
         <CardContent className="p-6">
-          <Alert className="border-red-500 bg-red-50">
-            <AlertTriangle className="h-4 w-4 text-red-500" />
-            <AlertDescription className="text-red-700">
+          <Alert className="border-destructive bg-destructive/10">
+            <AlertTriangle className="h-4 w-4 text-destructive" />
+            <AlertDescription className="text-destructive">
               {error}
             </AlertDescription>
           </Alert>
@@ -270,7 +270,7 @@ export function AttemptLimitDisplay({
             <span>{attemptStatus.totalAttempts} / {attemptStatus.maxAttempts}</span>
           </div>
           <Progress value={getProgressPercentage()} className="h-2" />
-          <div className="flex justify-between text-xs text-gray-500">
+          <div className="flex justify-between text-xs text-muted-foreground">
             <span>{attemptStatus.remainingAttempts} remaining</span>
             <span>{Math.round(getProgressPercentage())}% used</span>
           </div>
@@ -278,17 +278,17 @@ export function AttemptLimitDisplay({
 
         {/* Performance Summary */}
         {(attemptStatus.bestScore !== undefined || attemptStatus.averageScore !== undefined) && (
-          <div className="grid grid-cols-2 gap-4 p-3 bg-gray-50 rounded-lg">
+          <div className="grid grid-cols-2 gap-4 p-3 bg-muted/50 rounded-lg">
             {attemptStatus.bestScore !== undefined && (
               <div className="text-center">
-                <div className="text-2xl font-bold text-green-600">{attemptStatus.bestScore}%</div>
-                <div className="text-xs text-gray-500">Best Score</div>
+                <div className="text-2xl font-bold text-secondary">{attemptStatus.bestScore}%</div>
+                <div className="text-xs text-muted-foreground">Best Score</div>
               </div>
             )}
             {attemptStatus.averageScore !== undefined && (
               <div className="text-center">
-                <div className="text-2xl font-bold text-blue-600">{Math.round(attemptStatus.averageScore)}%</div>
-                <div className="text-xs text-gray-500">Average Score</div>
+                <div className="text-2xl font-bold text-primary">{Math.round(attemptStatus.averageScore)}%</div>
+                <div className="text-xs text-muted-foreground">Average Score</div>
               </div>
             )}
           </div>
@@ -296,7 +296,7 @@ export function AttemptLimitDisplay({
 
         {/* Last Attempt Info */}
         {attemptStatus.lastAttemptDate && (
-          <div className="flex items-center text-sm text-gray-600">
+          <div className="flex items-center text-sm text-muted-foreground">
             <Clock className="h-4 w-4 mr-2" />
             Last attempt: {attemptStatus.lastAttemptDate.toLocaleDateString()} at {attemptStatus.lastAttemptDate.toLocaleTimeString()}
           </div>
@@ -304,16 +304,16 @@ export function AttemptLimitDisplay({
 
         {/* Status Messages */}
         {attemptStatus.canAttempt ? (
-          <Alert className="border-green-500 bg-green-50">
-            <CheckCircle className="h-4 w-4 text-green-500" />
-            <AlertDescription className="text-green-700">
+          <Alert className="border-secondary/50 bg-secondary/10">
+            <CheckCircle className="h-4 w-4 text-secondary" />
+            <AlertDescription className="text-secondary">
               You can start a new quiz attempt. You have {attemptStatus.remainingAttempts} attempt{attemptStatus.remainingAttempts !== 1 ? 's' : ''} remaining.
             </AlertDescription>
           </Alert>
         ) : (
-          <Alert className="border-red-500 bg-red-50">
-            <XCircle className="h-4 w-4 text-red-500" />
-            <AlertDescription className="text-red-700">
+          <Alert className="border-destructive bg-destructive/10">
+            <XCircle className="h-4 w-4 text-destructive" />
+            <AlertDescription className="text-destructive">
               {attemptStatus.reason || 'You cannot attempt this quiz at this time.'}
             </AlertDescription>
           </Alert>
@@ -321,9 +321,9 @@ export function AttemptLimitDisplay({
 
         {/* Cooldown Timer */}
         {cooldownRemaining > 0 && (
-          <Alert className="border-yellow-500 bg-yellow-50">
-            <Clock className="h-4 w-4 text-yellow-500" />
-            <AlertDescription className="text-yellow-700">
+          <Alert className="border-accent/50 bg-accent/10">
+            <Clock className="h-4 w-4 text-accent" />
+            <AlertDescription className="text-accent">
               Next attempt available in: {formatTimeRemaining(cooldownRemaining)}
             </AlertDescription>
           </Alert>
@@ -353,7 +353,7 @@ export function AttemptLimitDisplay({
 
         {/* Additional Info */}
         {attemptStatus.totalAttempts > 0 && (
-          <div className="text-xs text-gray-500 text-center pt-2 border-t">
+          <div className="text-xs text-muted-foreground text-center pt-2 border-t">
             {attemptStatus.improvementTrend === 'improving' && 'Your scores are improving! Keep it up!'}
             {attemptStatus.improvementTrend === 'declining' && 'Consider reviewing the material before your next attempt.'}
             {attemptStatus.improvementTrend === 'stable' && 'Your performance has been consistent.'}

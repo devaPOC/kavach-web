@@ -90,7 +90,7 @@ export function FilterToolbar({
 								placeholder={placeholder}
 								value={searchValue || ''}
 								onChange={(e) => onSearchChange(e.target.value)}
-								className="pl-11 h-10 rounded-lg bg-white border-slate-200 hover:border-indigo-300 focus:border-indigo-500 focus:ring-indigo-500 transition-colors placeholder:text-slate-400 text-slate-900 shadow-sm"
+								className="pl-11 h-10 rounded-lg bg-card border-border hover:border-primary/50 focus:border-primary/50 focus:ring-primary transition-colors placeholder:text-muted-foreground/80 text-foreground shadow-sm"
 								aria-label="Search"
 							/>
 						</div>
@@ -113,8 +113,8 @@ export function FilterToolbar({
 									className={cn(
 										"px-4 py-1.5 rounded-lg text-sm font-medium transition-all duration-200",
 										(!filterValues?.[filter.id] || filterValues[filter.id] === 'all')
-											? "bg-indigo-600 text-white shadow-md ring-1 ring-indigo-600"
-											: "text-slate-600 bg-white border border-slate-200 hover:text-indigo-600 hover:bg-indigo-50 hover:border-indigo-200"
+											? "bg-primary text-white shadow-md ring-1 ring-primary"
+											: "text-muted-foreground bg-card border border-border hover:text-primary hover:bg-primary/10 hover:border-primary/50"
 									)}
 								>
 									All
@@ -126,8 +126,8 @@ export function FilterToolbar({
 										className={cn(
 											"px-4 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2",
 											filterValues?.[filter.id] === option.value
-												? "bg-indigo-600 text-white shadow-md ring-1 ring-indigo-600"
-												: "text-slate-600 bg-white border border-slate-200 hover:text-indigo-600 hover:bg-indigo-50 hover:border-indigo-200"
+												? "bg-primary text-white shadow-md ring-1 ring-primary"
+												: "text-muted-foreground bg-card border border-border hover:text-primary hover:bg-primary/10 hover:border-primary/50"
 										)}
 									>
 										{option.icon}
@@ -146,7 +146,7 @@ export function FilterToolbar({
 								value={filterValues?.[filter.id] || 'all'}
 								onValueChange={(v) => onFilterChange?.(filter.id, v)}
 							>
-								<SelectTrigger className="w-[180px] h-10 rounded-lg border-slate-200 bg-white hover:bg-slate-50 text-slate-700 transition-colors focus:ring-indigo-500">
+								<SelectTrigger className="w-[180px] h-10 rounded-lg border-border bg-card hover:bg-muted/50 text-foreground/80 transition-colors focus:ring-primary">
 									<SelectValue placeholder={filter.label} />
 								</SelectTrigger>
 								<SelectContent>
@@ -166,7 +166,7 @@ export function FilterToolbar({
 						{/* Legacy Session Mode Filter */}
 						{showSessionMode && onSessionModeChange && (
 							<Select value={sessionMode} onValueChange={(v: any) => onSessionModeChange(v)}>
-								<SelectTrigger className="w-[180px] h-10 rounded-lg border-slate-200 bg-white hover:bg-slate-50 text-slate-700 transition-colors focus:ring-indigo-500">
+								<SelectTrigger className="w-[180px] h-10 rounded-lg border-border bg-card hover:bg-muted/50 text-foreground/80 transition-colors focus:ring-primary">
 									<SelectValue placeholder="Session Mode" />
 								</SelectTrigger>
 								<SelectContent>
@@ -186,8 +186,8 @@ export function FilterToolbar({
 											className={cn(
 												"px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2 border",
 												startDate
-													? "bg-indigo-50 text-indigo-700 border-indigo-200"
-													: "text-slate-500 border-slate-200 bg-white hover:text-slate-900 hover:bg-slate-50"
+													? "bg-primary/10 text-primary border-primary/50"
+													: "text-muted-foreground border-border bg-card hover:text-foreground hover:bg-muted/50"
 											)}
 										>
 											<CalendarIcon className="h-3.5 w-3.5" />
@@ -211,8 +211,8 @@ export function FilterToolbar({
 											className={cn(
 												"px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2 border",
 												endDate
-													? "bg-indigo-50 text-indigo-700 border-indigo-200"
-													: "text-slate-500 border-slate-200 bg-white hover:text-slate-900 hover:bg-slate-50"
+													? "bg-primary/10 text-primary border-primary/50"
+													: "text-muted-foreground border-border bg-card hover:text-foreground hover:bg-muted/50"
 											)}
 										>
 											<CalendarIcon className="h-3.5 w-3.5" />

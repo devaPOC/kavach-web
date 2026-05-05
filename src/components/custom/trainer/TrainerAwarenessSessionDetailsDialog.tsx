@@ -111,26 +111,26 @@ export default function TrainerAwarenessSessionDetailsDialog({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
-                  <Calendar className="h-5 w-5 text-gray-500" />
+                  <Calendar className="h-5 w-5 text-muted-foreground" />
                   <div>
                     <p className="font-medium">Session Date</p>
-                    <p className="text-sm text-gray-600">{formatDate(request.sessionDate)}</p>
+                    <p className="text-sm text-muted-foreground">{formatDate(request.sessionDate)}</p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <Clock className="h-5 w-5 text-gray-500" />
+                  <Clock className="h-5 w-5 text-muted-foreground" />
                   <div>
                     <p className="font-medium">Duration</p>
-                    <p className="text-sm text-gray-600">{DURATION_LABELS[request.duration]}</p>
+                    <p className="text-sm text-muted-foreground">{DURATION_LABELS[request.duration]}</p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <MapPin className="h-5 w-5 text-gray-500" />
+                  <MapPin className="h-5 w-5 text-muted-foreground" />
                   <div>
                     <p className="font-medium">Location & Mode</p>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-muted-foreground">
                       {SESSION_MODE_LABELS[request.sessionMode]} - {request.location}
                     </p>
                   </div>
@@ -139,18 +139,18 @@ export default function TrainerAwarenessSessionDetailsDialog({
 
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
-                  <Users className="h-5 w-5 text-gray-500" />
+                  <Users className="h-5 w-5 text-muted-foreground" />
                   <div>
                     <p className="font-medium">Audience Size</p>
-                    <p className="text-sm text-gray-600">{request.audienceSize} participants</p>
+                    <p className="text-sm text-muted-foreground">{request.audienceSize} participants</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <User className="h-5 w-5 text-gray-500 mt-0.5" />
+                  <User className="h-5 w-5 text-muted-foreground mt-0.5" />
                   <div>
                     <p className="font-medium">Audience Types</p>
-                    <p className="text-sm text-gray-600">{formatAudienceTypes(request.audienceTypes)}</p>
+                    <p className="text-sm text-muted-foreground">{formatAudienceTypes(request.audienceTypes)}</p>
                   </div>
                 </div>
               </div>
@@ -165,18 +165,18 @@ export default function TrainerAwarenessSessionDetailsDialog({
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="flex items-center gap-3">
-                <Mail className="h-5 w-5 text-gray-500" />
+                <Mail className="h-5 w-5 text-muted-foreground" />
                 <div>
                   <p className="font-medium">Email</p>
-                  <p className="text-sm text-gray-600">{request.contactEmail}</p>
+                  <p className="text-sm text-muted-foreground">{request.contactEmail}</p>
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
-                <Phone className="h-5 w-5 text-gray-500" />
+                <Phone className="h-5 w-5 text-muted-foreground" />
                 <div>
                   <p className="font-medium">Phone</p>
-                  <p className="text-sm text-gray-600">{request.contactPhone}</p>
+                  <p className="text-sm text-muted-foreground">{request.contactPhone}</p>
                 </div>
               </div>
             </div>
@@ -188,10 +188,10 @@ export default function TrainerAwarenessSessionDetailsDialog({
               <Separator />
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold">Special Requirements</h3>
-                <div className="bg-gray-50 p-4 rounded-md">
+                <div className="bg-muted/50 p-4 rounded-md">
                   <div className="flex items-start gap-3">
-                    <FileText className="h-5 w-5 text-gray-500 mt-0.5" />
-                    <p className="text-sm text-gray-700">{request.specialRequirements}</p>
+                    <FileText className="h-5 w-5 text-muted-foreground mt-0.5" />
+                    <p className="text-sm text-foreground/80">{request.specialRequirements}</p>
                   </div>
                 </div>
               </div>
@@ -204,10 +204,10 @@ export default function TrainerAwarenessSessionDetailsDialog({
               <Separator />
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold">Admin Notes</h3>
-                <div className="bg-blue-50 p-4 rounded-md">
+                <div className="bg-primary/10 p-4 rounded-md">
                   <div className="flex items-start gap-3">
-                    <FileText className="h-5 w-5 text-blue-500 mt-0.5" />
-                    <p className="text-sm text-blue-700">{request.adminNotes}</p>
+                    <FileText className="h-5 w-5 text-primary mt-0.5" />
+                    <p className="text-sm text-primary">{request.adminNotes}</p>
                   </div>
                 </div>
               </div>
@@ -219,10 +219,10 @@ export default function TrainerAwarenessSessionDetailsDialog({
               <Separator />
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold">Trainer Notes</h3>
-                <div className="bg-green-50 p-4 rounded-md">
+                <div className="bg-secondary/10 p-4 rounded-md">
                   <div className="flex items-start gap-3">
-                    <FileText className="h-5 w-5 text-green-500 mt-0.5" />
-                    <p className="text-sm text-green-700">{request.expertNotes}</p>
+                    <FileText className="h-5 w-5 text-secondary mt-0.5" />
+                    <p className="text-sm text-secondary">{request.expertNotes}</p>
                   </div>
                 </div>
               </div>
@@ -235,10 +235,10 @@ export default function TrainerAwarenessSessionDetailsDialog({
               <Separator />
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold">Rejection Reason</h3>
-                <div className="bg-red-50 p-4 rounded-md">
+                <div className="bg-destructive/10 p-4 rounded-md">
                   <div className="flex items-start gap-3">
-                    <XCircle className="h-5 w-5 text-red-500 mt-0.5" />
-                    <p className="text-sm text-red-700">{request.rejectionReason}</p>
+                    <XCircle className="h-5 w-5 text-destructive mt-0.5" />
+                    <p className="text-sm text-destructive">{request.rejectionReason}</p>
                   </div>
                 </div>
               </div>
@@ -254,26 +254,26 @@ export default function TrainerAwarenessSessionDetailsDialog({
             <div className="space-y-3 text-sm">
               <div className="flex justify-between">
                 <span className="font-medium">Request Created:</span>
-                <span className="text-gray-600">{formatDate(request.createdAt)}</span>
+                <span className="text-muted-foreground">{formatDate(request.createdAt)}</span>
               </div>
 
               {request.reviewedAt && (
                 <div className="flex justify-between">
                   <span className="font-medium">Admin Reviewed:</span>
-                  <span className="text-gray-600">{formatDate(request.reviewedAt)}</span>
+                  <span className="text-muted-foreground">{formatDate(request.reviewedAt)}</span>
                 </div>
               )}
 
               {request.confirmedAt && (
                 <div className="flex justify-between">
                   <span className="font-medium">Trainer Confirmed:</span>
-                  <span className="text-gray-600">{formatDate(request.confirmedAt)}</span>
+                  <span className="text-muted-foreground">{formatDate(request.confirmedAt)}</span>
                 </div>
               )}
 
               <div className="flex justify-between">
                 <span className="font-medium">Last Updated:</span>
-                <span className="text-gray-600">{formatDate(request.updatedAt)}</span>
+                <span className="text-muted-foreground">{formatDate(request.updatedAt)}</span>
               </div>
             </div>
           </div>

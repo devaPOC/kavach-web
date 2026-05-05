@@ -192,16 +192,16 @@ export default function TemplateEditDialog({
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Template Info */}
-          <Card className="bg-blue-50 border-blue-200">
+          <Card className="bg-primary/10 border-primary/50">
             <CardContent className="pt-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-blue-900">Template Usage</p>
-                  <p className="text-xs text-blue-700">
+                  <p className="text-sm font-medium text-primary">Template Usage</p>
+                  <p className="text-xs text-primary">
                     This template has been used {template.usageCount} time{template.usageCount !== 1 ? 's' : ''}
                   </p>
                 </div>
-                <Badge className="bg-blue-100 text-blue-800 border-blue-300">
+                <Badge className="bg-primary/10 text-primary border-primary/50">
                   {template.usageCount === 0 ? 'Unused' : `${template.usageCount} uses`}
                 </Badge>
               </div>
@@ -224,10 +224,10 @@ export default function TemplateEditDialog({
                   value={formData.name}
                   onChange={(e) => handleInputChange('name', e.target.value)}
                   placeholder="e.g., Cybersecurity Basics Template"
-                  className={errors.name ? 'border-red-500' : ''}
+                  className={errors.name ? 'border-destructive' : ''}
                 />
                 {errors.name && (
-                  <p className="text-sm text-red-600">{errors.name}</p>
+                  <p className="text-sm text-destructive">{errors.name}</p>
                 )}
               </div>
 
@@ -239,12 +239,12 @@ export default function TemplateEditDialog({
                   onChange={(e) => handleInputChange('description', e.target.value)}
                   placeholder="Describe what this template is for and when to use it..."
                   rows={3}
-                  className={errors.description ? 'border-red-500' : ''}
+                  className={errors.description ? 'border-destructive' : ''}
                 />
                 {errors.description && (
-                  <p className="text-sm text-red-600">{errors.description}</p>
+                  <p className="text-sm text-destructive">{errors.description}</p>
                 )}
-                <p className="text-xs text-gray-500">
+                <p className="text-xs text-muted-foreground">
                   {formData.description?.length || 0}/500 characters
                 </p>
               </div>
@@ -297,10 +297,10 @@ export default function TemplateEditDialog({
                     max="50"
                     value={formData.templateConfig.defaultQuestionCount}
                     onChange={(e) => handleConfigChange('defaultQuestionCount', parseInt(e.target.value) || 1)}
-                    className={errors['templateConfig.defaultQuestionCount'] ? 'border-red-500' : ''}
+                    className={errors['templateConfig.defaultQuestionCount'] ? 'border-destructive' : ''}
                   />
                   {errors['templateConfig.defaultQuestionCount'] && (
-                    <p className="text-sm text-red-600">{errors['templateConfig.defaultQuestionCount']}</p>
+                    <p className="text-sm text-destructive">{errors['templateConfig.defaultQuestionCount']}</p>
                   )}
                 </div>
               </div>
@@ -310,7 +310,7 @@ export default function TemplateEditDialog({
                 <div className="space-y-2">
                   <Label htmlFor="timeLimitMinutes">Time Limit (minutes) *</Label>
                   <div className="relative">
-                    <Clock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                    <Clock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground/80" />
                     <Input
                       id="timeLimitMinutes"
                       type="number"
@@ -318,18 +318,18 @@ export default function TemplateEditDialog({
                       max="180"
                       value={formData.templateConfig.timeLimitMinutes}
                       onChange={(e) => handleConfigChange('timeLimitMinutes', parseInt(e.target.value) || 1)}
-                      className={`pl-10 ${errors['templateConfig.timeLimitMinutes'] ? 'border-red-500' : ''}`}
+                      className={`pl-10 ${errors['templateConfig.timeLimitMinutes'] ? 'border-destructive' : ''}`}
                     />
                   </div>
                   {errors['templateConfig.timeLimitMinutes'] && (
-                    <p className="text-sm text-red-600">{errors['templateConfig.timeLimitMinutes']}</p>
+                    <p className="text-sm text-destructive">{errors['templateConfig.timeLimitMinutes']}</p>
                   )}
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="maxAttempts">Max Attempts *</Label>
                   <div className="relative">
-                    <Users className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                    <Users className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground/80" />
                     <Input
                       id="maxAttempts"
                       type="number"
@@ -337,11 +337,11 @@ export default function TemplateEditDialog({
                       max="10"
                       value={formData.templateConfig.maxAttempts}
                       onChange={(e) => handleConfigChange('maxAttempts', parseInt(e.target.value) || 1)}
-                      className={`pl-10 ${errors['templateConfig.maxAttempts'] ? 'border-red-500' : ''}`}
+                      className={`pl-10 ${errors['templateConfig.maxAttempts'] ? 'border-destructive' : ''}`}
                     />
                   </div>
                   {errors['templateConfig.maxAttempts'] && (
-                    <p className="text-sm text-red-600">{errors['templateConfig.maxAttempts']}</p>
+                    <p className="text-sm text-destructive">{errors['templateConfig.maxAttempts']}</p>
                   )}
                 </div>
               </div>
@@ -352,13 +352,13 @@ export default function TemplateEditDialog({
               <div className="space-y-3">
                 <div>
                   <Label>Supported Question Types *</Label>
-                  <p className="text-sm text-gray-600 mt-1">
+                  <p className="text-sm text-muted-foreground mt-1">
                     Select the question types that can be used in quizzes created from this template
                   </p>
                 </div>
                 
                 {errors['templateConfig.questionTypes'] && (
-                  <p className="text-sm text-red-600">{errors['templateConfig.questionTypes']}</p>
+                  <p className="text-sm text-destructive">{errors['templateConfig.questionTypes']}</p>
                 )}
 
                 <div className="space-y-3">
@@ -367,20 +367,20 @@ export default function TemplateEditDialog({
                       key={option.value}
                       className={`border rounded-lg p-4 cursor-pointer transition-colors ${
                         formData.templateConfig.questionTypes.includes(option.value)
-                          ? 'border-blue-500 bg-blue-50'
-                          : 'border-gray-200 hover:border-gray-300'
+                          ? 'border-primary/50 bg-primary/10'
+                          : 'border-border hover:border-border'
                       }`}
                       onClick={() => handleQuestionTypeToggle(option.value)}
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex-1">
                           <div className="flex items-center gap-2">
-                            <h4 className="font-medium text-gray-900">{option.label}</h4>
+                            <h4 className="font-medium text-foreground">{option.label}</h4>
                             {formData.templateConfig.questionTypes.includes(option.value) && (
-                              <CheckCircle className="h-4 w-4 text-blue-600" />
+                              <CheckCircle className="h-4 w-4 text-primary" />
                             )}
                           </div>
-                          <p className="text-sm text-gray-600 mt-1">{option.description}</p>
+                          <p className="text-sm text-muted-foreground mt-1">{option.description}</p>
                         </div>
                       </div>
                     </div>
@@ -390,7 +390,7 @@ export default function TemplateEditDialog({
                 {/* Selected Types Summary */}
                 {formData.templateConfig.questionTypes.length > 0 && (
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="text-sm text-gray-600">Selected:</span>
+                    <span className="text-sm text-muted-foreground">Selected:</span>
                     {formData.templateConfig.questionTypes.map((type) => {
                       const option = questionTypeOptions.find(opt => opt.value === type)
                       return (
@@ -402,7 +402,7 @@ export default function TemplateEditDialog({
                               e.stopPropagation()
                               handleQuestionTypeToggle(type)
                             }}
-                            className="ml-1 hover:bg-gray-300 rounded-full p-0.5"
+                            className="ml-1 hover:bg-muted/80 rounded-full p-0.5"
                           >
                             <X className="h-3 w-3" />
                           </button>

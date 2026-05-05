@@ -122,7 +122,7 @@ export function ImageCropper({
 					<DialogTitle>Crop Image</DialogTitle>
 				</DialogHeader>
 
-				<div className="flex items-center justify-center bg-gray-100 rounded-lg p-4 min-h-[300px] max-h-[60vh] overflow-auto">
+				<div className="flex items-center justify-center bg-muted rounded-lg p-4 min-h-[300px] max-h-[60vh] overflow-auto">
 					<ReactCrop
 						crop={crop}
 						onChange={(_, percentCrop) => setCrop(percentCrop)}

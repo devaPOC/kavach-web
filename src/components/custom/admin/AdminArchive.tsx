@@ -210,12 +210,12 @@ export default function AdminArchive() {
 
   const getStatusBadge = (status: string) => {
     const statusConfig = {
-      pending: { color: 'bg-yellow-100 text-yellow-800', text: 'Pending' },
-      assigned: { color: 'bg-blue-100 text-blue-800', text: 'Assigned' },
-      accepted: { color: 'bg-green-100 text-green-800', text: 'Accepted' },
-      in_progress: { color: 'bg-green-100 text-green-800', text: 'In Progress' },
-      completed: { color: 'bg-emerald-100 text-emerald-800', text: 'Completed' },
-      rejected: { color: 'bg-red-100 text-red-800', text: 'Rejected' },
+      pending: { color: 'bg-accent/10 text-accent', text: 'Pending' },
+      assigned: { color: 'bg-primary/10 text-primary', text: 'Assigned' },
+      accepted: { color: 'bg-secondary/10 text-secondary', text: 'Accepted' },
+      in_progress: { color: 'bg-secondary/10 text-secondary', text: 'In Progress' },
+      completed: { color: 'bg-secondary/10 text-secondary', text: 'Completed' },
+      rejected: { color: 'bg-destructive/10 text-destructive', text: 'Rejected' },
     };
 
     const config = statusConfig[status as keyof typeof statusConfig] || statusConfig.pending;
@@ -224,11 +224,11 @@ export default function AdminArchive() {
 
   const getPriorityBadge = (priority: string) => {
     const priorityConfig = {
-      emergency: { color: 'bg-red-100 text-red-800 border-red-300', text: 'Emergency' },
-      urgent: { color: 'bg-orange-100 text-orange-800 border-orange-300', text: 'Urgent' },
-      high: { color: 'bg-yellow-100 text-yellow-800 border-yellow-300', text: 'High' },
-      normal: { color: 'bg-green-100 text-green-800 border-green-300', text: 'Normal' },
-      low: { color: 'bg-gray-100 text-gray-800 border-gray-300', text: 'Low' },
+      emergency: { color: 'bg-destructive/10 text-destructive border-destructive', text: 'Emergency' },
+      urgent: { color: 'bg-accent/10 text-accent border-accent/50', text: 'Urgent' },
+      high: { color: 'bg-accent/10 text-accent border-accent/50', text: 'High' },
+      normal: { color: 'bg-secondary/10 text-secondary border-secondary/50', text: 'Normal' },
+      low: { color: 'bg-muted text-foreground border-border', text: 'Low' },
     };
 
     const config = priorityConfig[priority as keyof typeof priorityConfig] || priorityConfig.normal;
@@ -237,8 +237,8 @@ export default function AdminArchive() {
 
   const getArchiveReasonBadge = (reason: string) => {
     const reasonConfig = {
-      user_deleted: { color: 'bg-red-100 text-red-800', text: 'User Deleted' },
-      auto_completed: { color: 'bg-blue-100 text-blue-800', text: 'Auto Archived' },
+      user_deleted: { color: 'bg-destructive/10 text-destructive', text: 'User Deleted' },
+      auto_completed: { color: 'bg-primary/10 text-primary', text: 'Auto Archived' },
     };
 
     const config = reasonConfig[reason as keyof typeof reasonConfig] || reasonConfig.auto_completed;
@@ -249,7 +249,7 @@ export default function AdminArchive() {
     return (
       <div className="space-y-6">
         <div className="text-center py-8">
-          <p className="text-gray-500">Loading archived requests...</p>
+          <p className="text-muted-foreground">Loading archived requests...</p>
         </div>
       </div>
     );
@@ -261,9 +261,9 @@ export default function AdminArchive() {
         <Card>
           <CardContent className="pt-6">
             <div className="text-center py-8">
-              <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
-              <p className="text-red-600 font-medium">Error loading archived requests</p>
-              <p className="text-gray-500 text-sm mt-2">{error}</p>
+              <AlertCircle className="h-12 w-12 text-destructive mx-auto mb-4" />
+              <p className="text-destructive font-medium">Error loading archived requests</p>
+              <p className="text-muted-foreground text-sm mt-2">{error}</p>
               <Button
                 onClick={fetchArchivedRequests}
                 className="mt-4"
@@ -282,8 +282,8 @@ export default function AdminArchive() {
     <div className="space-y-6">
       <div className="flex justify-between items-start">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">Archive Management</h2>
-          <p className="text-gray-600">Manage archived service requests and cleanup completed tasks</p>
+          <h2 className="text-2xl font-bold text-foreground">Archive Management</h2>
+          <p className="text-muted-foreground">Manage archived service requests and cleanup completed tasks</p>
         </div>
         <div className="flex gap-2">
           <Button
@@ -308,10 +308,10 @@ export default function AdminArchive() {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Total Archived</p>
-                  <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
+                  <p className="text-sm font-medium text-muted-foreground">Total Archived</p>
+                  <p className="text-2xl font-bold text-foreground">{stats.total}</p>
                 </div>
-                <Archive className="h-8 w-8 text-gray-600" />
+                <Archive className="h-8 w-8 text-muted-foreground" />
               </div>
             </CardContent>
           </Card>
@@ -320,10 +320,10 @@ export default function AdminArchive() {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">User Deleted</p>
-                  <p className="text-2xl font-bold text-red-600">{stats.userDeleted}</p>
+                  <p className="text-sm font-medium text-muted-foreground">User Deleted</p>
+                  <p className="text-2xl font-bold text-destructive">{stats.userDeleted}</p>
                 </div>
-                <User className="h-8 w-8 text-red-600" />
+                <User className="h-8 w-8 text-destructive" />
               </div>
             </CardContent>
           </Card>
@@ -332,10 +332,10 @@ export default function AdminArchive() {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Auto Completed</p>
-                  <p className="text-2xl font-bold text-blue-600">{stats.autoCompleted}</p>
+                  <p className="text-sm font-medium text-muted-foreground">Auto Completed</p>
+                  <p className="text-2xl font-bold text-primary">{stats.autoCompleted}</p>
                 </div>
-                <Clock className="h-8 w-8 text-blue-600" />
+                <Clock className="h-8 w-8 text-primary" />
               </div>
             </CardContent>
           </Card>
@@ -344,10 +344,10 @@ export default function AdminArchive() {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Current Page</p>
-                  <p className="text-2xl font-bold text-green-600">{requests.length}</p>
+                  <p className="text-sm font-medium text-muted-foreground">Current Page</p>
+                  <p className="text-2xl font-bold text-secondary">{requests.length}</p>
                 </div>
-                <BarChart3 className="h-8 w-8 text-green-600" />
+                <BarChart3 className="h-8 w-8 text-secondary" />
               </div>
             </CardContent>
           </Card>
@@ -356,10 +356,10 @@ export default function AdminArchive() {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Total Pages</p>
-                  <p className="text-2xl font-bold text-purple-600">{totalPages}</p>
+                  <p className="text-sm font-medium text-muted-foreground">Total Pages</p>
+                  <p className="text-2xl font-bold text-accent">{totalPages}</p>
                 </div>
-                <Calendar className="h-8 w-8 text-purple-600" />
+                <Calendar className="h-8 w-8 text-accent" />
               </div>
             </CardContent>
           </Card>
@@ -377,7 +377,7 @@ export default function AdminArchive() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div>
-              <label className="text-sm font-medium text-gray-600">Status</label>
+              <label className="text-sm font-medium text-muted-foreground">Status</label>
               <Select value={statusFilter} onValueChange={setStatusFilter}>
                 <SelectTrigger>
                   <SelectValue placeholder="All Statuses" />
@@ -394,7 +394,7 @@ export default function AdminArchive() {
             </div>
 
             <div>
-              <label className="text-sm font-medium text-gray-600">Priority</label>
+              <label className="text-sm font-medium text-muted-foreground">Priority</label>
               <Select value={priorityFilter} onValueChange={setPriorityFilter}>
                 <SelectTrigger>
                   <SelectValue placeholder="All Priorities" />
@@ -411,7 +411,7 @@ export default function AdminArchive() {
             </div>
 
             <div>
-              <label className="text-sm font-medium text-gray-600">Archive Reason</label>
+              <label className="text-sm font-medium text-muted-foreground">Archive Reason</label>
               <Select value={archiveReasonFilter} onValueChange={setArchiveReasonFilter}>
                 <SelectTrigger>
                   <SelectValue placeholder="All Reasons" />
@@ -425,7 +425,7 @@ export default function AdminArchive() {
             </div>
 
             <div>
-              <label className="text-sm font-medium text-gray-600">Search</label>
+              <label className="text-sm font-medium text-muted-foreground">Search</label>
               <Input
                 placeholder="Search by title, customer, expert..."
                 value={searchTerm}
@@ -436,7 +436,7 @@ export default function AdminArchive() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
             <div>
-              <label className="text-sm font-medium text-gray-600">Date From</label>
+              <label className="text-sm font-medium text-muted-foreground">Date From</label>
               <Input
                 type="date"
                 value={dateFromFilter}
@@ -444,7 +444,7 @@ export default function AdminArchive() {
               />
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-600">Date To</label>
+              <label className="text-sm font-medium text-muted-foreground">Date To</label>
               <Input
                 type="date"
                 value={dateToFilter}
@@ -470,23 +470,23 @@ export default function AdminArchive() {
           <div className="space-y-4">
             {requests.length === 0 ? (
               <div className="text-center py-8">
-                <Archive className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-500 font-medium">No archived requests found</p>
-                <p className="text-gray-400 text-sm">Try adjusting your filters</p>
+                <Archive className="h-12 w-12 text-muted-foreground/80 mx-auto mb-4" />
+                <p className="text-muted-foreground font-medium">No archived requests found</p>
+                <p className="text-muted-foreground/80 text-sm">Try adjusting your filters</p>
               </div>
             ) : (
               requests.map((request) => (
-                <div key={request.id} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition-colors">
+                <div key={request.id} className="border border-border rounded-lg p-4 hover:bg-muted/50 transition-colors">
                   <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
                     <div className="flex-1 space-y-2">
                       <div className="flex items-center gap-2 flex-wrap">
-                        <h3 className="font-semibold text-gray-900">{request.title}</h3>
+                        <h3 className="font-semibold text-foreground">{request.title}</h3>
                         {getStatusBadge(request.status)}
                         {getPriorityBadge(request.priority)}
                         {getArchiveReasonBadge(request.archiveReason)}
                       </div>
 
-                      <div className="text-sm text-gray-600 space-y-1">
+                      <div className="text-sm text-muted-foreground space-y-1">
                         <div className="flex items-center gap-2">
                           <User size={14} />
                           <span>Customer: {request.customerName || 'Unknown'} ({request.customerEmail || 'N/A'})</span>
@@ -554,7 +554,7 @@ export default function AdminArchive() {
                 Previous
               </Button>
 
-              <span className="text-sm text-gray-600">
+              <span className="text-sm text-muted-foreground">
                 Page {currentPage} of {totalPages}
               </span>
 
@@ -582,45 +582,45 @@ export default function AdminArchive() {
             <div className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-sm font-medium text-gray-600">Original ID</label>
+                  <label className="text-sm font-medium text-muted-foreground">Original ID</label>
                   <p className="text-sm font-mono">{selectedRequest.originalId}</p>
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-gray-600">Archive Reason</label>
+                  <label className="text-sm font-medium text-muted-foreground">Archive Reason</label>
                   <div className="mt-1">{getArchiveReasonBadge(selectedRequest.archiveReason)}</div>
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-sm font-medium text-gray-600">Customer</label>
+                  <label className="text-sm font-medium text-muted-foreground">Customer</label>
                   <p className="text-sm">{selectedRequest.customerName || 'Unknown'}</p>
-                  <p className="text-sm text-gray-500">{selectedRequest.customerEmail || 'N/A'}</p>
+                  <p className="text-sm text-muted-foreground">{selectedRequest.customerEmail || 'N/A'}</p>
                 </div>
                 {selectedRequest.expertName && (
                   <div>
-                    <label className="text-sm font-medium text-gray-600">Expert</label>
+                    <label className="text-sm font-medium text-muted-foreground">Expert</label>
                     <p className="text-sm">{selectedRequest.expertName}</p>
-                    <p className="text-sm text-gray-500">{selectedRequest.expertEmail}</p>
+                    <p className="text-sm text-muted-foreground">{selectedRequest.expertEmail}</p>
                   </div>
                 )}
               </div>
 
               <div>
-                <label className="text-sm font-medium text-gray-600">Title</label>
+                <label className="text-sm font-medium text-muted-foreground">Title</label>
                 <p className="text-sm font-medium">{selectedRequest.title}</p>
               </div>
 
               {selectedRequest.description && (
                 <div>
-                  <label className="text-sm font-medium text-gray-600">Description</label>
-                  <p className="text-sm bg-gray-50 p-3 rounded-lg whitespace-pre-wrap">
+                  <label className="text-sm font-medium text-muted-foreground">Description</label>
+                  <p className="text-sm bg-muted/50 p-3 rounded-lg whitespace-pre-wrap">
                     {selectedRequest.description}
                   </p>
                 </div>
               )}
 
-              <div className="grid grid-cols-2 gap-4 text-xs text-gray-500 pt-4 border-t">
+              <div className="grid grid-cols-2 gap-4 text-xs text-muted-foreground pt-4 border-t">
                 <div>
                   <label className="font-medium">Created</label>
                   <p>{format(new Date(selectedRequest.createdAt), 'MMM dd, yyyy HH:mm')}</p>
@@ -650,10 +650,10 @@ export default function AdminArchive() {
           </DialogHeader>
 
           {selectedRequest && (
-            <div className="bg-gray-50 p-3 rounded-lg">
+            <div className="bg-muted/50 p-3 rounded-lg">
               <h4 className="font-medium">{selectedRequest.title}</h4>
-              <p className="text-sm text-gray-600">Customer: {selectedRequest.customerName}</p>
-              <p className="text-sm text-gray-600">Archived: {format(new Date(selectedRequest.archivedAt), 'MMM dd, yyyy HH:mm')}</p>
+              <p className="text-sm text-muted-foreground">Customer: {selectedRequest.customerName}</p>
+              <p className="text-sm text-muted-foreground">Archived: {format(new Date(selectedRequest.archivedAt), 'MMM dd, yyyy HH:mm')}</p>
             </div>
           )}
 

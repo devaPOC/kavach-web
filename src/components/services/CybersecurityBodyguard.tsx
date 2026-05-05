@@ -57,35 +57,35 @@ export function CybersecurityBodyguard({ onClose }: CybersecurityBodyguardProps)
     <div className="w-full">
       <form action={handleSubmit} className="space-y-5">
         <DialogHeader className="space-y-2 pb-2">
-          <DialogTitle className="text-xl font-semibold text-slate-800">
+          <DialogTitle className="text-xl font-semibold text-foreground">
             Cybersecurity Bodyguard
           </DialogTitle>
-          <DialogDescription className="text-slate-600 text-sm">
+          <DialogDescription className="text-muted-foreground text-sm">
             24/7 personal cybersecurity protection with dedicated expert monitoring
           </DialogDescription>
         </DialogHeader>
 
-        <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-          <p className="text-sm font-medium text-slate-700 mb-1">What to expect</p>
-          <p className="text-sm text-slate-600">
+        <div className="bg-muted/50 border border-border rounded-lg p-4">
+          <p className="text-sm font-medium text-foreground/80 mb-1">What to expect</p>
+          <p className="text-sm text-muted-foreground">
             Personal security monitoring dashboard and dedicated support team assignment
           </p>
         </div>
 
         <div className="space-y-5">
           <div className="space-y-4">
-            <h3 className="text-sm font-medium text-slate-800 pb-2 border-b border-slate-100">
+            <h3 className="text-sm font-medium text-foreground pb-2 border-b border-border/50">
               Protection Level
             </h3>
             <div className="space-y-2">
-              <Label htmlFor="protectionLevel" className="text-sm font-medium text-slate-700">
-                Select Level <span className="text-slate-400">*</span>
+              <Label htmlFor="protectionLevel" className="text-sm font-medium text-foreground/80">
+                Select Level <span className="text-muted-foreground/80">*</span>
               </Label>
               <select
                 id="protectionLevel"
                 name="protectionLevel"
                 required
-                className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-slate-400 focus:ring-1 focus:ring-slate-400 bg-white"
+                className="w-full border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-border/80 focus:ring-1 focus:ring-ring bg-card"
               >
                 <option value="">Select protection level</option>
                 <option value="premium">Premium - Basic 24/7 monitoring and alerts</option>
@@ -99,8 +99,8 @@ export function CybersecurityBodyguard({ onClose }: CybersecurityBodyguardProps)
           </div>
 
           <div className="space-y-3">
-            <h3 className="text-sm font-medium text-slate-800 pb-2 border-b border-slate-100">
-              Assets to Monitor <span className="text-slate-400">*</span>
+            <h3 className="text-sm font-medium text-foreground pb-2 border-b border-border/50">
+              Assets to Monitor <span className="text-muted-foreground/80">*</span>
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
               {assetTypes.map((asset) => (
@@ -108,8 +108,8 @@ export function CybersecurityBodyguard({ onClose }: CybersecurityBodyguardProps)
                   key={asset.id}
                   onClick={() => handleAssetChange(asset.id, !selectedAssets.includes(asset.id))}
                   className={`flex items-center gap-2 p-2.5 border rounded-lg cursor-pointer transition-all text-sm ${selectedAssets.includes(asset.id)
-                      ? 'border-slate-600 bg-slate-700 text-white'
-                      : 'border-slate-200 bg-white text-slate-700 hover:border-slate-400'
+                      ? 'border-border/90 bg-muted/80 text-white'
+                      : 'border-border bg-card text-foreground/80 hover:border-border/80'
                     }`}
                 >
                   <Checkbox
@@ -121,18 +121,18 @@ export function CybersecurityBodyguard({ onClose }: CybersecurityBodyguardProps)
               ))}
             </div>
             {selectedAssets.length === 0 && (
-              <p className="text-xs text-slate-500">Please select at least one asset type</p>
+              <p className="text-xs text-muted-foreground">Please select at least one asset type</p>
             )}
 
             <div className="space-y-2 mt-4">
-              <Label htmlFor="assetDetails" className="text-sm font-medium text-slate-700">
-                Asset Details <span className="text-slate-400">*</span>
+              <Label htmlFor="assetDetails" className="text-sm font-medium text-foreground/80">
+                Asset Details <span className="text-muted-foreground/80">*</span>
               </Label>
               <Textarea
                 id="assetDetails"
                 name="assetDetails"
                 placeholder="Provide details about your assets: number of devices, critical systems, important accounts, specific concerns..."
-                className="min-h-[80px] resize-none border-slate-200 focus:border-slate-400 focus:ring-slate-400 rounded-lg"
+                className="min-h-[80px] resize-none border-border focus:border-border/80 focus:ring-ring rounded-lg"
                 required
                 rows={4}
               />
@@ -140,13 +140,13 @@ export function CybersecurityBodyguard({ onClose }: CybersecurityBodyguardProps)
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-sm font-medium text-slate-800 pb-2 border-b border-slate-100">
+            <h3 className="text-sm font-medium text-foreground pb-2 border-b border-border/50">
               Contact Information
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="primaryPhone" className="text-sm font-medium text-slate-700">
-                  Primary Phone <span className="text-slate-400">*</span>
+                <Label htmlFor="primaryPhone" className="text-sm font-medium text-foreground/80">
+                  Primary Phone <span className="text-muted-foreground/80">*</span>
                 </Label>
                 <PhoneInput
                   id="primaryPhone"
@@ -157,8 +157,8 @@ export function CybersecurityBodyguard({ onClose }: CybersecurityBodyguardProps)
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="primaryEmail" className="text-sm font-medium text-slate-700">
-                  Primary Email <span className="text-slate-400">*</span>
+                <Label htmlFor="primaryEmail" className="text-sm font-medium text-foreground/80">
+                  Primary Email <span className="text-muted-foreground/80">*</span>
                 </Label>
                 <Input
                   id="primaryEmail"
@@ -166,30 +166,30 @@ export function CybersecurityBodyguard({ onClose }: CybersecurityBodyguardProps)
                   type="email"
                   placeholder="your.email@example.com"
                   required
-                  className="border-slate-200 focus:border-slate-400 focus:ring-slate-400"
+                  className="border-border focus:border-border/80 focus:ring-ring"
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="timezone" className="text-sm font-medium text-slate-700">
-                  Time Zone <span className="text-slate-400">*</span>
+                <Label htmlFor="timezone" className="text-sm font-medium text-foreground/80">
+                  Time Zone <span className="text-muted-foreground/80">*</span>
                 </Label>
                 <Input
                   id="timezone"
                   name="timezone"
                   placeholder="e.g., EST, PST, GMT+2"
                   required
-                  className="border-slate-200 focus:border-slate-400 focus:ring-slate-400"
+                  className="border-border focus:border-border/80 focus:ring-ring"
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="preferredContactMethod" className="text-sm font-medium text-slate-700">
-                  Alert Method <span className="text-slate-400">*</span>
+                <Label htmlFor="preferredContactMethod" className="text-sm font-medium text-foreground/80">
+                  Alert Method <span className="text-muted-foreground/80">*</span>
                 </Label>
                 <select
                   id="preferredContactMethod"
                   name="preferredContactMethod"
                   required
-                  className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-slate-400 focus:ring-1 focus:ring-slate-400 bg-white"
+                  className="w-full border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-border/80 focus:ring-1 focus:ring-ring bg-card"
                 >
                   <option value="">Select method</option>
                   <option value="phone-call">Phone Call</option>
@@ -203,37 +203,37 @@ export function CybersecurityBodyguard({ onClose }: CybersecurityBodyguardProps)
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-sm font-medium text-slate-800 pb-2 border-b border-slate-100">
+            <h3 className="text-sm font-medium text-foreground pb-2 border-b border-border/50">
               Emergency Contact
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="emergencyName1" className="text-sm font-medium text-slate-700">
-                  Name <span className="text-slate-400">*</span>
+                <Label htmlFor="emergencyName1" className="text-sm font-medium text-foreground/80">
+                  Name <span className="text-muted-foreground/80">*</span>
                 </Label>
                 <Input
                   id="emergencyName1"
                   name="emergencyName1"
                   placeholder="Full name"
                   required
-                  className="border-slate-200 focus:border-slate-400 focus:ring-slate-400"
+                  className="border-border focus:border-border/80 focus:ring-ring"
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="emergencyRelation1" className="text-sm font-medium text-slate-700">
-                  Relationship <span className="text-slate-400">*</span>
+                <Label htmlFor="emergencyRelation1" className="text-sm font-medium text-foreground/80">
+                  Relationship <span className="text-muted-foreground/80">*</span>
                 </Label>
                 <Input
                   id="emergencyRelation1"
                   name="emergencyRelation1"
                   placeholder="e.g., Spouse, IT Manager"
                   required
-                  className="border-slate-200 focus:border-slate-400 focus:ring-slate-400"
+                  className="border-border focus:border-border/80 focus:ring-ring"
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="emergencyPhone1" className="text-sm font-medium text-slate-700">
-                  Phone <span className="text-slate-400">*</span>
+                <Label htmlFor="emergencyPhone1" className="text-sm font-medium text-foreground/80">
+                  Phone <span className="text-muted-foreground/80">*</span>
                 </Label>
                 <PhoneInput
                   id="emergencyPhone1"
@@ -247,39 +247,39 @@ export function CybersecurityBodyguard({ onClose }: CybersecurityBodyguardProps)
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="securityPreferences" className="text-sm font-medium text-slate-700">
-              Security Preferences <span className="text-slate-400">*</span>
+            <Label htmlFor="securityPreferences" className="text-sm font-medium text-foreground/80">
+              Security Preferences <span className="text-muted-foreground/80">*</span>
             </Label>
             <Textarea
               id="securityPreferences"
               name="securityPreferences"
               placeholder="Describe your preferences: response protocols, privacy concerns, compliance requirements, tools you currently use..."
-              className="min-h-[80px] resize-none border-slate-200 focus:border-slate-400 focus:ring-slate-400 rounded-lg"
+              className="min-h-[80px] resize-none border-border focus:border-border/80 focus:ring-ring rounded-lg"
               required
               rows={4}
             />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="additionalRequirements" className="text-sm font-medium text-slate-700">
-              Additional Requirements <span className="text-slate-400">(Optional)</span>
+            <Label htmlFor="additionalRequirements" className="text-sm font-medium text-foreground/80">
+              Additional Requirements <span className="text-muted-foreground/80">(Optional)</span>
             </Label>
             <Textarea
               id="additionalRequirements"
               name="additionalRequirements"
               placeholder="Any special circumstances or specific needs"
-              className="min-h-[60px] resize-none border-slate-200 focus:border-slate-400 focus:ring-slate-400 rounded-lg"
+              className="min-h-[60px] resize-none border-border focus:border-border/80 focus:ring-ring rounded-lg"
               rows={2}
             />
           </div>
         </div>
 
-        <DialogFooter className="pt-4 border-t border-slate-100 flex gap-3">
+        <DialogFooter className="pt-4 border-t border-border/50 flex gap-3">
           <DialogClose asChild>
             <Button
               variant="outline"
               type="button"
-              className="border-slate-200 text-slate-600 hover:bg-slate-50"
+              className="border-border text-muted-foreground hover:bg-muted/50"
             >
               Cancel
             </Button>
@@ -287,7 +287,7 @@ export function CybersecurityBodyguard({ onClose }: CybersecurityBodyguardProps)
           <Button
             type="submit"
             disabled={isSubmitting || selectedAssets.length === 0}
-            className="bg-slate-800 hover:bg-slate-900 text-white"
+            className="bg-secondary hover:bg-primary text-white"
           >
             {isSubmitting ? 'Submitting...' : 'Activate Protection'}
           </Button>

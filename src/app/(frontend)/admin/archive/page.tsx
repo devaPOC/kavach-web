@@ -50,7 +50,7 @@ export default function AdminArchivePage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-muted/50">
         <div className="container mx-auto p-6">
           <Card>
             <CardContent className="flex items-center justify-center p-6">
@@ -64,7 +64,7 @@ export default function AdminArchivePage() {
 
   if (error || !user) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-muted/50">
         <div className="container mx-auto p-6">
           <Alert variant="destructive">
             <AlertDescription>{error || 'Failed to load user data'}</AlertDescription>
@@ -75,7 +75,7 @@ export default function AdminArchivePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-muted/50">
       <Navbar
         user={user}
         showProfileMenu={true}

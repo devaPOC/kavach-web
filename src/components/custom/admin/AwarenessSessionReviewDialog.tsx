@@ -131,11 +131,11 @@ export default function AwarenessSessionReviewDialog({
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             {action === 'approve' ? (
-              <CheckCircle className="h-5 w-5 text-green-600" />
+              <CheckCircle className="h-5 w-5 text-secondary" />
             ) : action === 'reject' ? (
-              <XCircle className="h-5 w-5 text-red-600" />
+              <XCircle className="h-5 w-5 text-destructive" />
             ) : (
-              <AlertTriangle className="h-5 w-5 text-yellow-600" />
+              <AlertTriangle className="h-5 w-5 text-accent" />
             )}
             Review Awareness Session Request
           </DialogTitle>
@@ -146,23 +146,23 @@ export default function AwarenessSessionReviewDialog({
 
         <div className="space-y-6">
           {/* Request Summary */}
-          <div className="p-4 bg-gray-50 rounded-lg space-y-2">
-            <h4 className="font-medium text-gray-900">Request Summary</h4>
+          <div className="p-4 bg-muted/50 rounded-lg space-y-2">
+            <h4 className="font-medium text-foreground">Request Summary</h4>
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div>
-                <span className="text-gray-500">Organization:</span>
+                <span className="text-muted-foreground">Organization:</span>
                 <div className="font-medium">{request.organizationName}</div>
               </div>
               <div>
-                <span className="text-gray-500">Session Date:</span>
+                <span className="text-muted-foreground">Session Date:</span>
                 <div className="font-medium">{new Date(request.sessionDate).toLocaleDateString()}</div>
               </div>
               <div>
-                <span className="text-gray-500">Subject:</span>
+                <span className="text-muted-foreground">Subject:</span>
                 <div className="font-medium">{request.subject}</div>
               </div>
               <div>
-                <span className="text-gray-500">Audience Size:</span>
+                <span className="text-muted-foreground">Audience Size:</span>
                 <div className="font-medium">{request.audienceSize} people</div>
               </div>
             </div>
@@ -175,18 +175,18 @@ export default function AwarenessSessionReviewDialog({
               <div className="grid grid-cols-2 gap-4">
                 <Button
                   variant="outline"
-                  className="h-20 flex flex-col items-center justify-center gap-2 border-green-200 hover:bg-green-50"
+                  className="h-20 flex flex-col items-center justify-center gap-2 border-secondary/50 hover:bg-secondary/10"
                   onClick={() => setAction('approve')}
                 >
-                  <CheckCircle className="h-6 w-6 text-green-600" />
+                  <CheckCircle className="h-6 w-6 text-secondary" />
                   <span>Approve Request</span>
                 </Button>
                 <Button
                   variant="outline"
-                  className="h-20 flex flex-col items-center justify-center gap-2 border-red-200 hover:bg-red-50"
+                  className="h-20 flex flex-col items-center justify-center gap-2 border-destructive hover:bg-destructive/10"
                   onClick={() => setAction('reject')}
                 >
-                  <XCircle className="h-6 w-6 text-red-600" />
+                  <XCircle className="h-6 w-6 text-destructive" />
                   <span>Reject Request</span>
                 </Button>
               </div>
@@ -196,9 +196,9 @@ export default function AwarenessSessionReviewDialog({
           {/* Approve Action */}
           {action === 'approve' && (
             <div className="space-y-4">
-              <div className="flex items-center gap-2 p-3 bg-green-50 border border-green-200 rounded-md">
-                <CheckCircle className="h-4 w-4 text-green-600" />
-                <span className="text-sm text-green-700">Approving request and assigning to expert</span>
+              <div className="flex items-center gap-2 p-3 bg-secondary/10 border border-secondary/50 rounded-md">
+                <CheckCircle className="h-4 w-4 text-secondary" />
+                <span className="text-sm text-secondary">Approving request and assigning to expert</span>
               </div>
 
               <div className="space-y-2">
@@ -233,9 +233,9 @@ export default function AwarenessSessionReviewDialog({
           {/* Reject Action */}
           {action === 'reject' && (
             <div className="space-y-4">
-              <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-md">
-                <XCircle className="h-4 w-4 text-red-600" />
-                <span className="text-sm text-red-700">Rejecting request - reason will be sent to requester</span>
+              <div className="flex items-center gap-2 p-3 bg-destructive/10 border border-destructive rounded-md">
+                <XCircle className="h-4 w-4 text-destructive" />
+                <span className="text-sm text-destructive">Rejecting request - reason will be sent to requester</span>
               </div>
 
               <div className="space-y-2">
@@ -248,7 +248,7 @@ export default function AwarenessSessionReviewDialog({
                   rows={4}
                   required
                 />
-                <p className="text-xs text-gray-500">
+                <p className="text-xs text-muted-foreground">
                   This reason will be included in the notification email to the requester
                 </p>
               </div>
@@ -257,8 +257,8 @@ export default function AwarenessSessionReviewDialog({
 
           {/* Error Display */}
           {error && (
-            <div className="p-3 bg-red-50 border border-red-200 rounded-md">
-              <p className="text-sm text-red-600">{error}</p>
+            <div className="p-3 bg-destructive/10 border border-destructive rounded-md">
+              <p className="text-sm text-destructive">{error}</p>
             </div>
           )}
         </div>
@@ -271,7 +271,7 @@ export default function AwarenessSessionReviewDialog({
             <Button
               onClick={handleSubmit}
               disabled={isSubmitting}
-              className={action === 'approve' ? 'bg-green-600 hover:bg-green-700' : 'bg-red-600 hover:bg-red-700'}
+              className={action === 'approve' ? 'bg-secondary hover:bg-secondary' : 'bg-destructive hover:bg-destructive'}
             >
               {isSubmitting ? 'Processing...' : action === 'approve' ? 'Approve & Assign' : 'Reject Request'}
             </Button>

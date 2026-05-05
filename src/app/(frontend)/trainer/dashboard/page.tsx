@@ -39,7 +39,7 @@ export default function TrainerDashboard() {
 	if (loading || !user) {
 		return (
 			<div className="flex items-center justify-center min-h-[50vh]">
-				<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600"></div>
+				<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary/50"></div>
 			</div>
 		);
 	}
@@ -63,15 +63,15 @@ export default function TrainerDashboard() {
 			<div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
 				<div>
 					<div className="flex items-center gap-3 mb-1">
-						<h1 className="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h1>
+						<h1 className="text-3xl font-bold tracking-tight text-foreground">Dashboard</h1>
 						<TrainerBadge />
 					</div>
-					<p className="text-gray-500">
-						Welcome back, <span className="font-semibold text-gray-900">{user.firstName}</span>. Here's what's happening today.
+					<p className="text-muted-foreground">
+						Welcome back, <span className="font-semibold text-foreground">{user.firstName}</span>. Here's what's happening today.
 					</p>
 				</div>
 				<div className="flex gap-3">
-					<Button onClick={() => router.push('/trainer/awareness-sessions')} className="bg-purple-600 hover:bg-purple-700">
+					<Button onClick={() => router.push('/trainer/awareness-sessions')} className="bg-primary hover:bg-primary">
 						View Requests
 						<ChevronRight className="ml-2 h-4 w-4" />
 					</Button>
@@ -82,45 +82,45 @@ export default function TrainerDashboard() {
 			<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
 				<Card className="border-l-4 border-l-purple-500 shadow-sm hover:shadow-md transition-all">
 					<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-						<CardTitle className="text-sm font-medium text-gray-600">Total Requests</CardTitle>
-						<Users className="h-4 w-4 text-purple-500" />
+						<CardTitle className="text-sm font-medium text-muted-foreground">Total Requests</CardTitle>
+						<Users className="h-4 w-4 text-primary" />
 					</CardHeader>
 					<CardContent>
-						<div className="text-2xl font-bold text-gray-900">{totalRequests}</div>
-						<p className="text-xs text-gray-500">Lifetime requests</p>
+						<div className="text-2xl font-bold text-foreground">{totalRequests}</div>
+						<p className="text-xs text-muted-foreground">Lifetime requests</p>
 					</CardContent>
 				</Card>
 
 				<Card className="border-l-4 border-l-green-500 shadow-sm hover:shadow-md transition-all">
 					<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-						<CardTitle className="text-sm font-medium text-gray-600">Confirmed</CardTitle>
-						<CheckCircle className="h-4 w-4 text-green-500" />
+						<CardTitle className="text-sm font-medium text-muted-foreground">Confirmed</CardTitle>
+						<CheckCircle className="h-4 w-4 text-secondary" />
 					</CardHeader>
 					<CardContent>
-						<div className="text-2xl font-bold text-gray-900">{confirmedSessions}</div>
-						<p className="text-xs text-gray-500">{acceptanceRate}% acceptance rate</p>
+						<div className="text-2xl font-bold text-foreground">{confirmedSessions}</div>
+						<p className="text-xs text-muted-foreground">{acceptanceRate}% acceptance rate</p>
 					</CardContent>
 				</Card>
 
 				<Card className="border-l-4 border-l-orange-500 shadow-sm hover:shadow-md transition-all">
 					<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-						<CardTitle className="text-sm font-medium text-gray-600">Pending</CardTitle>
-						<Clock className="h-4 w-4 text-orange-500" />
+						<CardTitle className="text-sm font-medium text-muted-foreground">Pending</CardTitle>
+						<Clock className="h-4 w-4 text-accent" />
 					</CardHeader>
 					<CardContent>
-						<div className="text-2xl font-bold text-gray-900">{pendingResponse}</div>
-						<p className="text-xs text-gray-500">Awaiting your response</p>
+						<div className="text-2xl font-bold text-foreground">{pendingResponse}</div>
+						<p className="text-xs text-muted-foreground">Awaiting your response</p>
 					</CardContent>
 				</Card>
 
 				<Card className="border-l-4 border-l-blue-500 shadow-sm hover:shadow-md transition-all">
 					<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-						<CardTitle className="text-sm font-medium text-gray-600">This Month</CardTitle>
-						<Calendar className="h-4 w-4 text-blue-500" />
+						<CardTitle className="text-sm font-medium text-muted-foreground">This Month</CardTitle>
+						<Calendar className="h-4 w-4 text-primary" />
 					</CardHeader>
 					<CardContent>
-						<div className="text-2xl font-bold text-gray-900">{thisMonthSessions}</div>
-						<p className="text-xs text-gray-500">Sessions scheduled</p>
+						<div className="text-2xl font-bold text-foreground">{thisMonthSessions}</div>
+						<p className="text-xs text-muted-foreground">Sessions scheduled</p>
 					</CardContent>
 				</Card>
 			</div>
@@ -138,7 +138,7 @@ export default function TrainerDashboard() {
 						<CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 							<Button
 								variant="outline"
-								className="h-20 flex flex-col items-center justify-center gap-2 hover:border-purple-500 hover:text-purple-600 hover:bg-purple-50 transition-all"
+								className="h-20 flex flex-col items-center justify-center gap-2 hover:border-primary/50 hover:text-accent hover:bg-accent/10 transition-all"
 								onClick={() => router.push('/trainer/resources')}
 							>
 								<BookOpen className="h-6 w-6" />
@@ -146,7 +146,7 @@ export default function TrainerDashboard() {
 							</Button>
 							<Button
 								variant="outline"
-								className="h-20 flex flex-col items-center justify-center gap-2 hover:border-green-500 hover:text-green-600 hover:bg-green-50 transition-all"
+								className="h-20 flex flex-col items-center justify-center gap-2 hover:border-secondary/50 hover:text-secondary hover:bg-secondary/10 transition-all"
 								onClick={() => router.push('/trainer/awareness-sessions')}
 							>
 								<Users className="h-6 w-6" />
@@ -154,7 +154,7 @@ export default function TrainerDashboard() {
 							</Button>
 							<Button
 								variant="outline"
-								className="h-20 flex flex-col items-center justify-center gap-2 hover:border-blue-500 hover:text-blue-600 hover:bg-blue-50 transition-all"
+								className="h-20 flex flex-col items-center justify-center gap-2 hover:border-primary/50 hover:text-primary hover:bg-primary/10 transition-all"
 								onClick={() => router.push('/trainer/schedule')}
 							>
 								<Calendar className="h-6 w-6" />
@@ -162,7 +162,7 @@ export default function TrainerDashboard() {
 							</Button>
 							<Button
 								variant="outline"
-								className="h-20 flex flex-col items-center justify-center gap-2 hover:border-gray-500 hover:text-gray-900 hover:bg-gray-50 transition-all"
+								className="h-20 flex flex-col items-center justify-center gap-2 hover:border-border/80 hover:text-foreground hover:bg-muted/50 transition-all"
 								onClick={() => router.push('/expert/dashboard')}
 							>
 								<TrendingUp className="h-6 w-6" />
@@ -179,12 +179,12 @@ export default function TrainerDashboard() {
 						<CardContent className="space-y-4">
 							<div className="space-y-2">
 								<div className="flex items-center justify-between text-sm">
-									<span className="text-gray-600">Confirmed</span>
+									<span className="text-muted-foreground">Confirmed</span>
 									<span className="font-medium">{confirmedSessions} / {totalRequests}</span>
 								</div>
-								<div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+								<div className="h-2 bg-muted rounded-full overflow-hidden">
 									<div
-										className="h-full bg-green-500 rounded-full"
+										className="h-full bg-secondary rounded-full"
 										style={{ width: `${acceptanceRate}%` }}
 									/>
 								</div>
@@ -192,12 +192,12 @@ export default function TrainerDashboard() {
 
 							<div className="space-y-2">
 								<div className="flex items-center justify-between text-sm">
-									<span className="text-gray-600">Pending</span>
+									<span className="text-muted-foreground">Pending</span>
 									<span className="font-medium">{pendingResponse}</span>
 								</div>
-								<div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+								<div className="h-2 bg-muted rounded-full overflow-hidden">
 									<div
-										className="h-full bg-orange-500 rounded-full"
+										className="h-full bg-accent rounded-full"
 										style={{ width: `${totalRequests > 0 ? (pendingResponse / totalRequests) * 100 : 0}%` }}
 									/>
 								</div>
@@ -210,30 +210,30 @@ export default function TrainerDashboard() {
 				<div className="md:col-span-3">
 					<Card className="h-full border-0 shadow-none bg-gradient-to-br from-purple-50 to-white">
 						<CardHeader>
-							<CardTitle className="text-purple-900">Trainer Privileges</CardTitle>
-							<CardDescription className="text-purple-700">Your exclusive benefits</CardDescription>
+							<CardTitle className="text-primary">Trainer Privileges</CardTitle>
+							<CardDescription className="text-primary">Your exclusive benefits</CardDescription>
 						</CardHeader>
 						<CardContent>
 							<ul className="space-y-4">
-								<li className="flex items-start gap-3 p-3 bg-white rounded-lg shadow-sm border border-purple-100">
-									<Award className="h-5 w-5 text-purple-600 mt-0.5" />
+								<li className="flex items-start gap-3 p-3 bg-card rounded-lg shadow-sm border border-primary/50">
+									<Award className="h-5 w-5 text-accent mt-0.5" />
 									<div>
-										<p className="font-medium text-purple-900">Official Recognition</p>
-										<p className="text-xs text-purple-700">Verified Kavach Trainer status</p>
+										<p className="font-medium text-primary">Official Recognition</p>
+										<p className="text-xs text-primary">Verified Kavach Trainer status</p>
 									</div>
 								</li>
-								<li className="flex items-start gap-3 p-3 bg-white rounded-lg shadow-sm border border-purple-100">
-									<BookOpen className="h-5 w-5 text-purple-600 mt-0.5" />
+								<li className="flex items-start gap-3 p-3 bg-card rounded-lg shadow-sm border border-primary/50">
+									<BookOpen className="h-5 w-5 text-accent mt-0.5" />
 									<div>
-										<p className="font-medium text-purple-900">Resource Access</p>
-										<p className="text-xs text-purple-700">Premium training materials</p>
+										<p className="font-medium text-primary">Resource Access</p>
+										<p className="text-xs text-primary">Premium training materials</p>
 									</div>
 								</li>
-								<li className="flex items-start gap-3 p-3 bg-white rounded-lg shadow-sm border border-purple-100">
-									<Users className="h-5 w-5 text-purple-600 mt-0.5" />
+								<li className="flex items-start gap-3 p-3 bg-card rounded-lg shadow-sm border border-primary/50">
+									<Users className="h-5 w-5 text-accent mt-0.5" />
 									<div>
-										<p className="font-medium text-purple-900">Network Growth</p>
-										<p className="text-xs text-purple-700">Connect with organizations</p>
+										<p className="font-medium text-primary">Network Growth</p>
+										<p className="text-xs text-primary">Connect with organizations</p>
 									</div>
 								</li>
 							</ul>

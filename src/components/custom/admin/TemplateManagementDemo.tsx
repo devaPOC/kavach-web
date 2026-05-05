@@ -52,7 +52,7 @@ export default function TemplateManagementDemo() {
             </Button>
             
             {selectedQuizData && (
-              <div className="flex items-center gap-2 text-sm text-green-600">
+              <div className="flex items-center gap-2 text-sm text-secondary">
                 <Settings className="h-4 w-4" />
                 Template applied: {selectedQuizData.language === 'ar' ? 'Arabic' : 'English'}, 
                 {selectedQuizData.timeLimitMinutes}min, {selectedQuizData.maxAttempts} attempts
@@ -82,8 +82,8 @@ export default function TemplateManagementDemo() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="text-center py-8 text-gray-500">
-                <FileTemplate className="h-12 w-12 mx-auto mb-4 text-gray-400" />
+              <div className="text-center py-8 text-muted-foreground">
+                <FileTemplate className="h-12 w-12 mx-auto mb-4 text-muted-foreground/80" />
                 <p>Template usage analytics would be displayed here</p>
                 <p className="text-sm mt-2">
                   This would show metrics like most used templates, creation trends, etc.

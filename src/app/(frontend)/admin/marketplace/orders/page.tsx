@@ -134,14 +134,14 @@ export default function OrdersListPage() {
 
 	const getStatusColor = (status: string) => {
 		switch (status) {
-			case 'pending': return 'bg-yellow-100 text-yellow-800';
-			case 'confirmed': return 'bg-blue-100 text-blue-800';
-			case 'processing': return 'bg-purple-100 text-purple-800';
-			case 'shipped': return 'bg-indigo-100 text-indigo-800';
-			case 'delivered': return 'bg-green-100 text-green-800';
-			case 'cancelled': return 'bg-red-100 text-red-800';
-			case 'refunded': return 'bg-gray-100 text-gray-800';
-			default: return 'bg-gray-100 text-gray-800';
+			case 'pending': return 'bg-accent/10 text-accent';
+			case 'confirmed': return 'bg-primary/10 text-primary';
+			case 'processing': return 'bg-primary/10 text-primary';
+			case 'shipped': return 'bg-primary/10 text-primary';
+			case 'delivered': return 'bg-secondary/10 text-secondary';
+			case 'cancelled': return 'bg-destructive/10 text-destructive';
+			case 'refunded': return 'bg-muted text-foreground';
+			default: return 'bg-muted text-foreground';
 		}
 	};
 
@@ -165,8 +165,8 @@ export default function OrdersListPage() {
 					</Button>
 				</Link>
 				<div>
-					<h1 className="text-2xl font-bold text-gray-900">Orders</h1>
-					<p className="text-gray-500">Manage marketplace orders</p>
+					<h1 className="text-2xl font-bold text-foreground">Orders</h1>
+					<p className="text-muted-foreground">Manage marketplace orders</p>
 				</div>
 			</div>
 
@@ -176,7 +176,7 @@ export default function OrdersListPage() {
 					<div className="flex flex-col sm:flex-row gap-4">
 						<form onSubmit={handleSearch} className="flex-1">
 							<div className="relative">
-								<Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+								<Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground/80" />
 								<Input
 									placeholder="Search by order number or customer..."
 									value={search}
@@ -206,39 +206,39 @@ export default function OrdersListPage() {
 				<CardContent className="p-0">
 					{loading ? (
 						<div className="flex items-center justify-center py-12">
-							<Loader2 className="h-8 w-8 animate-spin text-gray-400" />
+							<Loader2 className="h-8 w-8 animate-spin text-muted-foreground/80" />
 						</div>
 					) : orders.length === 0 ? (
 						<div className="text-center py-12">
-							<ShoppingCart className="h-12 w-12 mx-auto mb-4 text-gray-300" />
-							<p className="text-gray-500">No orders found</p>
+							<ShoppingCart className="h-12 w-12 mx-auto mb-4 text-muted-foreground/80" />
+							<p className="text-muted-foreground">No orders found</p>
 						</div>
 					) : (
 						<div className="overflow-x-auto">
 							<table className="w-full">
-								<thead className="bg-gray-50 border-b">
+								<thead className="bg-muted/50 border-b">
 									<tr>
-										<th className="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase">Order</th>
-										<th className="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase">Customer</th>
-										<th className="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase">Status</th>
-										<th className="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase">Items</th>
-										<th className="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase">Total</th>
-										<th className="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase">Date</th>
-										<th className="text-right px-6 py-3 text-xs font-medium text-gray-500 uppercase">Actions</th>
+										<th className="text-left px-6 py-3 text-xs font-medium text-muted-foreground uppercase">Order</th>
+										<th className="text-left px-6 py-3 text-xs font-medium text-muted-foreground uppercase">Customer</th>
+										<th className="text-left px-6 py-3 text-xs font-medium text-muted-foreground uppercase">Status</th>
+										<th className="text-left px-6 py-3 text-xs font-medium text-muted-foreground uppercase">Items</th>
+										<th className="text-left px-6 py-3 text-xs font-medium text-muted-foreground uppercase">Total</th>
+										<th className="text-left px-6 py-3 text-xs font-medium text-muted-foreground uppercase">Date</th>
+										<th className="text-right px-6 py-3 text-xs font-medium text-muted-foreground uppercase">Actions</th>
 									</tr>
 								</thead>
 								<tbody className="divide-y divide-gray-200">
 									{orders.map((order) => (
-										<tr key={order.id} className="hover:bg-gray-50">
+										<tr key={order.id} className="hover:bg-muted/50">
 											<td className="px-6 py-4">
-												<span className="font-mono font-medium text-blue-600">
+												<span className="font-mono font-medium text-primary">
 													{order.orderNumber}
 												</span>
 											</td>
 											<td className="px-6 py-4">
 												<div>
-													<p className="font-medium text-gray-900">{order.shippingName || 'N/A'}</p>
-													<p className="text-sm text-gray-500">{order.shippingCity || ''}</p>
+													<p className="font-medium text-foreground">{order.shippingName || 'N/A'}</p>
+													<p className="text-sm text-muted-foreground">{order.shippingCity || ''}</p>
 												</div>
 											</td>
 											<td className="px-6 py-4">
@@ -248,12 +248,12 @@ export default function OrdersListPage() {
 												</Badge>
 											</td>
 											<td className="px-6 py-4">
-												<span className="text-gray-600">{order.itemCount} items</span>
+												<span className="text-muted-foreground">{order.itemCount} items</span>
 											</td>
 											<td className="px-6 py-4">
 												<span className="font-semibold">${parseFloat(order.total).toFixed(2)}</span>
 											</td>
-											<td className="px-6 py-4 text-sm text-gray-500">
+											<td className="px-6 py-4 text-sm text-muted-foreground">
 												{formatDate(order.createdAt)}
 											</td>
 											<td className="px-6 py-4 text-right">
@@ -267,7 +267,7 @@ export default function OrdersListPage() {
 													<Button
 														variant="ghost"
 														size="sm"
-														className="text-red-600 hover:text-red-700 hover:bg-red-50"
+														className="text-destructive hover:text-destructive hover:bg-destructive/10"
 														onClick={() => handleDelete(order.id, order.orderNumber)}
 														disabled={deletingId === order.id}
 													>
@@ -290,7 +290,7 @@ export default function OrdersListPage() {
 
 			{/* Pagination Info */}
 			{pagination.total > 0 && (
-				<div className="text-center text-sm text-gray-500">
+				<div className="text-center text-sm text-muted-foreground">
 					Showing {orders.length} of {pagination.total} orders
 				</div>
 			)}

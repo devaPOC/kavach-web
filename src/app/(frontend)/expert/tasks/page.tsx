@@ -14,31 +14,31 @@ export default function ExpertTasksPage() {
 						<Briefcase className="h-5 w-5 text-white" />
 					</div>
 					<div>
-						<h1 className="text-2xl font-semibold tracking-tight text-slate-900">Tasks & Projects</h1>
-						<p className="text-slate-500 text-sm">Manage your assigned tasks and track project progress</p>
+						<h1 className="text-2xl font-semibold tracking-tight text-foreground">Tasks & Projects</h1>
+						<p className="text-muted-foreground text-sm">Manage your assigned tasks and track project progress</p>
 					</div>
 				</div>
 			</div>
 
 			<Tabs defaultValue="active" className="space-y-6">
-				<TabsList className="bg-slate-100/80 p-1 rounded-xl">
+				<TabsList className="bg-muted/80 p-1 rounded-xl">
 					<TabsTrigger
 						value="active"
-						className="flex items-center gap-2 rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-indigo-600 px-4 py-2"
+						className="flex items-center gap-2 rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-primary px-4 py-2"
 					>
 						<Clock className="h-4 w-4" />
 						<span>Active Tasks</span>
 					</TabsTrigger>
 					<TabsTrigger
 						value="completed"
-						className="flex items-center gap-2 rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-emerald-600 px-4 py-2"
+						className="flex items-center gap-2 rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-secondary px-4 py-2"
 					>
 						<CheckCircle className="h-4 w-4" />
 						<span>Completed</span>
 					</TabsTrigger>
 					<TabsTrigger
 						value="pending"
-						className="flex items-center gap-2 rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-amber-600 px-4 py-2"
+						className="flex items-center gap-2 rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-accent px-4 py-2"
 					>
 						<AlertCircle className="h-4 w-4" />
 						<span>Pending Closure</span>

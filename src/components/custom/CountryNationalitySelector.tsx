@@ -92,7 +92,7 @@ export function CountryNationalitySelector({
             onValueChange={onCountryChange}
             disabled={countryDisabled}
           >
-            <SelectTrigger className={countryError ? 'border-red-500' : ''}>
+            <SelectTrigger className={countryError ? 'border-destructive' : ''}>
               <SelectValue placeholder={countryPlaceholder} />
             </SelectTrigger>
             <SelectContent>
@@ -120,7 +120,7 @@ export function CountryNationalitySelector({
             </SelectContent>
           </Select>
           {countryError && (
-            <p className="text-sm text-red-500 mt-1">{countryError}</p>
+            <p className="text-sm text-destructive mt-1">{countryError}</p>
           )}
         </div>
       )}
@@ -136,7 +136,7 @@ export function CountryNationalitySelector({
             onValueChange={onNationalityChange}
             disabled={nationalityDisabled}
           >
-            <SelectTrigger className={nationalityError ? 'border-red-500' : ''}>
+            <SelectTrigger className={nationalityError ? 'border-destructive' : ''}>
               <SelectValue placeholder={nationalityPlaceholder} />
             </SelectTrigger>
             <SelectContent>
@@ -164,7 +164,7 @@ export function CountryNationalitySelector({
             </SelectContent>
           </Select>
           {nationalityError && (
-            <p className="text-sm text-red-500 mt-1">{nationalityError}</p>
+            <p className="text-sm text-destructive mt-1">{nationalityError}</p>
           )}
         </div>
       )}

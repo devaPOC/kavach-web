@@ -71,10 +71,10 @@ export default function MultilingualEditor({
 
   const getLanguageBadgeColor = (lang: string) => {
     switch (lang) {
-      case 'ar': return 'bg-purple-100 text-purple-800 border-purple-200'
-      case 'en': return 'bg-blue-100 text-blue-800 border-blue-200'
-      case 'mixed': return 'bg-orange-100 text-orange-800 border-orange-200'
-      default: return 'bg-gray-100 text-gray-800 border-gray-200'
+      case 'ar': return 'bg-primary/10 text-primary border-primary/50'
+      case 'en': return 'bg-primary/10 text-primary border-primary/50'
+      case 'mixed': return 'bg-accent/10 text-accent border-accent/50'
+      default: return 'bg-muted text-foreground border-border'
     }
   }
 
@@ -166,15 +166,15 @@ export default function MultilingualEditor({
           )}
           
           {textDirection === 'rtl' && (
-            <span className="text-gray-500">Right-to-left text detected</span>
+            <span className="text-muted-foreground">Right-to-left text detected</span>
           )}
         </div>
         
         {maxLength && (
           <span className={`${
-            isAtLimit ? 'text-red-600' : 
-            isNearLimit ? 'text-orange-600' : 
-            'text-gray-500'
+            isAtLimit ? 'text-destructive' : 
+            isNearLimit ? 'text-accent' : 
+            'text-muted-foreground'
           }`}>
             {characterCount}/{maxLength}
           </span>
@@ -183,25 +183,25 @@ export default function MultilingualEditor({
 
       {/* Validation Messages */}
       {isAtLimit && (
-        <div className="text-xs text-red-600">
+        <div className="text-xs text-destructive">
           Character limit reached
         </div>
       )}
       
       {detectedLanguage === 'mixed' && !compact && (
-        <div className="text-xs text-orange-600">
+        <div className="text-xs text-accent">
           Mixed language content detected. Ensure proper formatting for both languages.
         </div>
       )}
       
       {language === 'ar' && detectedLanguage === 'en' && !compact && (
-        <div className="text-xs text-blue-600">
+        <div className="text-xs text-primary">
           Quiz language is set to Arabic, but English text detected. Consider switching text direction if needed.
         </div>
       )}
       
       {language === 'en' && detectedLanguage === 'ar' && !compact && (
-        <div className="text-xs text-purple-600">
+        <div className="text-xs text-accent">
           Quiz language is set to English, but Arabic text detected. Consider switching text direction if needed.
         </div>
       )}

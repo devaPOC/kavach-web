@@ -82,8 +82,8 @@ export default function TrainerAvailabilityCalendar({
   return (
     <div className={className}>
       <div className="mb-6">
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">Schedule & Availability</h2>
-        <p className="text-gray-600">
+        <h2 className="text-2xl font-bold text-foreground mb-2">Schedule & Availability</h2>
+        <p className="text-muted-foreground">
           View your confirmed awareness sessions and manage your availability.
         </p>
       </div>
@@ -112,10 +112,10 @@ export default function TrainerAvailabilityCalendar({
 
             <div className="mt-4 space-y-2">
               <div className="flex items-center gap-2 text-sm">
-                <div className="w-3 h-3 bg-green-200 rounded"></div>
+                <div className="w-3 h-3 bg-secondary rounded"></div>
                 <span>Dates with confirmed sessions</span>
               </div>
-              <div className="text-sm text-gray-600">
+              <div className="text-sm text-muted-foreground">
                 Total confirmed sessions: {confirmedSessions.length}
               </div>
             </div>
@@ -139,9 +139,9 @@ export default function TrainerAvailabilityCalendar({
           <CardContent>
             {sessionsForDate.length === 0 ? (
               <div className="text-center py-8">
-                <CalendarIcon className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-600">No sessions scheduled for this date</p>
-                <p className="text-sm text-gray-500 mt-2">
+                <CalendarIcon className="h-12 w-12 text-muted-foreground/80 mx-auto mb-4" />
+                <p className="text-muted-foreground">No sessions scheduled for this date</p>
+                <p className="text-sm text-muted-foreground mt-2">
                   You're available for new session requests on this date.
                 </p>
               </div>
@@ -152,7 +152,7 @@ export default function TrainerAvailabilityCalendar({
                     <div className="flex items-start justify-between">
                       <div>
                         <h4 className="font-medium">{session.subject}</h4>
-                        <p className="text-sm text-gray-600 flex items-center gap-1">
+                        <p className="text-sm text-muted-foreground flex items-center gap-1">
                           <Building className="h-3 w-3" />
                           {session.organizationName}
                         </p>
@@ -165,23 +165,23 @@ export default function TrainerAvailabilityCalendar({
 
                     <div className="grid grid-cols-1 gap-2 text-sm">
                       <div className="flex items-center gap-2">
-                        <Clock className="h-4 w-4 text-gray-500" />
+                        <Clock className="h-4 w-4 text-muted-foreground" />
                         <span>{formatTime(session.sessionDate)} - {DURATION_LABELS[session.duration]}</span>
                       </div>
 
                       <div className="flex items-center gap-2">
-                        <MapPin className="h-4 w-4 text-gray-500" />
+                        <MapPin className="h-4 w-4 text-muted-foreground" />
                         <span>{SESSION_MODE_LABELS[session.sessionMode]} - {session.location}</span>
                       </div>
 
                       <div className="flex items-center gap-2">
-                        <Users className="h-4 w-4 text-gray-500" />
+                        <Users className="h-4 w-4 text-muted-foreground" />
                         <span>{session.audienceSize} participants</span>
                       </div>
                     </div>
 
                     {session.expertNotes && (
-                      <div className="bg-green-50 p-2 rounded text-sm">
+                      <div className="bg-secondary/10 p-2 rounded text-sm">
                         <span className="font-medium">Your Notes:</span> {session.expertNotes}
                       </div>
                     )}
@@ -212,21 +212,21 @@ export default function TrainerAvailabilityCalendar({
                 .sort((a, b) => new Date(a.sessionDate).getTime() - new Date(b.sessionDate).getTime())
                 .slice(0, 3)
                 .map((session) => (
-                  <div key={session.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                  <div key={session.id} className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
                     <div>
                       <p className="font-medium">{session.subject}</p>
-                      <p className="text-sm text-gray-600">{session.organizationName}</p>
+                      <p className="text-sm text-muted-foreground">{session.organizationName}</p>
                     </div>
                     <div className="text-right">
                       <p className="text-sm font-medium">{formatDate(session.sessionDate)}</p>
-                      <p className="text-xs text-gray-500">{formatTime(session.sessionDate)}</p>
+                      <p className="text-xs text-muted-foreground">{formatTime(session.sessionDate)}</p>
                     </div>
                   </div>
                 ))}
 
               {confirmedSessions.filter(session => new Date(session.sessionDate) >= new Date()).length === 0 && (
                 <div className="text-center py-4">
-                  <p className="text-gray-600">No upcoming sessions scheduled</p>
+                  <p className="text-muted-foreground">No upcoming sessions scheduled</p>
                 </div>
               )}
             </div>

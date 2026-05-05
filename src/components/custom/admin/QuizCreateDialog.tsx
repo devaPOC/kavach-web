@@ -308,8 +308,8 @@ export default function QuizCreateDialog({
                   </Select>
 
                   {selectedTemplate && (
-                    <div className="mt-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
-                      <div className="text-sm text-blue-800">
+                    <div className="mt-3 p-3 bg-primary/10 rounded-lg border border-primary/50">
+                      <div className="text-sm text-primary">
                         Template applied! Settings and question structure have been pre-filled.
                       </div>
                     </div>
@@ -393,7 +393,7 @@ export default function QuizCreateDialog({
                   <div className="space-y-2">
                     <Label htmlFor="timeLimit">Time Limit (minutes) *</Label>
                     <div className="flex items-center gap-2">
-                      <Clock className="h-4 w-4 text-gray-400" />
+                      <Clock className="h-4 w-4 text-muted-foreground/80" />
                       <Input
                         id="timeLimit"
                         type="number"
@@ -406,7 +406,7 @@ export default function QuizCreateDialog({
                         }))}
                       />
                     </div>
-                    <div className="text-xs text-gray-500">
+                    <div className="text-xs text-muted-foreground">
                       Between 1 and 180 minutes
                     </div>
                   </div>
@@ -414,7 +414,7 @@ export default function QuizCreateDialog({
                   <div className="space-y-2">
                     <Label htmlFor="maxAttempts">Max Attempts per User *</Label>
                     <div className="flex items-center gap-2">
-                      <Users className="h-4 w-4 text-gray-400" />
+                      <Users className="h-4 w-4 text-muted-foreground/80" />
                       <Input
                         id="maxAttempts"
                         type="number"
@@ -427,7 +427,7 @@ export default function QuizCreateDialog({
                         }))}
                       />
                     </div>
-                    <div className="text-xs text-gray-500">
+                    <div className="text-xs text-muted-foreground">
                       Between 1 and 10 attempts
                     </div>
                   </div>
@@ -444,7 +444,7 @@ export default function QuizCreateDialog({
                     placeholder="Select quiz end date and time"
                     minDate={new Date()}
                   />
-                  <div className="text-xs text-gray-500">
+                  <div className="text-xs text-muted-foreground">
                     Quiz will be automatically disabled after this date
                   </div>
                 </div>
@@ -497,29 +497,29 @@ export default function QuizCreateDialog({
               </CardHeader>
               <CardContent className="space-y-4">
                 {/* Quiz Info Summary */}
-                <div className="grid grid-cols-2 gap-4 p-4 bg-gray-50 rounded-lg">
+                <div className="grid grid-cols-2 gap-4 p-4 bg-muted/50 rounded-lg">
                   <div>
-                    <div className="text-sm font-medium text-gray-700">Title</div>
+                    <div className="text-sm font-medium text-foreground/80">Title</div>
                     <div className="text-sm">{formData.title}</div>
                   </div>
                   <div>
-                    <div className="text-sm font-medium text-gray-700">Language</div>
+                    <div className="text-sm font-medium text-foreground/80">Language</div>
                     <Badge className={formData.language === 'ar' ?
-                      'bg-purple-100 text-purple-800' : 'bg-blue-100 text-blue-800'}>
+                      'bg-primary/10 text-primary' : 'bg-primary/10 text-primary'}>
                       {formData.language === 'ar' ? 'Arabic' : 'English'}
                     </Badge>
                   </div>
                   <div>
-                    <div className="text-sm font-medium text-gray-700">Time Limit</div>
+                    <div className="text-sm font-medium text-foreground/80">Time Limit</div>
                     <div className="text-sm">{formData.timeLimitMinutes} minutes</div>
                   </div>
                   <div>
-                    <div className="text-sm font-medium text-gray-700">Max Attempts</div>
+                    <div className="text-sm font-medium text-foreground/80">Max Attempts</div>
                     <div className="text-sm">{formData.maxAttempts} attempts</div>
                   </div>
                   {formData.endDate && (
                     <div>
-                      <div className="text-sm font-medium text-gray-700">End Date</div>
+                      <div className="text-sm font-medium text-foreground/80">End Date</div>
                       <div className="text-sm">{formData.endDate.toLocaleDateString()} at {formData.endDate.toLocaleTimeString()}</div>
                     </div>
                   )}
@@ -527,8 +527,8 @@ export default function QuizCreateDialog({
 
                 {formData.description && (
                   <div>
-                    <div className="text-sm font-medium text-gray-700 mb-2">Description</div>
-                    <div className="text-sm text-gray-600 p-3 bg-gray-50 rounded">
+                    <div className="text-sm font-medium text-foreground/80 mb-2">Description</div>
+                    <div className="text-sm text-muted-foreground p-3 bg-muted/50 rounded">
                       {formData.description}
                     </div>
                   </div>
@@ -538,7 +538,7 @@ export default function QuizCreateDialog({
 
                 {/* Questions Preview */}
                 <div>
-                  <div className="text-sm font-medium text-gray-700 mb-3">
+                  <div className="text-sm font-medium text-foreground/80 mb-3">
                     Questions ({questions.length})
                   </div>
                   <div className="space-y-3">
@@ -555,7 +555,7 @@ export default function QuizCreateDialog({
                         <div className="text-sm mb-2">{question.questionData.question}</div>
 
                         {question.questionType === 'true_false' ? (
-                          <div className="text-xs text-gray-500">
+                          <div className="text-xs text-muted-foreground">
                             Correct answer: {question.correctAnswers[0] || 'Not set'}
                           </div>
                         ) : (
@@ -564,13 +564,13 @@ export default function QuizCreateDialog({
                               <div key={optIndex} className="text-xs flex items-center gap-2">
                                 <span className={
                                   question.correctAnswers.includes(optIndex.toString())
-                                    ? 'text-green-600 font-medium'
-                                    : 'text-gray-500'
+                                    ? 'text-secondary font-medium'
+                                    : 'text-muted-foreground'
                                 }>
                                   {String.fromCharCode(65 + optIndex)}. {option}
                                 </span>
                                 {question.correctAnswers.includes(optIndex.toString()) && (
-                                  <Badge variant="outline" className="text-xs bg-green-50 text-green-700">
+                                  <Badge variant="outline" className="text-xs bg-secondary/10 text-secondary">
                                     Correct
                                   </Badge>
                                 )}
@@ -615,8 +615,8 @@ export default function QuizCreateDialog({
 
         {/* Error Display */}
         {error && (
-          <div className="p-3 bg-red-50 border border-red-200 rounded-md">
-            <p className="text-sm text-red-600">{error}</p>
+          <div className="p-3 bg-destructive/10 border border-destructive rounded-md">
+            <p className="text-sm text-destructive">{error}</p>
           </div>
         )}
       </DialogContent>

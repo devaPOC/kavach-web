@@ -323,15 +323,15 @@ export default function CustomerServiceRequests() {
 
   const getStatusBadge = (status: string) => {
     const statusConfig = {
-      pending: { color: 'bg-amber-50 text-amber-700 border-amber-200', text: 'Pending Assignment' },
-      assigned: { color: 'bg-blue-50 text-blue-700 border-blue-200', text: 'Assigned' },
-      accepted: { color: 'bg-cyan-50 text-cyan-700 border-cyan-200', text: 'Expert Accepted' },
-      in_progress: { color: 'bg-indigo-50 text-indigo-700 border-indigo-200', text: 'In Progress' },
-      completed: { color: 'bg-emerald-50 text-emerald-700 border-emerald-200', text: 'Completed' },
-      pending_closure: { color: 'bg-purple-50 text-purple-700 border-purple-200', text: 'Review Needed' },
-      closed: { color: 'bg-slate-100 text-slate-600 border-slate-200', text: 'Closed' },
-      rejected: { color: 'bg-red-50 text-red-700 border-red-200', text: 'Rejected' },
-      cancelled: { color: 'bg-red-50 text-red-700 border-red-200', text: 'Cancelled' },
+      pending: { color: 'bg-accent/10 text-accent border-accent/50', text: 'Pending Assignment' },
+      assigned: { color: 'bg-primary/10 text-primary border-primary/50', text: 'Assigned' },
+      accepted: { color: 'bg-accent/10 text-accent border-accent/50', text: 'Expert Accepted' },
+      in_progress: { color: 'bg-primary/10 text-primary border-primary/50', text: 'In Progress' },
+      completed: { color: 'bg-secondary/10 text-secondary border-secondary/50', text: 'Completed' },
+      pending_closure: { color: 'bg-accent/10 text-primary border-primary/50', text: 'Review Needed' },
+      closed: { color: 'bg-muted text-muted-foreground border-border', text: 'Closed' },
+      rejected: { color: 'bg-destructive/10 text-destructive border-destructive', text: 'Rejected' },
+      cancelled: { color: 'bg-destructive/10 text-destructive border-destructive', text: 'Cancelled' },
     };
 
     const config = statusConfig[status as keyof typeof statusConfig] || statusConfig.pending;
@@ -344,11 +344,11 @@ export default function CustomerServiceRequests() {
 
   const getPriorityBadge = (priority: string) => {
     const priorityConfig = {
-      emergency: { color: 'text-red-600 bg-red-50 border-red-100', text: 'Emergency' },
-      urgent: { color: 'text-orange-600 bg-orange-50 border-orange-100', text: 'Urgent' },
-      high: { color: 'text-amber-600 bg-amber-50 border-amber-100', text: 'High' },
-      normal: { color: 'text-emerald-600 bg-emerald-50 border-emerald-100', text: 'Normal' },
-      low: { color: 'text-slate-600 bg-slate-50 border-slate-100', text: 'Low' },
+      emergency: { color: 'text-destructive bg-destructive/10 border-destructive', text: 'Emergency' },
+      urgent: { color: 'text-accent bg-accent/10 border-accent/50', text: 'Urgent' },
+      high: { color: 'text-accent bg-accent/10 border-accent/50', text: 'High' },
+      normal: { color: 'text-secondary bg-secondary/10 border-secondary/50', text: 'Normal' },
+      low: { color: 'text-muted-foreground bg-muted/50 border-border/50', text: 'Low' },
     };
 
     const config = priorityConfig[priority as keyof typeof priorityConfig] || priorityConfig.normal;
@@ -361,13 +361,13 @@ export default function CustomerServiceRequests() {
 
   const getQuoteStatusBadge = (status: string) => {
     const statusConfig = {
-      draft: { color: 'bg-slate-100 text-slate-600 border-slate-200', text: 'Draft' },
-      sent: { color: 'bg-blue-50 text-blue-700 border-blue-200', text: 'Received' },
-      pending: { color: 'bg-amber-50 text-amber-700 border-amber-200', text: 'Pending Review' },
-      accepted: { color: 'bg-emerald-50 text-emerald-700 border-emerald-200', text: 'Accepted' },
-      rejected: { color: 'bg-red-50 text-red-700 border-red-200', text: 'Rejected' },
-      expired: { color: 'bg-slate-100 text-slate-500 border-slate-200', text: 'Expired' },
-      superseded: { color: 'bg-purple-50 text-purple-700 border-purple-200', text: 'Superseded' },
+      draft: { color: 'bg-muted text-muted-foreground border-border', text: 'Draft' },
+      sent: { color: 'bg-primary/10 text-primary border-primary/50', text: 'Received' },
+      pending: { color: 'bg-accent/10 text-accent border-accent/50', text: 'Pending Review' },
+      accepted: { color: 'bg-secondary/10 text-secondary border-secondary/50', text: 'Accepted' },
+      rejected: { color: 'bg-destructive/10 text-destructive border-destructive', text: 'Rejected' },
+      expired: { color: 'bg-muted text-muted-foreground border-border', text: 'Expired' },
+      superseded: { color: 'bg-accent/10 text-primary border-primary/50', text: 'Superseded' },
     };
 
     const config = statusConfig[status as keyof typeof statusConfig] || statusConfig.pending;
@@ -405,10 +405,10 @@ export default function CustomerServiceRequests() {
   if (loading && quotesLoading) {
     return (
       <div className="flex flex-col gap-6 w-full animate-pulse">
-        <div className="h-20 bg-slate-100 rounded-xl w-full"></div>
+        <div className="h-20 bg-muted rounded-xl w-full"></div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="h-64 bg-slate-100 rounded-xl"></div>
-          <div className="h-64 bg-slate-100 rounded-xl"></div>
+          <div className="h-64 bg-muted rounded-xl"></div>
+          <div className="h-64 bg-muted rounded-xl"></div>
         </div>
       </div>
     );
@@ -418,19 +418,19 @@ export default function CustomerServiceRequests() {
     return (
       <div className="min-h-[400px] flex items-center justify-center">
         <div className="text-center space-y-4">
-          <div className="bg-red-50 p-3 rounded-full inline-block">
-            <AlertCircle className="h-8 w-8 text-red-500" />
+          <div className="bg-destructive/10 p-3 rounded-full inline-block">
+            <AlertCircle className="h-8 w-8 text-destructive" />
           </div>
           <div>
-            <p className="text-slate-900 font-medium text-lg">Unable to load requests</p>
-            <p className="text-slate-500 text-sm mt-1 max-w-sm mx-auto">{error}</p>
+            <p className="text-foreground font-medium text-lg">Unable to load requests</p>
+            <p className="text-muted-foreground text-sm mt-1 max-w-sm mx-auto">{error}</p>
           </div>
           <Button
             onClick={() => {
               fetchServiceRequests(currentPage);
               fetchCustomerQuotes(quotesCurrentPage);
             }}
-            className="bg-slate-900 hover:bg-slate-800 text-white"
+            className="bg-primary hover:bg-secondary text-white"
           >
             <RefreshCw className="mr-2 h-4 w-4" /> Try Again
           </Button>
@@ -442,18 +442,18 @@ export default function CustomerServiceRequests() {
   return (
     <div className="space-y-8 pb-12 w-full max-w-7xl mx-auto">
       {/* Header Section */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 pb-6">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-border pb-6">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight text-slate-900">Your Activities</h1>
-          <p className="text-slate-500 mt-2 text-lg">Track your service requests, quotes, and project progress.</p>
+          <h1 className="text-3xl font-bold tracking-tight text-foreground">Your Activities</h1>
+          <p className="text-muted-foreground mt-2 text-lg">Track your service requests, quotes, and project progress.</p>
         </div>
         <div className="flex gap-2">
-          <div className="flex p-1 bg-slate-100 rounded-lg">
+          <div className="flex p-1 bg-muted rounded-lg">
             <button
               onClick={() => setActiveTab('requests')}
               className={cn(
                 "px-4 py-1.5 text-sm font-medium rounded-md transition-all duration-200",
-                activeTab === 'requests' ? "bg-white text-slate-900 shadow-sm" : "text-slate-500 hover:text-slate-700"
+                activeTab === 'requests' ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground/80"
               )}
             >
               Requests
@@ -462,7 +462,7 @@ export default function CustomerServiceRequests() {
               onClick={() => setActiveTab('quotes')}
               className={cn(
                 "px-4 py-1.5 text-sm font-medium rounded-md transition-all duration-200",
-                activeTab === 'quotes' ? "bg-white text-slate-900 shadow-sm" : "text-slate-500 hover:text-slate-700"
+                activeTab === 'quotes' ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground/80"
               )}
             >
               Quotes
@@ -474,7 +474,7 @@ export default function CustomerServiceRequests() {
               fetchCustomerQuotes(quotesCurrentPage);
             }}
             variant="outline"
-            className="border-slate-200 text-slate-600 hover:bg-slate-50"
+            className="border-border text-muted-foreground hover:bg-muted/50"
           >
             <RefreshCw className="h-4 w-4" />
           </Button>
@@ -502,18 +502,18 @@ export default function CustomerServiceRequests() {
             {activeTab === 'requests' && (
               <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-xl font-semibold text-slate-900 flex items-center gap-2">
-                    <FileText className="w-5 h-5 text-indigo-500" />
+                  <h2 className="text-xl font-semibold text-foreground flex items-center gap-2">
+                    <FileText className="w-5 h-5 text-primary" />
                     Service Requests
-                    <span className="text-sm font-normal text-slate-500 ml-2 bg-slate-100 px-2 py-0.5 rounded-full">
+                    <span className="text-sm font-normal text-muted-foreground ml-2 bg-muted px-2 py-0.5 rounded-full">
                       {totalRequests}
                     </span>
                   </h2>
                 </div>
 
                 {requests.length === 0 ? (
-                  <div className="text-center py-12 border-2 border-dashed border-slate-200 rounded-xl bg-slate-50/50">
-                    <p className="text-slate-500">No active service requests found.</p>
+                  <div className="text-center py-12 border-2 border-dashed border-border rounded-xl bg-muted/50/50">
+                    <p className="text-muted-foreground">No active service requests found.</p>
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
@@ -524,7 +524,7 @@ export default function CustomerServiceRequests() {
                           setSelectedRequest(request);
                           setShowDetailsModal(true);
                         }}
-                        className="group relative bg-white border border-slate-200 rounded-xl p-5 shadow-sm hover:shadow-lg hover:border-indigo-200 hover:-translate-y-1 transition-all duration-300 ease-out cursor-pointer overflow-hidden hover:bg-indigo-50/30 flex flex-col h-full"
+                        className="group relative bg-card border border-border rounded-xl p-5 shadow-sm hover:shadow-lg hover:border-primary/50 hover:-translate-y-1 transition-all duration-300 ease-out cursor-pointer overflow-hidden hover:bg-primary/10/30 flex flex-col h-full"
                       >
                         {/* Status Tags */}
                         <div className="flex items-center justify-between mb-4">
@@ -533,37 +533,37 @@ export default function CustomerServiceRequests() {
                         </div>
 
                         {/* Title */}
-                        <h3 className="font-semibold text-slate-900 text-lg mb-2 line-clamp-2 group-hover:text-indigo-700 transition-colors">
+                        <h3 className="font-semibold text-foreground text-lg mb-2 line-clamp-2 group-hover:text-primary transition-colors">
                           {request.title}
                         </h3>
 
                         {/* Service Type */}
-                        <div className="text-xs font-medium text-indigo-600 bg-indigo-50 inline-block px-2.5 py-1 rounded-full mb-4 w-fit group-hover:bg-indigo-100 transition-colors">
+                        <div className="text-xs font-medium text-primary bg-primary/10 inline-block px-2.5 py-1 rounded-full mb-4 w-fit group-hover:bg-primary/10 transition-colors">
                           {getServiceTypeName(request.serviceType)}
                         </div>
 
                         {/* Details Grid */}
-                        <div className="grid gap-2 text-sm text-slate-600 mb-4 flex-1">
+                        <div className="grid gap-2 text-sm text-muted-foreground mb-4 flex-1">
                           {request.expertName && (
                             <div className="flex items-center gap-2">
-                              <User className="w-4 h-4 text-slate-400 group-hover:text-indigo-400 transition-colors" />
+                              <User className="w-4 h-4 text-muted-foreground/80 group-hover:text-primary transition-colors" />
                               <span>{request.expertName}</span>
                             </div>
                           )}
                           <div className="flex items-center gap-2">
-                            <Calendar className="w-4 h-4 text-slate-400 group-hover:text-indigo-400 transition-colors" />
+                            <Calendar className="w-4 h-4 text-muted-foreground/80 group-hover:text-primary transition-colors" />
                             <span>{format(new Date(request.createdAt), 'MMM dd, yyyy')}</span>
                           </div>
                           {request.description && (
-                            <p className="text-slate-500 text-xs mt-2 line-clamp-2 italic">
+                            <p className="text-muted-foreground text-xs mt-2 line-clamp-2 italic">
                               "{request.description}"
                             </p>
                           )}
                         </div>
 
                         {/* Actions Footer */}
-                        <div className="pt-4 mt-auto border-t border-slate-100 flex items-center justify-between gap-2">
-                          <span className="text-xs font-medium text-indigo-600 group-hover:underline flex items-center gap-1">
+                        <div className="pt-4 mt-auto border-t border-border/50 flex items-center justify-between gap-2">
+                          <span className="text-xs font-medium text-primary group-hover:underline flex items-center gap-1">
                             View Details <ChevronRight className="w-3 h-3" />
                           </span>
 
@@ -576,7 +576,7 @@ export default function CustomerServiceRequests() {
                                   setSelectedRequestForReport(request);
                                   setShowReportModal(true);
                                 }}
-                                className="h-8 px-2 border-indigo-100 text-indigo-700 hover:bg-indigo-50"
+                                className="h-8 px-2 border-primary/50 text-primary hover:bg-primary/10"
                               >
                                 <FileText className="w-3 h-3 mr-1" /> Report
                               </Button>
@@ -586,7 +586,7 @@ export default function CustomerServiceRequests() {
                               <Button
                                 size="sm"
                                 onClick={() => handleCloseTask(request.id)}
-                                className="h-8 px-2 bg-emerald-600 hover:bg-emerald-700 text-white"
+                                className="h-8 px-2 bg-secondary hover:bg-secondary text-white"
                               >
                                 <CheckCircle2 className="w-3 h-3 mr-1" /> Approve
                               </Button>
@@ -601,7 +601,7 @@ export default function CustomerServiceRequests() {
                 {/* Pagination */}
                 {totalPages > 1 && (
                   <div className="flex items-center justify-center pt-8">
-                    <div className="flex items-center gap-2 bg-white border border-slate-200 rounded-lg p-1 shadow-sm">
+                    <div className="flex items-center gap-2 bg-card border border-border rounded-lg p-1 shadow-sm">
                       <Button
                         variant="ghost"
                         size="sm"
@@ -611,7 +611,7 @@ export default function CustomerServiceRequests() {
                       >
                         <ChevronLeft className="h-4 w-4" />
                       </Button>
-                      <span className="text-xs font-medium text-slate-600 px-2">
+                      <span className="text-xs font-medium text-muted-foreground px-2">
                         Page {currentPage} of {totalPages}
                       </span>
                       <Button
@@ -633,62 +633,62 @@ export default function CustomerServiceRequests() {
             {activeTab === 'quotes' && (
               <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-xl font-semibold text-slate-900 flex items-center gap-2">
-                    <MessageSquare className="w-5 h-5 text-indigo-500" />
+                  <h2 className="text-xl font-semibold text-foreground flex items-center gap-2">
+                    <MessageSquare className="w-5 h-5 text-primary" />
                     Service Quotes
-                    <span className="text-sm font-normal text-slate-500 ml-2 bg-slate-100 px-2 py-0.5 rounded-full">
+                    <span className="text-sm font-normal text-muted-foreground ml-2 bg-muted px-2 py-0.5 rounded-full">
                       {totalQuotes}
                     </span>
                   </h2>
                 </div>
 
                 {!quotesLoading && quotes.length === 0 ? (
-                  <div className="text-center py-12 border-2 border-dashed border-slate-200 rounded-xl bg-slate-50/50">
-                    <p className="text-slate-500">No quotes received yet.</p>
+                  <div className="text-center py-12 border-2 border-dashed border-border rounded-xl bg-muted/50/50">
+                    <p className="text-muted-foreground">No quotes received yet.</p>
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
                     {quotes.map((quote) => (
                       <div
                         key={quote.id}
-                        className="group relative bg-white border border-slate-200 rounded-xl p-5 shadow-sm hover:shadow-lg hover:border-indigo-200 hover:-translate-y-1 transition-all duration-300 ease-out flex flex-col h-full overflow-hidden hover:bg-slate-50/50"
+                        className="group relative bg-card border border-border rounded-xl p-5 shadow-sm hover:shadow-lg hover:border-primary/50 hover:-translate-y-1 transition-all duration-300 ease-out flex flex-col h-full overflow-hidden hover:bg-muted/50/50"
                       >
                         <div className="flex items-center justify-between mb-4">
                           {getQuoteStatusBadge(quote.status)}
                           {isQuoteExpired(quote.validUntil) && quote.status === 'pending' && (
-                            <span className="text-xs font-medium text-red-600 bg-red-50 px-2 py-0.5 rounded-full border border-red-100">Expired</span>
+                            <span className="text-xs font-medium text-destructive bg-destructive/10 px-2 py-0.5 rounded-full border border-destructive">Expired</span>
                           )}
                         </div>
 
-                        <h3 className="font-semibold text-slate-900 text-lg mb-1 group-hover:text-indigo-700 transition-colors">
+                        <h3 className="font-semibold text-foreground text-lg mb-1 group-hover:text-primary transition-colors">
                           {quote.serviceTitle}
                         </h3>
 
-                        <div className="text-2xl font-bold text-slate-800 mb-4 tracking-tight">
+                        <div className="text-2xl font-bold text-foreground mb-4 tracking-tight">
                           {formatPrice(quote.quotedPrice, quote.currency)}
                         </div>
 
-                        <div className="grid gap-2 text-sm text-slate-600 mb-6 flex-1">
+                        <div className="grid gap-2 text-sm text-muted-foreground mb-6 flex-1">
                           <div className="flex items-center gap-2">
-                            <User className="w-4 h-4 text-slate-400" />
+                            <User className="w-4 h-4 text-muted-foreground/80" />
                             <span>From: {quote.adminName}</span>
                           </div>
                           <div className="flex items-center gap-2">
-                            <Calendar className="w-4 h-4 text-slate-400" />
+                            <Calendar className="w-4 h-4 text-muted-foreground/80" />
                             <span>{format(new Date(quote.createdAt), 'MMM dd, yyyy')}</span>
                           </div>
                           {quote.validUntil && (
-                            <div className="flex items-center gap-2 text-amber-600">
+                            <div className="flex items-center gap-2 text-accent">
                               <Clock className="w-4 h-4" />
                               <span>Valid until: {format(new Date(quote.validUntil), 'MMM dd')}</span>
                             </div>
                           )}
                         </div>
 
-                        <div className="pt-4 mt-auto border-t border-slate-100 flex flex-col gap-2">
+                        <div className="pt-4 mt-auto border-t border-border/50 flex flex-col gap-2">
                           <Button
                             variant="outline"
-                            className="w-full border-slate-200 text-slate-700 hover:bg-white hover:border-indigo-300 hover:text-indigo-600"
+                            className="w-full border-border text-foreground/80 hover:bg-card hover:border-primary/50 hover:text-primary"
                             onClick={() => {
                               setSelectedQuote(quote);
                               setShowQuoteModal(true);
@@ -702,7 +702,7 @@ export default function CustomerServiceRequests() {
                               <div className="grid grid-cols-2 gap-2">
                                 <Button
                                   onClick={() => acceptQuote(quote.id)}
-                                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
+                                  className="w-full bg-secondary hover:bg-secondary text-white"
                                 >
                                   Accept
                                 </Button>
@@ -712,7 +712,7 @@ export default function CustomerServiceRequests() {
                                     setSelectedQuote(quote);
                                     setShowNegotiationModal(true);
                                   }}
-                                  className="w-full border-indigo-100 text-indigo-600 hover:bg-indigo-50"
+                                  className="w-full border-primary/50 text-primary hover:bg-primary/10"
                                 >
                                   Negotiate
                                 </Button>
@@ -728,7 +728,7 @@ export default function CustomerServiceRequests() {
                 {/* Pagination */}
                 {quotesTotalPages > 1 && (
                   <div className="flex items-center justify-center pt-8">
-                    <div className="flex items-center gap-2 bg-white border border-slate-200 rounded-lg p-1 shadow-sm">
+                    <div className="flex items-center gap-2 bg-card border border-border rounded-lg p-1 shadow-sm">
                       <Button
                         variant="ghost"
                         size="sm"
@@ -738,7 +738,7 @@ export default function CustomerServiceRequests() {
                       >
                         <ChevronLeft className="h-4 w-4" />
                       </Button>
-                      <span className="text-xs font-medium text-slate-600 px-2">
+                      <span className="text-xs font-medium text-muted-foreground px-2">
                         Page {quotesCurrentPage} of {quotesTotalPages}
                       </span>
                       <Button
@@ -770,10 +770,10 @@ export default function CustomerServiceRequests() {
               <DialogDescription>Details of the selected service request</DialogDescription>
             </DialogHeader>
             <div className="p-1">
-              <div className="flex items-center justify-between mb-4 border-b border-slate-100 pb-4">
+              <div className="flex items-center justify-between mb-4 border-b border-border/50 pb-4">
                 <div>
-                  <h3 className="text-lg font-bold text-slate-900 line-clamp-1 mr-2">{selectedRequest.title}</h3>
-                  <p className="text-xs text-slate-500">ID: {selectedRequest.id}</p>
+                  <h3 className="text-lg font-bold text-foreground line-clamp-1 mr-2">{selectedRequest.title}</h3>
+                  <p className="text-xs text-muted-foreground">ID: {selectedRequest.id}</p>
                 </div>
                 {getStatusBadge(selectedRequest.status)}
               </div>
@@ -781,21 +781,21 @@ export default function CustomerServiceRequests() {
               <div className="space-y-6">
                 {/* Key Info Grid */}
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-slate-50 p-3 rounded-lg border border-slate-100">
-                    <span className="text-xs text-slate-500 block mb-1">Service Type</span>
-                    <span className="text-sm font-medium text-slate-900 block">{getServiceTypeName(selectedRequest.serviceType)}</span>
+                  <div className="bg-muted/50 p-3 rounded-lg border border-border/50">
+                    <span className="text-xs text-muted-foreground block mb-1">Service Type</span>
+                    <span className="text-sm font-medium text-foreground block">{getServiceTypeName(selectedRequest.serviceType)}</span>
                   </div>
-                  <div className="bg-slate-50 p-3 rounded-lg border border-slate-100">
-                    <span className="text-xs text-slate-500 block mb-1">Priority</span>
+                  <div className="bg-muted/50 p-3 rounded-lg border border-border/50">
+                    <span className="text-xs text-muted-foreground block mb-1">Priority</span>
                     <div>{getPriorityBadge(selectedRequest.priority)}</div>
                   </div>
-                  <div className="bg-slate-50 p-3 rounded-lg border border-slate-100">
-                    <span className="text-xs text-slate-500 block mb-1">Created Date</span>
-                    <span className="text-sm font-medium text-slate-900 block">{format(new Date(selectedRequest.createdAt), 'PPP')}</span>
+                  <div className="bg-muted/50 p-3 rounded-lg border border-border/50">
+                    <span className="text-xs text-muted-foreground block mb-1">Created Date</span>
+                    <span className="text-sm font-medium text-foreground block">{format(new Date(selectedRequest.createdAt), 'PPP')}</span>
                   </div>
-                  <div className="bg-slate-50 p-3 rounded-lg border border-slate-100">
-                    <span className="text-xs text-slate-500 block mb-1">Assigned Expert</span>
-                    <span className="text-sm font-medium text-slate-900 block flex items-center gap-1">
+                  <div className="bg-muted/50 p-3 rounded-lg border border-border/50">
+                    <span className="text-xs text-muted-foreground block mb-1">Assigned Expert</span>
+                    <span className="text-sm font-medium text-foreground block flex items-center gap-1">
                       <User className="w-3 h-3" />
                       {selectedRequest.expertName || 'Not Agent Yet'}
                     </span>
@@ -805,8 +805,8 @@ export default function CustomerServiceRequests() {
                 {/* Description
                 {selectedRequest.description && (
                   <div>
-                    <h4 className="text-sm font-medium text-slate-900 mb-2">Description</h4>
-                    <p className="text-sm text-slate-600 bg-white border border-slate-200 p-3 rounded-lg">
+                    <h4 className="text-sm font-medium text-foreground mb-2">Description</h4>
+                    <p className="text-sm text-muted-foreground bg-card border border-border p-3 rounded-lg">
                       {selectedRequest.description}
                     </p>
                   </div>
@@ -815,17 +815,17 @@ export default function CustomerServiceRequests() {
                 {/* Form Data */}
                 {selectedRequest.data && Object.keys(selectedRequest.data).filter(k => k !== 'completionReport').length > 0 && (
                   <div>
-                    <h4 className="text-sm font-medium text-slate-900 mb-2">Request Details</h4>
-                    <div className="bg-white border border-slate-200 rounded-lg overflow-hidden">
+                    <h4 className="text-sm font-medium text-foreground mb-2">Request Details</h4>
+                    <div className="bg-card border border-border rounded-lg overflow-hidden">
                       {Object.entries(selectedRequest.data)
                         .filter(([key]) => key !== 'completionReport' && key !== 'userId' && key !== 'serviceType')
                         .map(([key, value], index) => (
                           <div key={key} className={cn(
                             "flex flex-col sm:flex-row sm:justify-between p-3 text-sm",
-                            index !== 0 && "border-t border-slate-100"
+                            index !== 0 && "border-t border-border/50"
                           )}>
-                            <span className="text-slate-500 sm:w-1/3 mb-1 sm:mb-0 font-medium">{formatKeyName(key)}</span>
-                            <span className="text-slate-800 sm:w-2/3 sm:text-right break-words">
+                            <span className="text-muted-foreground sm:w-1/3 mb-1 sm:mb-0 font-medium">{formatKeyName(key)}</span>
+                            <span className="text-foreground sm:w-2/3 sm:text-right break-words">
                               {typeof value === 'object' ? JSON.stringify(value) : String(value)}
                             </span>
                           </div>
@@ -835,7 +835,7 @@ export default function CustomerServiceRequests() {
                 )}
               </div>
 
-              <div className="flex justify-end gap-2 pt-6 border-t border-slate-100 mt-2">
+              <div className="flex justify-end gap-2 pt-6 border-t border-border/50 mt-2">
                 {selectedRequest.data?.completionReport && (
                   <Button
                     variant="outline"
@@ -844,7 +844,7 @@ export default function CustomerServiceRequests() {
                       setSelectedRequestForReport(selectedRequest);
                       setShowReportModal(true);
                     }}
-                    className="border-indigo-100 text-indigo-600 hover:bg-indigo-50"
+                    className="border-primary/50 text-primary hover:bg-primary/10"
                   >
                     <FileText className="w-4 h-4 mr-2" /> View Report
                   </Button>
@@ -864,20 +864,20 @@ export default function CustomerServiceRequests() {
               <DialogTitle>Completion Report</DialogTitle>
             </DialogHeader>
             <div className="p-1">
-              <div className="flex items-center justify-between mb-4 border-b border-emerald-100 pb-4">
-                <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+              <div className="flex items-center justify-between mb-4 border-b border-secondary/50 pb-4">
+                <h3 className="text-lg font-bold text-foreground flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-secondary" />
                   Completion Report
                 </h3>
                 {selectedRequestForReport.status === 'completed' && (
-                  <Badge className="bg-emerald-100 text-emerald-700 hover:bg-emerald-100">Completed</Badge>
+                  <Badge className="bg-secondary/10 text-secondary hover:bg-secondary/10">Completed</Badge>
                 )}
               </div>
 
               <div className="space-y-6">
-                <div className="bg-emerald-50/50 p-4 rounded-xl border border-emerald-100/50">
-                  <h4 className="text-sm font-semibold text-emerald-900 mb-2">Expert Report</h4>
-                  <div className="text-slate-700 text-sm whitespace-pre-wrap leading-relaxed">
+                <div className="bg-secondary/10/50 p-4 rounded-xl border border-secondary/50/50">
+                  <h4 className="text-sm font-semibold text-secondary mb-2">Expert Report</h4>
+                  <div className="text-foreground/80 text-sm whitespace-pre-wrap leading-relaxed">
                     {selectedRequestForReport.data.completionReport.report}
                   </div>
                 </div>
@@ -885,26 +885,26 @@ export default function CustomerServiceRequests() {
                 {/* Files */}
                 {selectedRequestForReport.data.completionReport.files && selectedRequestForReport.data.completionReport.files.length > 0 && (
                   <div>
-                    <h4 className="text-sm font-medium text-slate-900 mb-3 flex items-center gap-2">
+                    <h4 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
                       <Paperclip className="w-4 h-4" /> Attached Files
                     </h4>
                     <div className="grid gap-2">
                       {selectedRequestForReport.data.completionReport.files.map((file: any) => (
-                        <div key={file.id} className="flex items-center justify-between p-3 bg-white border border-slate-200 rounded-lg hover:border-indigo-200 hover:shadow-sm transition-all">
+                        <div key={file.id} className="flex items-center justify-between p-3 bg-card border border-border rounded-lg hover:border-primary/50 hover:shadow-sm transition-all">
                           <div className="flex items-center gap-3 overflow-hidden">
-                            <div className="bg-slate-100 p-2 rounded">
-                              <FileText className="w-4 h-4 text-slate-500" />
+                            <div className="bg-muted p-2 rounded">
+                              <FileText className="w-4 h-4 text-muted-foreground" />
                             </div>
                             <div className="min-w-0">
-                              <p className="text-sm font-medium text-slate-900 truncate">{file.originalName}</p>
-                              <p className="text-xs text-slate-500">{(file.size / 1024).toFixed(2)} KB</p>
+                              <p className="text-sm font-medium text-foreground truncate">{file.originalName}</p>
+                              <p className="text-xs text-muted-foreground">{(file.size / 1024).toFixed(2)} KB</p>
                             </div>
                           </div>
                           <Button
                             size="sm"
                             variant="ghost"
                             onClick={() => downloadFile(selectedRequestForReport.id, file.id, file.originalName)}
-                            className="text-indigo-600 hover:text-indigo-700 hover:bg-indigo-50"
+                            className="text-primary hover:text-primary hover:bg-primary/10"
                           >
                             <Download className="w-4 h-4" />
                           </Button>
@@ -914,19 +914,19 @@ export default function CustomerServiceRequests() {
                   </div>
                 )}
 
-                <div className="text-xs text-slate-400 text-center italic">
+                <div className="text-xs text-muted-foreground/80 text-center italic">
                   Report submitted on {format(new Date(selectedRequestForReport.data.completionReport.submittedAt), 'PPP p')}
                 </div>
               </div>
 
-              <div className="flex justify-end gap-2 pt-6 border-t border-slate-100 mt-2">
+              <div className="flex justify-end gap-2 pt-6 border-t border-border/50 mt-2">
                 {selectedRequestForReport.status === 'pending_closure' && (
                   <Button
                     onClick={() => {
                       handleCloseTask(selectedRequestForReport.id);
                       setShowReportModal(false);
                     }}
-                    className="bg-emerald-600 hover:bg-emerald-700 text-white"
+                    className="bg-secondary hover:bg-secondary text-white"
                   >
                     <CheckCircle2 className="w-4 h-4 mr-2" /> Approve & Close Task
                   </Button>
@@ -947,26 +947,26 @@ export default function CustomerServiceRequests() {
             </DialogHeader>
             <div className="p-1">
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-xl font-bold text-slate-900">Quote Details</h3>
+                <h3 className="text-xl font-bold text-foreground">Quote Details</h3>
                 {getQuoteStatusBadge(selectedQuote.status)}
               </div>
 
               <div className="grid gap-6">
-                <div className="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                  <div className="text-sm text-slate-500 mb-1">Service</div>
-                  <div className="font-medium text-slate-900 text-lg">{selectedQuote.serviceTitle}</div>
+                <div className="bg-muted/50 p-4 rounded-xl border border-border/50">
+                  <div className="text-sm text-muted-foreground mb-1">Service</div>
+                  <div className="font-medium text-foreground text-lg">{selectedQuote.serviceTitle}</div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                    <div className="text-sm text-slate-500 mb-1">Total Amount</div>
-                    <div className="font-bold text-slate-900 text-2xl text-emerald-600">
+                  <div className="bg-muted/50 p-4 rounded-xl border border-border/50">
+                    <div className="text-sm text-muted-foreground mb-1">Total Amount</div>
+                    <div className="font-bold text-foreground text-2xl text-secondary">
                       {formatPrice(selectedQuote.quotedPrice, selectedQuote.currency)}
                     </div>
                   </div>
-                  <div className="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                    <div className="text-sm text-slate-500 mb-1">Valid Until</div>
-                    <div className="font-medium text-slate-900">
+                  <div className="bg-muted/50 p-4 rounded-xl border border-border/50">
+                    <div className="text-sm text-muted-foreground mb-1">Valid Until</div>
+                    <div className="font-medium text-foreground">
                       {selectedQuote.validUntil ? format(new Date(selectedQuote.validUntil), 'MMM dd, yyyy') : 'N/A'}
                     </div>
                   </div>
@@ -974,23 +974,23 @@ export default function CustomerServiceRequests() {
 
                 {selectedQuote.description && (
                   <div className="space-y-2">
-                    <h4 className="font-medium text-slate-900">Description & Scope</h4>
-                    <p className="text-slate-600 text-sm leading-relaxed p-4 border border-slate-100 rounded-xl bg-white">
+                    <h4 className="font-medium text-foreground">Description & Scope</h4>
+                    <p className="text-muted-foreground text-sm leading-relaxed p-4 border border-border/50 rounded-xl bg-card">
                       {selectedQuote.description}
                     </p>
                   </div>
                 )}
 
                 {negotiations[selectedQuote.id] && negotiations[selectedQuote.id].length > 0 && (
-                  <div className="space-y-3 pt-4 border-t border-slate-100">
-                    <h4 className="font-medium text-slate-900">Discussion History</h4>
+                  <div className="space-y-3 pt-4 border-t border-border/50">
+                    <h4 className="font-medium text-foreground">Discussion History</h4>
                     <div className="space-y-3 max-h-60 overflow-y-auto pr-2">
                       {negotiations[selectedQuote.id].map((negotiation) => (
                         <div
                           key={negotiation.id}
                           className={`p-3 rounded-xl text-sm ${negotiation.isFromCustomer
-                            ? 'bg-indigo-50 text-indigo-900 ml-8 rounded-tr-none'
-                            : 'bg-slate-100 text-slate-800 mr-8 rounded-tl-none'
+                            ? 'bg-primary/10 text-primary ml-8 rounded-tr-none'
+                            : 'bg-muted text-foreground mr-8 rounded-tl-none'
                             }`}
                         >
                           <div className="flex items-center justify-between mb-1 opacity-70 text-xs">
@@ -1010,13 +1010,13 @@ export default function CustomerServiceRequests() {
 
                 {/* Action Buttons in Modal */}
                 {(selectedQuote.status === 'pending' || selectedQuote.status === 'sent') && !isQuoteExpired(selectedQuote.validUntil) && (
-                  <div className="flex gap-3 pt-4 border-t border-slate-100 mt-2">
+                  <div className="flex gap-3 pt-4 border-t border-border/50 mt-2">
                     <Button
                       onClick={() => {
                         acceptQuote(selectedQuote.id);
                         setShowQuoteModal(false);
                       }}
-                      className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white"
+                      className="flex-1 bg-secondary hover:bg-secondary text-white"
                     >
                       Accept Quote
                     </Button>
@@ -1026,7 +1026,7 @@ export default function CustomerServiceRequests() {
                         setShowQuoteModal(false);
                         setShowNegotiationModal(true);
                       }}
-                      className="flex-1 border-indigo-200 text-indigo-700 hover:bg-indigo-50"
+                      className="flex-1 border-primary/50 text-primary hover:bg-primary/10"
                     >
                       Negotiate
                     </Button>
@@ -1036,7 +1036,7 @@ export default function CustomerServiceRequests() {
                         setShowQuoteModal(false);
                         setShowRejectionModal(true);
                       }}
-                      className="flex-1 border-red-200 text-red-700 hover:bg-red-50"
+                      className="flex-1 border-destructive text-destructive hover:bg-destructive/10"
                     >
                       Reject
                     </Button>
@@ -1053,8 +1053,8 @@ export default function CustomerServiceRequests() {
         <Dialog open={showRejectionModal} onOpenChange={setShowRejectionModal}>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle className="text-lg font-semibold text-slate-900">Reject Quote</DialogTitle>
-              <DialogDescription className="text-sm text-slate-500">
+              <DialogTitle className="text-lg font-semibold text-foreground">Reject Quote</DialogTitle>
+              <DialogDescription className="text-sm text-muted-foreground">
                 Please provide a reason for rejecting this quote to help us improve.
               </DialogDescription>
             </DialogHeader>
@@ -1063,7 +1063,7 @@ export default function CustomerServiceRequests() {
                 value={rejectionReason}
                 onChange={(e) => setRejectionReason(e.target.value)}
                 placeholder="Reason for rejection (e.g., price too high, changed requirements)..."
-                className="w-full min-h-[100px] p-3 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+                className="w-full min-h-[100px] p-3 border border-border rounded-lg text-sm focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary"
               />
               <div className="flex justify-end gap-2 pt-2">
                 <Button variant="ghost" onClick={() => setShowRejectionModal(false)}>Cancel</Button>
@@ -1085,8 +1085,8 @@ export default function CustomerServiceRequests() {
         <Dialog open={showNegotiationModal} onOpenChange={setShowNegotiationModal}>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle className="text-lg font-semibold text-slate-900">Negotiate Quote</DialogTitle>
-              <DialogDescription className="text-sm text-slate-500">
+              <DialogTitle className="text-lg font-semibold text-foreground">Negotiate Quote</DialogTitle>
+              <DialogDescription className="text-sm text-muted-foreground">
                 Send a message to the admin regarding this quote.
               </DialogDescription>
             </DialogHeader>
@@ -1095,12 +1095,12 @@ export default function CustomerServiceRequests() {
                 value={negotiationMessage}
                 onChange={(e) => setNegotiationMessage(e.target.value)}
                 placeholder="Type your message here..."
-                className="w-full min-h-[100px] p-3 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+                className="w-full min-h-[100px] p-3 border border-border rounded-lg text-sm focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary"
               />
               <div className="flex justify-end gap-2 pt-2">
                 <Button variant="ghost" onClick={() => setShowNegotiationModal(false)}>Cancel</Button>
                 <Button
-                  className="bg-indigo-600 hover:bg-indigo-700 text-white"
+                  className="bg-primary hover:bg-primary text-white"
                   disabled={!negotiationMessage.trim()}
                   onClick={() => {
                     sendNegotiation(selectedQuote.id, negotiationMessage);

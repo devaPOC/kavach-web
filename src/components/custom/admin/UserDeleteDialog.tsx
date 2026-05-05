@@ -68,7 +68,7 @@ export default function UserDeleteDialog({
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2 text-red-600">
+          <DialogTitle className="flex items-center gap-2 text-destructive">
             <AlertTriangle className="h-5 w-5" />
             Delete User Account
           </DialogTitle>
@@ -80,17 +80,17 @@ export default function UserDeleteDialog({
 
         <div className="space-y-4">
           {/* User Info */}
-          <div className="p-4 bg-gray-50 rounded-lg">
+          <div className="p-4 bg-muted/50 rounded-lg">
             <div className="flex items-center justify-between">
               <div>
-                <p className="font-medium text-gray-900">
+                <p className="font-medium text-foreground">
                   {user.firstName} {user.lastName}
                 </p>
-                <p className="text-sm text-gray-500">{user.email}</p>
-                <p className="text-xs text-gray-400 capitalize">Role: {user.role}</p>
+                <p className="text-sm text-muted-foreground">{user.email}</p>
+                <p className="text-xs text-muted-foreground/80 capitalize">Role: {user.role}</p>
               </div>
               <div className="text-right">
-                <p className="text-xs text-gray-400">
+                <p className="text-xs text-muted-foreground/80">
                   Created: {new Date(user.createdAt).toLocaleDateString()}
                 </p>
               </div>
@@ -100,7 +100,7 @@ export default function UserDeleteDialog({
           {/* Reason Input */}
           <div className="space-y-2">
             <Label htmlFor="reason">
-              Reason for Deletion <span className="text-red-600">*</span>
+              Reason for Deletion <span className="text-destructive">*</span>
             </Label>
             <Textarea
               id="reason"
@@ -111,16 +111,16 @@ export default function UserDeleteDialog({
               disabled={loading}
               className="resize-none"
             />
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-muted-foreground">
               If no reason is provided, a default message will be sent to the user.
             </p>
           </div>
 
           {/* Warning */}
-          <div className="p-3 bg-red-50 border border-red-200 rounded-md">
+          <div className="p-3 bg-destructive/10 border border-destructive rounded-md">
             <div className="flex items-start gap-2">
-              <AlertTriangle className="h-4 w-4 text-red-600 mt-0.5 flex-shrink-0" />
-              <div className="text-sm text-red-700">
+              <AlertTriangle className="h-4 w-4 text-destructive mt-0.5 flex-shrink-0" />
+              <div className="text-sm text-destructive">
                 <p className="font-medium">Effect of this action:</p>
                 <ul className="mt-1 list-disc list-inside space-y-1 text-xs">
                   <li>All user data will be permanently deleted</li>
@@ -134,8 +134,8 @@ export default function UserDeleteDialog({
 
           {/* Error Display */}
           {error && (
-            <div className="p-3 bg-red-50 border border-red-200 rounded-md">
-              <p className="text-sm text-red-600">{error}</p>
+            <div className="p-3 bg-destructive/10 border border-destructive rounded-md">
+              <p className="text-sm text-destructive">{error}</p>
             </div>
           )}
         </div>

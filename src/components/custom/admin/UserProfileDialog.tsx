@@ -101,13 +101,13 @@ export default function UserProfileDialog({ open, onOpenChange, user }: UserProf
 
         {loading && (
           <div className="flex items-center justify-center py-8">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary/50"></div>
           </div>
         )}
 
         {error && (
-          <div className="p-3 bg-red-50 border border-red-200 rounded-md">
-            <p className="text-sm text-red-600">{error}</p>
+          <div className="p-3 bg-destructive/10 border border-destructive rounded-md">
+            <p className="text-sm text-destructive">{error}</p>
           </div>
         )}
 
@@ -124,34 +124,34 @@ export default function UserProfileDialog({ open, onOpenChange, user }: UserProf
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="flex items-center gap-2">
-                    <Mail className="h-4 w-4 text-gray-500" />
+                    <Mail className="h-4 w-4 text-muted-foreground" />
                     <div>
                       <p className="text-sm font-medium">Email</p>
-                      <p className="text-sm text-gray-600">{user.email}</p>
+                      <p className="text-sm text-muted-foreground">{user.email}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Users className="h-4 w-4 text-gray-500" />
+                    <Users className="h-4 w-4 text-muted-foreground" />
                     <div>
                       <p className="text-sm font-medium">Role</p>
                       <Badge className={
-                        user.role === 'admin' ? 'bg-red-100 text-red-800' :
-                        user.role === 'expert' ? 'bg-blue-100 text-blue-800' :
-                        'bg-green-100 text-green-800'
+                        user.role === 'admin' ? 'bg-destructive/10 text-destructive' :
+                        user.role === 'expert' ? 'bg-primary/10 text-primary' :
+                        'bg-secondary/10 text-secondary'
                       }>
                         {user.role}
                       </Badge>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Calendar className="h-4 w-4 text-gray-500" />
+                    <Calendar className="h-4 w-4 text-muted-foreground" />
                     <div>
                       <p className="text-sm font-medium">Joined</p>
-                      <p className="text-sm text-gray-600">{formatDate(user.createdAt)}</p>
+                      <p className="text-sm text-muted-foreground">{formatDate(user.createdAt)}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Shield className="h-4 w-4 text-gray-500" />
+                    <Shield className="h-4 w-4 text-muted-foreground" />
                     <div>
                       <p className="text-sm font-medium">Status</p>
                       <div className="flex gap-2">
@@ -182,31 +182,31 @@ export default function UserProfileDialog({ open, onOpenChange, user }: UserProf
                     <h4 className="font-medium mb-3">Personal Information</h4>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="flex items-center gap-2">
-                        <Phone className="h-4 w-4 text-gray-500" />
+                        <Phone className="h-4 w-4 text-muted-foreground" />
                         <div>
                           <p className="text-sm font-medium">Phone Number</p>
-                          <p className="text-sm text-gray-600">{profile.phoneNumber || 'Not provided'}</p>
+                          <p className="text-sm text-muted-foreground">{profile.phoneNumber || 'Not provided'}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Calendar className="h-4 w-4 text-gray-500" />
+                        <Calendar className="h-4 w-4 text-muted-foreground" />
                         <div>
                           <p className="text-sm font-medium">Date of Birth</p>
-                          <p className="text-sm text-gray-600">{formatDate(profile.dateOfBirth)}</p>
+                          <p className="text-sm text-muted-foreground">{formatDate(profile.dateOfBirth)}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
-                        <User className="h-4 w-4 text-gray-500" />
+                        <User className="h-4 w-4 text-muted-foreground" />
                         <div>
                           <p className="text-sm font-medium">Gender</p>
-                          <p className="text-sm text-gray-600">{formatGender(profile.gender)}</p>
+                          <p className="text-sm text-muted-foreground">{formatGender(profile.gender)}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
-                        <MapPin className="h-4 w-4 text-gray-500" />
+                        <MapPin className="h-4 w-4 text-muted-foreground" />
                         <div>
                           <p className="text-sm font-medium">Nationality</p>
-                          <p className="text-sm text-gray-600">{profile.nationality || 'Not provided'}</p>
+                          <p className="text-sm text-muted-foreground">{profile.nationality || 'Not provided'}</p>
                         </div>
                       </div>
                     </div>
@@ -219,24 +219,24 @@ export default function UserProfileDialog({ open, onOpenChange, user }: UserProf
                     <h4 className="font-medium mb-3">Location Information</h4>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="flex items-center gap-2">
-                        <MapPin className="h-4 w-4 text-gray-500" />
+                        <MapPin className="h-4 w-4 text-muted-foreground" />
                         <div>
                           <p className="text-sm font-medium">Country of Residence</p>
-                          <p className="text-sm text-gray-600">{profile.countryOfResidence || 'Not provided'}</p>
+                          <p className="text-sm text-muted-foreground">{profile.countryOfResidence || 'Not provided'}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
-                        <MapPin className="h-4 w-4 text-gray-500" />
+                        <MapPin className="h-4 w-4 text-muted-foreground" />
                         <div>
                           <p className="text-sm font-medium">Governorate</p>
-                          <p className="text-sm text-gray-600">{profile.governorate || 'Not provided'}</p>
+                          <p className="text-sm text-muted-foreground">{profile.governorate || 'Not provided'}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
-                        <MapPin className="h-4 w-4 text-gray-500" />
+                        <MapPin className="h-4 w-4 text-muted-foreground" />
                         <div>
                           <p className="text-sm font-medium">Wilayat</p>
-                          <p className="text-sm text-gray-600">{profile.wilayat || 'Not provided'}</p>
+                          <p className="text-sm text-muted-foreground">{profile.wilayat || 'Not provided'}</p>
                         </div>
                       </div>
                     </div>
@@ -251,55 +251,55 @@ export default function UserProfileDialog({ open, onOpenChange, user }: UserProf
                         <div className="space-y-4">
                           <div>
                             <p className="text-sm font-medium mb-1">Areas of Specialization</p>
-                            <p className="text-sm text-gray-600 whitespace-pre-wrap">
+                            <p className="text-sm text-muted-foreground whitespace-pre-wrap">
                               {profile.areasOfSpecialization || 'Not provided'}
                             </p>
                           </div>
                           <div>
                             <p className="text-sm font-medium mb-1">Professional Experience</p>
-                            <p className="text-sm text-gray-600 whitespace-pre-wrap">
+                            <p className="text-sm text-muted-foreground whitespace-pre-wrap">
                               {profile.professionalExperience || 'Not provided'}
                             </p>
                           </div>
                           <div>
                             <p className="text-sm font-medium mb-1">Relevant Certifications</p>
-                            <p className="text-sm text-gray-600 whitespace-pre-wrap">
+                            <p className="text-sm text-muted-foreground whitespace-pre-wrap">
                               {profile.relevantCertifications || 'Not provided'}
                             </p>
                           </div>
                           <div className="grid grid-cols-2 gap-4">
                             <div className="flex items-center gap-2">
-                              <Briefcase className="h-4 w-4 text-gray-500" />
+                              <Briefcase className="h-4 w-4 text-muted-foreground" />
                               <div>
                                 <p className="text-sm font-medium">Employment Status</p>
-                                <p className="text-sm text-gray-600">{formatEmploymentStatus(profile.currentEmploymentStatus)}</p>
+                                <p className="text-sm text-muted-foreground">{formatEmploymentStatus(profile.currentEmploymentStatus)}</p>
                               </div>
                             </div>
                             <div className="flex items-center gap-2">
-                              <Building className="h-4 w-4 text-gray-500" />
+                              <Building className="h-4 w-4 text-muted-foreground" />
                               <div>
                                 <p className="text-sm font-medium">Current Employer</p>
-                                <p className="text-sm text-gray-600">{profile.currentEmployer || 'Not provided'}</p>
+                                <p className="text-sm text-muted-foreground">{profile.currentEmployer || 'Not provided'}</p>
                               </div>
                             </div>
                             <div className="flex items-center gap-2">
-                              <Clock className="h-4 w-4 text-gray-500" />
+                              <Clock className="h-4 w-4 text-muted-foreground" />
                               <div>
                                 <p className="text-sm font-medium">Availability</p>
-                                <p className="text-sm text-gray-600">{formatAvailability(profile.availability)}</p>
+                                <p className="text-sm text-muted-foreground">{formatAvailability(profile.availability)}</p>
                               </div>
                             </div>
                             <div className="flex items-center gap-2">
-                              <Clock className="h-4 w-4 text-gray-500" />
+                              <Clock className="h-4 w-4 text-muted-foreground" />
                               <div>
                                 <p className="text-sm font-medium">Work Arrangement</p>
-                                <p className="text-sm text-gray-600">{formatAvailability(profile.preferredWorkArrangement)}</p>
+                                <p className="text-sm text-muted-foreground">{formatAvailability(profile.preferredWorkArrangement)}</p>
                               </div>
                             </div>
                           </div>
                           <div>
                             <p className="text-sm font-medium mb-1">Preferred Payment Methods</p>
-                            <p className="text-sm text-gray-600 whitespace-pre-wrap">
+                            <p className="text-sm text-muted-foreground whitespace-pre-wrap">
                               {profile.preferredPaymentMethods || 'Not provided'}
                             </p>
                           </div>
@@ -314,7 +314,7 @@ export default function UserProfileDialog({ open, onOpenChange, user }: UserProf
             {!profile && !loading && (
               <Card>
                 <CardContent className="text-center py-8">
-                  <p className="text-gray-500">No profile information available for this user.</p>
+                  <p className="text-muted-foreground">No profile information available for this user.</p>
                 </CardContent>
               </Card>
             )}

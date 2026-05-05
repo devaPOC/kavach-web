@@ -94,11 +94,11 @@ export default function PendingClosureTasks() {
 
   const getPriorityColor = (priority: string) => {
     const colors = {
-      emergency: 'bg-red-100 text-red-800',
-      urgent: 'bg-orange-100 text-orange-800',
-      high: 'bg-yellow-100 text-yellow-800',
-      normal: 'bg-blue-100 text-blue-800',
-      low: 'bg-green-100 text-green-800'
+      emergency: 'bg-destructive/10 text-destructive',
+      urgent: 'bg-accent/10 text-accent',
+      high: 'bg-accent/10 text-accent',
+      normal: 'bg-primary/10 text-primary',
+      low: 'bg-secondary/10 text-secondary'
     }
     return colors[priority as keyof typeof colors] || colors.normal
   }
@@ -106,7 +106,7 @@ export default function PendingClosureTasks() {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-8">
-        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary/50"></div>
       </div>
     )
   }
@@ -116,9 +116,9 @@ export default function PendingClosureTasks() {
       {tasks.length === 0 ? (
         <Card>
           <CardContent className="py-8 text-center">
-            <Clock className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-            <p className="text-gray-500">No tasks pending closure</p>
-            <p className="text-sm text-gray-400 mt-2">
+            <Clock className="h-12 w-12 text-muted-foreground/80 mx-auto mb-4" />
+            <p className="text-muted-foreground">No tasks pending closure</p>
+            <p className="text-sm text-muted-foreground/80 mt-2">
               Tasks that you've requested closure for will appear here while waiting for customer approval.
             </p>
           </CardContent>
@@ -134,7 +134,7 @@ export default function PendingClosureTasks() {
                     <Badge className={getPriorityColor(task.priority)}>
                       {task.priority.toUpperCase()}
                     </Badge>
-                    <Badge variant="outline" className="flex items-center gap-1 text-orange-600 border-orange-300">
+                    <Badge variant="outline" className="flex items-center gap-1 text-accent border-accent/50">
                       <Clock className="h-4 w-4" />
                       AWAITING CUSTOMER APPROVAL
                     </Badge>
@@ -160,7 +160,7 @@ export default function PendingClosureTasks() {
                         setSelectedTask(task)
                         setShowReportModal(true)
                       }}
-                      className="bg-blue-50 hover:bg-blue-100"
+                      className="bg-primary/10 hover:bg-primary/10"
                     >
                       <FileText className="h-4 w-4 mr-1" />
                       View Report
@@ -171,8 +171,8 @@ export default function PendingClosureTasks() {
             </CardHeader>
             <CardContent className="pt-0">
               <div className="space-y-3">
-                <p className="text-gray-600 line-clamp-2">{task.description}</p>
-                <div className="flex items-center justify-between text-sm text-gray-500">
+                <p className="text-muted-foreground line-clamp-2">{task.description}</p>
+                <div className="flex items-center justify-between text-sm text-muted-foreground">
                   <div className="flex items-center gap-4">
                     <div className="flex items-center gap-1">
                       <User className="h-4 w-4" />
@@ -184,7 +184,7 @@ export default function PendingClosureTasks() {
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-orange-600 font-medium">Pending Customer Approval</div>
+                    <div className="text-accent font-medium">Pending Customer Approval</div>
                     <div className="text-xs">Customer will review and close</div>
                   </div>
                 </div>
@@ -197,7 +197,7 @@ export default function PendingClosureTasks() {
       {/* Pagination */}
       {totalPages > 1 && (
         <div className="flex items-center justify-between mt-6">
-          <div className="text-sm text-gray-500">
+          <div className="text-sm text-muted-foreground">
             Showing {((currentPage - 1) * limit) + 1} to {Math.min(currentPage * limit, totalTasks)} of {totalTasks} tasks
           </div>
           <div className="flex items-center gap-2">
@@ -211,7 +211,7 @@ export default function PendingClosureTasks() {
               <ChevronLeft className="h-3 w-3" />
               Previous
             </Button>
-            <span className="text-sm text-gray-500">
+            <span className="text-sm text-muted-foreground">
               Page {currentPage} of {totalPages}
             </span>
             <Button
@@ -235,7 +235,7 @@ export default function PendingClosureTasks() {
             <>
               <DialogHeader>
                 <DialogTitle className="flex items-center gap-2">
-                  <Clock className="h-5 w-5 text-orange-600" />
+                  <Clock className="h-5 w-5 text-accent" />
                   Task Pending Closure - {selectedTask.title}
                 </DialogTitle>
                 <DialogDescription>
@@ -245,12 +245,12 @@ export default function PendingClosureTasks() {
 
               <div className="space-y-6">
                 {/* Task Status Summary */}
-                <div className="bg-orange-50 border border-orange-200 p-4 rounded-lg">
+                <div className="bg-accent/10 border border-accent/50 p-4 rounded-lg">
                   <div className="flex items-center gap-2 mb-2">
-                    <Clock className="h-5 w-5 text-orange-600" />
-                    <h3 className="font-semibold text-orange-800">Pending Customer Approval</h3>
+                    <Clock className="h-5 w-5 text-accent" />
+                    <h3 className="font-semibold text-accent">Pending Customer Approval</h3>
                   </div>
-                  <p className="text-orange-700 text-sm">
+                  <p className="text-accent text-sm">
                     You have successfully completed this task and submitted your completion report.
                     The customer is now reviewing your work and will close the task once they approve it.
                   </p>
@@ -283,7 +283,7 @@ export default function PendingClosureTasks() {
                 {/* Request Details */}
                 <div>
                   <h4 className="font-semibold mb-2">Request Description</h4>
-                  <p className="text-gray-700 bg-gray-50 p-3 rounded-lg">
+                  <p className="text-foreground/80 bg-muted/50 p-3 rounded-lg">
                     {selectedTask.description}
                   </p>
                 </div>
@@ -292,12 +292,12 @@ export default function PendingClosureTasks() {
                 {selectedTask.completionReport && (
                   <div>
                     <h4 className="font-semibold mb-2">Your Completion Report</h4>
-                    <div className="bg-green-50 p-4 rounded-lg space-y-3">
+                    <div className="bg-secondary/10 p-4 rounded-lg space-y-3">
                       <div>
-                        <p className="text-sm text-gray-600 mb-2">
+                        <p className="text-sm text-muted-foreground mb-2">
                           Submitted: {format(new Date(selectedTask.completionReport.submittedAt), 'MMM dd, yyyy HH:mm')}
                         </p>
-                        <div className="bg-white p-3 rounded border">
+                        <div className="bg-card p-3 rounded border">
                           <p className="text-sm whitespace-pre-wrap">{selectedTask.completionReport.report}</p>
                         </div>
                       </div>
@@ -307,11 +307,11 @@ export default function PendingClosureTasks() {
                           <h5 className="font-medium mb-2">Attached Files:</h5>
                           <div className="space-y-2">
                             {selectedTask.completionReport.files.map((file) => (
-                              <div key={file.id} className="flex items-center justify-between bg-white p-2 rounded border">
+                              <div key={file.id} className="flex items-center justify-between bg-card p-2 rounded border">
                                 <div className="flex items-center gap-2">
                                   <FileText className="h-4 w-4" />
                                   <span className="text-sm">{file.originalName}</span>
-                                  <span className="text-xs text-gray-500">
+                                  <span className="text-xs text-muted-foreground">
                                     ({(file.size / 1024 / 1024).toFixed(2)} MB)
                                   </span>
                                 </div>
@@ -346,11 +346,11 @@ export default function PendingClosureTasks() {
 
               <div className="space-y-6">
                 {/* Task Summary */}
-                <div className="bg-gray-50 p-4 rounded-lg">
+                <div className="bg-muted/50 p-4 rounded-lg">
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>
                       <span className="font-medium">Status:</span>
-                      <Badge variant="outline" className="ml-2 text-orange-600 border-orange-300">
+                      <Badge variant="outline" className="ml-2 text-accent border-accent/50">
                         PENDING CLOSURE
                       </Badge>
                     </div>
@@ -372,8 +372,8 @@ export default function PendingClosureTasks() {
                 {/* Report Content */}
                 <div>
                   <h4 className="font-semibold mb-3">Expert's Completion Report</h4>
-                  <div className="bg-white border rounded-lg p-4">
-                    <p className="whitespace-pre-wrap text-gray-700">
+                  <div className="bg-card border rounded-lg p-4">
+                    <p className="whitespace-pre-wrap text-foreground/80">
                       {selectedTask.completionReport.report || 'No written report provided.'}
                     </p>
                   </div>
@@ -385,12 +385,12 @@ export default function PendingClosureTasks() {
                     <h4 className="font-semibold mb-3">Attached Files</h4>
                     <div className="space-y-3">
                       {selectedTask.completionReport.files.map((file) => (
-                        <div key={file.id} className="flex items-center justify-between bg-gray-50 p-3 rounded-lg border">
+                        <div key={file.id} className="flex items-center justify-between bg-muted/50 p-3 rounded-lg border">
                           <div className="flex items-center gap-3">
-                            <FileText className="h-5 w-5 text-gray-500" />
+                            <FileText className="h-5 w-5 text-muted-foreground" />
                             <div>
-                              <p className="font-medium text-gray-900">{file.originalName}</p>
-                              <p className="text-sm text-gray-500">
+                              <p className="font-medium text-foreground">{file.originalName}</p>
+                              <p className="text-sm text-muted-foreground">
                                 {(file.size / 1024 / 1024).toFixed(2)} MB • {format(new Date(file.uploadedAt), 'MMM dd, yyyy')}
                               </p>
                             </div>

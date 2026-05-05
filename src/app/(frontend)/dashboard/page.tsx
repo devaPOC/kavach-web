@@ -76,7 +76,7 @@ function DashboardContent() {
   if (loading) {
     return (
       <div className="min-h-[400px] flex items-center justify-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-2 border-emerald-200 border-t-emerald-600"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-2 border-secondary/50 border-t-emerald-600"></div>
       </div>
     )
   }
@@ -125,26 +125,26 @@ function DashboardContent() {
       {services.map((service) => (
         <div
           key={service.id}
-          className='relative bg-white border border-slate-200/60 rounded-2xl p-6 flex flex-col min-h-[280px] shadow-sm hover:shadow-md hover:border-indigo-200 hover:-translate-y-0.5 transition-all duration-300 ease-out group overflow-hidden'
+          className='relative bg-card border border-border/60 rounded-2xl p-6 flex flex-col min-h-[280px] shadow-sm hover:shadow-md hover:border-primary/50 hover:-translate-y-0.5 transition-all duration-300 ease-out group overflow-hidden'
         >
           {/* Content wrapper */}
           <div className='flex flex-col h-full'>
 
             {/* Header */}
             <div className='mb-4'>
-              <span className='inline-block px-3 py-1.5 text-xs font-medium bg-slate-100 text-slate-600 rounded-lg mb-3 group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-colors duration-300'>
+              <span className='inline-block px-3 py-1.5 text-xs font-medium bg-muted text-muted-foreground rounded-lg mb-3 group-hover:bg-primary/10 group-hover:text-primary transition-colors duration-300'>
                 {service.category}
               </span>
-              <h3 className='font-semibold text-slate-800 text-base leading-snug group-hover:text-slate-900 transition-colors duration-300'>
+              <h3 className='font-semibold text-foreground text-base leading-snug group-hover:text-foreground transition-colors duration-300'>
                 {service.service}
               </h3>
             </div>
 
             {/* Description */}
-            <ul className='text-sm text-slate-500 space-y-2 flex-1 group-hover:text-slate-600 transition-colors duration-300'>
+            <ul className='text-sm text-muted-foreground space-y-2 flex-1 group-hover:text-muted-foreground transition-colors duration-300'>
               {Object.values(service.description || {}).slice(0, 3).map((d, i) => (
                 <li key={i} className='flex items-start gap-2.5'>
-                  <span className='w-1 h-1 rounded-full bg-slate-300 group-hover:bg-indigo-400 mt-2 flex-shrink-0 transition-colors duration-300'></span>
+                  <span className='w-1 h-1 rounded-full bg-muted/80 group-hover:bg-primary mt-2 flex-shrink-0 transition-colors duration-300'></span>
                   <span className='line-clamp-2'>{String(d)}</span>
                 </li>
               ))}
@@ -162,7 +162,7 @@ function DashboardContent() {
               }}
             >
               <DialogTrigger asChild>
-                <button className='mt-5 w-full py-2.5 px-4 text-sm font-medium rounded-xl border border-indigo-200 text-indigo-600 bg-transparent hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition-all duration-200'>
+                <button className='mt-5 w-full py-2.5 px-4 text-sm font-medium rounded-xl border border-primary/50 text-primary bg-transparent hover:bg-primary hover:text-white hover:border-primary/50 transition-all duration-200'>
                   Request Service
                 </button>
               </DialogTrigger>
@@ -183,20 +183,20 @@ function DashboardContent() {
     <div className='space-y-6'>
       {/* Header Section */}
       <div className="flex flex-col gap-1">
-        <h1 className="text-2xl font-semibold tracking-tight text-slate-900">Request Service</h1>
-        <p className="text-slate-500 text-sm">
+        <h1 className="text-2xl font-semibold tracking-tight text-foreground">Request Service</h1>
+        <p className="text-muted-foreground text-sm">
           Browse our services and request assistance from our experts.
         </p>
       </div>
 
       {/* Filters */}
       <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-        <label htmlFor="category-filter" className="text-sm font-medium text-slate-600">Filter by category</label>
+        <label htmlFor="category-filter" className="text-sm font-medium text-muted-foreground">Filter by category</label>
         <select
           id="category-filter"
           value={categoryFilter}
           onChange={(e) => setCategoryFilter(e.target.value)}
-          className="w-full sm:w-48 bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400 transition-all duration-200"
+          className="w-full sm:w-48 bg-card border border-border rounded-xl px-4 py-2.5 text-sm text-foreground/80 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all duration-200"
         >
           <option value="all">All Services</option>
           <option value="personal">Personal Protection</option>
@@ -215,7 +215,7 @@ export default function Dashboard() {
   return (
     <Suspense fallback={
       <div className="min-h-[400px] flex items-center justify-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-2 border-emerald-200 border-t-emerald-600"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-2 border-secondary/50 border-t-emerald-600"></div>
       </div>
     }>
       <DashboardContent />

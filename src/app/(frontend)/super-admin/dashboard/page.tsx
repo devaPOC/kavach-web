@@ -54,8 +54,8 @@ export default function SuperAdminDashboardPage() {
 	return (
 		<div className="p-4 lg:p-8">
 			<div className="mb-8">
-				<h1 className="text-3xl font-bold text-gray-900 mb-2">Dashboard Overview</h1>
-				<p className="text-gray-600">
+				<h1 className="text-3xl font-bold text-foreground mb-2">Dashboard Overview</h1>
+				<p className="text-muted-foreground">
 					Monitor and manage your platform
 				</p>
 			</div>
@@ -65,10 +65,10 @@ export default function SuperAdminDashboardPage() {
 				{statCards.map((stat) => {
 					const Icon = stat.icon
 					const colorClasses: Record<string, { bg: string; icon: string; text: string }> = {
-						violet: { bg: 'bg-violet-50', icon: 'text-violet-600', text: 'text-violet-700' },
-						blue: { bg: 'bg-blue-50', icon: 'text-blue-600', text: 'text-blue-700' },
-						green: { bg: 'bg-green-50', icon: 'text-green-600', text: 'text-green-700' },
-						amber: { bg: 'bg-amber-50', icon: 'text-amber-600', text: 'text-amber-700' },
+						violet: { bg: 'bg-primary/10', icon: 'text-primary', text: 'text-primary' },
+						blue: { bg: 'bg-primary/10', icon: 'text-primary', text: 'text-primary' },
+						green: { bg: 'bg-secondary/10', icon: 'text-secondary', text: 'text-secondary' },
+						amber: { bg: 'bg-accent/10', icon: 'text-accent', text: 'text-accent' },
 					}
 					const colors = colorClasses[stat.color]
 
@@ -78,7 +78,7 @@ export default function SuperAdminDashboardPage() {
 								<CardContent className="p-6">
 									<div className="flex items-center justify-between">
 										<div>
-											<p className="text-sm font-medium text-gray-500">{stat.title}</p>
+											<p className="text-sm font-medium text-muted-foreground">{stat.title}</p>
 											<p className={`text-3xl font-bold ${colors.text}`}>
 												{loading ? '—' : stat.value}
 											</p>
@@ -104,14 +104,14 @@ export default function SuperAdminDashboardPage() {
 					<div className="flex flex-wrap gap-3">
 						<Link
 							href="/super-admin/admins"
-							className="inline-flex items-center px-4 py-2 bg-violet-600 text-white rounded-lg hover:bg-violet-700 transition-colors font-medium text-sm"
+							className="inline-flex items-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary transition-colors font-medium text-sm"
 						>
 							<UserCog className="h-4 w-4 mr-2" />
 							Manage Admins
 						</Link>
 						<Link
 							href="/super-admin/users"
-							className="inline-flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-medium text-sm"
+							className="inline-flex items-center px-4 py-2 bg-muted text-foreground/80 rounded-lg hover:bg-muted/80 transition-colors font-medium text-sm"
 						>
 							<Users className="h-4 w-4 mr-2" />
 							View All Users

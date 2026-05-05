@@ -168,12 +168,12 @@ export default function AdminAwarenessSessionDashboard({ onRefresh }: AdminAware
 
     const getStatusBadgeColor = (status: AwarenessSessionStatus) => {
         switch (status) {
-            case 'pending_admin_review': return 'bg-yellow-100 text-yellow-800 border-yellow-200'
-            case 'forwarded_to_expert': return 'bg-blue-100 text-blue-800 border-blue-200'
-            case 'confirmed': return 'bg-green-100 text-green-800 border-green-200'
-            case 'rejected': return 'bg-red-100 text-red-800 border-red-200'
-            case 'expert_declined': return 'bg-orange-100 text-orange-800 border-orange-200'
-            default: return 'bg-gray-100 text-gray-800 border-gray-200'
+            case 'pending_admin_review': return 'bg-accent/10 text-accent border-accent/50'
+            case 'forwarded_to_expert': return 'bg-primary/10 text-primary border-primary/50'
+            case 'confirmed': return 'bg-secondary/10 text-secondary border-secondary/50'
+            case 'rejected': return 'bg-destructive/10 text-destructive border-destructive'
+            case 'expert_declined': return 'bg-accent/10 text-accent border-accent/50'
+            default: return 'bg-muted text-foreground border-border'
         }
     }
     const getStatusIcon = (status: AwarenessSessionStatus) => {
@@ -254,25 +254,25 @@ export default function AdminAwarenessSessionDashboard({ onRefresh }: AdminAware
 
     const summaryTiles = (
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-            <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                <div className="flex items-center gap-2"><FileText className="h-4 w-4 text-blue-600" /><span className="text-sm font-medium text-blue-700">Total Requests</span></div>
-                <p className="text-2xl font-bold text-blue-800 mt-1">{totalRequests}</p>
+            <div className="bg-primary/10 p-4 rounded-lg border border-primary/50">
+                <div className="flex items-center gap-2"><FileText className="h-4 w-4 text-primary" /><span className="text-sm font-medium text-primary">Total Requests</span></div>
+                <p className="text-2xl font-bold text-primary mt-1">{totalRequests}</p>
             </div>
-            <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-                <div className="flex items-center gap-2"><AlertCircle className="h-4 w-4 text-yellow-600" /><span className="text-sm font-medium text-yellow-700">Pending Review</span></div>
-                <p className="text-2xl font-bold text-yellow-800 mt-1">{countsByStatus?.['pending_admin_review'] ?? requests.filter(r => r.status === 'pending_admin_review').length}</p>
+            <div className="bg-accent/10 p-4 rounded-lg border border-accent/50">
+                <div className="flex items-center gap-2"><AlertCircle className="h-4 w-4 text-accent" /><span className="text-sm font-medium text-accent">Pending Review</span></div>
+                <p className="text-2xl font-bold text-accent mt-1">{countsByStatus?.['pending_admin_review'] ?? requests.filter(r => r.status === 'pending_admin_review').length}</p>
             </div>
-            <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                <div className="flex items-center gap-2"><UserCheck className="h-4 w-4 text-blue-600" /><span className="text-sm font-medium text-blue-700">With Expert</span></div>
-                <p className="text-2xl font-bold text-blue-800 mt-1">{countsByStatus?.['forwarded_to_expert'] ?? requests.filter(r => r.status === 'forwarded_to_expert').length}</p>
+            <div className="bg-primary/10 p-4 rounded-lg border border-primary/50">
+                <div className="flex items-center gap-2"><UserCheck className="h-4 w-4 text-primary" /><span className="text-sm font-medium text-primary">With Expert</span></div>
+                <p className="text-2xl font-bold text-primary mt-1">{countsByStatus?.['forwarded_to_expert'] ?? requests.filter(r => r.status === 'forwarded_to_expert').length}</p>
             </div>
-            <div className="bg-green-50 p-4 rounded-lg border border-green-200">
-                <div className="flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-600" /><span className="text-sm font-medium text-green-700">Confirmed</span></div>
-                <p className="text-2xl font-bold text-green-800 mt-1">{countsByStatus?.['confirmed'] ?? requests.filter(r => r.status === 'confirmed').length}</p>
+            <div className="bg-secondary/10 p-4 rounded-lg border border-secondary/50">
+                <div className="flex items-center gap-2"><CheckCircle className="h-4 w-4 text-secondary" /><span className="text-sm font-medium text-secondary">Confirmed</span></div>
+                <p className="text-2xl font-bold text-secondary mt-1">{countsByStatus?.['confirmed'] ?? requests.filter(r => r.status === 'confirmed').length}</p>
             </div>
-            <div className="bg-red-50 p-4 rounded-lg border border-red-200">
-                <div className="flex items-center gap-2"><XCircle className="h-4 w-4 text-red-600" /><span className="text-sm font-medium text-red-700">Rejected/Declined</span></div>
-                <p className="text-2xl font-bold text-red-800 mt-1">{(countsByStatus?.['rejected'] ?? 0) + (countsByStatus?.['expert_declined'] ?? 0) || requests.filter(r => r.status === 'rejected' || r.status === 'expert_declined').length}</p>
+            <div className="bg-destructive/10 p-4 rounded-lg border border-destructive">
+                <div className="flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /><span className="text-sm font-medium text-destructive">Rejected/Declined</span></div>
+                <p className="text-2xl font-bold text-destructive mt-1">{(countsByStatus?.['rejected'] ?? 0) + (countsByStatus?.['expert_declined'] ?? 0) || requests.filter(r => r.status === 'rejected' || r.status === 'expert_declined').length}</p>
             </div>
         </div>
     )
@@ -291,36 +291,36 @@ export default function AdminAwarenessSessionDashboard({ onRefresh }: AdminAware
                     {statusTabs}
                     {summaryTiles}
                     <AwarenessSessionBulkActions selectedRequests={selectedRequests} requests={requests} experts={experts} onRequestsUpdated={handleRequestUpdated} onClearSelection={() => setSelectedRequests(new Set())} />
-                    {error && <div className="p-3 bg-red-50 border border-red-200 rounded-md"><p className="text-sm text-red-600">{error}</p></div>}
+                    {error && <div className="p-3 bg-destructive/10 border border-destructive rounded-md"><p className="text-sm text-destructive">{error}</p></div>}
                     {!loading && filteredRequests.length === 0 ? (
                         <AdminEmptyState title="No session requests match your filters" description="Try adjusting your search, date range, or status filters to see more requests." action={<Button variant="outline" onClick={clearFilters}>Clear filters</Button>} />
                     ) : (
                         <div className="border rounded-lg overflow-hidden">
                             <div className="overflow-x-auto relative">
                                 <table className="w-full">
-                                    <thead className="bg-gray-50">
+                                    <thead className="bg-muted/50">
                                         <tr>
                                             <th className="px-4 py-3 text-left"><Checkbox checked={selectedRequests.size === filteredRequests.length && filteredRequests.length > 0} onCheckedChange={handleSelectAll} aria-label="Select all session requests" /></th>
-                                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Organization & Session</th>
-                                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Details</th>
-                                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Expert</th>
-                                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created</th>
-                                            <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                            <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Organization & Session</th>
+                                            <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Details</th>
+                                            <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Status</th>
+                                            <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Expert</th>
+                                            <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Created</th>
+                                            <th className="px-4 py-3 text-right text-xs font-medium text-muted-foreground uppercase tracking-wider">Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody className="bg-white divide-y divide-gray-200">
+                                    <tbody className="bg-card divide-y divide-gray-200">
                                         {filteredRequests.map(request => {
                                             const StatusIcon = getStatusIcon(request.status)
                                             const assignedExpert = experts.find(e => e.id === request.assignedExpertId)
                                             return (
-                                                <tr key={request.id} className="hover:bg-gray-50">
+                                                <tr key={request.id} className="hover:bg-muted/50">
                                                     <td className="px-4 py-4"><Checkbox checked={selectedRequests.has(request.id)} onCheckedChange={(checked) => handleRequestSelect(request.id, checked as boolean)} aria-label={`Select request ${request.id}`} /></td>
                                                     <td className="px-4 py-4">
                                                         <div className="space-y-1">
-                                                            <div className="flex items-center gap-2"><Building className="h-4 w-4 text-gray-400" /><span className="font-medium text-gray-900">{request.organizationName}</span></div>
-                                                            <div className="text-sm text-gray-600">{request.subject}</div>
-                                                            <div className="flex items-center gap-4 text-xs text-gray-500">
+                                                            <div className="flex items-center gap-2"><Building className="h-4 w-4 text-muted-foreground/80" /><span className="font-medium text-foreground">{request.organizationName}</span></div>
+                                                            <div className="text-sm text-muted-foreground">{request.subject}</div>
+                                                            <div className="flex items-center gap-4 text-xs text-muted-foreground">
                                                                 <div className="flex items-center gap-1"><Calendar className="h-3 w-3" />{new Date(request.sessionDate).toLocaleDateString()}</div>
                                                                 <div className="flex items-center gap-1"><MapPin className="h-3 w-3" />{request.location}</div>
                                                             </div>
@@ -328,15 +328,15 @@ export default function AdminAwarenessSessionDashboard({ onRefresh }: AdminAware
                                                     </td>
                                                     <td className="px-4 py-4">
                                                         <div className="space-y-1 text-sm">
-                                                            <div className="flex items-center gap-2"><Clock className="h-3 w-3 text-gray-400" /><span>{DURATION_LABELS[request.duration]}</span></div>
-                                                            <div className="flex items-center gap-2"><Users className="h-3 w-3 text-gray-400" /><span>{request.audienceSize} people</span></div>
-                                                            <div className="text-xs text-gray-500">{SESSION_MODE_LABELS[request.sessionMode]}</div>
-                                                            <div className="text-xs text-gray-500">{request.audienceTypes.map(type => AUDIENCE_TYPE_LABELS[type]).join(', ')}</div>
+                                                            <div className="flex items-center gap-2"><Clock className="h-3 w-3 text-muted-foreground/80" /><span>{DURATION_LABELS[request.duration]}</span></div>
+                                                            <div className="flex items-center gap-2"><Users className="h-3 w-3 text-muted-foreground/80" /><span>{request.audienceSize} people</span></div>
+                                                            <div className="text-xs text-muted-foreground">{SESSION_MODE_LABELS[request.sessionMode]}</div>
+                                                            <div className="text-xs text-muted-foreground">{request.audienceTypes.map(type => AUDIENCE_TYPE_LABELS[type]).join(', ')}</div>
                                                         </div>
                                                     </td>
                                                     <td className="px-4 py-4"><div className="flex items-center gap-2"><StatusIcon className="h-4 w-4" /><Badge className={getStatusBadgeColor(request.status)}>{STATUS_LABELS[request.status]}</Badge></div></td>
-                                                    <td className="px-4 py-4">{assignedExpert ? (<div className="text-sm"><div className="font-medium text-gray-900">{assignedExpert.firstName} {assignedExpert.lastName}</div><div className="text-gray-500">{assignedExpert.email}</div></div>) : (<span className="text-sm text-gray-400">Not assigned</span>)}</td>
-                                                    <td className="px-4 py-4 text-sm text-gray-500">{new Date(request.createdAt).toLocaleDateString()}</td>
+                                                    <td className="px-4 py-4">{assignedExpert ? (<div className="text-sm"><div className="font-medium text-foreground">{assignedExpert.firstName} {assignedExpert.lastName}</div><div className="text-muted-foreground">{assignedExpert.email}</div></div>) : (<span className="text-sm text-muted-foreground/80">Not assigned</span>)}</td>
+                                                    <td className="px-4 py-4 text-sm text-muted-foreground">{new Date(request.createdAt).toLocaleDateString()}</td>
                                                     <td className="px-4 py-4 text-right">
                                                         <div className="flex items-center justify-end gap-2">
                                                             <Button variant="ghost" size="sm" onClick={() => handleViewDetails(request)} className="h-8 w-8 p-0" aria-label="View details"><Eye className="h-4 w-4" /></Button>

@@ -34,7 +34,7 @@ export function LanguageSwitcher({
     switch (variant) {
       case 'badge':
         return (
-          <Badge variant="outline" className={`cursor-pointer hover:bg-gray-100 ${className}`}>
+          <Badge variant="outline" className={`cursor-pointer hover:bg-muted ${className}`}>
             <Globe className="h-3 w-3 mr-1" />
             {config.code.toUpperCase()}
           </Badge>
@@ -42,7 +42,7 @@ export function LanguageSwitcher({
       
       case 'minimal':
         return (
-          <button className={`flex items-center space-x-1 text-sm text-gray-600 hover:text-gray-900 ${className}`}>
+          <button className={`flex items-center space-x-1 text-sm text-muted-foreground hover:text-foreground ${className}`}>
             <Globe className="h-4 w-4" />
             <span>{config.code.toUpperCase()}</span>
           </button>
@@ -85,12 +85,12 @@ export function LanguageSwitcher({
               <span className={lang.code === 'ar' ? 'font-arabic' : ''}>
                 {lang.nativeName}
               </span>
-              <span className="text-xs text-gray-500">
+              <span className="text-xs text-muted-foreground">
                 ({lang.name})
               </span>
             </div>
             {language === lang.code && (
-              <Check className="h-4 w-4 text-blue-600" />
+              <Check className="h-4 w-4 text-primary" />
             )}
           </DropdownMenuItem>
         ))}

@@ -18,7 +18,7 @@ export function CurrencyExample() {
   ];
 
   return (
-    <div className="p-6 max-w-md mx-auto bg-white rounded-lg shadow-md">
+    <div className="p-6 max-w-md mx-auto bg-card rounded-lg shadow-md">
       <h2 className="text-xl font-semibold mb-4">INR Currency Examples</h2>
       
       {/* Display Examples */}
@@ -26,7 +26,7 @@ export function CurrencyExample() {
         <h3 className="font-medium">Display Examples:</h3>
         {examples.map((example, index) => (
           <div key={index} className="flex justify-between items-center">
-            <span className="text-gray-600">{example.label}:</span>
+            <span className="text-muted-foreground">{example.label}:</span>
             <Currency amount={example.value} variant="default" />
           </div>
         ))}
@@ -41,10 +41,10 @@ export function CurrencyExample() {
           placeholder="Enter amount"
         />
         {amount && (
-          <div className="text-sm text-gray-600">
+          <div className="text-sm text-muted-foreground">
             Formatted: <Currency amount={amount} />
             {!validate(amount) && (
-              <span className="text-red-500 ml-2">(Invalid amount)</span>
+              <span className="text-destructive ml-2">(Invalid amount)</span>
             )}
           </div>
         )}

@@ -128,9 +128,9 @@ export const ValidatedTextarea = React.forwardRef<HTMLTextAreaElement, Validated
     return (
       <div className="space-y-2">
         {label && (
-          <Label htmlFor={props.id} className="text-sm font-medium text-gray-700">
+          <Label htmlFor={props.id} className="text-sm font-medium text-foreground/80">
             {label}
-            {required && <span className="text-red-500 ml-1">*</span>}
+            {required && <span className="text-destructive ml-1">*</span>}
           </Label>
         )}
 
@@ -142,8 +142,8 @@ export const ValidatedTextarea = React.forwardRef<HTMLTextAreaElement, Validated
             onBlur={handleBlur}
             className={cn(
               'transition-all duration-200',
-              showError && 'border-red-500 focus:ring-red-500',
-              isOverLimit && 'border-red-500 focus:ring-red-500',
+              showError && 'border-destructive focus:ring-destructive',
+              isOverLimit && 'border-destructive focus:ring-destructive',
               className
             )}
             {...props}
@@ -153,10 +153,10 @@ export const ValidatedTextarea = React.forwardRef<HTMLTextAreaElement, Validated
           {showCharCount && maxChars && (
             <div
               className={cn(
-                'absolute bottom-2 right-2 text-xs px-2 py-1 rounded bg-white/80 backdrop-blur-sm border',
-                isOverLimit && 'text-red-600 border-red-300 bg-red-50/80',
-                isNearLimit && !isOverLimit && 'text-amber-600 border-amber-300 bg-amber-50/80',
-                !isNearLimit && 'text-gray-500 border-gray-200'
+                'absolute bottom-2 right-2 text-xs px-2 py-1 rounded bg-card/80 backdrop-blur-sm border',
+                isOverLimit && 'text-destructive border-destructive bg-destructive/10/80',
+                isNearLimit && !isOverLimit && 'text-accent border-accent/50 bg-accent/10/80',
+                !isNearLimit && 'text-muted-foreground border-border'
               )}
             >
               {charCount}/{maxChars}
@@ -169,9 +169,9 @@ export const ValidatedTextarea = React.forwardRef<HTMLTextAreaElement, Validated
           <div className="flex justify-between items-start">
             <div className="flex-1">
               {showError ? (
-                <p className="text-sm text-red-600">{displayError}</p>
+                <p className="text-sm text-destructive">{displayError}</p>
               ) : helperText ? (
-                <p className="text-sm text-gray-500">{helperText}</p>
+                <p className="text-sm text-muted-foreground">{helperText}</p>
               ) : null}
             </div>
           </div>

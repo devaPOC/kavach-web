@@ -48,7 +48,7 @@ export const MultilingualDemo: React.FC = () => {
         <CardHeader>
           <div className={`flex items-center justify-between ${isRTL ? 'flex-row-reverse' : ''}`}>
             <CardTitle className={`flex items-center space-x-2 ${languageClasses} ${isRTL ? 'flex-row-reverse space-x-reverse' : ''}`}>
-              <Globe className="h-6 w-6 text-blue-600" />
+              <Globe className="h-6 w-6 text-primary" />
               <span>
                 {language === 'ar' ? 'عرض الدعم متعدد اللغات' : 'Multilingual Support Demo'}
               </span>
@@ -57,7 +57,7 @@ export const MultilingualDemo: React.FC = () => {
           </div>
         </CardHeader>
         <CardContent>
-          <p className={`text-gray-600 ${languageClasses}`}>
+          <p className={`text-muted-foreground ${languageClasses}`}>
             {language === 'ar' 
               ? 'هذا العرض يوضح الدعم الكامل للغة العربية مع التخطيط من اليمين إلى اليسار والطباعة المحسنة.'
               : 'This demo showcases comprehensive Arabic language support with RTL layout and enhanced typography.'
@@ -77,13 +77,13 @@ export const MultilingualDemo: React.FC = () => {
           </CardHeader>
           <CardContent className="space-y-3">
             <div className={`flex justify-between ${isRTL ? 'flex-row-reverse' : ''}`}>
-              <span className={`text-gray-600 ${languageClasses}`}>
+              <span className={`text-muted-foreground ${languageClasses}`}>
                 {language === 'ar' ? 'اللغة الحالية:' : 'Current Language:'}
               </span>
               <Badge variant="outline">{language.toUpperCase()}</Badge>
             </div>
             <div className={`flex justify-between ${isRTL ? 'flex-row-reverse' : ''}`}>
-              <span className={`text-gray-600 ${languageClasses}`}>
+              <span className={`text-muted-foreground ${languageClasses}`}>
                 {language === 'ar' ? 'الاتجاه:' : 'Direction:'}
               </span>
               <Badge variant={isRTL ? 'default' : 'secondary'}>
@@ -91,10 +91,10 @@ export const MultilingualDemo: React.FC = () => {
               </Badge>
             </div>
             <div className={`flex justify-between ${isRTL ? 'flex-row-reverse' : ''}`}>
-              <span className={`text-gray-600 ${languageClasses}`}>
+              <span className={`text-muted-foreground ${languageClasses}`}>
                 {language === 'ar' ? 'الخط:' : 'Font Family:'}
               </span>
-              <span className="text-sm font-mono text-gray-800">
+              <span className="text-sm font-mono text-foreground">
                 {getFontFamily().split(',')[0].replace(/'/g, '')}
               </span>
             </div>
@@ -110,24 +110,24 @@ export const MultilingualDemo: React.FC = () => {
           </CardHeader>
           <CardContent className="space-y-3">
             <div className={`flex justify-between ${isRTL ? 'flex-row-reverse' : ''}`}>
-              <span className={`text-gray-600 ${languageClasses}`}>
+              <span className={`text-muted-foreground ${languageClasses}`}>
                 {language === 'ar' ? 'محاذاة النص:' : 'Text Alignment:'}
               </span>
               <Badge variant="outline">{getTextAlignment(language)}</Badge>
             </div>
             <div className={`flex justify-between ${isRTL ? 'flex-row-reverse' : ''}`}>
-              <span className={`text-gray-600 ${languageClasses}`}>
+              <span className={`text-muted-foreground ${languageClasses}`}>
                 {language === 'ar' ? 'اتجاه الفليكس:' : 'Flex Direction:'}
               </span>
-              <span className="text-sm font-mono text-gray-800">
+              <span className="text-sm font-mono text-foreground">
                 {getFlexDirection(language)}
               </span>
             </div>
             <div className={`flex justify-between ${isRTL ? 'flex-row-reverse' : ''}`}>
-              <span className={`text-gray-600 ${languageClasses}`}>
+              <span className={`text-muted-foreground ${languageClasses}`}>
                 {language === 'ar' ? 'اتجاه المسافة:' : 'Space Direction:'}
               </span>
-              <span className="text-sm font-mono text-gray-800">
+              <span className="text-sm font-mono text-foreground">
                 {getSpaceDirection(language) || 'normal'}
               </span>
             </div>
@@ -146,7 +146,7 @@ export const MultilingualDemo: React.FC = () => {
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <h4 className={`font-medium text-gray-900 ${languageClasses}`}>
+              <h4 className={`font-medium text-foreground ${languageClasses}`}>
                 {language === 'ar' ? 'التاريخ الحالي:' : 'Current Date:'}
               </h4>
               <p className={`text-lg ${languageClasses}`}>
@@ -154,7 +154,7 @@ export const MultilingualDemo: React.FC = () => {
               </p>
             </div>
             <div className="space-y-2">
-              <h4 className={`font-medium text-gray-900 ${languageClasses}`}>
+              <h4 className={`font-medium text-foreground ${languageClasses}`}>
                 {language === 'ar' ? 'الوقت الحالي:' : 'Current Time:'}
               </h4>
               <p className={`text-lg ${languageClasses}`}>
@@ -163,7 +163,7 @@ export const MultilingualDemo: React.FC = () => {
             </div>
           </div>
           <div className="space-y-2">
-            <h4 className={`font-medium text-gray-900 ${languageClasses}`}>
+            <h4 className={`font-medium text-foreground ${languageClasses}`}>
               {language === 'ar' ? 'الوقت النسبي:' : 'Relative Time:'}
             </h4>
             <p className={`text-lg ${languageClasses}`}>
@@ -184,26 +184,26 @@ export const MultilingualDemo: React.FC = () => {
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="space-y-2">
-              <h4 className={`font-medium text-gray-900 ${languageClasses}`}>
+              <h4 className={`font-medium text-foreground ${languageClasses}`}>
                 {language === 'ar' ? 'النتيجة (أرقام محلية):' : 'Score (Native Digits):'}
               </h4>
-              <p className={`text-2xl font-bold text-blue-600 ${languageClasses}`}>
+              <p className={`text-2xl font-bold text-primary ${languageClasses}`}>
                 {formatNumber(sampleScore, language, true)}%
               </p>
             </div>
             <div className="space-y-2">
-              <h4 className={`font-medium text-gray-900 ${languageClasses}`}>
+              <h4 className={`font-medium text-foreground ${languageClasses}`}>
                 {language === 'ar' ? 'النتيجة (أرقام غربية):' : 'Score (Western Digits):'}
               </h4>
-              <p className={`text-2xl font-bold text-green-600 ${languageClasses}`}>
+              <p className={`text-2xl font-bold text-secondary ${languageClasses}`}>
                 {formatNumber(sampleScore, language, false)}%
               </p>
             </div>
             <div className="space-y-2">
-              <h4 className={`font-medium text-gray-900 ${languageClasses}`}>
+              <h4 className={`font-medium text-foreground ${languageClasses}`}>
                 {language === 'ar' ? 'المدة:' : 'Duration:'}
               </h4>
-              <p className={`text-2xl font-bold text-purple-600 ${languageClasses}`}>
+              <p className={`text-2xl font-bold text-accent ${languageClasses}`}>
                 {formatDuration(sampleDuration)}
               </p>
             </div>
@@ -220,8 +220,8 @@ export const MultilingualDemo: React.FC = () => {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className={`p-4 bg-gray-50 rounded-lg ${isRTL ? 'text-right' : 'text-left'}`}>
-            <h4 className={`font-semibold text-gray-900 mb-2 ${languageClasses}`}>
+          <div className={`p-4 bg-muted/50 rounded-lg ${isRTL ? 'text-right' : 'text-left'}`}>
+            <h4 className={`font-semibold text-foreground mb-2 ${languageClasses}`}>
               {language === 'ar' 
                 ? 'ما هي أفضل ممارسة لإنشاء كلمة مرور آمنة؟'
                 : 'What is the best practice for creating a secure password?'
@@ -233,7 +233,7 @@ export const MultilingualDemo: React.FC = () => {
                 : ['Use a simple password', 'Use a complex password with special characters', 'Share password with others', 'Don\'t use a password']
               ).map((option, index) => (
                 <div key={index} className={`flex items-center space-x-2 ${isRTL ? 'flex-row-reverse space-x-reverse' : ''}`}>
-                  <div className="w-4 h-4 border border-gray-300 rounded"></div>
+                  <div className="w-4 h-4 border border-border rounded"></div>
                   <span className={`${languageClasses}`}>{option}</span>
                 </div>
               ))}

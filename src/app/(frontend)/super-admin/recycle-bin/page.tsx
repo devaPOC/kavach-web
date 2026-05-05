@@ -95,8 +95,8 @@ export default function RecycleBinPage() {
 	return (
 		<div className="p-4 lg:p-8">
 			<div className="mb-8">
-				<h1 className="text-3xl font-bold text-gray-900 mb-2">Recycle Bin</h1>
-				<p className="text-gray-600">
+				<h1 className="text-3xl font-bold text-foreground mb-2">Recycle Bin</h1>
+				<p className="text-muted-foreground">
 					View and restore deleted items
 				</p>
 			</div>
@@ -125,7 +125,7 @@ export default function RecycleBinPage() {
 						{/* Search */}
 						<div className="mb-4">
 							<div className="relative max-w-sm">
-								<Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+								<Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground/80" />
 								<Input
 									placeholder="Search..."
 									value={search}
@@ -138,10 +138,10 @@ export default function RecycleBinPage() {
 						{/* Table */}
 						{loading ? (
 							<div className="flex items-center justify-center py-12">
-								<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-violet-600" />
+								<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary/50" />
 							</div>
 						) : items.length === 0 ? (
-							<div className="text-center py-12 text-gray-500">
+							<div className="text-center py-12 text-muted-foreground">
 								No deleted items found
 							</div>
 						) : (
@@ -162,13 +162,13 @@ export default function RecycleBinPage() {
 												<TableCell className="font-medium">
 													{item.name}
 												</TableCell>
-												<TableCell className="text-gray-500">{item.email}</TableCell>
+												<TableCell className="text-muted-foreground">{item.email}</TableCell>
 												<TableCell>
 													<Badge variant="outline">
 														{item.role}
 													</Badge>
 												</TableCell>
-												<TableCell className="text-gray-500">
+												<TableCell className="text-muted-foreground">
 													{new Date(item.deletedAt).toLocaleDateString()} {new Date(item.deletedAt).toLocaleTimeString()}
 												</TableCell>
 												<TableCell>
@@ -195,7 +195,7 @@ export default function RecycleBinPage() {
 								>
 									Previous
 								</Button>
-								<span className="text-sm text-gray-500">
+								<span className="text-sm text-muted-foreground">
 									Page {page} of {totalPages}
 								</span>
 								<Button

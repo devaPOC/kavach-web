@@ -300,8 +300,8 @@ export default function ServicePricingManagement() {
 
   const getPricingTypeBadge = (type: string) => {
     const config = {
-      fixed: { color: 'bg-green-100 text-green-800', text: 'Fixed Price' },
-      variable: { color: 'bg-yellow-100 text-yellow-800', text: 'Custom Quotation' },
+      fixed: { color: 'bg-secondary/10 text-secondary', text: 'Fixed Price' },
+      variable: { color: 'bg-accent/10 text-accent', text: 'Custom Quotation' },
     };
     const { color, text } = config[type as keyof typeof config] || config.fixed;
     return <Badge className={color}>{text}</Badge>;
@@ -339,7 +339,7 @@ export default function ServicePricingManagement() {
     return (
       <div className="space-y-6">
         <div className="text-center py-8">
-          <p className="text-gray-500">Loading pricing configurations...</p>
+          <p className="text-muted-foreground">Loading pricing configurations...</p>
         </div>
       </div>
     );
@@ -374,20 +374,20 @@ export default function ServicePricingManagement() {
       </div>
 
       {error && (
-        <Card className="border-red-200 bg-red-50">
+        <Card className="border-destructive bg-destructive/10">
           <CardContent className="pt-6">
-            <p className="text-red-600">{error}</p>
+            <p className="text-destructive">{error}</p>
           </CardContent>
         </Card>
       )}
 
       {/* Pricing Form */}
       {showForm && getAvailableServiceTypes().length === 0 && !editingPricing && (
-        <Card className="border-yellow-200 bg-yellow-50">
+        <Card className="border-accent/50 bg-accent/10">
           <CardContent className="pt-6">
             <div className="text-center">
-              <p className="text-yellow-800 font-medium">All services have pricing configured</p>
-              <p className="text-yellow-700 text-sm mt-1">
+              <p className="text-accent font-medium">All services have pricing configured</p>
+              <p className="text-accent text-sm mt-1">
                 All available services already have pricing configurations. You can edit existing pricing or delete some to add new ones.
               </p>
               <Button
@@ -470,8 +470,8 @@ export default function ServicePricingManagement() {
               )}
 
               {formData.pricingType === 'variable' && (
-                <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-                  <p className="text-sm text-yellow-800">
+                <div className="p-4 bg-accent/10 border border-accent/50 rounded-lg">
+                  <p className="text-sm text-accent">
                     <strong>Custom Quotation:</strong> This service will require individual quotes based on customer requirements. No fixed price will be displayed to customers.
                   </p>
                 </div>
@@ -527,7 +527,7 @@ export default function ServicePricingManagement() {
                   {selectedItems.size === pricingList.length ? 'Deselect All' : 'Select All'}
                 </Button>
                 {selectedItems.size > 0 && (
-                  <span className="text-sm text-gray-600">
+                  <span className="text-sm text-muted-foreground">
                     {selectedItems.size} of {pricingList.length} selected
                   </span>
                 )}
@@ -539,40 +539,40 @@ export default function ServicePricingManagement() {
           <div className="space-y-4">
             {pricingList.length === 0 ? (
               <div className="text-center py-8">
-                <div className="h-12 w-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-gray-400 font-semibold">₹</span>
+                <div className="h-12 w-12 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-muted-foreground/80 font-semibold">₹</span>
                 </div>
-                <p className="text-gray-500 font-medium">No pricing configurations found</p>
-                <p className="text-gray-400 text-sm">Add your first service pricing to get started</p>
+                <p className="text-muted-foreground font-medium">No pricing configurations found</p>
+                <p className="text-muted-foreground/80 text-sm">Add your first service pricing to get started</p>
               </div>
             ) : (
               pricingList.map((pricing) => (
-                <div key={pricing.id} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition-colors">
+                <div key={pricing.id} className="border border-border rounded-lg p-4 hover:bg-muted/50 transition-colors">
                   <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
                     <div className="flex items-start gap-3 flex-1">
                       <button
                         onClick={() => handleSelectItem(pricing.serviceType)}
-                        className="mt-1 p-1 hover:bg-gray-200 rounded transition-colors"
+                        className="mt-1 p-1 hover:bg-muted/80 rounded transition-colors"
                       >
                         {selectedItems.has(pricing.serviceType) ? (
-                          <CheckSquare size={18} className="text-blue-600" />
+                          <CheckSquare size={18} className="text-primary" />
                         ) : (
-                          <Square size={18} className="text-gray-400" />
+                          <Square size={18} className="text-muted-foreground/80" />
                         )}
                       </button>
                       <div className="flex-1 space-y-2">
                         <div className="flex items-center gap-2 flex-wrap">
-                          <h3 className="font-semibold text-gray-900">{pricing.serviceType}</h3>
+                          <h3 className="font-semibold text-foreground">{pricing.serviceType}</h3>
                           {getPricingTypeBadge(pricing.pricingType)}
                         </div>
 
-                        <div className="text-sm text-gray-600 space-y-1">
+                        <div className="text-sm text-muted-foreground space-y-1">
                           <div className="flex items-center gap-2">
-                            <span className="text-xs font-medium text-gray-600">Price:</span>
+                            <span className="text-xs font-medium text-muted-foreground">Price:</span>
                             <span className="font-medium">{formatPriceDisplay(pricing)}</span>
                           </div>
                           {pricing.description && (
-                            <p className="text-gray-700 line-clamp-2">{pricing.description}</p>
+                            <p className="text-foreground/80 line-clamp-2">{pricing.description}</p>
                           )}
                         </div>
                       </div>
@@ -592,7 +592,7 @@ export default function ServicePricingManagement() {
                         size="sm"
                         onClick={() => handleDelete(pricing.serviceType)}
                         disabled={deletingServiceType === pricing.serviceType}
-                        className="border-red-200 text-red-600 hover:bg-red-50"
+                        className="border-destructive text-destructive hover:bg-destructive/10"
                       >
                         <Trash2 size={16} className="mr-1" />
                         {deletingServiceType === pricing.serviceType ? 'Disabling...' : 'Disable'}
@@ -605,7 +605,7 @@ export default function ServicePricingManagement() {
           </div>
           {/* Pagination controls */}
           <div className="flex items-center justify-between mt-4">
-            <div className="text-sm text-gray-600">
+            <div className="text-sm text-muted-foreground">
               Page {page} of {totalPages} • Showing {(page - 1) * limit + 1}-{Math.min(page * limit, total)} of {total}
             </div>
             <div className="flex items-center gap-2">

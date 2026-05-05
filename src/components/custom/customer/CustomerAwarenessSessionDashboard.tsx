@@ -152,16 +152,16 @@ export function CustomerAwarenessSessionDashboard({
   const getStatusBadgeClass = (status: AwarenessSessionStatus) => {
     switch (status) {
       case 'confirmed':
-        return 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border-emerald-100';
+        return 'bg-secondary/10 text-secondary hover:bg-secondary/10 border-secondary/50';
       case 'pending_admin_review':
-        return 'bg-amber-50 text-amber-700 hover:bg-amber-100 border-amber-100';
+        return 'bg-accent/10 text-accent hover:bg-accent/10 border-accent/50';
       case 'forwarded_to_expert':
-        return 'bg-blue-50 text-blue-700 hover:bg-blue-100 border-blue-100';
+        return 'bg-primary/10 text-primary hover:bg-primary/10 border-primary/50';
       case 'rejected':
       case 'expert_declined':
-        return 'bg-red-50 text-red-700 hover:bg-red-100 border-red-100';
+        return 'bg-destructive/10 text-destructive hover:bg-destructive/10 border-destructive';
       default:
-        return 'bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200';
+        return 'bg-muted text-foreground/80 hover:bg-muted/80 border-border';
     }
   };
 
@@ -234,11 +234,11 @@ export function CustomerAwarenessSessionDashboard({
           {Array.from({ length: 3 }).map((_, i) => (
             <Card key={i}>
               <CardContent className="p-6">
-                <div className="h-4 bg-gray-100 rounded w-1/3 mb-3" />
-                <div className="h-3 bg-gray-100 rounded w-1/4 mb-5" />
+                <div className="h-4 bg-muted rounded w-1/3 mb-3" />
+                <div className="h-3 bg-muted rounded w-1/4 mb-5" />
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
                   {Array.from({ length: 4 }).map((_, j) => (
-                    <div key={j} className="h-3 bg-gray-100 rounded w-3/4" />
+                    <div key={j} className="h-3 bg-muted rounded w-3/4" />
                   ))}
                 </div>
               </CardContent>
@@ -285,11 +285,11 @@ export function CustomerAwarenessSessionDashboard({
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-slate-900 tracking-tight">Awareness Session Requests</h2>
-          <p className="text-sm text-slate-500 mt-1">Manage and track your awareness sessions.</p>
+          <h2 className="text-2xl font-bold text-foreground tracking-tight">Awareness Session Requests</h2>
+          <p className="text-sm text-muted-foreground mt-1">Manage and track your awareness sessions.</p>
         </div>
         {onCreateNew && (
-          <Button onClick={onCreateNew} className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm transition-all hover:shadow-md">
+          <Button onClick={onCreateNew} className="flex items-center gap-2 bg-primary hover:bg-primary text-white shadow-sm transition-all hover:shadow-md">
             <Plus className="w-4 h-4" />
             New Request
           </Button>
@@ -341,13 +341,13 @@ export function CustomerAwarenessSessionDashboard({
       ) : (
         <div className="grid gap-4">
           {filteredRequests.map((request) => (
-            <Card key={request.id} className="border-slate-200 rounded-xl overflow-hidden hover:shadow-lg hover:border-indigo-200 hover:-translate-y-1 transition-all duration-300 ease-out group bg-white">
-              <CardHeader className="pb-3 border-b border-slate-50">
+            <Card key={request.id} className="border-border rounded-xl overflow-hidden hover:shadow-lg hover:border-primary/50 hover:-translate-y-1 transition-all duration-300 ease-out group bg-card">
+              <CardHeader className="pb-3 border-b border-border">
                 <div className="flex items-start justify-between">
                   <div className="space-y-1">
-                    <CardTitle className="text-lg font-semibold text-slate-900 group-hover:text-indigo-700 transition-colors">{request.subject}</CardTitle>
-                    <CardDescription className="flex items-center gap-2 text-slate-500">
-                      <Building className="w-4 h-4 text-slate-400" />
+                    <CardTitle className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">{request.subject}</CardTitle>
+                    <CardDescription className="flex items-center gap-2 text-muted-foreground">
+                      <Building className="w-4 h-4 text-muted-foreground/80" />
                       {request.organizationName === 'Unknown Organization' ? 'Personal Request' : request.organizationName}
                     </CardDescription>
                   </div>
@@ -366,20 +366,20 @@ export function CustomerAwarenessSessionDashboard({
               <CardContent className="space-y-4 pt-4">
                 {/* Session Details */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
-                  <div className="flex items-center gap-2 text-slate-600">
-                    <Calendar className="w-4 h-4 text-slate-400" />
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <Calendar className="w-4 h-4 text-muted-foreground/80" />
                     <span className="font-medium">{formatDate(request.sessionDate)}</span>
                   </div>
-                  <div className="flex items-center gap-2 text-slate-600">
-                    <MapPin className="w-4 h-4 text-slate-400" />
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <MapPin className="w-4 h-4 text-muted-foreground/80" />
                     <span className="truncate">{request.location}</span>
                   </div>
-                  <div className="flex items-center gap-2 text-slate-600">
-                    <Clock className="w-4 h-4 text-slate-400" />
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <Clock className="w-4 h-4 text-muted-foreground/80" />
                     <span>{DURATION_LABELS[request.duration]}</span>
                   </div>
-                  <div className="flex items-center gap-2 text-slate-600">
-                    <Users className="w-4 h-4 text-slate-400" />
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <Users className="w-4 h-4 text-muted-foreground/80" />
                     <span>{request.audienceSize} participants</span>
                   </div>
                 </div>
@@ -387,25 +387,25 @@ export function CustomerAwarenessSessionDashboard({
                 {/* Audience Types */}
                 <div className="flex flex-wrap gap-2">
                   {request.audienceTypes.map((type) => (
-                    <Badge key={type} variant="secondary" className="text-xs bg-slate-100 text-slate-600 hover:bg-slate-200 border-transparent font-normal">
+                    <Badge key={type} variant="secondary" className="text-xs bg-muted text-muted-foreground hover:bg-muted/80 border-transparent font-normal">
                       {AUDIENCE_TYPE_LABELS[type]}
                     </Badge>
                   ))}
                 </div>
 
                 {/* Session Mode */}
-                <div className="inline-flex items-center gap-2 text-sm text-slate-500 bg-slate-50 px-3 py-1.5 rounded-md">
-                  <span className="font-medium text-slate-700">Mode:</span> {SESSION_MODE_LABELS[request.sessionMode]}
+                <div className="inline-flex items-center gap-2 text-sm text-muted-foreground bg-muted/50 px-3 py-1.5 rounded-md">
+                  <span className="font-medium text-foreground/80">Mode:</span> {SESSION_MODE_LABELS[request.sessionMode]}
                 </div>
 
                 {/* Expert Information (if assigned and confirmed) */}
                 {request.status === 'confirmed' && request.assignedExpertId && (
-                  <div className="bg-emerald-50/50 border border-emerald-100 rounded-lg p-3">
-                    <div className="flex items-center gap-2 text-emerald-800 font-medium mb-1">
+                  <div className="bg-secondary/10/50 border border-secondary/50 rounded-lg p-3">
+                    <div className="flex items-center gap-2 text-secondary font-medium mb-1">
                       <User className="w-4 h-4" />
                       Expert Assigned
                     </div>
-                    <div className="text-sm text-emerald-700">
+                    <div className="text-sm text-secondary">
                       Your session has been confirmed. Expert contact details will be shared via email.
                     </div>
                   </div>
@@ -413,12 +413,12 @@ export function CustomerAwarenessSessionDashboard({
 
                 {/* Rejection Reason */}
                 {(request.status === 'rejected' || request.status === 'expert_declined') && request.rejectionReason && (
-                  <div className="bg-red-50/50 border border-red-100 rounded-lg p-3">
-                    <div className="text-red-800 font-medium mb-1 flex items-center gap-2">
+                  <div className="bg-destructive/10/50 border border-destructive rounded-lg p-3">
+                    <div className="text-destructive font-medium mb-1 flex items-center gap-2">
                       <AlertCircle className="w-4 h-4" />
                       {request.status === 'rejected' ? 'Rejection Reason' : 'Expert Declined'}
                     </div>
-                    <div className="text-sm text-red-700">
+                    <div className="text-sm text-destructive">
                       {request.rejectionReason}
                     </div>
                   </div>
@@ -426,20 +426,20 @@ export function CustomerAwarenessSessionDashboard({
 
                 {/* Admin Notes */}
                 {request.adminNotes && (
-                  <div className="bg-blue-50/50 border border-blue-100 rounded-lg p-3">
-                    <div className="text-blue-800 font-medium mb-1">Admin Notes</div>
-                    <div className="text-sm text-blue-700">{request.adminNotes}</div>
+                  <div className="bg-primary/10/50 border border-primary/50 rounded-lg p-3">
+                    <div className="text-primary font-medium mb-1">Admin Notes</div>
+                    <div className="text-sm text-primary">{request.adminNotes}</div>
                   </div>
                 )}
 
                 {/* Actions */}
-                <div className="flex items-center gap-2 pt-3 border-t border-slate-100 mt-2">
+                <div className="flex items-center gap-2 pt-3 border-t border-border/50 mt-2">
                   {onViewDetails && (
                     <Button
                       variant="outline"
                       size="sm"
                       onClick={() => onViewDetails(request.id)}
-                      className="flex items-center gap-2 text-indigo-700 border-indigo-200 hover:bg-indigo-50 hover:text-indigo-800 hover:border-indigo-300 transition-colors"
+                      className="flex items-center gap-2 text-primary border-primary/50 hover:bg-primary/10 hover:text-primary hover:border-primary/50 transition-colors"
                     >
                       <Eye className="w-4 h-4" />
                       View Details
@@ -451,14 +451,14 @@ export function CustomerAwarenessSessionDashboard({
                       variant="outline"
                       size="sm"
                       onClick={() => onEditRequest(request.id)}
-                      className="flex items-center gap-2 text-slate-700 border-slate-300 hover:bg-slate-50 hover:text-slate-900"
+                      className="flex items-center gap-2 text-foreground/80 border-border hover:bg-muted/50 hover:text-foreground"
                     >
                       <Edit className="w-4 h-4" />
                       Edit Request
                     </Button>
                   )}
 
-                  <div className="ml-auto text-xs text-slate-400 font-medium">
+                  <div className="ml-auto text-xs text-muted-foreground/80 font-medium">
                     Created {formatDate(request.createdAt)}
                   </div>
                 </div>

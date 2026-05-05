@@ -67,7 +67,7 @@ export default function ChangePasswordPage() {
 	}
 
 	return (
-		<div className="flex items-center justify-center min-h-screen bg-gray-50 p-4">
+		<div className="flex items-center justify-center min-h-screen bg-muted/50 p-4">
 			<Card className="w-full max-w-md">
 				<CardHeader>
 					<CardTitle>Change Password</CardTitle>
@@ -98,7 +98,7 @@ export default function ChangePasswordPage() {
 								value={formData.newPassword}
 								onChange={handleChange}
 							/>
-							<p className="text-xs text-gray-500">Minimum 10 characters required</p>
+							<p className="text-xs text-muted-foreground">Minimum 10 characters required</p>
 						</div>
 
 						<div className="space-y-2">
@@ -114,7 +114,7 @@ export default function ChangePasswordPage() {
 						</div>
 
 						{error && (
-							<div className="text-sm text-red-600 bg-red-50 p-3 rounded-md">
+							<div className="text-sm text-destructive bg-destructive/10 p-3 rounded-md">
 								{error}
 							</div>
 						)}

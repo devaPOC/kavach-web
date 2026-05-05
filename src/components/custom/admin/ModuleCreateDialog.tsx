@@ -100,10 +100,10 @@ export default function ModuleCreateDialog({
               value={formData.title}
               onChange={(e) => handleInputChange('title', e.target.value)}
               placeholder="Enter module title"
-              className={errors.title ? 'border-red-500' : ''}
+              className={errors.title ? 'border-destructive' : ''}
             />
             {errors.title && (
-              <p className="text-sm text-red-600">{errors.title}</p>
+              <p className="text-sm text-destructive">{errors.title}</p>
             )}
           </div>
 
@@ -126,10 +126,10 @@ export default function ModuleCreateDialog({
                 value={formData.category}
                 onChange={(e) => handleInputChange('category', e.target.value)}
                 placeholder="Enter category name"
-                className={errors.category ? 'border-red-500' : ''}
+                className={errors.category ? 'border-destructive' : ''}
               />
               {existingCategories.length > 0 && (
-                <div className="text-sm text-gray-600">
+                <div className="text-sm text-muted-foreground">
                   <span className="font-medium">Existing categories:</span>
                   <div className="flex flex-wrap gap-1 mt-1">
                     {existingCategories.map(category => (
@@ -137,7 +137,7 @@ export default function ModuleCreateDialog({
                         key={category}
                         type="button"
                         onClick={() => handleInputChange('category', category)}
-                        className="px-2 py-1 text-xs bg-gray-100 hover:bg-gray-200 rounded border"
+                        className="px-2 py-1 text-xs bg-muted hover:bg-muted/80 rounded border"
                       >
                         {category}
                       </button>
@@ -147,7 +147,7 @@ export default function ModuleCreateDialog({
               )}
             </div>
             {errors.category && (
-              <p className="text-sm text-red-600">{errors.category}</p>
+              <p className="text-sm text-destructive">{errors.category}</p>
             )}
           </div>
 
@@ -166,7 +166,7 @@ export default function ModuleCreateDialog({
               onChange={(e) => handleInputChange('orderIndex', parseInt(e.target.value) || 1)}
               placeholder="Display order"
             />
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-muted-foreground">
               Lower numbers appear first. Current modules: {adminModules.length}
             </p>
           </div>

@@ -128,7 +128,7 @@ export default function QuoteRevisionModal({
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <span className="text-blue-700 text-sm font-semibold tracking-wide">₹</span>
+            <span className="text-primary text-sm font-semibold tracking-wide">₹</span>
             Revise Quote - {quote.quoteNumber}
           </DialogTitle>
           <DialogDescription>
@@ -136,9 +136,9 @@ export default function QuoteRevisionModal({
           </DialogDescription>
         </DialogHeader>
 
-        <div className="bg-gray-50 p-4 rounded-lg mb-4">
-          <h4 className="font-medium text-gray-900 mb-2">Current Quote Details</h4>
-          <div className="space-y-1 text-sm text-gray-600">
+        <div className="bg-muted/50 p-4 rounded-lg mb-4">
+          <h4 className="font-medium text-foreground mb-2">Current Quote Details</h4>
+          <div className="space-y-1 text-sm text-muted-foreground">
             <p><span className="font-medium">Quote Number:</span> {quote.quoteNumber}</p>
             <p><span className="font-medium">Current Price:</span> {quote.quotedPrice} {quote.currency}</p>
             <p><span className="font-medium">Status:</span> {quote.status}</p>
@@ -150,7 +150,7 @@ export default function QuoteRevisionModal({
 
         <form onSubmit={handleSubmit} className="space-y-4">
           {error && (
-            <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-md text-sm">
+            <div className="bg-destructive/10 border border-destructive text-destructive px-4 py-3 rounded-md text-sm">
               {error}
             </div>
           )}
@@ -228,10 +228,10 @@ export default function QuoteRevisionModal({
             />
           </div>
 
-          <div className="bg-blue-50 border border-blue-200 p-3 rounded-lg">
+          <div className="bg-primary/10 border border-primary/50 p-3 rounded-lg">
             <div className="flex items-start gap-2">
-              <FileText size={16} className="text-blue-600 mt-0.5" />
-              <div className="text-sm text-blue-800">
+              <FileText size={16} className="text-primary mt-0.5" />
+              <div className="text-sm text-primary">
                 <p className="font-medium">Revision Notes:</p>
                 <p>Revising this quote will create a new version and mark the current one as superseded. The customer will be notified of the updated quote.</p>
               </div>
@@ -250,7 +250,7 @@ export default function QuoteRevisionModal({
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="bg-blue-600 hover:bg-blue-700"
+              className="bg-primary hover:bg-primary"
             >
               {isSubmitting ? 'Revising Quote...' : 'Revise Quote'}
             </Button>

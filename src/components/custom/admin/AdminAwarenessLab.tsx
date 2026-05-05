@@ -11,8 +11,8 @@ export default function AdminAwarenessLab() {
   return (
     <div className="space-y-6">
       <div>
-        <h3 className="text-2xl font-semibold text-gray-900">Awareness Lab</h3>
-        <p className="text-gray-600">Manage awareness sessions, quizzes, templates, and learning materials.</p>
+        <h3 className="text-2xl font-semibold text-foreground">Awareness Lab</h3>
+        <p className="text-muted-foreground">Manage awareness sessions, quizzes, templates, and learning materials.</p>
       </div>
 
       <Tabs defaultValue="sessions" className="w-full">

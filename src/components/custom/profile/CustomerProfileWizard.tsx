@@ -160,13 +160,13 @@ export function CustomerProfileWizard({ onComplete }: CustomerProfileWizardProps
             value={formData.phoneNumber || ''}
             onChange={(value) => updateFormData('phoneNumber', value)}
             placeholder="Enter phone number"
-            className={validationErrors.phoneNumber ? 'border-red-500' : ''}
+            className={validationErrors.phoneNumber ? 'border-destructive' : ''}
             disabled={loadingState.isSubmitting}
             defaultCountry="OM"
             required
           />
           {validationErrors.phoneNumber && (
-            <p className="text-sm text-red-500 mt-1">{validationErrors.phoneNumber}</p>
+            <p className="text-sm text-destructive mt-1">{validationErrors.phoneNumber}</p>
           )}
         </div>
         <div>
@@ -176,12 +176,12 @@ export function CustomerProfileWizard({ onComplete }: CustomerProfileWizardProps
             type="date"
             value={formData.dateOfBirth || ''}
             onChange={(e) => updateFormData('dateOfBirth', e.target.value)}
-            className={validationErrors.dateOfBirth ? 'border-red-500' : ''}
+            className={validationErrors.dateOfBirth ? 'border-destructive' : ''}
             disabled={loadingState.isSubmitting}
             required
           />
           {validationErrors.dateOfBirth && (
-            <p className="text-sm text-red-500 mt-1">{validationErrors.dateOfBirth}</p>
+            <p className="text-sm text-destructive mt-1">{validationErrors.dateOfBirth}</p>
           )}
         </div>
       </div>
@@ -195,7 +195,7 @@ export function CustomerProfileWizard({ onComplete }: CustomerProfileWizardProps
             disabled={loadingState.isSubmitting}
             required
           >
-            <SelectTrigger className={validationErrors.gender ? 'border-red-500' : ''}>
+            <SelectTrigger className={validationErrors.gender ? 'border-destructive' : ''}>
               <SelectValue placeholder="Select gender" />
             </SelectTrigger>
             <SelectContent>
@@ -205,7 +205,7 @@ export function CustomerProfileWizard({ onComplete }: CustomerProfileWizardProps
             </SelectContent>
           </Select>
           {validationErrors.gender && (
-            <p className="text-sm text-red-500 mt-1">{validationErrors.gender}</p>
+            <p className="text-sm text-destructive mt-1">{validationErrors.gender}</p>
           )}
         </div>
         <div>
@@ -216,7 +216,7 @@ export function CustomerProfileWizard({ onComplete }: CustomerProfileWizardProps
             disabled={loadingState.isSubmitting}
             required
           >
-            <SelectTrigger className={validationErrors.nationality ? 'border-red-500' : ''}>
+            <SelectTrigger className={validationErrors.nationality ? 'border-destructive' : ''}>
               <SelectValue placeholder="Select nationality" />
             </SelectTrigger>
             <SelectContent>
@@ -228,7 +228,7 @@ export function CustomerProfileWizard({ onComplete }: CustomerProfileWizardProps
             </SelectContent>
           </Select>
           {validationErrors.nationality && (
-            <p className="text-sm text-red-500 mt-1">{validationErrors.nationality}</p>
+            <p className="text-sm text-destructive mt-1">{validationErrors.nationality}</p>
           )}
         </div>
       </div>
@@ -248,7 +248,7 @@ export function CustomerProfileWizard({ onComplete }: CustomerProfileWizardProps
             }}
             disabled={loadingState.isSubmitting}
           >
-            <SelectTrigger className={validationErrors.countryOfResidence ? 'border-red-500' : ''}>
+            <SelectTrigger className={validationErrors.countryOfResidence ? 'border-destructive' : ''}>
               <SelectValue placeholder="Select country" />
             </SelectTrigger>
             <SelectContent>
@@ -260,7 +260,7 @@ export function CustomerProfileWizard({ onComplete }: CustomerProfileWizardProps
             </SelectContent>
           </Select>
           {validationErrors.countryOfResidence && (
-            <p className="text-sm text-red-500 mt-1">{validationErrors.countryOfResidence}</p>
+            <p className="text-sm text-destructive mt-1">{validationErrors.countryOfResidence}</p>
           )}
         </div>
 
@@ -276,7 +276,7 @@ export function CustomerProfileWizard({ onComplete }: CustomerProfileWizardProps
               }}
               disabled={loadingState.isSubmitting}
             >
-              <SelectTrigger className={validationErrors.governorate ? 'border-red-500' : ''}>
+              <SelectTrigger className={validationErrors.governorate ? 'border-destructive' : ''}>
                 <SelectValue placeholder="Select governorate" />
               </SelectTrigger>
               <SelectContent>
@@ -288,7 +288,7 @@ export function CustomerProfileWizard({ onComplete }: CustomerProfileWizardProps
               </SelectContent>
             </Select>
             {validationErrors.governorate && (
-              <p className="text-sm text-red-500 mt-1">{validationErrors.governorate}</p>
+              <p className="text-sm text-destructive mt-1">{validationErrors.governorate}</p>
             )}
           </div>
         )}
@@ -302,7 +302,7 @@ export function CustomerProfileWizard({ onComplete }: CustomerProfileWizardProps
             onValueChange={(value) => updateFormData('wilayat', value)}
             disabled={loadingState.isSubmitting}
           >
-            <SelectTrigger className={validationErrors.wilayat ? 'border-red-500' : ''}>
+            <SelectTrigger className={validationErrors.wilayat ? 'border-destructive' : ''}>
               <SelectValue placeholder="Select wilayat" />
             </SelectTrigger>
             <SelectContent>
@@ -314,7 +314,7 @@ export function CustomerProfileWizard({ onComplete }: CustomerProfileWizardProps
             </SelectContent>
           </Select>
           {validationErrors.wilayat && (
-            <p className="text-sm text-red-500 mt-1">{validationErrors.wilayat}</p>
+            <p className="text-sm text-destructive mt-1">{validationErrors.wilayat}</p>
           )}
         </div>
       )}
@@ -356,14 +356,14 @@ export function CustomerProfileWizard({ onComplete }: CustomerProfileWizardProps
           {/* Progress indicator */}
           <div className="flex items-center justify-center mb-8">
             <div className="flex items-center">
-              <div className={`flex items-center justify-center w-10 h-10 rounded-full ${!showReview ? 'bg-primary text-primary-foreground' : 'bg-green-500 text-white'
+              <div className={`flex items-center justify-center w-10 h-10 rounded-full ${!showReview ? 'bg-primary text-primary-foreground' : 'bg-secondary text-white'
                 }`}>
                 <User className="w-5 h-5" />
               </div>
               <span className={`ml-2 text-sm ${!showReview ? 'font-medium' : 'text-muted-foreground'}`}>
                 Personal Info
               </span>
-              <div className={`w-8 h-px mx-4 ${showReview ? 'bg-green-500' : 'bg-muted'}`} />
+              <div className={`w-8 h-px mx-4 ${showReview ? 'bg-secondary' : 'bg-muted'}`} />
               <div className={`flex items-center justify-center w-10 h-10 rounded-full ${showReview ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'
                 }`}>
                 <CheckCircle className="w-5 h-5" />
@@ -381,10 +381,10 @@ export function CustomerProfileWizard({ onComplete }: CustomerProfileWizardProps
 
           {/* Loading Progress */}
           {loadingState.currentOperation && (
-            <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-md">
+            <div className="mb-4 p-4 bg-primary/10 border border-primary/50 rounded-md">
               <div className="flex items-center space-x-2">
-                <Loader2 className="h-4 w-4 animate-spin text-blue-600" />
-                <span className="text-sm text-blue-800">{loadingState.currentOperation}</span>
+                <Loader2 className="h-4 w-4 animate-spin text-primary" />
+                <span className="text-sm text-primary">{loadingState.currentOperation}</span>
               </div>
             </div>
           )}

@@ -122,26 +122,26 @@ export default function CustomerTaskManager() {
 
   const getPriorityColor = (priority: string) => {
     const colors = {
-      emergency: 'bg-red-100 text-red-800',
-      urgent: 'bg-orange-100 text-orange-800',
-      high: 'bg-yellow-100 text-yellow-800',
-      normal: 'bg-blue-100 text-blue-800',
-      low: 'bg-green-100 text-green-800'
+      emergency: 'bg-destructive/10 text-destructive',
+      urgent: 'bg-accent/10 text-accent',
+      high: 'bg-accent/10 text-accent',
+      normal: 'bg-primary/10 text-primary',
+      low: 'bg-secondary/10 text-secondary'
     }
     return colors[priority as keyof typeof colors] || colors.normal
   }
 
   const getStatusColor = (status: string) => {
     const colors = {
-      pending: 'bg-gray-100 text-gray-800',
-      assigned: 'bg-blue-100 text-blue-800',
-      accepted: 'bg-cyan-100 text-cyan-800',
-      in_progress: 'bg-yellow-100 text-yellow-800',
-      completed: 'bg-purple-100 text-purple-800',
-      pending_closure: 'bg-orange-100 text-orange-800',
-      closed: 'bg-green-100 text-green-800',
-      rejected: 'bg-red-100 text-red-800',
-      cancelled: 'bg-gray-100 text-gray-600'
+      pending: 'bg-muted text-foreground',
+      assigned: 'bg-primary/10 text-primary',
+      accepted: 'bg-accent/10 text-accent',
+      in_progress: 'bg-accent/10 text-accent',
+      completed: 'bg-primary/10 text-primary',
+      pending_closure: 'bg-accent/10 text-accent',
+      closed: 'bg-secondary/10 text-secondary',
+      rejected: 'bg-destructive/10 text-destructive',
+      cancelled: 'bg-muted text-muted-foreground'
     }
     return colors[status as keyof typeof colors] || colors.pending
   }
@@ -149,23 +149,23 @@ export default function CustomerTaskManager() {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'pending':
-        return <Clock className="h-4 w-4 text-gray-500" />
+        return <Clock className="h-4 w-4 text-muted-foreground" />
       case 'assigned':
-        return <User className="h-4 w-4 text-blue-500" />
+        return <User className="h-4 w-4 text-primary" />
       case 'accepted':
-        return <CheckCircle className="h-4 w-4 text-cyan-600" />
+        return <CheckCircle className="h-4 w-4 text-accent" />
       case 'in_progress':
-        return <Clock className="h-4 w-4 text-yellow-600" />
+        return <Clock className="h-4 w-4 text-accent" />
       case 'completed':
-        return <CheckCircle className="h-4 w-4 text-purple-600" />
+        return <CheckCircle className="h-4 w-4 text-accent" />
       case 'pending_closure':
-        return <CheckCircle className="h-4 w-4 text-orange-600" />
+        return <CheckCircle className="h-4 w-4 text-accent" />
       case 'closed':
-        return <CheckCircle className="h-4 w-4 text-green-600" />
+        return <CheckCircle className="h-4 w-4 text-secondary" />
       case 'rejected':
-        return <AlertCircle className="h-4 w-4 text-red-500" />
+        return <AlertCircle className="h-4 w-4 text-destructive" />
       case 'cancelled':
-        return <AlertCircle className="h-4 w-4 text-gray-500" />
+        return <AlertCircle className="h-4 w-4 text-muted-foreground" />
       default:
         return <Clock className="h-4 w-4" />
     }
@@ -189,7 +189,7 @@ export default function CustomerTaskManager() {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-8">
-        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary/50"></div>
       </div>
     )
   }
@@ -203,7 +203,7 @@ export default function CustomerTaskManager() {
       {tasks.length === 0 ? (
         <Card>
           <CardContent className="py-8 text-center">
-            <p className="text-gray-500">No service requests found</p>
+            <p className="text-muted-foreground">No service requests found</p>
           </CardContent>
         </Card>
       ) : (
@@ -222,7 +222,7 @@ export default function CustomerTaskManager() {
                       {getStatusDisplayName(task.status).toUpperCase()}
                     </Badge>
                   </div>
-                  <p className="text-sm text-gray-600 mt-1">
+                  <p className="text-sm text-muted-foreground mt-1">
                     {getStatusDescription(task.status)}
                   </p>
                 </div>
@@ -237,7 +237,7 @@ export default function CustomerTaskManager() {
                           setSelectedTask(task)
                           setShowReportDialog(true)
                         }}
-                        className="bg-blue-50 hover:bg-blue-100"
+                        className="bg-primary/10 hover:bg-primary/10"
                       >
                         <FileText className="h-4 w-4 mr-1" />
                         View Report
@@ -248,7 +248,7 @@ export default function CustomerTaskManager() {
                       <Button
                         size="sm"
                         onClick={() => handleCloseTask(task.id)}
-                        className="bg-green-600 hover:bg-green-700"
+                        className="bg-secondary hover:bg-secondary"
                       >
                         <CheckCircle className="h-4 w-4 mr-1" />
                         Approve & Close
@@ -274,8 +274,8 @@ export default function CustomerTaskManager() {
             </CardHeader>
             <CardContent className="pt-0">
               <div className="space-y-3">
-                <p className="text-gray-600 line-clamp-2">{task.description}</p>
-                <div className="flex items-center justify-between text-sm text-gray-500">
+                <p className="text-muted-foreground line-clamp-2">{task.description}</p>
+                <div className="flex items-center justify-between text-sm text-muted-foreground">
                   <div className="flex items-center gap-4">
                     <div className="flex items-center gap-1">
                       <Calendar className="h-4 w-4" />
@@ -312,7 +312,7 @@ export default function CustomerTaskManager() {
 
               <div className="space-y-6">
                 {/* Task Info */}
-                <div className="bg-gray-50 p-4 rounded-lg">
+                <div className="bg-muted/50 p-4 rounded-lg">
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>
                       <span className="font-medium">Service Type:</span>
@@ -332,7 +332,7 @@ export default function CustomerTaskManager() {
                           {getStatusDisplayName(selectedTask.status).toUpperCase()}
                         </Badge>
                       </div>
-                      <p className="text-xs text-gray-600 mt-1">
+                      <p className="text-xs text-muted-foreground mt-1">
                         {getStatusDescription(selectedTask.status)}
                       </p>
                     </div>
@@ -355,8 +355,8 @@ export default function CustomerTaskManager() {
                     {/* Report Content */}
                     <div>
                       <h4 className="font-semibold mb-3">Expert's Completion Report</h4>
-                      <div className="bg-white border rounded-lg p-4">
-                        <p className="whitespace-pre-wrap text-gray-700">
+                      <div className="bg-card border rounded-lg p-4">
+                        <p className="whitespace-pre-wrap text-foreground/80">
                           {selectedTask.data?.completionReport?.report || 'No written report provided.'}
                         </p>
                       </div>
@@ -368,12 +368,12 @@ export default function CustomerTaskManager() {
                         <h4 className="font-semibold mb-3">Supporting Documents</h4>
                         <div className="space-y-3">
                           {selectedTask.completionReport.files.map((file) => (
-                            <div key={file.id} className="flex items-center justify-between bg-gray-50 p-3 rounded-lg">
+                            <div key={file.id} className="flex items-center justify-between bg-muted/50 p-3 rounded-lg">
                               <div className="flex items-center gap-3">
-                                <FileText className="h-5 w-5 text-gray-500" />
+                                <FileText className="h-5 w-5 text-muted-foreground" />
                                 <div>
                                   <p className="font-medium">{file.originalName}</p>
-                                  <p className="text-sm text-gray-500">
+                                  <p className="text-sm text-muted-foreground">
                                     {(file.size / 1024 / 1024).toFixed(2)} MB •
                                     Uploaded {format(new Date(file.uploadedAt), 'MMM dd, yyyy HH:mm')}
                                   </p>
@@ -394,10 +394,10 @@ export default function CustomerTaskManager() {
                     )}
                   </>
                 ) : (
-                  <div className="bg-blue-50 p-6 rounded-lg text-center">
-                    <Clock className="h-12 w-12 text-blue-500 mx-auto mb-3" />
-                    <h4 className="font-semibold text-blue-900 mb-2">Work in Progress</h4>
-                    <p className="text-blue-700 mb-4">
+                  <div className="bg-primary/10 p-6 rounded-lg text-center">
+                    <Clock className="h-12 w-12 text-primary mx-auto mb-3" />
+                    <h4 className="font-semibold text-primary mb-2">Work in Progress</h4>
+                    <p className="text-primary mb-4">
                       {selectedTask.status === 'in_progress'
                         ? 'Your expert is currently working on this task. A completion report will be available once the work is finished.'
                         : selectedTask.status === 'accepted'
@@ -408,7 +408,7 @@ export default function CustomerTaskManager() {
                       }
                     </p>
                     {selectedTask.expert && (
-                      <div className="flex items-center justify-center gap-2 text-sm text-blue-600">
+                      <div className="flex items-center justify-center gap-2 text-sm text-primary">
                         <User className="h-4 w-4" />
                         Expert: {selectedTask.expert.firstName} {selectedTask.expert.lastName}
                       </div>
@@ -421,7 +421,7 @@ export default function CustomerTaskManager() {
                   {selectedTask.status === 'pending_closure' && selectedTask.data?.completionReport && (
                     <Button
                       onClick={() => handleCloseTask(selectedTask.id)}
-                      className="bg-green-600 hover:bg-green-700 flex-1"
+                      className="bg-secondary hover:bg-secondary flex-1"
                     >
                       <CheckCircle className="h-4 w-4 mr-2" />
                       Approve & Close Task

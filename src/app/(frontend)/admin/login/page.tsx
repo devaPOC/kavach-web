@@ -202,14 +202,14 @@ export default function AdminLoginPage() {
         <div className="text-center">
           {/* Logo */}
           <div className="flex justify-center mb-4">
-            <div className="text-4xl font-bold tracking-tight text-slate-900 uppercase">
+            <div className="text-4xl font-bold tracking-tight text-foreground uppercase">
               Kavach
             </div>
           </div>
 
           {/* Admin Shield Icon */}
-          <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-100 mb-6">
-            <svg className="h-8 w-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-destructive/10 mb-6">
+            <svg className="h-8 w-8 text-destructive" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
             </svg>
           </div>
@@ -217,25 +217,25 @@ export default function AdminLoginPage() {
           <h1 className="text-3xl font-bold">
             Admin Access
           </h1>
-          <p className="mt-2 text-sm text-gray-800">
+          <p className="mt-2 text-sm text-foreground">
             Secure administrative portal
           </p>
         </div>
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow-xl sm:rounded-lg sm:px-10 border border-gray-200">
+        <div className="bg-card py-8 px-4 shadow-xl sm:rounded-lg sm:px-10 border border-border">
           {/* Security Notice */}
-          <div className="bg-amber-50 border border-amber-200 rounded-md p-4 mb-6">
+          <div className="bg-accent/10 border border-accent/50 rounded-md p-4 mb-6">
             <div className="flex">
-              <svg className="w-5 h-5 text-amber-400 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <svg className="w-5 h-5 text-accent mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
               </svg>
               <div className="ml-3">
-                <h3 className="text-sm font-medium text-amber-800">
+                <h3 className="text-sm font-medium text-accent">
                   Restricted Access
                 </h3>
-                <div className="mt-1 text-sm text-amber-700">
+                <div className="mt-1 text-sm text-accent">
                   <p>
                     This is a secure administrative area. All access attempts are logged and monitored.
                   </p>
@@ -259,11 +259,11 @@ export default function AdminLoginPage() {
 
             {/* Regular Error Message (excluding rate limit errors) */}
             {errorMessage && (
-              <Alert variant={isAccountLocked(error) ? "destructive" : "destructive"} className={isAccountLocked(error) ? "border-orange-500 bg-orange-50" : ""}>
-                <AlertDescription className={isAccountLocked(error) ? "text-orange-700" : ""}>
+              <Alert variant={isAccountLocked(error) ? "destructive" : "destructive"} className={isAccountLocked(error) ? "border-accent/50 bg-accent/10" : ""}>
+                <AlertDescription className={isAccountLocked(error) ? "text-accent" : ""}>
                   {isAccountLocked(error) && (
                     <div className="flex items-center space-x-2 mb-2">
-                      <svg className="h-4 w-4 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="h-4 w-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                       </svg>
                       <span className="font-medium">Admin Account Locked</span>
@@ -291,10 +291,10 @@ export default function AdminLoginPage() {
                 autoComplete="email"
                 placeholder="Enter your admin email"
                 disabled={isRateLimited}
-                className={`bg-gray-50 ${touched.email && fieldErrors.email ? 'border-red-500' : ''}`}
+                className={`bg-muted/50 ${touched.email && fieldErrors.email ? 'border-destructive' : ''}`}
               />
               {touched.email && fieldErrors.email && (
-                <p className="text-sm text-red-500">{fieldErrors.email}</p>
+                <p className="text-sm text-destructive">{fieldErrors.email}</p>
               )}
             </div>
 
@@ -309,10 +309,10 @@ export default function AdminLoginPage() {
                 autoComplete="current-password"
                 placeholder="Enter your admin password"
                 disabled={isRateLimited}
-                className={`bg-gray-50 ${touched.password && fieldErrors.password ? 'border-red-500' : ''}`}
+                className={`bg-muted/50 ${touched.password && fieldErrors.password ? 'border-destructive' : ''}`}
               />
               {touched.password && fieldErrors.password && (
-                <p className="text-sm text-red-500">{fieldErrors.password}</p>
+                <p className="text-sm text-destructive">{fieldErrors.password}</p>
               )}
             </div>
 
@@ -325,7 +325,7 @@ export default function AdminLoginPage() {
             >
               <Button
                 type="submit"
-                className="w-full bg-red-600 hover:bg-red-700 focus:ring-red-500"
+                className="w-full bg-destructive hover:bg-destructive focus:ring-destructive"
                 disabled={!isFormValid || loading || isRateLimited}
               >
                 {loading && !isRateLimited ? (
@@ -346,7 +346,7 @@ export default function AdminLoginPage() {
       <div className="mt-8 text-center">
         <button
           onClick={() => router.push('/')}
-          className="text-sm text-gray-400 hover:text-gray-300 focus:outline-none focus:underline transition-colors"
+          className="text-sm text-muted-foreground/80 hover:text-muted-foreground/80 focus:outline-none focus:underline transition-colors"
         >
           ← Back to Main Site
         </button>

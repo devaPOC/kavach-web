@@ -206,11 +206,11 @@ const LoginForm: React.FC<LoginFormProps> = ({
   return (
     <form onSubmit={handleSubmit} className={`space-y-4 ${className}`}>
       {errorMessage && (
-        <Alert variant={accountLocked ? "destructive" : "destructive"} className={accountLocked ? "border-orange-500 bg-orange-50 dark:bg-orange-950" : ""}>
-          <AlertDescription className={accountLocked ? "text-orange-700 dark:text-orange-300" : ""}>
+        <Alert variant={accountLocked ? "destructive" : "destructive"} className={accountLocked ? "border-accent/50 bg-accent/10 dark:bg-orange-950" : ""}>
+          <AlertDescription className={accountLocked ? "text-accent dark:text-accent" : ""}>
             {accountLocked && (
               <div className="flex items-center space-x-2">
-                <svg className="h-4 w-4 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="h-4 w-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                 </svg>
                 <span className="font-medium">Account Locked</span>
@@ -238,10 +238,10 @@ const LoginForm: React.FC<LoginFormProps> = ({
           required
           autoComplete="email"
           placeholder="Enter your email address"
-          className={touched.email && allFieldErrors.email ? 'border-red-500' : ''}
+          className={touched.email && allFieldErrors.email ? 'border-destructive' : ''}
         />
         {touched.email && allFieldErrors.email && (
-          <p className="text-sm text-red-500">{allFieldErrors.email}</p>
+          <p className="text-sm text-destructive">{allFieldErrors.email}</p>
         )}
       </div>
 
@@ -254,10 +254,10 @@ const LoginForm: React.FC<LoginFormProps> = ({
           required
           autoComplete="current-password"
           placeholder="Enter your password"
-          className={touched.password && allFieldErrors.password ? 'border-red-500' : ''}
+          className={touched.password && allFieldErrors.password ? 'border-destructive' : ''}
         />
         {touched.password && allFieldErrors.password && (
-          <p className="text-sm text-red-500">{allFieldErrors.password}</p>
+          <p className="text-sm text-destructive">{allFieldErrors.password}</p>
         )}
       </div>
 

@@ -113,7 +113,7 @@ export default function CompleteProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-muted/50">
       <Navbar
         user={userData}
         showProfileMenu={false}

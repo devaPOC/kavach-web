@@ -89,8 +89,8 @@ function ResetPasswordPageInner() {
   if (!token) {
     return (
       <AuthScreen title="Resetting password" subtitle="Please wait while we prepare your secure reset link.">
-        <Card className="mx-auto w-full max-w-xl border border-white/40 bg-white/95 shadow-2xl backdrop-blur-lg">
-          <CardContent className="flex items-center justify-center p-6 text-slate-700">
+        <Card className="mx-auto w-full max-w-xl border border-white/40 bg-card/95 shadow-2xl backdrop-blur-lg">
+          <CardContent className="flex items-center justify-center p-6 text-foreground/80">
             Loading...
           </CardContent>
         </Card>
@@ -104,14 +104,14 @@ function ResetPasswordPageInner() {
         title="Password reset successful"
         subtitle="Your password has been updated. You can now log in with your new credentials."
       >
-        <Card className="mx-auto w-full max-w-xl border border-white/40 bg-white/95 shadow-2xl backdrop-blur-lg">
+        <Card className="mx-auto w-full max-w-xl border border-white/40 bg-card/95 shadow-2xl backdrop-blur-lg">
           <CardContent className="space-y-6 p-6 md:p-8 text-center">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100">
-              <svg className="h-7 w-7 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-secondary/10">
+              <svg className="h-7 w-7 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <p className="text-slate-600">You can close this page or proceed to sign in.</p>
+            <p className="text-muted-foreground">You can close this page or proceed to sign in.</p>
             <Button
               onClick={() => router.push('/login')}
               className="w-full"
@@ -130,10 +130,10 @@ function ResetPasswordPageInner() {
       subtitle="Create a secure password to keep your account safe."
       footer={
         <div className="flex items-center justify-center gap-2 text-sm">
-          <span className="text-slate-200">Remembered it?</span>
+          <span className="text-muted-foreground/80">Remembered it?</span>
           <button
             type="button"
-            className="font-semibold text-white hover:text-indigo-200 underline-offset-4"
+            className="font-semibold text-white hover:text-primary underline-offset-4"
             onClick={() => router.push('/login')}
           >
             Back to login
@@ -141,7 +141,7 @@ function ResetPasswordPageInner() {
         </div>
       }
     >
-      <Card className="mx-auto w-full max-w-xl border border-white/40 bg-white/95 shadow-2xl backdrop-blur-lg">
+      <Card className="mx-auto w-full max-w-xl border border-white/40 bg-card/95 shadow-2xl backdrop-blur-lg">
         <CardContent className="p-6 md:p-8">
           <form onSubmit={handleSubmit} className="space-y-6">
             {error && (
@@ -151,7 +151,7 @@ function ResetPasswordPageInner() {
             )}
 
             <div className="space-y-2">
-              <label htmlFor="password" className="block text-sm font-medium text-slate-800">
+              <label htmlFor="password" className="block text-sm font-medium text-foreground">
                 New password
               </label>
               <div className="relative">
@@ -163,23 +163,23 @@ function ResetPasswordPageInner() {
                   placeholder="Enter your new password"
                   required
                   disabled={loading}
-                  className={validationErrors.password ? 'border-red-500' : ''}
+                  className={validationErrors.password ? 'border-destructive' : ''}
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground/80"
                 >
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
               </div>
               {validationErrors.password && (
-                <p className="text-sm text-red-600">{validationErrors.password}</p>
+                <p className="text-sm text-destructive">{validationErrors.password}</p>
               )}
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-slate-800">
+              <label htmlFor="confirmPassword" className="block text-sm font-medium text-foreground">
                 Confirm new password
               </label>
               <div className="relative">
@@ -191,22 +191,22 @@ function ResetPasswordPageInner() {
                   placeholder="Confirm your new password"
                   required
                   disabled={loading}
-                  className={validationErrors.confirmPassword ? 'border-red-500' : ''}
+                  className={validationErrors.confirmPassword ? 'border-destructive' : ''}
                 />
                 <button
                   type="button"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground/80"
                 >
                   {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
               </div>
               {validationErrors.confirmPassword && (
-                <p className="text-sm text-red-600">{validationErrors.confirmPassword}</p>
+                <p className="text-sm text-destructive">{validationErrors.confirmPassword}</p>
               )}
             </div>
 
-            <div className="text-sm text-slate-600">
+            <div className="text-sm text-muted-foreground">
               <p className="mb-2 font-medium">Password requirements:</p>
               <ul className="space-y-1 text-xs">
                 <li>• At least 8 characters long</li>

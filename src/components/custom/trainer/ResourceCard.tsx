@@ -50,13 +50,13 @@ function getResourceIcon(resource: TrainerResource) {
 
 function getIconColor(resource: TrainerResource) {
 	if (resource.r2Key && resource.fileType) {
-		if (resource.fileType.startsWith('video/')) return 'text-purple-600';
-		if (resource.fileType === 'application/pdf') return 'text-red-600';
-		if (resource.fileType.includes('word')) return 'text-blue-600';
-		if (resource.fileType.includes('powerpoint')) return 'text-orange-600';
-		return 'text-gray-600';
+		if (resource.fileType.startsWith('video/')) return 'text-accent';
+		if (resource.fileType === 'application/pdf') return 'text-destructive';
+		if (resource.fileType.includes('word')) return 'text-primary';
+		if (resource.fileType.includes('powerpoint')) return 'text-accent';
+		return 'text-muted-foreground';
 	}
-	return 'text-purple-600';
+	return 'text-accent';
 }
 
 export function ResourceCard({ resource, onView, onDownload }: ResourceCardProps) {
@@ -97,7 +97,7 @@ export function ResourceCard({ resource, onView, onDownload }: ResourceCardProps
 				<div className="space-y-3">
 					{/* File info for file-based resources */}
 					{isFileResource && (
-						<div className="text-sm text-gray-500 bg-gray-50 rounded-md p-2">
+						<div className="text-sm text-muted-foreground bg-muted/50 rounded-md p-2">
 							<div className="flex items-center justify-between">
 								<span className="truncate mr-2">{resource.fileName}</span>
 								{resource.fileSize && (

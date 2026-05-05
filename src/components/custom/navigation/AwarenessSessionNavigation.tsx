@@ -34,14 +34,14 @@ export default function AwarenessSessionNavigation({
             description: 'Submit a new awareness session request',
             icon: Plus,
             href: '/dashboard/awareness-session-request',
-            color: 'bg-blue-500 hover:bg-blue-600'
+            color: 'bg-primary hover:bg-primary'
           },
           {
             title: 'My Requests',
             description: 'View and track your session requests',
             icon: FileText,
             href: '/dashboard',
-            color: 'bg-green-500 hover:bg-green-600',
+            color: 'bg-secondary hover:bg-secondary',
             onClick: () => {
               router.push('/dashboard')
               // Focus on awareness sessions tab
@@ -60,14 +60,14 @@ export default function AwarenessSessionNavigation({
             description: 'View sessions assigned to you',
             icon: Users,
             href: '/expert/awareness-sessions',
-            color: 'bg-purple-500 hover:bg-purple-600'
+            color: 'bg-primary hover:bg-primary'
           },
           {
             title: 'Schedule & Calendar',
             description: 'Manage your availability',
             icon: Calendar,
             href: '/expert/awareness-sessions',
-            color: 'bg-indigo-500 hover:bg-indigo-600'
+            color: 'bg-primary hover:bg-primary'
           }
         ]
 
@@ -78,21 +78,21 @@ export default function AwarenessSessionNavigation({
             description: 'Approve and manage session requests',
             icon: Clock,
             href: '/admin/awareness-sessions',
-            color: 'bg-orange-500 hover:bg-orange-600'
+            color: 'bg-accent hover:bg-accent'
           },
           {
             title: 'Assign Experts',
             description: 'Match experts with session requests',
             icon: Users,
             href: '/admin/awareness-sessions',
-            color: 'bg-red-500 hover:bg-red-600'
+            color: 'bg-destructive hover:bg-destructive'
           },
           {
             title: 'Session Analytics',
             description: 'View session metrics and reports',
             icon: CheckCircle,
             href: '/admin/dashboard',
-            color: 'bg-green-500 hover:bg-green-600',
+            color: 'bg-secondary hover:bg-secondary',
             onClick: () => {
               router.push('/admin/dashboard')
               // Focus on analytics tab
@@ -126,13 +126,13 @@ export default function AwarenessSessionNavigation({
                     <item.icon className="h-6 w-6" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-semibold text-gray-900 mb-1">
+                    <h3 className="font-semibold text-foreground mb-1">
                       {item.title}
                     </h3>
-                    <p className="text-sm text-gray-600 mb-3">
+                    <p className="text-sm text-muted-foreground mb-3">
                       {item.description}
                     </p>
-                    <div className="flex items-center text-sm text-blue-600">
+                    <div className="flex items-center text-sm text-primary">
                       <span>Go to {item.title.toLowerCase()}</span>
                       <ArrowRight className="h-4 w-4 ml-1" />
                     </div>
@@ -146,13 +146,13 @@ export default function AwarenessSessionNavigation({
                     <item.icon className="h-6 w-6" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-semibold text-gray-900 mb-1">
+                    <h3 className="font-semibold text-foreground mb-1">
                       {item.title}
                     </h3>
-                    <p className="text-sm text-gray-600 mb-3">
+                    <p className="text-sm text-muted-foreground mb-3">
                       {item.description}
                     </p>
-                    <div className="flex items-center text-sm text-blue-600">
+                    <div className="flex items-center text-sm text-primary">
                       <span>Go to {item.title.toLowerCase()}</span>
                       <ArrowRight className="h-4 w-4 ml-1" />
                     </div>

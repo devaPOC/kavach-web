@@ -144,7 +144,7 @@ const AuthScreen: React.FC<AuthScreenProps> = ({
 						</div>
 
 						{pill ? (
-							<div className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[11px] uppercase tracking-[2px] text-white/90">
+							<div className="rounded-full border border-white/15 bg-card/10 px-3 py-1 text-[11px] uppercase tracking-[2px] text-white/90">
 								{pill}
 							</div>
 						) : null}
@@ -153,7 +153,7 @@ const AuthScreen: React.FC<AuthScreenProps> = ({
 
 							<h1 className="text-3xl font-semibold tracking-tight text-white hidden">{title}</h1>
 							{subtitle ? (
-								<p className="text-base leading-6 text-slate-200 hidden">{subtitle}</p>
+								<p className="text-base leading-6 text-muted-foreground/80 hidden">{subtitle}</p>
 							) : null}
 						</div>
 					</div>
@@ -163,7 +163,7 @@ const AuthScreen: React.FC<AuthScreenProps> = ({
 					</div>
 
 					{footer ? (
-						<div className="text-slate-200">
+						<div className="text-muted-foreground/80">
 							{footer}
 						</div>
 					) : null}

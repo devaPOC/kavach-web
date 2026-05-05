@@ -12,7 +12,7 @@ export function TrainerBadge({ variant = 'default', className = '' }: TrainerBad
 	return (
 		<Badge
 			variant={variant}
-			className={`bg-purple-100 text-purple-800 border-purple-200 ${className}`}
+			className={`bg-primary/10 text-primary border-primary/50 ${className}`}
 		>
 			<Award className="w-3 h-3 mr-1" />
 			Trainer

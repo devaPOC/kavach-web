@@ -33,7 +33,7 @@ function AccountRestrictedContent() {
           type: 'banned',
           role: 'expert',
           message: 'Your expert account has been banned',
-          icon: <Ban className="w-16 h-16 text-red-500" />,
+          icon: <Ban className="w-16 h-16 text-destructive" />,
           contactMessage: 'Your expert account has been suspended due to policy violations. Please contact our support team to appeal this decision or get more information about the ban.'
         };
       } else if (type === 'paused' && role === 'customer') {
@@ -41,7 +41,7 @@ function AccountRestrictedContent() {
           type: 'paused',
           role: 'customer',
           message: 'Your customer account has been paused',
-          icon: <Pause className="w-16 h-16 text-orange-500" />,
+          icon: <Pause className="w-16 h-16 text-accent" />,
           contactMessage: 'Your customer account has been temporarily paused. This may be due to payment issues, account verification requirements, or policy violations. Please contact support for assistance.'
         };
       } else {
@@ -50,7 +50,7 @@ function AccountRestrictedContent() {
           type: type || 'banned',
           role: role || 'customer',
           message: 'Your account has been restricted',
-          icon: <AlertTriangle className="w-16 h-16 text-yellow-500" />,
+          icon: <AlertTriangle className="w-16 h-16 text-accent" />,
           contactMessage: 'Your account has been restricted. Please contact our support team for assistance.'
         };
       }
@@ -85,7 +85,7 @@ function AccountRestrictedContent() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary/50 mx-auto"></div>
           <p className="mt-2 text-sm text-muted-foreground">Loading...</p>
         </div>
       </div>
@@ -93,12 +93,12 @@ function AccountRestrictedContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-muted/50">
       {/* Navigation Bar */}
-      <nav className="bg-white border-b border-gray-200 px-4 py-3">
+      <nav className="bg-card border-b border-border px-4 py-3">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center space-x-4">
-            <h1 className="text-xl font-bold text-gray-900">Kavach</h1>
+            <h1 className="text-xl font-bold text-foreground">Kavach</h1>
           </div>
           <Button
             variant="outline"
@@ -125,7 +125,7 @@ function AccountRestrictedContent() {
             <div className="flex justify-center mb-4">
               {restriction.icon}
             </div>
-            <CardTitle className="text-2xl font-bold text-gray-900">
+            <CardTitle className="text-2xl font-bold text-foreground">
               Account Restricted
             </CardTitle>
             <CardDescription className="text-lg">
@@ -185,7 +185,7 @@ export default function AccountRestrictedPage() {
         <Card className="w-full max-w-lg">
           <CardContent className="p-6">
             <div className="text-center">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-red-500 mx-auto"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-destructive mx-auto"></div>
               <p className="mt-4 text-sm text-muted-foreground">Loading...</p>
             </div>
           </CardContent>

@@ -22,14 +22,14 @@ export default function Breadcrumb({
 }: BreadcrumbProps) {
   return (
     <nav 
-      className={`flex items-center space-x-2 text-sm text-gray-500 ${className}`}
+      className={`flex items-center space-x-2 text-sm text-muted-foreground ${className}`}
       aria-label="Breadcrumb"
     >
       {showHome && (
         <>
           <Link 
             href="/" 
-            className="hover:text-gray-700 flex items-center"
+            className="hover:text-foreground/80 flex items-center"
             aria-label="Home"
           >
             <Home className="h-4 w-4" />
@@ -43,13 +43,13 @@ export default function Breadcrumb({
           {item.href && !item.current ? (
             <Link 
               href={item.href} 
-              className="hover:text-gray-700 transition-colors"
+              className="hover:text-foreground/80 transition-colors"
             >
               {item.label}
             </Link>
           ) : (
             <span 
-              className={item.current ? 'text-gray-900 font-medium' : 'text-gray-500'}
+              className={item.current ? 'text-foreground font-medium' : 'text-muted-foreground'}
               aria-current={item.current ? 'page' : undefined}
             >
               {item.label}

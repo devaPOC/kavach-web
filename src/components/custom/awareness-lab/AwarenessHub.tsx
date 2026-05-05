@@ -57,21 +57,21 @@ const MaterialViewer: React.FC<MaterialViewerProps> = ({ material, onComplete, i
         return (
           <div className="space-y-4">
             {material.materialData.url ? (
-              <div className="p-6 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
+              <div className="p-6 bg-muted/50 rounded-lg border-2 border-dashed border-border">
                 <div className="text-center">
-                  <Play className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                  <p className="text-gray-600 mb-4">Watch this video content</p>
+                  <Play className="h-12 w-12 text-muted-foreground/80 mx-auto mb-4" />
+                  <p className="text-muted-foreground mb-4">Watch this video content</p>
                   <a
                     href={material.materialData.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors"
+                    className="inline-flex items-center space-x-2 bg-primary hover:bg-primary text-white font-medium py-2 px-4 rounded-lg transition-colors"
                   >
                     <Play className="h-4 w-4" />
                     <span>Watch Video</span>
                     <ExternalLink className="h-4 w-4" />
                   </a>
-                  <div className="mt-3 text-sm text-gray-500 break-all">
+                  <div className="mt-3 text-sm text-muted-foreground break-all">
                     {material.materialData.url}
                   </div>
                 </div>
@@ -79,7 +79,7 @@ const MaterialViewer: React.FC<MaterialViewerProps> = ({ material, onComplete, i
             ) : null}
 
             {material.materialData.duration && (
-              <div className="flex items-center space-x-2 text-sm text-gray-600">
+              <div className="flex items-center space-x-2 text-sm text-muted-foreground">
                 <Clock className="h-4 w-4" />
                 <span>Duration: {Math.floor(material.materialData.duration / 60)}:{(material.materialData.duration % 60).toString().padStart(2, '0')}</span>
               </div>
@@ -90,15 +90,15 @@ const MaterialViewer: React.FC<MaterialViewerProps> = ({ material, onComplete, i
       case 'link':
         return (
           <div className="space-y-4">
-            <div className="p-6 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
+            <div className="p-6 bg-muted/50 rounded-lg border-2 border-dashed border-border">
               <div className="text-center">
-                <ExternalLink className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-600 mb-4">This material contains an external link</p>
+                <ExternalLink className="h-12 w-12 text-muted-foreground/80 mx-auto mb-4" />
+                <p className="text-muted-foreground mb-4">This material contains an external link</p>
                 <a
                   href={material.materialData.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors"
+                  className="inline-flex items-center space-x-2 bg-primary hover:bg-primary text-white font-medium py-2 px-4 rounded-lg transition-colors"
                 >
                   <span>Open Link</span>
                   <ExternalLink className="h-4 w-4" />
@@ -111,16 +111,16 @@ const MaterialViewer: React.FC<MaterialViewerProps> = ({ material, onComplete, i
       case 'document':
         return (
           <div className="space-y-4">
-            <div className="p-6 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
+            <div className="p-6 bg-muted/50 rounded-lg border-2 border-dashed border-border">
               <div className="text-center">
-                <FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-600 mb-4">Document material</p>
+                <FileText className="h-12 w-12 text-muted-foreground/80 mx-auto mb-4" />
+                <p className="text-muted-foreground mb-4">Document material</p>
                 {material.materialData.fileUrl && (
                   <a
                     href={material.materialData.fileUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors"
+                    className="inline-flex items-center space-x-2 bg-primary hover:bg-primary text-white font-medium py-2 px-4 rounded-lg transition-colors"
                   >
                     <span>View Document</span>
                     <ExternalLink className="h-4 w-4" />
@@ -133,8 +133,8 @@ const MaterialViewer: React.FC<MaterialViewerProps> = ({ material, onComplete, i
 
       default:
         return (
-          <div className="p-6 bg-gray-50 rounded-lg">
-            <p className="text-gray-600">Material type not supported</p>
+          <div className="p-6 bg-muted/50 rounded-lg">
+            <p className="text-muted-foreground">Material type not supported</p>
           </div>
         )
     }
@@ -144,14 +144,14 @@ const MaterialViewer: React.FC<MaterialViewerProps> = ({ material, onComplete, i
     <div className="space-y-6">
       <div className="flex items-start justify-between">
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 mb-2">{material.title}</h3>
+          <h3 className="text-lg font-semibold text-foreground mb-2">{material.title}</h3>
           {material.description && (
-            <p className="text-gray-600">{material.description}</p>
+            <p className="text-muted-foreground">{material.description}</p>
           )}
         </div>
 
         {isCompleted ? (
-          <Badge variant="default" className="bg-green-500 flex items-center space-x-1">
+          <Badge variant="default" className="bg-secondary flex items-center space-x-1">
             <CheckCircle className="h-3 w-3" />
             <span>Completed</span>
           </Badge>
@@ -159,7 +159,7 @@ const MaterialViewer: React.FC<MaterialViewerProps> = ({ material, onComplete, i
           <Button
             onClick={handleComplete}
             disabled={isLoading}
-            className="bg-blue-600 hover:bg-blue-700"
+            className="bg-primary hover:bg-primary"
           >
             {isLoading ? 'Marking...' : 'Mark Complete'}
           </Button>
@@ -217,13 +217,13 @@ const ModuleViewer: React.FC<ModuleViewerProps> = ({ module, onBack }) => {
           <CardHeader>
             <CardTitle>{module.title}</CardTitle>
             {module.description && (
-              <p className="text-gray-600">{module.description}</p>
+              <p className="text-muted-foreground">{module.description}</p>
             )}
           </CardHeader>
           <CardContent>
             <div className="text-center py-8">
-              <BookOpen className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-600">No materials available in this module yet.</p>
+              <BookOpen className="h-12 w-12 text-muted-foreground/80 mx-auto mb-4" />
+              <p className="text-muted-foreground">No materials available in this module yet.</p>
             </div>
           </CardContent>
         </Card>
@@ -254,12 +254,12 @@ const ModuleViewer: React.FC<ModuleViewerProps> = ({ module, onBack }) => {
             <div>
               <CardTitle className="text-xl">{module.title}</CardTitle>
               {module.description && (
-                <p className="text-gray-600 mt-2">{module.description}</p>
+                <p className="text-muted-foreground mt-2">{module.description}</p>
               )}
             </div>
 
             {progressPercentage === 100 ? (
-              <Badge variant="default" className="bg-green-500 flex items-center space-x-1">
+              <Badge variant="default" className="bg-secondary flex items-center space-x-1">
                 <CheckCircle className="h-3 w-3" />
                 <span>Completed</span>
               </Badge>
@@ -273,14 +273,14 @@ const ModuleViewer: React.FC<ModuleViewerProps> = ({ module, onBack }) => {
           {/* Progress Bar */}
           <div className="mt-4">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-sm text-gray-600">Progress</span>
-              <span className="text-sm text-gray-600">
+              <span className="text-sm text-muted-foreground">Progress</span>
+              <span className="text-sm text-muted-foreground">
                 {completedMaterials}/{materials.length} materials
               </span>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-2">
+            <div className="w-full bg-muted/80 rounded-full h-2">
               <div
-                className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                className="bg-primary h-2 rounded-full transition-all duration-300"
                 style={{ width: `${progressPercentage}%` }}
               />
             </div>
@@ -301,20 +301,20 @@ const ModuleViewer: React.FC<ModuleViewerProps> = ({ module, onBack }) => {
                   <button
                     key={material.id}
                     onClick={() => setSelectedMaterialIndex(index)}
-                    className={`w-full text-left p-3 hover:bg-gray-50 transition-colors border-l-4 ${selectedMaterialIndex === index
-                      ? 'border-blue-600 bg-blue-50'
+                    className={`w-full text-left p-3 hover:bg-muted/50 transition-colors border-l-4 ${selectedMaterialIndex === index
+                      ? 'border-primary/50 bg-primary/10'
                       : 'border-transparent'
                       }`}
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
-                        {material.materialType === 'video' && <Play className="h-4 w-4 text-gray-500" />}
-                        {material.materialType === 'link' && <ExternalLink className="h-4 w-4 text-gray-500" />}
-                        {material.materialType === 'document' && <FileText className="h-4 w-4 text-gray-500" />}
+                        {material.materialType === 'video' && <Play className="h-4 w-4 text-muted-foreground" />}
+                        {material.materialType === 'link' && <ExternalLink className="h-4 w-4 text-muted-foreground" />}
+                        {material.materialType === 'document' && <FileText className="h-4 w-4 text-muted-foreground" />}
                         <span className="text-sm font-medium truncate">{material.title}</span>
                       </div>
                       {isMaterialCompleted(material) && (
-                        <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                        <CheckCircle className="h-4 w-4 text-secondary flex-shrink-0" />
                       )}
                     </div>
                   </button>
@@ -370,12 +370,12 @@ const ModuleCard: React.FC<ModuleCardProps> = ({ module, progress, onViewModule,
             <div className="flex-1 min-w-0">
               <div className="flex items-start space-x-4">
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-lg font-semibold text-gray-900 truncate">{module.title}</h3>
+                  <h3 className="text-lg font-semibold text-foreground truncate">{module.title}</h3>
                   {module.description && (
-                    <p className="text-sm text-gray-600 line-clamp-2 mt-1">{module.description}</p>
+                    <p className="text-sm text-muted-foreground line-clamp-2 mt-1">{module.description}</p>
                   )}
                   <div className="flex items-center space-x-4 mt-2">
-                    <div className="flex items-center space-x-1 text-sm text-gray-600">
+                    <div className="flex items-center space-x-1 text-sm text-muted-foreground">
                       <BookOpen className="h-4 w-4" />
                       <span>{totalMaterials} materials</span>
                     </div>
@@ -389,19 +389,19 @@ const ModuleCard: React.FC<ModuleCardProps> = ({ module, progress, onViewModule,
 
                 <div className="flex items-center space-x-4">
                   <div className="text-right">
-                    <div className="text-sm text-gray-600 mb-1">
+                    <div className="text-sm text-muted-foreground mb-1">
                       {completedMaterials}/{totalMaterials}
                     </div>
-                    <div className="w-24 bg-gray-200 rounded-full h-2">
+                    <div className="w-24 bg-muted/80 rounded-full h-2">
                       <div
-                        className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                        className="bg-primary h-2 rounded-full transition-all duration-300"
                         style={{ width: `${progressPercentage}%` }}
                       />
                     </div>
                   </div>
 
                   {isCompleted ? (
-                    <Badge variant="default" className="bg-green-500 flex items-center space-x-1">
+                    <Badge variant="default" className="bg-secondary flex items-center space-x-1">
                       <CheckCircle className="h-3 w-3" />
                       <span>Completed</span>
                     </Badge>
@@ -413,7 +413,7 @@ const ModuleCard: React.FC<ModuleCardProps> = ({ module, progress, onViewModule,
 
                   <Button
                     onClick={() => onViewModule(module)}
-                    className="bg-blue-600 hover:bg-blue-700"
+                    className="bg-primary hover:bg-primary"
                   >
                     {isCompleted ? 'Review' : 'Continue'}
                   </Button>
@@ -431,17 +431,17 @@ const ModuleCard: React.FC<ModuleCardProps> = ({ module, progress, onViewModule,
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between">
           <div className="flex-1 min-w-0">
-            <CardTitle className="text-lg font-semibold text-gray-900 mb-1 line-clamp-2">
+            <CardTitle className="text-lg font-semibold text-foreground mb-1 line-clamp-2">
               {module.title}
             </CardTitle>
             {module.description && (
-              <p className="text-sm text-gray-600 line-clamp-3">
+              <p className="text-sm text-muted-foreground line-clamp-3">
                 {module.description}
               </p>
             )}
           </div>
           {isCompleted ? (
-            <Badge variant="default" className="bg-green-500 flex items-center space-x-1 ml-2">
+            <Badge variant="default" className="bg-secondary flex items-center space-x-1 ml-2">
               <CheckCircle className="h-3 w-3" />
               <span>Completed</span>
             </Badge>
@@ -455,7 +455,7 @@ const ModuleCard: React.FC<ModuleCardProps> = ({ module, progress, onViewModule,
       <CardContent className="pt-0">
         <div className="space-y-3">
           {/* Module Info */}
-          <div className="flex items-center space-x-4 text-sm text-gray-600">
+          <div className="flex items-center space-x-4 text-sm text-muted-foreground">
             <div className="flex items-center space-x-1">
               <BookOpen className="h-4 w-4" />
               <span>{totalMaterials} materials</span>
@@ -471,14 +471,14 @@ const ModuleCard: React.FC<ModuleCardProps> = ({ module, progress, onViewModule,
           {totalMaterials > 0 && (
             <div>
               <div className="flex items-center justify-between mb-1">
-                <span className="text-sm text-gray-600">Progress</span>
-                <span className="text-sm text-gray-600">
+                <span className="text-sm text-muted-foreground">Progress</span>
+                <span className="text-sm text-muted-foreground">
                   {completedMaterials}/{totalMaterials}
                 </span>
               </div>
-              <div className="w-full bg-gray-200 rounded-full h-2">
+              <div className="w-full bg-muted/80 rounded-full h-2">
                 <div
-                  className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                  className="bg-primary h-2 rounded-full transition-all duration-300"
                   style={{ width: `${progressPercentage}%` }}
                 />
               </div>
@@ -489,7 +489,7 @@ const ModuleCard: React.FC<ModuleCardProps> = ({ module, progress, onViewModule,
           <div className="pt-2">
             <Button
               onClick={() => onViewModule(module)}
-              className="w-full bg-blue-600 hover:bg-blue-700"
+              className="w-full bg-primary hover:bg-primary"
             >
               {isCompleted ? 'Review Module' : 'Continue Learning'}
             </Button>
@@ -596,14 +596,14 @@ export const AwarenessHub: React.FC<AwarenessHubProps> = ({ user }) => {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <div className="flex items-center space-x-2">
-            <h2 className="text-2xl font-bold text-gray-900">Awareness Hub</h2>
+            <h2 className="text-2xl font-bold text-foreground">Awareness Hub</h2>
             {isExpert && (
-              <Badge variant="outline" className="text-purple-700 border-purple-300 bg-purple-50">
+              <Badge variant="outline" className="text-primary border-primary/50 bg-accent/10">
                 Expert
               </Badge>
             )}
           </div>
-          <p className="text-gray-600">{getHubWelcomeMessage()}</p>
+          <p className="text-muted-foreground">{getHubWelcomeMessage()}</p>
         </div>
 
         <div className="flex items-center space-x-2">
@@ -628,7 +628,7 @@ export const AwarenessHub: React.FC<AwarenessHubProps> = ({ user }) => {
       <div className="flex flex-col sm:flex-row gap-4">
         <div className="flex-1">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground/80" />
             <Input
               placeholder="Search modules..."
               value={searchTerm}
@@ -657,7 +657,7 @@ export const AwarenessHub: React.FC<AwarenessHubProps> = ({ user }) => {
       </div>
 
       {/* Results Summary */}
-      <div className="flex items-center justify-between text-sm text-gray-600">
+      <div className="flex items-center justify-between text-sm text-muted-foreground">
         <span>
           {filteredModules.length} of {Array.isArray(learningModules) ? learningModules.length : 0} modules
           {searchTerm && ` matching "${searchTerm}"`}
@@ -689,13 +689,13 @@ export const AwarenessHub: React.FC<AwarenessHubProps> = ({ user }) => {
           {[1, 2, 3, 4, 5, 6].map((i) => (
             <Card key={i} className="animate-pulse">
               <CardHeader>
-                <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-                <div className="h-3 bg-gray-200 rounded w-1/2"></div>
+                <div className="h-4 bg-muted/80 rounded w-3/4"></div>
+                <div className="h-3 bg-muted/80 rounded w-1/2"></div>
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
-                  <div className="h-3 bg-gray-200 rounded"></div>
-                  <div className="h-8 bg-gray-200 rounded"></div>
+                  <div className="h-3 bg-muted/80 rounded"></div>
+                  <div className="h-8 bg-muted/80 rounded"></div>
                 </div>
               </CardContent>
             </Card>
@@ -704,14 +704,14 @@ export const AwarenessHub: React.FC<AwarenessHubProps> = ({ user }) => {
       ) : filteredModules.length === 0 ? (
         <Card>
           <CardContent className="text-center py-12">
-            <BookOpen className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">
+            <BookOpen className="h-16 w-16 text-muted-foreground/80 mx-auto mb-4" />
+            <h3 className="text-lg font-medium text-foreground mb-2">
               {searchTerm || selectedCategory !== 'all'
                 ? 'No modules found'
                 : 'No learning modules available'
               }
             </h3>
-            <p className="text-gray-600 mb-4">
+            <p className="text-muted-foreground mb-4">
               {searchTerm || selectedCategory !== 'all'
                 ? 'Try adjusting your search or filter criteria.'
                 : isExpert

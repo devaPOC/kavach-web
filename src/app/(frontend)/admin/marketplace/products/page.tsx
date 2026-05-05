@@ -116,11 +116,11 @@ export default function ProductsListPage() {
 	const getStatusBadge = (status: string) => {
 		switch (status) {
 			case 'active':
-				return <Badge className="bg-green-100 text-green-800">Active</Badge>;
+				return <Badge className="bg-secondary/10 text-secondary">Active</Badge>;
 			case 'draft':
-				return <Badge className="bg-yellow-100 text-yellow-800">Draft</Badge>;
+				return <Badge className="bg-accent/10 text-accent">Draft</Badge>;
 			case 'archived':
-				return <Badge className="bg-gray-100 text-gray-800">Archived</Badge>;
+				return <Badge className="bg-muted text-foreground">Archived</Badge>;
 			default:
 				return <Badge>{status}</Badge>;
 		}
@@ -137,8 +137,8 @@ export default function ProductsListPage() {
 						</Button>
 					</Link>
 					<div>
-						<h1 className="text-2xl font-bold text-gray-900">Products</h1>
-						<p className="text-gray-500">Manage your product catalog</p>
+						<h1 className="text-2xl font-bold text-foreground">Products</h1>
+						<p className="text-muted-foreground">Manage your product catalog</p>
 					</div>
 				</div>
 				<Link href="/admin/marketplace/products/new">
@@ -155,7 +155,7 @@ export default function ProductsListPage() {
 					<div className="flex flex-col sm:flex-row gap-4">
 						<form onSubmit={handleSearch} className="flex-1">
 							<div className="relative">
-								<Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+								<Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground/80" />
 								<Input
 									placeholder="Search products..."
 									value={search}
@@ -184,12 +184,12 @@ export default function ProductsListPage() {
 				<CardContent className="p-0">
 					{loading ? (
 						<div className="flex items-center justify-center py-12">
-							<Loader2 className="h-8 w-8 animate-spin text-gray-400" />
+							<Loader2 className="h-8 w-8 animate-spin text-muted-foreground/80" />
 						</div>
 					) : products.length === 0 ? (
 						<div className="text-center py-12">
-							<Package className="h-12 w-12 mx-auto mb-4 text-gray-300" />
-							<p className="text-gray-500">No products found</p>
+							<Package className="h-12 w-12 mx-auto mb-4 text-muted-foreground/80" />
+							<p className="text-muted-foreground">No products found</p>
 							<Link href="/admin/marketplace/products/new" className="mt-4 inline-block">
 								<Button>Add your first product</Button>
 							</Link>
@@ -197,29 +197,29 @@ export default function ProductsListPage() {
 					) : (
 						<div className="overflow-x-auto">
 							<table className="w-full">
-								<thead className="bg-gray-50 border-b">
+								<thead className="bg-muted/50 border-b">
 									<tr>
-										<th className="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase">Product</th>
-										<th className="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase">Status</th>
-										<th className="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase">Price</th>
-										<th className="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase">Stock</th>
-										<th className="text-right px-6 py-3 text-xs font-medium text-gray-500 uppercase">Actions</th>
+										<th className="text-left px-6 py-3 text-xs font-medium text-muted-foreground uppercase">Product</th>
+										<th className="text-left px-6 py-3 text-xs font-medium text-muted-foreground uppercase">Status</th>
+										<th className="text-left px-6 py-3 text-xs font-medium text-muted-foreground uppercase">Price</th>
+										<th className="text-left px-6 py-3 text-xs font-medium text-muted-foreground uppercase">Stock</th>
+										<th className="text-right px-6 py-3 text-xs font-medium text-muted-foreground uppercase">Actions</th>
 									</tr>
 								</thead>
 								<tbody className="divide-y divide-gray-200">
 									{products.map((product) => (
-										<tr key={product.id} className="hover:bg-gray-50">
+										<tr key={product.id} className="hover:bg-muted/50">
 											<td className="px-6 py-4">
 												<div className="flex items-center gap-3">
-													<div className="p-2 bg-gray-100 rounded-lg">
-														<Package className="h-5 w-5 text-gray-400" />
+													<div className="p-2 bg-muted rounded-lg">
+														<Package className="h-5 w-5 text-muted-foreground/80" />
 													</div>
 													<div>
-														<p className="font-medium text-gray-900">{product.name}</p>
-														<p className="text-sm text-gray-500">{product.slug}</p>
+														<p className="font-medium text-foreground">{product.name}</p>
+														<p className="text-sm text-muted-foreground">{product.slug}</p>
 													</div>
 													{product.isFeatured && (
-														<Badge className="bg-purple-100 text-purple-800 text-xs">Featured</Badge>
+														<Badge className="bg-primary/10 text-primary text-xs">Featured</Badge>
 													)}
 												</div>
 											</td>
@@ -228,14 +228,14 @@ export default function ProductsListPage() {
 												<div>
 													<span className="font-medium">${parseFloat(product.price).toFixed(2)}</span>
 													{product.compareAtPrice && (
-														<span className="ml-2 text-sm text-gray-400 line-through">
+														<span className="ml-2 text-sm text-muted-foreground/80 line-through">
 															${parseFloat(product.compareAtPrice).toFixed(2)}
 														</span>
 													)}
 												</div>
 											</td>
 											<td className="px-6 py-4">
-												<span className={product.stockQuantity <= 5 ? 'text-red-600 font-medium' : ''}>
+												<span className={product.stockQuantity <= 5 ? 'text-destructive font-medium' : ''}>
 													{product.stockQuantity}
 												</span>
 											</td>
@@ -261,7 +261,7 @@ export default function ProductsListPage() {
 														</DropdownMenuItem>
 														<DropdownMenuItem
 															onClick={() => setDeleteProduct(product)}
-															className="text-red-600 flex items-center gap-2"
+															className="text-destructive flex items-center gap-2"
 														>
 															<Trash2 className="h-4 w-4" />
 															Delete

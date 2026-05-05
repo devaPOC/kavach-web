@@ -292,7 +292,7 @@ export function getInputClasses(
   } = {}
 ): string {
   const config = getRTLLayoutConfig(language);
-  const classes = ['w-full', 'border', 'rounded-md', 'focus:ring-2', 'focus:ring-blue-500'];
+  const classes = ['w-full', 'border', 'rounded-md', 'focus:ring-2', 'focus:ring-primary'];
   
   // Base padding
   if (options.size === 'sm') {
@@ -335,11 +335,11 @@ export function getButtonClasses(
   
   // Variant styles
   if (options.variant === 'primary') {
-    classes.push('bg-blue-600 text-white hover:bg-blue-700');
+    classes.push('bg-primary text-white hover:bg-primary');
   } else if (options.variant === 'secondary') {
-    classes.push('bg-gray-600 text-white hover:bg-gray-700');
+    classes.push('bg-muted/80 text-white hover:bg-muted/80');
   } else {
-    classes.push('border border-gray-300 bg-white text-gray-700 hover:bg-gray-50');
+    classes.push('border border-border bg-card text-foreground/80 hover:bg-muted/50');
   }
   
   // Size styles
@@ -398,7 +398,7 @@ export function getCardClasses(
   } = {}
 ): string {
   const config = getRTLLayoutConfig(language);
-  const classes = ['bg-white', 'rounded-lg'];
+  const classes = ['bg-card', 'rounded-lg'];
   
   // Padding
   if (options.padding === 'sm') {
@@ -416,7 +416,7 @@ export function getCardClasses(
   
   // Border
   if (options.border) {
-    classes.push('border border-gray-200');
+    classes.push('border border-border');
   }
   
   // Text direction

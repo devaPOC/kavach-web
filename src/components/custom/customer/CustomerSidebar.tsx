@@ -54,7 +54,7 @@ function CustomerSidebarInternal({
 			{/* Mobile overlay */}
 			{sidebarOpen && (
 				<div
-					className="fixed inset-0 bg-slate-900/20 backdrop-blur-sm z-40 lg:hidden transition-opacity duration-300"
+					className="fixed inset-0 bg-sidebar-foreground/20 backdrop-blur-sm z-40 lg:hidden transition-opacity duration-300"
 					onClick={onSidebarToggle}
 				/>
 			)}
@@ -62,19 +62,19 @@ function CustomerSidebarInternal({
 			{/* Sidebar */}
 			<div
 				className={`
-					fixed inset-y-0 left-0 z-50 bg-white transform transition-all duration-300 ease-out flex flex-col h-screen
+					fixed inset-y-0 left-0 z-50 bg-sidebar text-sidebar-foreground transform transition-all duration-300 ease-out flex flex-col h-screen
 					${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
 					lg:translate-x-0
 					${sidebarCollapsed ? 'w-[72px]' : 'w-64'}
-					shadow-lg shadow-slate-200/50 border-r border-slate-100
+					shadow-lg border-r border-sidebar-border
 				`}
 			>
 				{/* Header */}
-				<div className={`flex items-center h-16 px-4 border-b border-slate-100 flex-shrink-0 ${sidebarCollapsed ? 'justify-center' : 'justify-between'}`}>
+				<div className={`flex items-center h-16 px-4 border-b border-sidebar-border flex-shrink-0 ${sidebarCollapsed ? 'justify-center' : 'justify-between'}`}>
 					{sidebarCollapsed ? (
 						<button
 							onClick={onSidebarCollapse}
-							className="p-2.5 rounded-xl text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 transition-all duration-200"
+							className="p-2.5 rounded-xl text-sidebar-foreground/70 hover:text-sidebar-foreground hover:bg-sidebar-accent transition-all duration-200"
 							title="Expand sidebar"
 						>
 							<Menu className="h-5 w-5" />
@@ -82,14 +82,14 @@ function CustomerSidebarInternal({
 					) : (
 						<>
 							<div className="flex items-center gap-3">
-								<div className="text-xl font-bold tracking-tight text-slate-900 uppercase">
+								<div className="text-xl font-bold tracking-tight text-sidebar-foreground uppercase">
 									Kavach
 								</div>
-								<span className="text-base font-semibold text-slate-800 tracking-tight">Dashboard</span>
+								<span className="text-base font-semibold text-sidebar-foreground/80 tracking-tight">Dashboard</span>
 							</div>
 							<button
 								onClick={onSidebarCollapse}
-								className="p-2 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-50 transition-all duration-200"
+								className="p-2 rounded-lg text-sidebar-foreground/70 hover:text-sidebar-foreground hover:bg-sidebar-accent transition-all duration-200"
 								title="Collapse sidebar"
 							>
 								<Menu className="h-4 w-4" />
@@ -98,37 +98,37 @@ function CustomerSidebarInternal({
 					)}
 					<button
 						onClick={onSidebarToggle}
-						className="lg:hidden absolute top-4 right-4 p-2 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-50 transition-all duration-200"
+						className="lg:hidden absolute top-4 right-4 p-2 rounded-lg text-sidebar-foreground/70 hover:text-sidebar-foreground hover:bg-sidebar-accent transition-all duration-200"
 					>
 						<X className="h-5 w-5" />
 					</button>
 				</div>
 
 				{/* User Info */}
-				<div className={`px-4 py-4 border-b border-slate-100 flex-shrink-0 ${sidebarCollapsed ? 'px-3' : ''}`}>
+				<div className={`px-4 py-4 border-b border-sidebar-border flex-shrink-0 ${sidebarCollapsed ? 'px-3' : ''}`}>
 					{!sidebarCollapsed ? (
 						<div className="space-y-2">
 							<div className="flex items-center gap-3">
-								<div className="w-10 h-10 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-xl flex items-center justify-center shadow-sm">
-									<span className="text-sm font-semibold text-white">
+								<div className="w-10 h-10 bg-sidebar-primary rounded-xl flex items-center justify-center shadow-sm">
+									<span className="text-sm font-semibold text-sidebar-primary-foreground">
 										{user.firstName?.[0]}{user.lastName?.[0]}
 									</span>
 								</div>
 								<div className="flex-1 min-w-0">
-									<div className="text-sm font-medium text-slate-800 truncate">
+									<div className="text-sm font-medium text-sidebar-foreground truncate">
 										{user.firstName} {user.lastName}
 									</div>
-									<div className="text-xs text-slate-500 truncate">{user.email}</div>
+									<div className="text-xs text-sidebar-foreground/70 truncate">{user.email}</div>
 								</div>
 							</div>
-							<span className="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-100">
+							<span className="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-medium bg-sidebar-accent text-sidebar-accent-foreground border border-sidebar-border">
 								{user.role}
 							</span>
 						</div>
 					) : (
 						<div className="flex justify-center">
-							<div className="w-10 h-10 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-xl flex items-center justify-center shadow-sm" title={`${user.firstName} ${user.lastName}`}>
-								<span className="text-sm font-semibold text-white">
+							<div className="w-10 h-10 bg-sidebar-primary rounded-xl flex items-center justify-center shadow-sm" title={`${user.firstName} ${user.lastName}`}>
+								<span className="text-sm font-semibold text-sidebar-primary-foreground">
 									{user.firstName?.[0]}{user.lastName?.[0]}
 								</span>
 							</div>
@@ -151,14 +151,14 @@ function CustomerSidebarInternal({
 										className={`
 											w-full flex items-center px-3 py-2.5 text-sm font-medium rounded-xl transition-all duration-200 group
 											${active
-												? 'bg-emerald-50 text-emerald-700 shadow-sm border border-emerald-100'
-												: 'text-slate-600 hover:bg-slate-50 hover:text-slate-900 border border-transparent'
+												? 'bg-sidebar-accent text-sidebar-accent-foreground shadow-sm border border-sidebar-border'
+												: 'text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground border border-transparent'
 											}
 											${sidebarCollapsed ? 'justify-center px-2.5' : ''}
 										`}
 										title={sidebarCollapsed ? item.label : ''}
 									>
-										<Icon className={`h-5 w-5 flex-shrink-0 transition-colors duration-200 ${sidebarCollapsed ? '' : 'mr-3'} ${active ? 'text-emerald-600' : 'text-slate-400 group-hover:text-slate-600'}`} />
+										<Icon className={`h-5 w-5 flex-shrink-0 transition-colors duration-200 ${sidebarCollapsed ? '' : 'mr-3'} ${active ? 'text-sidebar-accent-foreground' : 'text-muted-foreground/80 group-hover:text-sidebar-accent-foreground'}`} />
 										{!sidebarCollapsed && <span className="truncate">{item.label}</span>}
 									</Link>
 								)
@@ -168,12 +168,12 @@ function CustomerSidebarInternal({
 				</nav>
 
 				{/* Logout Section */}
-				<div className="border-t border-slate-100 p-3 flex-shrink-0">
+				<div className="border-t border-border/50 p-3 flex-shrink-0">
 					<button
 						onClick={onLogout}
 						disabled={isLoggingOut}
 						className={`
-							w-full flex items-center px-3 py-2.5 text-sm font-medium text-slate-500 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all duration-200 disabled:opacity-50 border border-transparent hover:border-red-100
+							w-full flex items-center px-3 py-2.5 text-sm font-medium text-muted-foreground hover:text-sidebar-accent-foreground hover:bg-destructive/10 rounded-xl transition-all duration-200 disabled:opacity-50 border border-transparent hover:border-destructive/20
 							${sidebarCollapsed ? 'justify-center px-2.5' : ''}
 						`}
 						title={sidebarCollapsed ? 'Logout' : ''}
@@ -191,8 +191,8 @@ function CustomerSidebarInternal({
 export default function CustomerSidebar(props: CustomerSidebarProps) {
 	return (
 		<Suspense fallback={
-			<div className="fixed inset-y-0 left-0 z-50 bg-white shadow-lg w-64 lg:w-[72px] flex items-center justify-center border-r border-slate-100">
-				<div className="animate-spin rounded-full h-8 w-8 border-2 border-emerald-200 border-t-emerald-600"></div>
+			<div className="fixed inset-y-0 left-0 z-50 bg-card shadow-lg w-64 lg:w-[72px] flex items-center justify-center border-r border-border/50">
+				<div className="animate-spin rounded-full h-8 w-8 border-2 border-secondary/50 border-t-emerald-600"></div>
 			</div>
 		}>
 			<CustomerSidebarInternal {...props} />

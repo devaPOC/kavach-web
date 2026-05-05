@@ -33,13 +33,13 @@ export default function MaterialPreviewDialog({
   const getMaterialTypeBadgeColor = (type: string) => {
     switch (type) {
       case 'video':
-        return 'bg-red-100 text-red-800 border-red-200'
+        return 'bg-destructive/10 text-destructive border-destructive'
       case 'link':
-        return 'bg-blue-100 text-blue-800 border-blue-200'
+        return 'bg-primary/10 text-primary border-primary/50'
       case 'document':
-        return 'bg-green-100 text-green-800 border-green-200'
+        return 'bg-secondary/10 text-secondary border-secondary/50'
       default:
-        return 'bg-gray-100 text-gray-800 border-gray-200'
+        return 'bg-muted text-foreground border-border'
     }
   }
 
@@ -125,27 +125,27 @@ export default function MaterialPreviewDialog({
               </Badge>
             </div>
             <div className="flex-1">
-              <h3 className="text-xl font-semibold text-gray-900">{material.title}</h3>
+              <h3 className="text-xl font-semibold text-foreground">{material.title}</h3>
               {material.description && (
-                <p className="text-gray-600 mt-1">{material.description}</p>
+                <p className="text-muted-foreground mt-1">{material.description}</p>
               )}
             </div>
           </div>
 
           {/* Material Info */}
-          <div className="grid grid-cols-2 gap-4 p-4 bg-gray-50 rounded-lg">
+          <div className="grid grid-cols-2 gap-4 p-4 bg-muted/50 rounded-lg">
             <div>
-              <span className="text-sm font-medium text-gray-700">Type:</span>
-              <p className="text-sm text-gray-900 capitalize">{material.materialType}</p>
+              <span className="text-sm font-medium text-foreground/80">Type:</span>
+              <p className="text-sm text-foreground capitalize">{material.materialType}</p>
             </div>
             <div>
-              <span className="text-sm font-medium text-gray-700">Order:</span>
-              <p className="text-sm text-gray-900">{material.orderIndex}</p>
+              <span className="text-sm font-medium text-foreground/80">Order:</span>
+              <p className="text-sm text-foreground">{material.orderIndex}</p>
             </div>
             {material.materialData.duration && (
               <div>
-                <span className="text-sm font-medium text-gray-700">Duration:</span>
-                <p className="text-sm text-gray-900 flex items-center gap-1">
+                <span className="text-sm font-medium text-foreground/80">Duration:</span>
+                <p className="text-sm text-foreground flex items-center gap-1">
                   <Clock className="h-3 w-3" />
                   {material.materialData.duration} minutes
                 </p>
@@ -153,8 +153,8 @@ export default function MaterialPreviewDialog({
             )}
             {urlInfo && (
               <div>
-                <span className="text-sm font-medium text-gray-700">Content Type:</span>
-                <p className="text-sm text-gray-900 flex items-center gap-1">
+                <span className="text-sm font-medium text-foreground/80">Content Type:</span>
+                <p className="text-sm text-foreground flex items-center gap-1">
                   <span>{urlInfo.icon}</span>
                   {urlInfo.type}
                 </p>
@@ -166,7 +166,7 @@ export default function MaterialPreviewDialog({
           {material.materialData.url && (
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <h4 className="font-medium text-gray-900">Content URL</h4>
+                <h4 className="font-medium text-foreground">Content URL</h4>
                 <Button
                   variant="outline"
                   size="sm"
@@ -177,8 +177,8 @@ export default function MaterialPreviewDialog({
                   Open in New Tab
                 </Button>
               </div>
-              <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                <p className="text-sm text-blue-900 break-all">{material.materialData.url}</p>
+              <div className="p-3 bg-primary/10 border border-primary/50 rounded-lg">
+                <p className="text-sm text-primary break-all">{material.materialData.url}</p>
               </div>
             </div>
           )}
@@ -187,22 +187,22 @@ export default function MaterialPreviewDialog({
           {material.materialData.url && (
             <div className="space-y-3">
               <div className="flex items-center gap-2">
-                <h4 className="font-medium text-gray-900">Content Preview</h4>
+                <h4 className="font-medium text-foreground">Content Preview</h4>
                 {urlInfo && (
-                  <Badge variant="outline" className="text-blue-600 border-blue-300">
+                  <Badge variant="outline" className="text-primary border-primary/50">
                     <span className="mr-1">{urlInfo.icon}</span>
                     {urlInfo.type}
                   </Badge>
                 )}
               </div>
-              <div className="p-4 border-2 border-dashed border-gray-300 rounded-lg text-center">
+              <div className="p-4 border-2 border-dashed border-border rounded-lg text-center">
                 <div className="flex flex-col items-center gap-3">
-                  <div className="p-3 bg-gray-100 rounded-full">
-                    <ExternalLink className="h-6 w-6 text-gray-600" />
+                  <div className="p-3 bg-muted rounded-full">
+                    <ExternalLink className="h-6 w-6 text-muted-foreground" />
                   </div>
                   <div>
-                    <p className="text-gray-700 font-medium mb-1">External Content</p>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-foreground/80 font-medium mb-1">External Content</p>
+                    <p className="text-sm text-muted-foreground">
                       This content will open in a new tab when clicked by learners.
                     </p>
                   </div>
@@ -218,7 +218,7 @@ export default function MaterialPreviewDialog({
                     </span>
                     <ExternalLink className="h-3 w-3" />
                   </Button>
-                  <div className="mt-2 text-xs text-gray-500 break-all max-w-full">
+                  <div className="mt-2 text-xs text-muted-foreground break-all max-w-full">
                     {material.materialData.url}
                   </div>
                 </div>
@@ -227,24 +227,24 @@ export default function MaterialPreviewDialog({
           )}
 
           {/* Learner Experience Info */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-            <h4 className="font-medium text-blue-900 mb-2">Learner Experience</h4>
-            <ul className="space-y-1 text-sm text-blue-800">
+          <div className="bg-primary/10 border border-primary/50 rounded-lg p-4">
+            <h4 className="font-medium text-primary mb-2">Learner Experience</h4>
+            <ul className="space-y-1 text-sm text-primary">
               <li className="flex items-center gap-2">
-                <span className="w-1 h-1 bg-blue-600 rounded-full"></span>
+                <span className="w-1 h-1 bg-primary rounded-full"></span>
                 Learners will see this material in the "{material.materialType}" section
               </li>
               <li className="flex items-center gap-2">
-                <span className="w-1 h-1 bg-blue-600 rounded-full"></span>
+                <span className="w-1 h-1 bg-primary rounded-full"></span>
                 Progress will be tracked when they interact with this content
               </li>
               <li className="flex items-center gap-2">
-                <span className="w-1 h-1 bg-blue-600 rounded-full"></span>
+                <span className="w-1 h-1 bg-primary rounded-full"></span>
                 Content will open in a new tab for security and compatibility
               </li>
               {material.materialData.duration && (
                 <li className="flex items-center gap-2">
-                  <span className="w-1 h-1 bg-blue-600 rounded-full"></span>
+                  <span className="w-1 h-1 bg-primary rounded-full"></span>
                   Estimated completion time: {material.materialData.duration} minutes
                 </li>
               )}

@@ -105,14 +105,14 @@ export default function ServiceRequestManageModal({
 
   const getStatusBadge = (status: string) => {
     const statusConfig = {
-      pending: { color: 'bg-yellow-100 text-yellow-800', icon: Clock, label: 'Pending' },
-      assigned: { color: 'bg-blue-100 text-blue-800', icon: UserCheck, label: 'Assigned' },
-      accepted: { color: 'bg-cyan-100 text-cyan-800', icon: UserCheck, label: 'Accepted' },
-      in_progress: { color: 'bg-orange-100 text-orange-800', icon: AlertCircle, label: 'In Progress' },
-      completed: { color: 'bg-green-100 text-green-800', icon: CheckCircle2, label: 'Completed' },
-      pending_closure: { color: 'bg-purple-100 text-purple-800', icon: Clock, label: 'Pending Closure' },
-      closed: { color: 'bg-gray-100 text-gray-800', icon: CheckCircle2, label: 'Closed' },
-      cancelled: { color: 'bg-red-100 text-red-800', icon: X, label: 'Cancelled' },
+      pending: { color: 'bg-accent/10 text-accent', icon: Clock, label: 'Pending' },
+      assigned: { color: 'bg-primary/10 text-primary', icon: UserCheck, label: 'Assigned' },
+      accepted: { color: 'bg-accent/10 text-accent', icon: UserCheck, label: 'Accepted' },
+      in_progress: { color: 'bg-accent/10 text-accent', icon: AlertCircle, label: 'In Progress' },
+      completed: { color: 'bg-secondary/10 text-secondary', icon: CheckCircle2, label: 'Completed' },
+      pending_closure: { color: 'bg-primary/10 text-primary', icon: Clock, label: 'Pending Closure' },
+      closed: { color: 'bg-muted text-foreground', icon: CheckCircle2, label: 'Closed' },
+      cancelled: { color: 'bg-destructive/10 text-destructive', icon: X, label: 'Cancelled' },
     };
 
     const config = statusConfig[status as keyof typeof statusConfig] || statusConfig.pending;
@@ -169,7 +169,7 @@ export default function ServiceRequestManageModal({
       <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <Settings size={20} className="text-blue-600" />
+            <Settings size={20} className="text-primary" />
             Manage Service Request
           </DialogTitle>
           <DialogDescription>
@@ -179,63 +179,63 @@ export default function ServiceRequestManageModal({
 
         <div className="space-y-6">
           {/* Current Request Information */}
-          <div className="bg-gray-50 p-4 rounded-lg">
+          <div className="bg-muted/50 p-4 rounded-lg">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
               <div>
-                <h3 className="text-lg font-semibold text-gray-900">
+                <h3 className="text-lg font-semibold text-foreground">
                   {request.title || 'Service Request'}
                 </h3>
-                <p className="text-sm text-gray-600">ID: {request.id}</p>
+                <p className="text-sm text-muted-foreground">ID: {request.id}</p>
               </div>
               {getStatusBadge(request.status)}
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
               <div>
-                <span className="font-medium text-gray-600">Customer:</span>
-                <p className="text-gray-900">{request.customerName}</p>
-                <p className="text-gray-600">{request.customerEmail}</p>
+                <span className="font-medium text-muted-foreground">Customer:</span>
+                <p className="text-foreground">{request.customerName}</p>
+                <p className="text-muted-foreground">{request.customerEmail}</p>
               </div>
 
               {request.expertName && (
                 <div>
-                  <span className="font-medium text-gray-600">Assigned Expert:</span>
-                  <p className="text-gray-900">{request.expertName}</p>
-                  <p className="text-gray-600">{request.expertEmail}</p>
+                  <span className="font-medium text-muted-foreground">Assigned Expert:</span>
+                  <p className="text-foreground">{request.expertName}</p>
+                  <p className="text-muted-foreground">{request.expertEmail}</p>
                 </div>
               )}
 
               <div>
-                <span className="font-medium text-gray-600">Created:</span>
-                <p className="text-gray-900">{format(new Date(request.createdAt), 'MMM dd, yyyy HH:mm')}</p>
+                <span className="font-medium text-muted-foreground">Created:</span>
+                <p className="text-foreground">{format(new Date(request.createdAt), 'MMM dd, yyyy HH:mm')}</p>
               </div>
 
               {request.assignedAt && (
                 <div>
-                  <span className="font-medium text-gray-600">Assigned:</span>
-                  <p className="text-gray-900">{format(new Date(request.assignedAt), 'MMM dd, yyyy HH:mm')}</p>
+                  <span className="font-medium text-muted-foreground">Assigned:</span>
+                  <p className="text-foreground">{format(new Date(request.assignedAt), 'MMM dd, yyyy HH:mm')}</p>
                 </div>
               )}
 
               {request.serviceType && (
                 <div>
-                  <span className="font-medium text-gray-600">Service Type:</span>
-                  <p className="text-gray-900">{request.serviceType}</p>
+                  <span className="font-medium text-muted-foreground">Service Type:</span>
+                  <p className="text-foreground">{request.serviceType}</p>
                 </div>
               )}
 
               {request.priority && (
                 <div>
-                  <span className="font-medium text-gray-600">Priority:</span>
-                  <p className="text-gray-900 capitalize">{request.priority}</p>
+                  <span className="font-medium text-muted-foreground">Priority:</span>
+                  <p className="text-foreground capitalize">{request.priority}</p>
                 </div>
               )}
             </div>
 
             {request.description && (
               <div className="mt-4">
-                <span className="font-medium text-gray-600">Description:</span>
-                <p className="text-gray-900 mt-1 bg-white p-3 rounded border">
+                <span className="font-medium text-muted-foreground">Description:</span>
+                <p className="text-foreground mt-1 bg-card p-3 rounded border">
                   {request.description}
                 </p>
               </div>
@@ -244,7 +244,7 @@ export default function ServiceRequestManageModal({
 
           {/* Status Update Section */}
           <div className="space-y-4">
-            <h4 className="font-medium text-gray-900 flex items-center gap-2">
+            <h4 className="font-medium text-foreground flex items-center gap-2">
               <AlertCircle size={16} />
               Update Status
             </h4>
@@ -261,7 +261,7 @@ export default function ServiceRequestManageModal({
                       <SelectItem key={status.value} value={status.value}>
                         <div className="flex flex-col">
                           <span>{status.label}</span>
-                          <span className="text-xs text-gray-500">{status.description}</span>
+                          <span className="text-xs text-muted-foreground">{status.description}</span>
                         </div>
                       </SelectItem>
                     ))}
@@ -282,16 +282,16 @@ export default function ServiceRequestManageModal({
             </div>
 
             {error && (
-              <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-md text-sm">
+              <div className="bg-destructive/10 border border-destructive text-destructive px-4 py-3 rounded-md text-sm">
                 {error}
               </div>
             )}
 
             {canUpdateStatus && (
-              <div className="bg-blue-50 border border-blue-200 p-3 rounded-lg">
+              <div className="bg-primary/10 border border-primary/50 p-3 rounded-lg">
                 <div className="flex items-start gap-2">
-                  <AlertCircle size={16} className="text-blue-600 mt-0.5" />
-                  <div className="text-sm text-blue-800">
+                  <AlertCircle size={16} className="text-primary mt-0.5" />
+                  <div className="text-sm text-primary">
                     <p className="font-medium">Status Change Impact:</p>
                     <p>
                       Changing from "{request.status}" to "{newStatus}" will update the request workflow.
@@ -307,7 +307,7 @@ export default function ServiceRequestManageModal({
 
           {/* Quick Actions */}
           <div className="space-y-3">
-            <h4 className="font-medium text-gray-900 flex items-center gap-2">
+            <h4 className="font-medium text-foreground flex items-center gap-2">
               <FileText size={16} />
               Quick Actions
             </h4>
@@ -355,7 +355,7 @@ export default function ServiceRequestManageModal({
             <Button
               onClick={handleUpdateStatus}
               disabled={isUpdating}
-              className="bg-blue-600 hover:bg-blue-700"
+              className="bg-primary hover:bg-primary"
             >
               {isUpdating ? 'Updating...' : 'Update Status'}
             </Button>

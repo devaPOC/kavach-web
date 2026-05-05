@@ -32,20 +32,20 @@ function formatFileSize(bytes: number): string {
 function getResourceIcon(resource: TrainerResource) {
 	if (resource.r2Key) {
 		if (resource.fileType?.startsWith('video/')) {
-			return <Video className="h-5 w-5 text-purple-500" />;
+			return <Video className="h-5 w-5 text-primary" />;
 		}
 		if (resource.fileType === 'application/pdf') {
-			return <FileText className="h-5 w-5 text-red-500" />;
+			return <FileText className="h-5 w-5 text-destructive" />;
 		}
 		if (resource.fileType?.includes('word') || resource.fileType?.includes('document')) {
-			return <FileText className="h-5 w-5 text-blue-500" />;
+			return <FileText className="h-5 w-5 text-primary" />;
 		}
 		if (resource.fileType?.includes('powerpoint') || resource.fileType?.includes('presentation')) {
-			return <FileText className="h-5 w-5 text-orange-500" />;
+			return <FileText className="h-5 w-5 text-accent" />;
 		}
-		return <File className="h-5 w-5 text-gray-500" />;
+		return <File className="h-5 w-5 text-muted-foreground" />;
 	}
-	return <LinkIcon className="h-5 w-5 text-gray-500" />;
+	return <LinkIcon className="h-5 w-5 text-muted-foreground" />;
 }
 
 export default function AdminTrainerResourcesPage() {
@@ -230,8 +230,8 @@ export default function AdminTrainerResourcesPage() {
 		<div className="p-4 lg:p-8">
 			<div className="mb-8 flex items-center justify-between">
 				<div>
-					<h1 className="text-3xl font-bold text-gray-900 mb-2">Trainer Resources</h1>
-					<p className="text-gray-600">
+					<h1 className="text-3xl font-bold text-foreground mb-2">Trainer Resources</h1>
+					<p className="text-muted-foreground">
 						Upload and manage exclusive resources for trainers
 					</p>
 				</div>
@@ -242,9 +242,9 @@ export default function AdminTrainerResourcesPage() {
 			</div>
 
 			{error && (
-				<div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md">
-					<p className="text-sm text-red-600">{error}</p>
-					<button onClick={() => setError('')} className="text-xs text-red-500 underline mt-1">
+				<div className="mb-4 p-3 bg-destructive/10 border border-destructive rounded-md">
+					<p className="text-sm text-destructive">{error}</p>
+					<button onClick={() => setError('')} className="text-xs text-destructive underline mt-1">
 						Dismiss
 					</button>
 				</div>
@@ -252,13 +252,13 @@ export default function AdminTrainerResourcesPage() {
 
 			{loading ? (
 				<div className="text-center py-12">
-					<p className="text-gray-600">Loading resources...</p>
+					<p className="text-muted-foreground">Loading resources...</p>
 				</div>
 			) : resources.length === 0 ? (
 				<Card>
 					<CardContent className="py-12 text-center">
-						<FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-						<p className="text-gray-600 mb-4">No resources created yet</p>
+						<FileText className="h-12 w-12 text-muted-foreground/80 mx-auto mb-4" />
+						<p className="text-muted-foreground mb-4">No resources created yet</p>
 						<Button onClick={openCreateDialog}>
 							<Plus className="h-4 w-4 mr-2" />
 							Add First Resource
@@ -288,19 +288,19 @@ export default function AdminTrainerResourcesPage() {
 							<CardContent>
 								<div className="space-y-2">
 									{resource.r2Key ? (
-										<div className="text-sm text-gray-600">
+										<div className="text-sm text-muted-foreground">
 											<span className="font-medium">File:</span> {resource.fileName}
 											<br />
-											<span className="text-xs text-gray-500">
+											<span className="text-xs text-muted-foreground">
 												{resource.fileSize && formatFileSize(resource.fileSize)}
 											</span>
 										</div>
 									) : (
-										<p className="text-sm text-gray-600 truncate">
+										<p className="text-sm text-muted-foreground truncate">
 											<span className="font-medium">URL:</span> {resource.contentUrl}
 										</p>
 									)}
-									<p className="text-xs text-gray-500">
+									<p className="text-xs text-muted-foreground">
 										Created {new Date(resource.createdAt).toLocaleDateString()}
 									</p>
 									<div className="flex gap-2 pt-2">

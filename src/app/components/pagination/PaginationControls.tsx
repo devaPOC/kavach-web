@@ -19,7 +19,7 @@ export function PaginationControls({ page, totalPages, startLabel, onPrev, onNex
 	return (
 		<div className={className || "flex items-center justify-between mt-6"}>
 			{startLabel && (
-				<div className="text-sm text-slate-500 font-medium">{startLabel}</div>
+				<div className="text-sm text-muted-foreground font-medium">{startLabel}</div>
 			)}
 			<div className="flex items-center gap-2 ml-auto">
 				<Button
@@ -33,7 +33,7 @@ export function PaginationControls({ page, totalPages, startLabel, onPrev, onNex
 					<ChevronLeft className="h-3 w-3" />
 					Previous
 				</Button>
-				<span className="text-sm text-slate-600 font-medium" aria-live="polite">
+				<span className="text-sm text-muted-foreground font-medium" aria-live="polite">
 					Page {page} of {totalPages}
 				</span>
 				<Button

@@ -284,31 +284,31 @@ export default function UserManagement() {
 
   const getRoleBadgeColor = (role: string) => {
     switch (role) {
-      case 'trainer': return 'bg-purple-100 text-purple-800 border-purple-200'
-      case 'expert': return 'bg-blue-100 text-blue-800 border-blue-200'
-      case 'customer': return 'bg-green-100 text-green-800 border-green-200'
-      default: return 'bg-gray-100 text-gray-800 border-gray-200'
+      case 'trainer': return 'bg-primary/10 text-primary border-primary/50'
+      case 'expert': return 'bg-primary/10 text-primary border-primary/50'
+      case 'customer': return 'bg-secondary/10 text-secondary border-secondary/50'
+      default: return 'bg-muted text-foreground border-border'
     }
   }
 
   const getUserStatus = (user: UserResponse) => {
     // Check for locked account first (highest priority)
     if (user.isLocked) {
-      return { icon: Lock, text: 'Locked', color: 'text-red-700' }
+      return { icon: Lock, text: 'Locked', color: 'text-destructive' }
     }
     if (user.role === 'expert' && user.isBanned) {
-      return { icon: Ban, text: 'Banned', color: 'text-red-600' }
+      return { icon: Ban, text: 'Banned', color: 'text-destructive' }
     }
     if (user.role === 'customer' && user.isPaused) {
-      return { icon: Pause, text: 'Paused', color: 'text-orange-600' }
+      return { icon: Pause, text: 'Paused', color: 'text-accent' }
     }
     if (user.role === 'expert' && !user.isApproved) {
-      return { icon: Shield, text: 'Pending Approval', color: 'text-yellow-600' }
+      return { icon: Shield, text: 'Pending Approval', color: 'text-accent' }
     }
     if (user.isEmailVerified) {
-      return { icon: ShieldCheck, text: 'Verified', color: 'text-green-600' }
+      return { icon: ShieldCheck, text: 'Verified', color: 'text-secondary' }
     }
-    return { icon: Shield, text: 'Pending', color: 'text-yellow-600' }
+    return { icon: Shield, text: 'Pending', color: 'text-accent' }
   }
 
   const renderUserActions = (user: UserResponse) => {
@@ -418,33 +418,33 @@ export default function UserManagement() {
 
   const summaryTiles = (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-      <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+      <div className="bg-primary/10 p-4 rounded-lg border border-primary/50">
         <div className="flex items-center gap-2">
-          <Users className="h-4 w-4 text-blue-600" />
-          <span className="text-sm font-medium text-blue-700">Total Users</span>
+          <Users className="h-4 w-4 text-primary" />
+          <span className="text-sm font-medium text-primary">Total Users</span>
         </div>
-        <p className="text-2xl font-bold text-blue-800 mt-1">{counts?.totalUsers ?? totalUsers}</p>
+        <p className="text-2xl font-bold text-primary mt-1">{counts?.totalUsers ?? totalUsers}</p>
       </div>
-      <div className="bg-red-50 p-4 rounded-lg border border-red-200">
+      <div className="bg-destructive/10 p-4 rounded-lg border border-destructive">
         <div className="flex items-center gap-2">
-          <Lock className="h-4 w-4 text-red-600" />
-          <span className="text-sm font-medium text-red-700">Locked Accounts</span>
+          <Lock className="h-4 w-4 text-destructive" />
+          <span className="text-sm font-medium text-destructive">Locked Accounts</span>
         </div>
-        <p className="text-2xl font-bold text-red-800 mt-1">{counts?.locked ?? users.filter(u => u.isLocked).length}</p>
+        <p className="text-2xl font-bold text-destructive mt-1">{counts?.locked ?? users.filter(u => u.isLocked).length}</p>
       </div>
-      <div className="bg-orange-50 p-4 rounded-lg border border-orange-200">
+      <div className="bg-accent/10 p-4 rounded-lg border border-accent/50">
         <div className="flex items-center gap-2">
-          <Ban className="h-4 w-4 text-orange-600" />
-          <span className="text-sm font-medium text-orange-700">Banned/Paused</span>
+          <Ban className="h-4 w-4 text-accent" />
+          <span className="text-sm font-medium text-accent">Banned/Paused</span>
         </div>
-        <p className="text-2xl font-bold text-orange-800 mt-1">{counts ? counts.banned + counts.paused : users.filter(u => u.isBanned || u.isPaused).length}</p>
+        <p className="text-2xl font-bold text-accent mt-1">{counts ? counts.banned + counts.paused : users.filter(u => u.isBanned || u.isPaused).length}</p>
       </div>
-      <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+      <div className="bg-accent/10 p-4 rounded-lg border border-accent/50">
         <div className="flex items-center gap-2">
-          <Shield className="h-4 w-4 text-yellow-600" />
-          <span className="text-sm font-medium text-yellow-700">Pending Approval</span>
+          <Shield className="h-4 w-4 text-accent" />
+          <span className="text-sm font-medium text-accent">Pending Approval</span>
         </div>
-        <p className="text-2xl font-bold text-yellow-800 mt-1">{counts?.pendingApprovalExperts ?? users.filter(u => u.role === 'expert' && !u.isApproved).length}</p>
+        <p className="text-2xl font-bold text-accent mt-1">{counts?.pendingApprovalExperts ?? users.filter(u => u.role === 'expert' && !u.isApproved).length}</p>
       </div>
     </div>
   )
@@ -466,8 +466,8 @@ export default function UserManagement() {
 
           {/* Error Display */}
           {error && (
-            <div className="p-3 bg-red-50 border border-red-200 rounded-md">
-              <p className="text-sm text-red-600">{error}</p>
+            <div className="p-3 bg-destructive/10 border border-destructive rounded-md">
+              <p className="text-sm text-destructive">{error}</p>
             </div>
           )}
 
@@ -484,39 +484,39 @@ export default function UserManagement() {
               <div className="border rounded-lg overflow-hidden">
                 <div className="overflow-x-auto">
                   <table className="w-full">
-                    <thead className="bg-gray-50">
+                    <thead className="bg-muted/50">
                       <tr>
-                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                           User
                         </th>
-                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                           Role
                         </th>
-                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                           Status
                         </th>
-                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                           Created
                         </th>
-                        <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-4 py-3 text-right text-xs font-medium text-muted-foreground uppercase tracking-wider">
                           Actions
                         </th>
                       </tr>
                     </thead>
-                    <tbody className="bg-white divide-y divide-gray-200">
+                    <tbody className="bg-card divide-y divide-gray-200">
                       {filteredUsers.map((user) => (
-                        <tr key={user.id} className="hover:bg-gray-50">
+                        <tr key={user.id} className="hover:bg-muted/50">
                           <td className="px-4 py-4">
                             <div>
                               <div className="flex items-center gap-2">
-                                <div className="text-sm font-medium text-gray-900">
+                                <div className="text-sm font-medium text-foreground">
                                   {user.firstName} {user.lastName}
                                 </div>
                                 {user.isLocked && (
-                                  <Lock className="h-3 w-3 text-red-600" />
+                                  <Lock className="h-3 w-3 text-destructive" />
                                 )}
                               </div>
-                              <div className="text-sm text-gray-500">{user.email}</div>
+                              <div className="text-sm text-muted-foreground">{user.email}</div>
                             </div>
                           </td>
                           <td className="px-4 py-4">
@@ -538,7 +538,7 @@ export default function UserManagement() {
                               })()}
                             </div>
                           </td>
-                          <td className="px-4 py-4 text-sm text-gray-500">
+                          <td className="px-4 py-4 text-sm text-muted-foreground">
                             {new Date(user.createdAt).toLocaleDateString()}
                           </td>
                           <td className="px-4 py-4 text-right">

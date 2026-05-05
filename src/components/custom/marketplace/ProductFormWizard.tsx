@@ -201,8 +201,8 @@ export function ProductFormWizard({
 									${isCompleted
 										? 'bg-primary border-transparent text-primary-foreground'
 										: isCurrent
-											? 'bg-white border-primary text-primary shadow-lg shadow-primary/20'
-											: 'bg-gray-100 border-gray-200 text-gray-400'
+											? 'bg-card border-primary text-primary shadow-lg shadow-primary/20'
+											: 'bg-muted border-border text-muted-foreground/80'
 									}
 								`}
 							>
@@ -215,7 +215,7 @@ export function ProductFormWizard({
 							<span
 								className={`
 									mt-2 text-xs font-medium whitespace-nowrap
-									${isCurrent ? 'text-primary' : isCompleted ? 'text-gray-600' : 'text-gray-400'}
+									${isCurrent ? 'text-primary' : isCompleted ? 'text-muted-foreground' : 'text-muted-foreground/80'}
 								`}
 							>
 								{step.title}
@@ -228,7 +228,7 @@ export function ProductFormWizard({
 									w-16 h-0.5 mx-2 transition-all duration-500
 									${index < currentStep
 										? 'bg-primary'
-										: 'bg-gray-200'
+										: 'bg-muted/80'
 									}
 								`}
 							/>
@@ -245,8 +245,8 @@ export function ProductFormWizard({
 				return (
 					<div className="space-y-6">
 						<div className="text-center mb-8">
-							<h2 className="text-2xl font-bold text-gray-900">Basic Information</h2>
-							<p className="text-gray-500 mt-1">Start with the essential product details</p>
+							<h2 className="text-2xl font-bold text-foreground">Basic Information</h2>
+							<p className="text-muted-foreground mt-1">Start with the essential product details</p>
 						</div>
 
 						<div className="space-y-4 max-w-xl mx-auto">
@@ -255,7 +255,7 @@ export function ProductFormWizard({
 								name="name"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Product Name <span className="text-red-500">*</span></FormLabel>
+										<FormLabel>Product Name <span className="text-destructive">*</span></FormLabel>
 										<FormControl>
 											<Input
 												{...field}
@@ -275,7 +275,7 @@ export function ProductFormWizard({
 								name="slug"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>URL Slug <span className="text-red-500">*</span></FormLabel>
+										<FormLabel>URL Slug <span className="text-destructive">*</span></FormLabel>
 										<FormControl>
 											<Input
 												{...field}
@@ -343,8 +343,8 @@ export function ProductFormWizard({
 				return (
 					<div className="space-y-6">
 						<div className="text-center mb-8">
-							<h2 className="text-2xl font-bold text-gray-900">Product Media</h2>
-							<p className="text-gray-500 mt-1">Upload images to showcase your product</p>
+							<h2 className="text-2xl font-bold text-foreground">Product Media</h2>
+							<p className="text-muted-foreground mt-1">Upload images to showcase your product</p>
 						</div>
 
 						<div className="max-w-2xl mx-auto">
@@ -356,13 +356,13 @@ export function ProductFormWizard({
 								/>
 							) : (
 								<Card className="p-8 text-center">
-									<div className="text-gray-400 mb-4">
+									<div className="text-muted-foreground/80 mb-4">
 										<ImageIcon className="w-16 h-16 mx-auto opacity-50" />
 									</div>
-									<p className="text-gray-500">
+									<p className="text-muted-foreground">
 										Images can be uploaded after creating the product
 									</p>
-									<p className="text-sm text-gray-400 mt-2">
+									<p className="text-sm text-muted-foreground/80 mt-2">
 										Click "Create Product" to save and then add images
 									</p>
 								</Card>
@@ -375,8 +375,8 @@ export function ProductFormWizard({
 				return (
 					<div className="space-y-6">
 						<div className="text-center mb-8">
-							<h2 className="text-2xl font-bold text-gray-900">Pricing</h2>
-							<p className="text-gray-500 mt-1">Set the pricing for your product</p>
+							<h2 className="text-2xl font-bold text-foreground">Pricing</h2>
+							<p className="text-muted-foreground mt-1">Set the pricing for your product</p>
 						</div>
 
 						<div className="max-w-md mx-auto space-y-6">
@@ -385,9 +385,9 @@ export function ProductFormWizard({
 								name="price"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Price <span className="text-red-500">*</span></FormLabel>
+										<FormLabel>Price <span className="text-destructive">*</span></FormLabel>
 										<div className="relative">
-											<span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+											<span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground text-lg">$</span>
 											<FormControl>
 												<Input
 													{...field}
@@ -411,14 +411,14 @@ export function ProductFormWizard({
 									<FormItem>
 										<FormLabel>Compare at Price</FormLabel>
 										<div className="relative">
-											<span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg">$</span>
+											<span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground/80 text-lg">$</span>
 											<FormControl>
 												<Input
 													{...field}
 													type="number"
 													step="0.01"
 													min="0"
-													className="h-14 pl-8 text-2xl text-gray-400"
+													className="h-14 pl-8 text-2xl text-muted-foreground/80"
 													placeholder="0.00"
 												/>
 											</FormControl>
@@ -432,11 +432,11 @@ export function ProductFormWizard({
 							/>
 
 							{formData.price && formData.compareAtPrice && parseFloat(formData.compareAtPrice) > parseFloat(formData.price) && (
-								<div className="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
-									<p className="text-green-700 font-medium">
+								<div className="bg-secondary/10 border border-secondary/50 rounded-lg p-4 text-center">
+									<p className="text-secondary font-medium">
 										{Math.round((1 - parseFloat(formData.price) / parseFloat(formData.compareAtPrice)) * 100)}% OFF
 									</p>
-									<p className="text-green-600 text-sm">
+									<p className="text-secondary text-sm">
 										Customers save ${(parseFloat(formData.compareAtPrice) - parseFloat(formData.price)).toFixed(2)}
 									</p>
 								</div>
@@ -450,8 +450,8 @@ export function ProductFormWizard({
 				return (
 					<div className="space-y-6">
 						<div className="text-center mb-8">
-							<h2 className="text-2xl font-bold text-gray-900">Inventory</h2>
-							<p className="text-gray-500 mt-1">Manage stock levels for this product</p>
+							<h2 className="text-2xl font-bold text-foreground">Inventory</h2>
+							<p className="text-muted-foreground mt-1">Manage stock levels for this product</p>
 						</div>
 
 						<div className="max-w-md mx-auto space-y-6">
@@ -530,8 +530,8 @@ export function ProductFormWizard({
 				return (
 					<div className="space-y-6">
 						<div className="text-center mb-8">
-							<h2 className="text-2xl font-bold text-gray-900">Review & Publish</h2>
-							<p className="text-gray-500 mt-1">Review your product and set visibility</p>
+							<h2 className="text-2xl font-bold text-foreground">Review & Publish</h2>
+							<p className="text-muted-foreground mt-1">Review your product and set visibility</p>
 						</div>
 
 						<div className="max-w-2xl mx-auto space-y-6">
@@ -543,26 +543,26 @@ export function ProductFormWizard({
 								<CardContent className="p-6 space-y-4">
 									<div className="grid gap-4 sm:grid-cols-2">
 										<div>
-											<p className="text-sm text-gray-500">Name</p>
+											<p className="text-sm text-muted-foreground">Name</p>
 											<p className="font-medium">{formData.name || '-'}</p>
 										</div>
 										<div>
-											<p className="text-sm text-gray-500">Slug</p>
+											<p className="text-sm text-muted-foreground">Slug</p>
 											<p className="font-medium">{formData.slug || '-'}</p>
 										</div>
 										<div>
-											<p className="text-sm text-gray-500">Price</p>
-											<p className="font-medium text-green-600">
+											<p className="text-sm text-muted-foreground">Price</p>
+											<p className="font-medium text-secondary">
 												${formData.price || '0.00'}
 												{formData.compareAtPrice && (
-													<span className="text-gray-400 line-through ml-2">
+													<span className="text-muted-foreground/80 line-through ml-2">
 														${formData.compareAtPrice}
 													</span>
 												)}
 											</p>
 										</div>
 										<div>
-											<p className="text-sm text-gray-500">Stock</p>
+											<p className="text-sm text-muted-foreground">Stock</p>
 											<p className="font-medium">
 												{formData.trackInventory ? formData.stockQuantity : 'Not tracked'}
 											</p>
@@ -570,8 +570,8 @@ export function ProductFormWizard({
 									</div>
 									{formData.shortDescription && (
 										<div className="pt-4 border-t">
-											<p className="text-sm text-gray-500">Description</p>
-											<p className="text-gray-700">{formData.shortDescription}</p>
+											<p className="text-sm text-muted-foreground">Description</p>
+											<p className="text-foreground/80">{formData.shortDescription}</p>
 										</div>
 									)}
 								</CardContent>
@@ -595,19 +595,19 @@ export function ProductFormWizard({
 													<SelectContent>
 														<SelectItem value="draft">
 															<span className="flex items-center gap-2">
-																<span className="w-2 h-2 rounded-full bg-yellow-500" />
+																<span className="w-2 h-2 rounded-full bg-accent" />
 																Draft
 															</span>
 														</SelectItem>
 														<SelectItem value="active">
 															<span className="flex items-center gap-2">
-																<span className="w-2 h-2 rounded-full bg-green-500" />
+																<span className="w-2 h-2 rounded-full bg-secondary" />
 																Active
 															</span>
 														</SelectItem>
 														<SelectItem value="archived">
 															<span className="flex items-center gap-2">
-																<span className="w-2 h-2 rounded-full bg-gray-500" />
+																<span className="w-2 h-2 rounded-full bg-muted/80" />
 																Archived
 															</span>
 														</SelectItem>
@@ -644,7 +644,7 @@ export function ProductFormWizard({
 							</div>
 
 							{error && (
-								<div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+								<div className="p-4 bg-destructive/10 border border-destructive rounded-lg text-destructive text-sm">
 									{error}
 								</div>
 							)}
@@ -668,11 +668,11 @@ export function ProductFormWizard({
 		return (
 			<div className="sticky top-6">
 				<div className="mb-4">
-					<h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Live Preview</h3>
+					<h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Live Preview</h3>
 				</div>
-				<Card className="overflow-hidden border-2 border-dashed border-gray-200 hover:border-primary/50 transition-colors">
+				<Card className="overflow-hidden border-2 border-dashed border-border hover:border-primary/50 transition-colors">
 					{/* Product Image */}
-					<div className="aspect-square bg-gray-100 relative overflow-hidden">
+					<div className="aspect-square bg-muted relative overflow-hidden">
 						{primaryImage ? (
 							<img
 								src={primaryImage.url}
@@ -683,20 +683,20 @@ export function ProductFormWizard({
 						) : (
 							<div className="w-full h-full flex items-center justify-center">
 								<div className="text-center">
-									<ImageIcon className="w-12 h-12 mx-auto text-gray-300 mb-2" />
-									<p className="text-xs text-gray-400">No image</p>
+									<ImageIcon className="w-12 h-12 mx-auto text-muted-foreground/80 mb-2" />
+									<p className="text-xs text-muted-foreground/80">No image</p>
 								</div>
 							</div>
 						)}
 						{/* Badges */}
 						<div className="absolute top-2 left-2 flex flex-col gap-1">
 							{formData.isFeatured && (
-								<span className="bg-amber-500 text-white text-xs px-2 py-0.5 rounded-full font-medium">
+								<span className="bg-accent text-white text-xs px-2 py-0.5 rounded-full font-medium">
 									Featured
 								</span>
 							)}
 							{hasDiscount && (
-								<span className="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full font-medium">
+								<span className="bg-destructive text-white text-xs px-2 py-0.5 rounded-full font-medium">
 									-{discountPercent}%
 								</span>
 							)}
@@ -704,10 +704,10 @@ export function ProductFormWizard({
 						{/* Status Badge */}
 						<div className="absolute top-2 right-2">
 							<span className={`text-xs px-2 py-0.5 rounded-full font-medium ${formData.status === 'active'
-								? 'bg-green-100 text-green-700'
+								? 'bg-secondary/10 text-secondary'
 								: formData.status === 'archived'
-									? 'bg-gray-100 text-gray-700'
-									: 'bg-yellow-100 text-yellow-700'
+									? 'bg-muted text-foreground/80'
+									: 'bg-accent/10 text-accent'
 								}`}>
 								{formData.status === 'active' ? 'Active' : formData.status === 'archived' ? 'Archived' : 'Draft'}
 							</span>
@@ -716,12 +716,12 @@ export function ProductFormWizard({
 
 					{/* Product Info */}
 					<div className="p-4 space-y-3">
-						<h4 className="font-semibold text-gray-900 text-lg leading-tight min-h-[1.75rem]">
-							{formData.name || <span className="text-gray-300 italic">Product Name</span>}
+						<h4 className="font-semibold text-foreground text-lg leading-tight min-h-[1.75rem]">
+							{formData.name || <span className="text-muted-foreground/80 italic">Product Name</span>}
 						</h4>
 
 						{formData.shortDescription && (
-							<p className="text-sm text-gray-500 line-clamp-2">
+							<p className="text-sm text-muted-foreground line-clamp-2">
 								{formData.shortDescription}
 							</p>
 						)}
@@ -730,17 +730,17 @@ export function ProductFormWizard({
 						<div className="flex items-baseline gap-2">
 							{formData.price && !isNaN(parseFloat(formData.price)) ? (
 								<>
-									<span className="text-xl font-bold text-gray-900">
+									<span className="text-xl font-bold text-foreground">
 										${parseFloat(formData.price).toFixed(2)}
 									</span>
 									{hasDiscount && formData.compareAtPrice && !isNaN(parseFloat(formData.compareAtPrice)) && (
-										<span className="text-sm text-gray-400 line-through">
+										<span className="text-sm text-muted-foreground/80 line-through">
 											${parseFloat(formData.compareAtPrice).toFixed(2)}
 										</span>
 									)}
 								</>
 							) : (
-								<span className="text-xl font-bold text-gray-300">$0.00</span>
+								<span className="text-xl font-bold text-muted-foreground/80">$0.00</span>
 							)}
 						</div>
 
@@ -749,13 +749,13 @@ export function ProductFormWizard({
 							<div className="flex items-center gap-2 text-sm">
 								{formData.stockQuantity > 0 ? (
 									<>
-										<span className="w-2 h-2 rounded-full bg-green-500"></span>
-										<span className="text-green-700">In Stock ({formData.stockQuantity})</span>
+										<span className="w-2 h-2 rounded-full bg-secondary"></span>
+										<span className="text-secondary">In Stock ({formData.stockQuantity})</span>
 									</>
 								) : (
 									<>
-										<span className="w-2 h-2 rounded-full bg-red-500"></span>
-										<span className="text-red-700">Out of Stock</span>
+										<span className="w-2 h-2 rounded-full bg-destructive"></span>
+										<span className="text-destructive">Out of Stock</span>
 									</>
 								)}
 							</div>
@@ -769,7 +769,7 @@ export function ProductFormWizard({
 				</Card>
 
 				{/* Preview Info */}
-				<p className="text-xs text-gray-400 text-center mt-3">
+				<p className="text-xs text-muted-foreground/80 text-center mt-3">
 					This is how your product will appear in the marketplace
 				</p>
 			</div>
@@ -777,7 +777,7 @@ export function ProductFormWizard({
 	};
 
 	return (
-		<div className="min-h-screen bg-gray-50/50">
+		<div className="min-h-screen bg-muted/50/50">
 			<div className="max-w-6xl mx-auto p-6">
 				{/* Header */}
 				<div className="flex items-center gap-4 mb-8">
@@ -787,10 +787,10 @@ export function ProductFormWizard({
 						</Button>
 					</Link>
 					<div>
-						<h1 className="text-2xl font-bold text-gray-900">
+						<h1 className="text-2xl font-bold text-foreground">
 							{mode === 'create' ? 'Add New Product' : 'Edit Product'}
 						</h1>
-						<p className="text-gray-500">
+						<p className="text-muted-foreground">
 							Step {currentStep + 1} of {STEPS.length}: {STEPS[currentStep].title}
 						</p>
 					</div>

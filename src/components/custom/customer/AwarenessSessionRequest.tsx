@@ -79,7 +79,7 @@ export function AwarenessSessionRequest() {
                 <Card>
                     <CardHeader>
                         <div className="flex items-center gap-2">
-                            <CheckCircle className="w-6 h-6 text-green-500" />
+                            <CheckCircle className="w-6 h-6 text-secondary" />
                             <CardTitle>Request Submitted Successfully!</CardTitle>
                         </div>
                         <CardDescription>

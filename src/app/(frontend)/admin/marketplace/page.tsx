@@ -69,20 +69,20 @@ export default function MarketplaceAdminPage() {
 
 	const getStatusColor = (status: string) => {
 		switch (status) {
-			case 'pending': return 'bg-yellow-100 text-yellow-800';
-			case 'confirmed': return 'bg-blue-100 text-blue-800';
-			case 'processing': return 'bg-purple-100 text-purple-800';
-			case 'shipped': return 'bg-indigo-100 text-indigo-800';
-			case 'delivered': return 'bg-green-100 text-green-800';
-			case 'cancelled': return 'bg-red-100 text-red-800';
-			default: return 'bg-gray-100 text-gray-800';
+			case 'pending': return 'bg-accent/10 text-accent';
+			case 'confirmed': return 'bg-primary/10 text-primary';
+			case 'processing': return 'bg-primary/10 text-primary';
+			case 'shipped': return 'bg-primary/10 text-primary';
+			case 'delivered': return 'bg-secondary/10 text-secondary';
+			case 'cancelled': return 'bg-destructive/10 text-destructive';
+			default: return 'bg-muted text-foreground';
 		}
 	};
 
 	if (loading) {
 		return (
 			<div className="flex items-center justify-center min-h-[400px]">
-				<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" />
+				<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary/50" />
 			</div>
 		);
 	}
@@ -92,8 +92,8 @@ export default function MarketplaceAdminPage() {
 			{/* Header */}
 			<div className="flex items-center justify-between">
 				<div>
-					<h1 className="text-2xl font-bold text-gray-900">Marketplace</h1>
-					<p className="text-gray-500">Manage security products, orders, and customers</p>
+					<h1 className="text-2xl font-bold text-foreground">Marketplace</h1>
+					<p className="text-muted-foreground">Manage security products, orders, and customers</p>
 				</div>
 				<Link href="/admin/marketplace/products/new">
 					<Button className="flex items-center gap-2">
@@ -107,45 +107,45 @@ export default function MarketplaceAdminPage() {
 			<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
 				<Card>
 					<CardHeader className="flex flex-row items-center justify-between pb-2">
-						<CardTitle className="text-sm font-medium text-gray-500">Total Products</CardTitle>
-						<Package className="h-4 w-4 text-gray-400" />
+						<CardTitle className="text-sm font-medium text-muted-foreground">Total Products</CardTitle>
+						<Package className="h-4 w-4 text-muted-foreground/80" />
 					</CardHeader>
 					<CardContent>
 						<div className="text-2xl font-bold">{stats?.totalProducts || 0}</div>
-						<p className="text-xs text-gray-500">{stats?.activeProducts || 0} active</p>
+						<p className="text-xs text-muted-foreground">{stats?.activeProducts || 0} active</p>
 					</CardContent>
 				</Card>
 
 				<Card>
 					<CardHeader className="flex flex-row items-center justify-between pb-2">
-						<CardTitle className="text-sm font-medium text-gray-500">Total Orders</CardTitle>
-						<ShoppingCart className="h-4 w-4 text-gray-400" />
+						<CardTitle className="text-sm font-medium text-muted-foreground">Total Orders</CardTitle>
+						<ShoppingCart className="h-4 w-4 text-muted-foreground/80" />
 					</CardHeader>
 					<CardContent>
 						<div className="text-2xl font-bold">{stats?.totalOrders || 0}</div>
-						<p className="text-xs text-yellow-600">{stats?.pendingOrders || 0} pending</p>
+						<p className="text-xs text-accent">{stats?.pendingOrders || 0} pending</p>
 					</CardContent>
 				</Card>
 
 				<Card>
 					<CardHeader className="flex flex-row items-center justify-between pb-2">
-						<CardTitle className="text-sm font-medium text-gray-500">Total Customers</CardTitle>
-						<Users className="h-4 w-4 text-gray-400" />
+						<CardTitle className="text-sm font-medium text-muted-foreground">Total Customers</CardTitle>
+						<Users className="h-4 w-4 text-muted-foreground/80" />
 					</CardHeader>
 					<CardContent>
 						<div className="text-2xl font-bold">{stats?.totalUsers || 0}</div>
-						<p className="text-xs text-gray-500">marketplace users</p>
+						<p className="text-xs text-muted-foreground">marketplace users</p>
 					</CardContent>
 				</Card>
 
 				<Card>
 					<CardHeader className="flex flex-row items-center justify-between pb-2">
-						<CardTitle className="text-sm font-medium text-gray-500">Total Revenue</CardTitle>
-						<DollarSign className="h-4 w-4 text-gray-400" />
+						<CardTitle className="text-sm font-medium text-muted-foreground">Total Revenue</CardTitle>
+						<DollarSign className="h-4 w-4 text-muted-foreground/80" />
 					</CardHeader>
 					<CardContent>
 						<div className="text-2xl font-bold">${parseFloat(stats?.totalRevenue || '0').toFixed(2)}</div>
-						<p className="text-xs text-gray-500">from delivered orders</p>
+						<p className="text-xs text-muted-foreground">from delivered orders</p>
 					</CardContent>
 				</Card>
 			</div>
@@ -155,14 +155,14 @@ export default function MarketplaceAdminPage() {
 				<Link href="/admin/marketplace/products">
 					<Card className="hover:shadow-md transition-shadow cursor-pointer group">
 						<CardHeader className="flex flex-row items-center gap-4">
-							<div className="p-3 rounded-lg bg-blue-100 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+							<div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
 								<Package className="h-6 w-6" />
 							</div>
 							<div className="flex-1">
 								<CardTitle className="text-lg">Products</CardTitle>
 								<CardDescription>Manage product catalog</CardDescription>
 							</div>
-							<ArrowRight className="h-5 w-5 text-gray-400 group-hover:text-gray-600" />
+							<ArrowRight className="h-5 w-5 text-muted-foreground/80 group-hover:text-muted-foreground" />
 						</CardHeader>
 					</Card>
 				</Link>
@@ -170,14 +170,14 @@ export default function MarketplaceAdminPage() {
 				<Link href="/admin/marketplace/orders">
 					<Card className="hover:shadow-md transition-shadow cursor-pointer group">
 						<CardHeader className="flex flex-row items-center gap-4">
-							<div className="p-3 rounded-lg bg-green-100 text-green-600 group-hover:bg-green-600 group-hover:text-white transition-colors">
+							<div className="p-3 rounded-lg bg-secondary/10 text-secondary group-hover:bg-secondary group-hover:text-white transition-colors">
 								<ShoppingCart className="h-6 w-6" />
 							</div>
 							<div className="flex-1">
 								<CardTitle className="text-lg">Orders</CardTitle>
 								<CardDescription>View and manage orders</CardDescription>
 							</div>
-							<ArrowRight className="h-5 w-5 text-gray-400 group-hover:text-gray-600" />
+							<ArrowRight className="h-5 w-5 text-muted-foreground/80 group-hover:text-muted-foreground" />
 						</CardHeader>
 					</Card>
 				</Link>
@@ -185,14 +185,14 @@ export default function MarketplaceAdminPage() {
 				<Link href="/admin/marketplace/users">
 					<Card className="hover:shadow-md transition-shadow cursor-pointer group">
 						<CardHeader className="flex flex-row items-center gap-4">
-							<div className="p-3 rounded-lg bg-purple-100 text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+							<div className="p-3 rounded-lg bg-primary/10 text-accent group-hover:bg-primary group-hover:text-white transition-colors">
 								<Users className="h-6 w-6" />
 							</div>
 							<div className="flex-1">
 								<CardTitle className="text-lg">Customers</CardTitle>
 								<CardDescription>Manage marketplace users</CardDescription>
 							</div>
-							<ArrowRight className="h-5 w-5 text-gray-400 group-hover:text-gray-600" />
+							<ArrowRight className="h-5 w-5 text-muted-foreground/80 group-hover:text-muted-foreground" />
 						</CardHeader>
 					</Card>
 				</Link>
@@ -211,21 +211,21 @@ export default function MarketplaceAdminPage() {
 				</CardHeader>
 				<CardContent>
 					{recentOrders.length === 0 ? (
-						<div className="text-center py-8 text-gray-500">
-							<ShoppingCart className="h-12 w-12 mx-auto mb-4 text-gray-300" />
+						<div className="text-center py-8 text-muted-foreground">
+							<ShoppingCart className="h-12 w-12 mx-auto mb-4 text-muted-foreground/80" />
 							<p>No orders yet</p>
 						</div>
 					) : (
 						<div className="space-y-4">
 							{recentOrders.map((order) => (
-								<div key={order.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+								<div key={order.id} className="flex items-center justify-between p-4 bg-muted/50 rounded-lg">
 									<div className="flex items-center gap-4">
-										<div className="p-2 rounded-lg bg-white">
-											<ShoppingCart className="h-5 w-5 text-gray-400" />
+										<div className="p-2 rounded-lg bg-card">
+											<ShoppingCart className="h-5 w-5 text-muted-foreground/80" />
 										</div>
 										<div>
 											<p className="font-medium">{order.orderNumber}</p>
-											<p className="text-sm text-gray-500">{order.shippingName || 'N/A'}</p>
+											<p className="text-sm text-muted-foreground">{order.shippingName || 'N/A'}</p>
 										</div>
 									</div>
 									<div className="flex items-center gap-4">

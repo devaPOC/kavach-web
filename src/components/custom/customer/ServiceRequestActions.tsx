@@ -69,7 +69,7 @@ export default function ServiceRequestActions({ task, onCancel, onEdit }: Servic
             variant="outline"
             size="sm"
             onClick={() => setShowCancelDialog(true)}
-            className="text-red-600 hover:text-red-700 hover:bg-red-50"
+            className="text-destructive hover:text-destructive hover:bg-destructive/10"
           >
             <X className="h-4 w-4 mr-1" />
             Cancel
@@ -82,7 +82,7 @@ export default function ServiceRequestActions({ task, onCancel, onEdit }: Servic
         <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
-              <AlertTriangle className="h-5 w-5 text-red-500" />
+              <AlertTriangle className="h-5 w-5 text-destructive" />
               Cancel Service Request
             </DialogTitle>
             <DialogDescription>

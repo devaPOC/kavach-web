@@ -142,14 +142,14 @@ export default function TemplateManager() {
 
   const getLanguageBadgeColor = (language: string) => {
     return language === 'ar' 
-      ? 'bg-purple-100 text-purple-800 border-purple-200'
-      : 'bg-blue-100 text-blue-800 border-blue-200'
+      ? 'bg-primary/10 text-primary border-primary/50'
+      : 'bg-primary/10 text-primary border-primary/50'
   }
 
   const getUsageBadgeColor = (usageCount: number) => {
-    if (usageCount === 0) return 'bg-gray-100 text-gray-800 border-gray-200'
-    if (usageCount < 5) return 'bg-yellow-100 text-yellow-800 border-yellow-200'
-    return 'bg-green-100 text-green-800 border-green-200'
+    if (usageCount === 0) return 'bg-muted text-foreground border-border'
+    if (usageCount < 5) return 'bg-accent/10 text-accent border-accent/50'
+    return 'bg-secondary/10 text-secondary border-secondary/50'
   }
 
   const getUsageLabel = (usageCount: number) => {
@@ -195,7 +195,7 @@ export default function TemplateManager() {
     return (
       <Card>
         <CardContent className="flex items-center justify-center h-64">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary/50"></div>
         </CardContent>
       </Card>
     )
@@ -227,33 +227,33 @@ export default function TemplateManager() {
         <CardContent className="space-y-4">
           {/* Template Statistics */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+            <div className="bg-primary/10 p-4 rounded-lg border border-primary/50">
               <div className="flex items-center gap-2">
-                <FileTemplate className="h-4 w-4 text-blue-600" />
-                <span className="text-sm font-medium text-blue-700">Total Templates</span>
+                <FileTemplate className="h-4 w-4 text-primary" />
+                <span className="text-sm font-medium text-primary">Total Templates</span>
               </div>
-              <p className="text-2xl font-bold text-blue-800 mt-1">{totalTemplates}</p>
+              <p className="text-2xl font-bold text-primary mt-1">{totalTemplates}</p>
             </div>
-            <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+            <div className="bg-secondary/10 p-4 rounded-lg border border-secondary/50">
               <div className="flex items-center gap-2">
-                <TrendingUp className="h-4 w-4 text-green-600" />
-                <span className="text-sm font-medium text-green-700">High Usage</span>
+                <TrendingUp className="h-4 w-4 text-secondary" />
+                <span className="text-sm font-medium text-secondary">High Usage</span>
               </div>
-              <p className="text-2xl font-bold text-green-800 mt-1">{highUsageTemplates}</p>
+              <p className="text-2xl font-bold text-secondary mt-1">{highUsageTemplates}</p>
             </div>
-            <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <div className="bg-muted/50 p-4 rounded-lg border border-border">
               <div className="flex items-center gap-2">
-                <Settings className="h-4 w-4 text-gray-600" />
-                <span className="text-sm font-medium text-gray-700">Unused</span>
+                <Settings className="h-4 w-4 text-muted-foreground" />
+                <span className="text-sm font-medium text-foreground/80">Unused</span>
               </div>
-              <p className="text-2xl font-bold text-gray-800 mt-1">{unusedTemplates}</p>
+              <p className="text-2xl font-bold text-foreground mt-1">{unusedTemplates}</p>
             </div>
-            <div className="bg-purple-50 p-4 rounded-lg border border-purple-200">
+            <div className="bg-accent/10 p-4 rounded-lg border border-primary/50">
               <div className="flex items-center gap-2">
-                <Globe className="h-4 w-4 text-purple-600" />
-                <span className="text-sm font-medium text-purple-700">Arabic Templates</span>
+                <Globe className="h-4 w-4 text-accent" />
+                <span className="text-sm font-medium text-primary">Arabic Templates</span>
               </div>
-              <p className="text-2xl font-bold text-purple-800 mt-1">{arabicTemplates}</p>
+              <p className="text-2xl font-bold text-primary mt-1">{arabicTemplates}</p>
             </div>
           </div>
 
@@ -283,7 +283,7 @@ export default function TemplateManager() {
 
               <div className="flex items-center gap-4">
                 <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground/80" />
                   <Input
                     placeholder="Search templates..."
                     value={searchTerm}
@@ -308,13 +308,13 @@ export default function TemplateManager() {
             <TabsContent value="all" className="space-y-4">
               {/* Error Display */}
               {error && (
-                <div className="p-3 bg-red-50 border border-red-200 rounded-md">
-                  <p className="text-sm text-red-600">{error}</p>
+                <div className="p-3 bg-destructive/10 border border-destructive rounded-md">
+                  <p className="text-sm text-destructive">{error}</p>
                   <Button
                     variant="ghost"
                     size="sm"
                     onClick={clearError}
-                    className="mt-2 text-red-600 hover:text-red-700"
+                    className="mt-2 text-destructive hover:text-destructive"
                   >
                     Dismiss
                   </Button>
@@ -328,11 +328,11 @@ export default function TemplateManager() {
                     <CardHeader className="pb-3">
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
-                          <CardTitle className="text-lg font-semibold text-gray-900 mb-1">
+                          <CardTitle className="text-lg font-semibold text-foreground mb-1">
                             {template.name}
                           </CardTitle>
                           {template.description && (
-                            <CardDescription className="text-sm text-gray-600 line-clamp-2">
+                            <CardDescription className="text-sm text-muted-foreground line-clamp-2">
                               {template.description}
                             </CardDescription>
                           )}
@@ -350,7 +350,7 @@ export default function TemplateManager() {
                     </CardHeader>
                     
                     <CardContent className="pt-0">
-                      <div className="space-y-2 text-sm text-gray-600 mb-4">
+                      <div className="space-y-2 text-sm text-muted-foreground mb-4">
                         <div className="flex items-center gap-2">
                           <Clock className="h-3 w-3" />
                           <span>{template.templateConfig.timeLimitMinutes} minutes</span>
@@ -363,7 +363,7 @@ export default function TemplateManager() {
                           <FileTemplate className="h-3 w-3" />
                           <span>{template.templateConfig.defaultQuestionCount} questions</span>
                         </div>
-                        <div className="text-xs text-gray-400">
+                        <div className="text-xs text-muted-foreground/80">
                           Created {new Date(template.createdAt).toLocaleDateString()}
                         </div>
                       </div>
@@ -373,7 +373,7 @@ export default function TemplateManager() {
                           variant="outline"
                           size="sm"
                           onClick={() => handlePreviewTemplate(template)}
-                          className="flex-1 text-blue-600 hover:text-blue-700 hover:bg-blue-50"
+                          className="flex-1 text-primary hover:text-primary hover:bg-primary/10"
                         >
                           <Eye className="h-3 w-3 mr-1" />
                           Preview
@@ -382,7 +382,7 @@ export default function TemplateManager() {
                           variant="outline"
                           size="sm"
                           onClick={() => handleEditTemplate(template)}
-                          className="flex-1 text-green-600 hover:text-green-700 hover:bg-green-50"
+                          className="flex-1 text-secondary hover:text-secondary hover:bg-secondary/10"
                         >
                           <Edit className="h-3 w-3 mr-1" />
                           Edit
@@ -395,7 +395,7 @@ export default function TemplateManager() {
                           size="sm"
                           onClick={() => handleDuplicateTemplate(template)}
                           disabled={processingTemplateId === template.id}
-                          className="flex-1 text-purple-600 hover:text-purple-700 hover:bg-purple-50"
+                          className="flex-1 text-accent hover:text-primary hover:bg-accent/10"
                         >
                           <Copy className="h-3 w-3 mr-1" />
                           {processingTemplateId === template.id ? 'Duplicating...' : 'Duplicate'}
@@ -405,7 +405,7 @@ export default function TemplateManager() {
                           size="sm"
                           onClick={() => handleDeleteTemplate(template)}
                           disabled={processingTemplateId === template.id}
-                          className="flex-1 text-red-600 hover:text-red-700 hover:bg-red-50"
+                          className="flex-1 text-destructive hover:text-destructive hover:bg-destructive/10"
                         >
                           <Trash2 className="h-3 w-3 mr-1" />
                           Delete
@@ -419,9 +419,9 @@ export default function TemplateManager() {
               {/* Empty State */}
               {paginatedTemplates.length === 0 && !isLoading && (
                 <div className="text-center py-12">
-                  <FileTemplate className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">No templates found</h3>
-                  <p className="text-gray-500 mb-4">
+                  <FileTemplate className="h-12 w-12 text-muted-foreground/80 mx-auto mb-4" />
+                  <h3 className="text-lg font-medium text-foreground mb-2">No templates found</h3>
+                  <p className="text-muted-foreground mb-4">
                     {searchTerm || Object.keys(filters).length > 0 
                       ? 'Try adjusting your search terms or filters.' 
                       : 'Get started by creating your first quiz template.'}
@@ -438,7 +438,7 @@ export default function TemplateManager() {
               {/* Pagination */}
               {totalPages > 1 && (
                 <div className="flex items-center justify-between">
-                  <div className="text-sm text-gray-500">
+                  <div className="text-sm text-muted-foreground">
                     Showing {startIndex + 1} to {Math.min(startIndex + limit, filteredTemplates.length)} of {filteredTemplates.length} templates
                   </div>
                   <div className="flex items-center gap-2">
@@ -452,7 +452,7 @@ export default function TemplateManager() {
                       <ChevronLeft className="h-3 w-3" />
                       Previous
                     </Button>
-                    <span className="text-sm text-gray-500">
+                    <span className="text-sm text-muted-foreground">
                       Page {currentPage} of {totalPages}
                     </span>
                     <Button

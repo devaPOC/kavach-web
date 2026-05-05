@@ -88,8 +88,8 @@ export default function TrainerAwarenessSessionResponseDialog({
 
   const isAccepting = action === 'accept'
   const actionIcon = isAccepting ? <CheckCircle className="h-5 w-5" /> : <XCircle className="h-5 w-5" />
-  const actionColor = isAccepting ? 'text-green-600' : 'text-red-600'
-  const actionBgColor = isAccepting ? 'bg-green-50' : 'bg-red-50'
+  const actionColor = isAccepting ? 'text-secondary' : 'text-destructive'
+  const actionBgColor = isAccepting ? 'bg-secondary/10' : 'bg-destructive/10'
   const actionTitle = isAccepting ? 'Accept Session Request' : 'Decline Session Request'
   const actionDescription = isAccepting
     ? 'You are about to accept this awareness session request. This will confirm your availability and notify the requester.'
@@ -118,22 +118,22 @@ export default function TrainerAwarenessSessionResponseDialog({
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
               <div className="flex items-center gap-2">
-                <Calendar className="h-4 w-4 text-gray-500" />
+                <Calendar className="h-4 w-4 text-muted-foreground" />
                 <span>{formatDate(request.sessionDate)}</span>
               </div>
 
               <div className="flex items-center gap-2">
-                <Clock className="h-4 w-4 text-gray-500" />
+                <Clock className="h-4 w-4 text-muted-foreground" />
                 <span>{DURATION_LABELS[request.duration]}</span>
               </div>
 
               <div className="flex items-center gap-2">
-                <MapPin className="h-4 w-4 text-gray-500" />
+                <MapPin className="h-4 w-4 text-muted-foreground" />
                 <span>{SESSION_MODE_LABELS[request.sessionMode]} - {request.location}</span>
               </div>
 
               <div className="flex items-center gap-2">
-                <Users className="h-4 w-4 text-gray-500" />
+                <Users className="h-4 w-4 text-muted-foreground" />
                 <span>{request.audienceSize} participants</span>
               </div>
             </div>
@@ -149,12 +149,12 @@ export default function TrainerAwarenessSessionResponseDialog({
 
           {/* Warning for declining */}
           {!isAccepting && (
-            <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-md">
+            <div className="bg-accent/10 border border-accent/50 p-4 rounded-md">
               <div className="flex items-start gap-3">
-                <AlertTriangle className="h-5 w-5 text-yellow-600 mt-0.5" />
+                <AlertTriangle className="h-5 w-5 text-accent mt-0.5" />
                 <div className="text-sm">
-                  <p className="font-medium text-yellow-800">Important Notice</p>
-                  <p className="text-yellow-700 mt-1">
+                  <p className="font-medium text-accent">Important Notice</p>
+                  <p className="text-accent mt-1">
                     Declining this request will notify the admin to reassign it to another trainer.
                     Please provide a reason in the notes below to help with future assignments.
                   </p>
@@ -180,7 +180,7 @@ export default function TrainerAwarenessSessionResponseDialog({
               rows={4}
               className="resize-none"
             />
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-muted-foreground">
               {isAccepting
                 ? "These notes will be shared with the requester and admin."
                 : "This information will help the admin understand your availability and make better future assignments."
@@ -190,12 +190,12 @@ export default function TrainerAwarenessSessionResponseDialog({
 
           {/* Error Display */}
           {error && (
-            <div className="bg-red-50 border border-red-200 p-3 rounded-md">
-              <div className="flex items-center gap-2 text-red-700">
+            <div className="bg-destructive/10 border border-destructive p-3 rounded-md">
+              <div className="flex items-center gap-2 text-destructive">
                 <XCircle className="h-4 w-4" />
                 <span className="text-sm font-medium">Error</span>
               </div>
-              <p className="text-sm text-red-600 mt-1">{error}</p>
+              <p className="text-sm text-destructive mt-1">{error}</p>
             </div>
           )}
         </div>
@@ -213,8 +213,8 @@ export default function TrainerAwarenessSessionResponseDialog({
             disabled={isSubmitting}
             className={
               isAccepting
-                ? "bg-green-600 hover:bg-green-700"
-                : "bg-red-600 hover:bg-red-700"
+                ? "bg-secondary hover:bg-secondary"
+                : "bg-destructive hover:bg-destructive"
             }
           >
             {isSubmitting ? (

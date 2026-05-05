@@ -303,7 +303,7 @@ export default function AdminAwarenessSessionAnalytics({ onRefresh }: AdminAware
         return (
             <Card>
                 <CardContent className="flex items-center justify-center h-64">
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary/50"></div>
                 </CardContent>
             </Card>
         )
@@ -362,7 +362,7 @@ export default function AdminAwarenessSessionAnalytics({ onRefresh }: AdminAware
                     {/* Date Range Controls */}
                     <div className="flex items-center gap-4 mb-6">
                         <div className="flex items-center gap-2">
-                            <CalendarIcon className="h-4 w-4 text-gray-500" />
+                            <CalendarIcon className="h-4 w-4 text-muted-foreground" />
                             <span className="text-sm font-medium">Date Range:</span>
                         </div>
 
@@ -387,7 +387,7 @@ export default function AdminAwarenessSessionAnalytics({ onRefresh }: AdminAware
                             </PopoverContent>
                         </Popover>
 
-                        <span className="text-gray-500">to</span>
+                        <span className="text-muted-foreground">to</span>
 
                         <Popover open={showEndCalendar} onOpenChange={setShowEndCalendar}>
                             <PopoverTrigger asChild>
@@ -431,8 +431,8 @@ export default function AdminAwarenessSessionAnalytics({ onRefresh }: AdminAware
 
                     {/* Error Display */}
                     {error && (
-                        <div className="p-3 bg-red-50 border border-red-200 rounded-md mb-6">
-                            <p className="text-sm text-red-600">{error}</p>
+                        <div className="p-3 bg-destructive/10 border border-destructive rounded-md mb-6">
+                            <p className="text-sm text-destructive">{error}</p>
                         </div>
                     )}
                 </CardContent>
@@ -445,11 +445,11 @@ export default function AdminAwarenessSessionAnalytics({ onRefresh }: AdminAware
                         <Card>
                             <CardContent className="p-6">
                                 <div className="flex items-center gap-2">
-                                    <FileText className="h-5 w-5 text-blue-600" />
-                                    <span className="text-sm font-medium text-gray-700">Total Requests</span>
+                                    <FileText className="h-5 w-5 text-primary" />
+                                    <span className="text-sm font-medium text-foreground/80">Total Requests</span>
                                 </div>
-                                <p className="text-3xl font-bold text-blue-800 mt-2">{analytics.requestVolume.totalRequests}</p>
-                                <p className="text-sm text-gray-500 mt-1">
+                                <p className="text-3xl font-bold text-primary mt-2">{analytics.requestVolume.totalRequests}</p>
+                                <p className="text-sm text-muted-foreground mt-1">
                                     {analytics.requestVolume.averageRequestsPerDay.toFixed(1)} per day avg
                                 </p>
                             </CardContent>
@@ -458,13 +458,13 @@ export default function AdminAwarenessSessionAnalytics({ onRefresh }: AdminAware
                         <Card>
                             <CardContent className="p-6">
                                 <div className="flex items-center gap-2">
-                                    <Users className="h-5 w-5 text-green-600" />
-                                    <span className="text-sm font-medium text-gray-700">Active Experts</span>
+                                    <Users className="h-5 w-5 text-secondary" />
+                                    <span className="text-sm font-medium text-foreground/80">Active Experts</span>
                                 </div>
-                                <p className="text-3xl font-bold text-green-800 mt-2">
+                                <p className="text-3xl font-bold text-secondary mt-2">
                                     {analytics.expertUtilization.activeExperts}
                                 </p>
-                                <p className="text-sm text-gray-500 mt-1">
+                                <p className="text-sm text-muted-foreground mt-1">
                                     of {analytics.expertUtilization.totalExperts} total
                                 </p>
                             </CardContent>
@@ -473,13 +473,13 @@ export default function AdminAwarenessSessionAnalytics({ onRefresh }: AdminAware
                         <Card>
                             <CardContent className="p-6">
                                 <div className="flex items-center gap-2">
-                                    <CheckCircle className="h-5 w-5 text-emerald-600" />
-                                    <span className="text-sm font-medium text-gray-700">Confirmed Sessions</span>
+                                    <CheckCircle className="h-5 w-5 text-secondary" />
+                                    <span className="text-sm font-medium text-foreground/80">Confirmed Sessions</span>
                                 </div>
-                                <p className="text-3xl font-bold text-emerald-800 mt-2">
+                                <p className="text-3xl font-bold text-secondary mt-2">
                                     {analytics.requestVolume.requestsByStatus.confirmed || 0}
                                 </p>
-                                <p className="text-sm text-gray-500 mt-1">
+                                <p className="text-sm text-muted-foreground mt-1">
                                     {analytics.sessionAnalytics.totalAudienceReached} people reached
                                 </p>
                             </CardContent>
@@ -488,16 +488,16 @@ export default function AdminAwarenessSessionAnalytics({ onRefresh }: AdminAware
                         <Card>
                             <CardContent className="p-6">
                                 <div className="flex items-center gap-2">
-                                    <TrendingUp className="h-5 w-5 text-purple-600" />
-                                    <span className="text-sm font-medium text-gray-700">Conversion Rate</span>
+                                    <TrendingUp className="h-5 w-5 text-accent" />
+                                    <span className="text-sm font-medium text-foreground/80">Conversion Rate</span>
                                 </div>
-                                <p className="text-3xl font-bold text-purple-800 mt-2">
+                                <p className="text-3xl font-bold text-primary mt-2">
                                     {analytics.requestVolume.totalRequests > 0
                                         ? ((analytics.requestVolume.requestsByStatus.confirmed || 0) / analytics.requestVolume.totalRequests * 100).toFixed(1)
                                         : '0'
                                     }%
                                 </p>
-                                <p className="text-sm text-gray-500 mt-1">
+                                <p className="text-sm text-muted-foreground mt-1">
                                     requests to confirmed sessions
                                 </p>
                             </CardContent>
@@ -651,60 +651,60 @@ export default function AdminAwarenessSessionAnalytics({ onRefresh }: AdminAware
                         <CardContent>
                             <div className="overflow-x-auto">
                                 <table className="w-full">
-                                    <thead className="bg-gray-50">
+                                    <thead className="bg-muted/50">
                                         <tr>
-                                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                                                 Expert
                                             </th>
-                                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                                                 Assigned
                                             </th>
-                                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                                                 Confirmed
                                             </th>
-                                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                                                 Declined
                                             </th>
-                                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                                                 Acceptance Rate
                                             </th>
-                                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                                                 Avg Response Time
                                             </th>
                                         </tr>
                                     </thead>
-                                    <tbody className="bg-white divide-y divide-gray-200">
+                                    <tbody className="bg-card divide-y divide-gray-200">
                                         {analytics.expertUtilization.expertAssignments.map((expert) => (
-                                            <tr key={expert.expertId} className="hover:bg-gray-50">
+                                            <tr key={expert.expertId} className="hover:bg-muted/50">
                                                 <td className="px-4 py-4">
                                                     <div>
-                                                        <div className="font-medium text-gray-900">{expert.expertName}</div>
-                                                        <div className="text-sm text-gray-500">{expert.expertEmail}</div>
+                                                        <div className="font-medium text-foreground">{expert.expertName}</div>
+                                                        <div className="text-sm text-muted-foreground">{expert.expertEmail}</div>
                                                     </div>
                                                 </td>
-                                                <td className="px-4 py-4 text-sm text-gray-900">
+                                                <td className="px-4 py-4 text-sm text-foreground">
                                                     {expert.totalAssigned}
                                                 </td>
-                                                <td className="px-4 py-4 text-sm text-green-600">
+                                                <td className="px-4 py-4 text-sm text-secondary">
                                                     {expert.totalConfirmed}
                                                 </td>
-                                                <td className="px-4 py-4 text-sm text-red-600">
+                                                <td className="px-4 py-4 text-sm text-destructive">
                                                     {expert.totalDeclined}
                                                 </td>
                                                 <td className="px-4 py-4">
                                                     <Badge
                                                         className={
                                                             expert.acceptanceRate >= 80
-                                                                ? 'bg-green-100 text-green-800 border-green-200'
+                                                                ? 'bg-secondary/10 text-secondary border-secondary/50'
                                                                 : expert.acceptanceRate >= 60
-                                                                    ? 'bg-yellow-100 text-yellow-800 border-yellow-200'
-                                                                    : 'bg-red-100 text-red-800 border-red-200'
+                                                                    ? 'bg-accent/10 text-accent border-accent/50'
+                                                                    : 'bg-destructive/10 text-destructive border-destructive'
                                                         }
                                                     >
                                                         {expert.acceptanceRate.toFixed(1)}%
                                                     </Badge>
                                                 </td>
-                                                <td className="px-4 py-4 text-sm text-gray-900">
+                                                <td className="px-4 py-4 text-sm text-foreground">
                                                     {expert.averageResponseTime.toFixed(1)}h
                                                 </td>
                                             </tr>
@@ -725,7 +725,7 @@ export default function AdminAwarenessSessionAnalytics({ onRefresh }: AdminAware
                                 <div className="space-y-3">
                                     {analytics.sessionAnalytics.popularTopics.slice(0, 5).map((topic, index) => (
                                         <div key={index} className="flex items-center justify-between">
-                                            <span className="text-sm text-gray-700 truncate flex-1 mr-2">
+                                            <span className="text-sm text-foreground/80 truncate flex-1 mr-2">
                                                 {topic.topic}
                                             </span>
                                             <Badge variant="outline">{topic.count}</Badge>
@@ -743,7 +743,7 @@ export default function AdminAwarenessSessionAnalytics({ onRefresh }: AdminAware
                                 <div className="space-y-3">
                                     {analytics.sessionAnalytics.locationDistribution.slice(0, 5).map((location, index) => (
                                         <div key={index} className="flex items-center justify-between">
-                                            <span className="text-sm text-gray-700 truncate flex-1 mr-2">
+                                            <span className="text-sm text-foreground/80 truncate flex-1 mr-2">
                                                 {location.location}
                                             </span>
                                             <Badge variant="outline">{location.count}</Badge>

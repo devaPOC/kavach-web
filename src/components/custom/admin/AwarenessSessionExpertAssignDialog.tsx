@@ -123,7 +123,7 @@ export default function AwarenessSessionExpertAssignDialog({
       <DialogContent className="sm:max-w-[600px]">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <UserCheck className="h-5 w-5 text-blue-600" />
+            <UserCheck className="h-5 w-5 text-primary" />
             Assign Expert to Awareness Session
           </DialogTitle>
           <DialogDescription>
@@ -133,23 +133,23 @@ export default function AwarenessSessionExpertAssignDialog({
 
         <div className="space-y-6">
           {/* Request Summary */}
-          <div className="p-4 bg-gray-50 rounded-lg space-y-2">
-            <h4 className="font-medium text-gray-900">Request Summary</h4>
+          <div className="p-4 bg-muted/50 rounded-lg space-y-2">
+            <h4 className="font-medium text-foreground">Request Summary</h4>
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div>
-                <span className="text-gray-500">Organization:</span>
+                <span className="text-muted-foreground">Organization:</span>
                 <div className="font-medium">{request.organizationName}</div>
               </div>
               <div>
-                <span className="text-gray-500">Session Date:</span>
+                <span className="text-muted-foreground">Session Date:</span>
                 <div className="font-medium">{new Date(request.sessionDate).toLocaleDateString()}</div>
               </div>
               <div>
-                <span className="text-gray-500">Subject:</span>
+                <span className="text-muted-foreground">Subject:</span>
                 <div className="font-medium">{request.subject}</div>
               </div>
               <div>
-                <span className="text-gray-500">Audience Size:</span>
+                <span className="text-muted-foreground">Audience Size:</span>
                 <div className="font-medium">{request.audienceSize} people</div>
               </div>
             </div>
@@ -157,8 +157,8 @@ export default function AwarenessSessionExpertAssignDialog({
 
           {/* Current Assignment Status */}
           {request.assignedExpertId && (
-            <div className="p-3 bg-blue-50 border border-blue-200 rounded-md">
-              <p className="text-sm text-blue-700">
+            <div className="p-3 bg-primary/10 border border-primary/50 rounded-md">
+              <p className="text-sm text-primary">
                 This request is currently assigned to an expert. Selecting a new expert will reassign the request.
               </p>
             </div>
@@ -180,7 +180,7 @@ export default function AwarenessSessionExpertAssignDialog({
                         <div className="font-medium">
                           {expert.firstName} {expert.lastName}
                         </div>
-                        <div className="text-xs text-gray-500">{expert.email}</div>
+                        <div className="text-xs text-muted-foreground">{expert.email}</div>
                       </div>
                     </div>
                   </SelectItem>
@@ -188,23 +188,23 @@ export default function AwarenessSessionExpertAssignDialog({
               </SelectContent>
             </Select>
             {availableExperts.length === 0 && (
-              <p className="text-sm text-gray-500">No available experts to assign</p>
+              <p className="text-sm text-muted-foreground">No available experts to assign</p>
             )}
           </div>
 
           {/* Selected Expert Preview */}
           {selectedExpert && (
-            <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
-              <h4 className="font-medium text-blue-900 mb-2">Selected Expert</h4>
+            <div className="p-4 bg-primary/10 border border-primary/50 rounded-lg">
+              <h4 className="font-medium text-primary mb-2">Selected Expert</h4>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
+                <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
                   <User className="h-5 w-5 text-white" />
                 </div>
                 <div>
-                  <p className="font-medium text-blue-900">
+                  <p className="font-medium text-primary">
                     {selectedExpert.firstName} {selectedExpert.lastName}
                   </p>
-                  <div className="flex items-center gap-1 text-sm text-blue-700">
+                  <div className="flex items-center gap-1 text-sm text-primary">
                     <Mail className="h-3 w-3" />
                     {selectedExpert.email}
                   </div>
@@ -223,15 +223,15 @@ export default function AwarenessSessionExpertAssignDialog({
               onChange={(e) => setNotes(e.target.value)}
               rows={3}
             />
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-muted-foreground">
               These notes will be included in the notification email to the expert
             </p>
           </div>
 
           {/* Error Display */}
           {error && (
-            <div className="p-3 bg-red-50 border border-red-200 rounded-md">
-              <p className="text-sm text-red-600">{error}</p>
+            <div className="p-3 bg-destructive/10 border border-destructive rounded-md">
+              <p className="text-sm text-destructive">{error}</p>
             </div>
           )}
         </div>
@@ -243,7 +243,7 @@ export default function AwarenessSessionExpertAssignDialog({
           <Button
             onClick={handleSubmit}
             disabled={isSubmitting || !selectedExpertId}
-            className="bg-blue-600 hover:bg-blue-700"
+            className="bg-primary hover:bg-primary"
           >
             {isSubmitting ? 'Assigning...' : 'Assign Expert'}
           </Button>

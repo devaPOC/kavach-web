@@ -452,16 +452,16 @@ export function QuizTimer({
   const isCritical = minutesRemaining <= 1;
 
   return (
-    <Card className={`${className} ${isCritical ? 'border-red-500' : isWarning ? 'border-yellow-500' : 'border-blue-500'}`}>
+    <Card className={`${className} ${isCritical ? 'border-destructive' : isWarning ? 'border-accent/50' : 'border-primary/50'}`}>
       <CardContent className="p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <Clock className={`h-5 w-5 ${isCritical ? 'text-red-500' : isWarning ? 'text-yellow-500' : 'text-blue-500'}`} />
+            <Clock className={`h-5 w-5 ${isCritical ? 'text-destructive' : isWarning ? 'text-accent' : 'text-primary'}`} />
             <span className="text-sm font-medium">Time Remaining:</span>
           </div>
           
           <div className="flex items-center space-x-3">
-            <div className={`text-2xl font-bold ${isCritical ? 'text-red-500' : isWarning ? 'text-yellow-500' : 'text-blue-500'}`}>
+            <div className={`text-2xl font-bold ${isCritical ? 'text-destructive' : isWarning ? 'text-accent' : 'text-primary'}`}>
               {formatTime(timerState.timeRemaining)}
             </div>
             
@@ -493,18 +493,18 @@ export function QuizTimer({
         
         {/* Warning messages */}
         {isCritical && (
-          <Alert className="mt-3 border-red-500 bg-red-50">
-            <AlertTriangle className="h-4 w-4 text-red-500" />
-            <AlertDescription className="text-red-700">
+          <Alert className="mt-3 border-destructive bg-destructive/10">
+            <AlertTriangle className="h-4 w-4 text-destructive" />
+            <AlertDescription className="text-destructive">
               Less than 1 minute remaining! Your quiz will be auto-submitted when time expires.
             </AlertDescription>
           </Alert>
         )}
         
         {isWarning && !isCritical && (
-          <Alert className="mt-3 border-yellow-500 bg-yellow-50">
-            <AlertTriangle className="h-4 w-4 text-yellow-500" />
-            <AlertDescription className="text-yellow-700">
+          <Alert className="mt-3 border-accent/50 bg-accent/10">
+            <AlertTriangle className="h-4 w-4 text-accent" />
+            <AlertDescription className="text-accent">
               {minutesRemaining} minute{minutesRemaining !== 1 ? 's' : ''} remaining. Please review your answers.
             </AlertDescription>
           </Alert>
@@ -512,14 +512,14 @@ export function QuizTimer({
         
         {/* Sync status indicator */}
         {tabSyncEnabled && syncStatus !== 'synced' && (
-          <div className="mt-2 text-xs text-gray-500">
+          <div className="mt-2 text-xs text-muted-foreground">
             {syncStatus === 'syncing' ? 'Syncing across tabs...' : 'Sync error'}
           </div>
         )}
         
         {/* Timer state indicators */}
         {timerState.isPaused && (
-          <div className="mt-2 text-sm text-yellow-600 font-medium">
+          <div className="mt-2 text-sm text-accent font-medium">
             Timer Paused
           </div>
         )}

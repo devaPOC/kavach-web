@@ -153,9 +153,9 @@ export default function AwarenessSessionBulkActions({
 
   return (
     <>
-      <div className="flex items-center gap-2 p-3 bg-blue-50 border border-blue-200 rounded-md">
-        <Users className="h-4 w-4 text-blue-600" />
-        <span className="text-sm text-blue-700">
+      <div className="flex items-center gap-2 p-3 bg-primary/10 border border-primary/50 rounded-md">
+        <Users className="h-4 w-4 text-primary" />
+        <span className="text-sm text-primary">
           {selectedRequests.size} request{selectedRequests.size !== 1 ? 's' : ''} selected
         </span>
         
@@ -165,7 +165,7 @@ export default function AwarenessSessionBulkActions({
               variant="outline"
               size="sm"
               onClick={() => handleBulkAction('approve')}
-              className="text-green-700 border-green-200 hover:bg-green-50"
+              className="text-secondary border-secondary/50 hover:bg-secondary/10"
             >
               <CheckCircle className="h-3 w-3 mr-1" />
               Approve ({canApprove.length})
@@ -177,7 +177,7 @@ export default function AwarenessSessionBulkActions({
               variant="outline"
               size="sm"
               onClick={() => handleBulkAction('reject')}
-              className="text-red-700 border-red-200 hover:bg-red-50"
+              className="text-destructive border-destructive hover:bg-destructive/10"
             >
               <XCircle className="h-3 w-3 mr-1" />
               Reject ({canReject.length})
@@ -189,7 +189,7 @@ export default function AwarenessSessionBulkActions({
               variant="outline"
               size="sm"
               onClick={() => handleBulkAction('assign')}
-              className="text-blue-700 border-blue-200 hover:bg-blue-50"
+              className="text-primary border-primary/50 hover:bg-primary/10"
             >
               <UserCheck className="h-3 w-3 mr-1" />
               Assign ({canAssign.length})
@@ -211,13 +211,13 @@ export default function AwarenessSessionBulkActions({
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               {action === 'approve' ? (
-                <CheckCircle className="h-5 w-5 text-green-600" />
+                <CheckCircle className="h-5 w-5 text-secondary" />
               ) : action === 'reject' ? (
-                <XCircle className="h-5 w-5 text-red-600" />
+                <XCircle className="h-5 w-5 text-destructive" />
               ) : action === 'assign' ? (
-                <UserCheck className="h-5 w-5 text-blue-600" />
+                <UserCheck className="h-5 w-5 text-primary" />
               ) : (
-                <AlertTriangle className="h-5 w-5 text-yellow-600" />
+                <AlertTriangle className="h-5 w-5 text-accent" />
               )}
               Bulk {action === 'approve' ? 'Approve' : action === 'reject' ? 'Reject' : 'Assign'} Requests
             </DialogTitle>
@@ -230,8 +230,8 @@ export default function AwarenessSessionBulkActions({
 
           <div className="space-y-6">
             {/* Requests Summary */}
-            <div className="p-4 bg-gray-50 rounded-lg">
-              <h4 className="font-medium text-gray-900 mb-2">
+            <div className="p-4 bg-muted/50 rounded-lg">
+              <h4 className="font-medium text-foreground mb-2">
                 Requests to {action}:
               </h4>
               <div className="space-y-1 max-h-32 overflow-y-auto">
@@ -239,7 +239,7 @@ export default function AwarenessSessionBulkActions({
                   action === 'reject' ? canReject :
                   action === 'assign' ? canAssign : []
                 ).map((request) => (
-                  <div key={request.id} className="text-sm text-gray-700">
+                  <div key={request.id} className="text-sm text-foreground/80">
                     • {request.organizationName} - {request.subject}
                   </div>
                 ))}
@@ -283,7 +283,7 @@ export default function AwarenessSessionBulkActions({
                 required={action === 'reject'}
               />
               {action === 'reject' && (
-                <p className="text-xs text-gray-500">
+                <p className="text-xs text-muted-foreground">
                   This reason will be included in the notification emails to the requesters
                 </p>
               )}
@@ -291,8 +291,8 @@ export default function AwarenessSessionBulkActions({
 
             {/* Error Display */}
             {error && (
-              <div className="p-3 bg-red-50 border border-red-200 rounded-md">
-                <p className="text-sm text-red-600">{error}</p>
+              <div className="p-3 bg-destructive/10 border border-destructive rounded-md">
+                <p className="text-sm text-destructive">{error}</p>
               </div>
             )}
           </div>
@@ -305,9 +305,9 @@ export default function AwarenessSessionBulkActions({
               onClick={handleSubmit}
               disabled={isProcessing}
               className={
-                action === 'approve' ? 'bg-green-600 hover:bg-green-700' :
-                action === 'reject' ? 'bg-red-600 hover:bg-red-700' :
-                'bg-blue-600 hover:bg-blue-700'
+                action === 'approve' ? 'bg-secondary hover:bg-secondary' :
+                action === 'reject' ? 'bg-destructive hover:bg-destructive' :
+                'bg-primary hover:bg-primary'
               }
             >
               {isProcessing ? 'Processing...' : 

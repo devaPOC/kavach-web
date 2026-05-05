@@ -79,17 +79,17 @@ const ScoreDisplay: React.FC<ScoreDisplayProps> = ({
   isArabic = false 
 }) => {
   const getScoreColor = (score: number) => {
-    if (score >= 90) return 'text-green-600 bg-green-50 border-green-200'
-    if (score >= 70) return 'text-blue-600 bg-blue-50 border-blue-200'
-    if (score >= 50) return 'text-orange-600 bg-orange-50 border-orange-200'
-    return 'text-red-600 bg-red-50 border-red-200'
+    if (score >= 90) return 'text-secondary bg-secondary/10 border-secondary/50'
+    if (score >= 70) return 'text-primary bg-primary/10 border-primary/50'
+    if (score >= 50) return 'text-accent bg-accent/10 border-accent/50'
+    return 'text-destructive bg-destructive/10 border-destructive'
   }
 
   const getScoreIcon = (score: number) => {
-    if (score >= 90) return <Trophy className="h-8 w-8 text-green-600" />
-    if (score >= 70) return <Award className="h-8 w-8 text-blue-600" />
-    if (score >= 50) return <Target className="h-8 w-8 text-orange-600" />
-    return <AlertTriangle className="h-8 w-8 text-red-600" />
+    if (score >= 90) return <Trophy className="h-8 w-8 text-secondary" />
+    if (score >= 70) return <Award className="h-8 w-8 text-primary" />
+    if (score >= 50) return <Target className="h-8 w-8 text-accent" />
+    return <AlertTriangle className="h-8 w-8 text-destructive" />
   }
 
   const getScoreMessage = (score: number) => {
@@ -118,16 +118,16 @@ const ScoreDisplay: React.FC<ScoreDisplayProps> = ({
           
           <div className="flex justify-center space-x-6 text-sm">
             <div className="text-center">
-              <div className="font-semibold text-green-600">{correctAnswers}</div>
-              <div className="text-gray-600">Correct</div>
+              <div className="font-semibold text-secondary">{correctAnswers}</div>
+              <div className="text-muted-foreground">Correct</div>
             </div>
             <div className="text-center">
-              <div className="font-semibold text-red-600">{totalQuestions - correctAnswers}</div>
-              <div className="text-gray-600">Incorrect</div>
+              <div className="font-semibold text-destructive">{totalQuestions - correctAnswers}</div>
+              <div className="text-muted-foreground">Incorrect</div>
             </div>
             <div className="text-center">
-              <div className="font-semibold text-blue-600">{totalQuestions}</div>
-              <div className="text-gray-600">Total</div>
+              <div className="font-semibold text-primary">{totalQuestions}</div>
+              <div className="text-muted-foreground">Total</div>
             </div>
           </div>
         </div>
@@ -198,16 +198,16 @@ const AttemptHistory: React.FC<AttemptHistoryProps> = ({
         {/* Summary Stats */}
         <div className="grid grid-cols-3 gap-4 pt-2">
           <div className="text-center">
-            <div className="text-2xl font-bold text-blue-600">{sortedAttempts.length}</div>
-            <div className="text-sm text-gray-600">Attempts</div>
+            <div className="text-2xl font-bold text-primary">{sortedAttempts.length}</div>
+            <div className="text-sm text-muted-foreground">Attempts</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-green-600">{bestScore}%</div>
-            <div className="text-sm text-gray-600">Best Score</div>
+            <div className="text-2xl font-bold text-secondary">{bestScore}%</div>
+            <div className="text-sm text-muted-foreground">Best Score</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-purple-600">{averageScore}%</div>
-            <div className="text-sm text-gray-600">Average</div>
+            <div className="text-2xl font-bold text-accent">{averageScore}%</div>
+            <div className="text-sm text-muted-foreground">Average</div>
           </div>
         </div>
       </CardHeader>
@@ -224,15 +224,15 @@ const AttemptHistory: React.FC<AttemptHistoryProps> = ({
                   key={attempt.id}
                   className={`flex items-center justify-between p-3 rounded-lg border ${
                     isCurrent 
-                      ? 'border-blue-200 bg-blue-50' 
-                      : 'border-gray-200 bg-gray-50'
+                      ? 'border-primary/50 bg-primary/10' 
+                      : 'border-border bg-muted/50'
                   }`}
                 >
                   <div className="flex items-center space-x-3">
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
                       isCurrent 
-                        ? 'bg-blue-600 text-white' 
-                        : 'bg-gray-300 text-gray-700'
+                        ? 'bg-primary text-white' 
+                        : 'bg-muted/80 text-foreground/80'
                     }`}>
                       {index + 1}
                     </div>
@@ -240,21 +240,21 @@ const AttemptHistory: React.FC<AttemptHistoryProps> = ({
                     <div>
                       <div className="flex items-center space-x-2">
                         <span className={`font-semibold ${
-                          attempt.score >= 70 ? 'text-green-600' : 'text-red-600'
+                          attempt.score >= 70 ? 'text-secondary' : 'text-destructive'
                         }`}>
                           {attempt.score}%
                         </span>
-                        {isBest && <Star className="h-4 w-4 text-yellow-500 fill-current" />}
+                        {isBest && <Star className="h-4 w-4 text-accent fill-current" />}
                         {isCurrent && <Badge variant="secondary" className="text-xs">Current</Badge>}
                       </div>
-                      <div className="text-sm text-gray-600">
+                      <div className="text-sm text-muted-foreground">
                         {formatDate(attempt.completedAt || attempt.startedAt)}
                       </div>
                     </div>
                   </div>
                   
                   <div className="text-right">
-                    <div className="flex items-center space-x-1 text-sm text-gray-600">
+                    <div className="flex items-center space-x-1 text-sm text-muted-foreground">
                       <Clock className="h-3 w-3" />
                       <span>{formatTime(attempt.timeTakenSeconds)}</span>
                     </div>
@@ -315,8 +315,8 @@ const QuestionFeedback: React.FC<QuestionFeedbackProps> = ({
           <div className="flex items-start space-x-3 flex-1" dir={textDirection}>
             <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
               result.isCorrect 
-                ? 'bg-green-100 text-green-600' 
-                : 'bg-red-100 text-red-600'
+                ? 'bg-secondary/10 text-secondary' 
+                : 'bg-destructive/10 text-destructive'
             }`}>
               {result.isCorrect ? (
                 <CheckCircle className="h-5 w-5" />
@@ -327,7 +327,7 @@ const QuestionFeedback: React.FC<QuestionFeedbackProps> = ({
             
             <div className="flex-1 min-w-0">
               <div className="flex items-center space-x-2 mb-2">
-                <span className="text-sm font-medium text-gray-600">
+                <span className="text-sm font-medium text-muted-foreground">
                   Question {questionIndex + 1}
                 </span>
                 <Badge variant={result.isCorrect ? 'default' : 'destructive'} className="text-xs">
@@ -335,7 +335,7 @@ const QuestionFeedback: React.FC<QuestionFeedbackProps> = ({
                 </Badge>
               </div>
               
-              <p className={`text-gray-900 ${isArabic ? 'font-arabic' : ''}`}>
+              <p className={`text-foreground ${isArabic ? 'font-arabic' : ''}`}>
                 {question.questionData.question}
               </p>
             </div>
@@ -356,7 +356,7 @@ const QuestionFeedback: React.FC<QuestionFeedbackProps> = ({
         <CardContent className="pt-0 space-y-4" dir={textDirection}>
           {/* User's Answer */}
           <div>
-            <h4 className="font-medium text-gray-900 mb-2 flex items-center space-x-1">
+            <h4 className="font-medium text-foreground mb-2 flex items-center space-x-1">
               <span>Your Answer:</span>
             </h4>
             <div className="space-y-1">
@@ -365,15 +365,15 @@ const QuestionFeedback: React.FC<QuestionFeedbackProps> = ({
                   key={index}
                   className={`p-2 rounded border ${
                     result.isCorrect 
-                      ? 'border-green-200 bg-green-50 text-green-800'
-                      : 'border-red-200 bg-red-50 text-red-800'
+                      ? 'border-secondary/50 bg-secondary/10 text-secondary'
+                      : 'border-destructive bg-destructive/10 text-destructive'
                   } ${isArabic ? 'font-arabic' : ''}`}
                 >
                   {answer}
                 </div>
               ))}
               {userAnswersText.length === 0 && (
-                <div className="p-2 rounded border border-gray-200 bg-gray-50 text-gray-600 italic">
+                <div className="p-2 rounded border border-border bg-muted/50 text-muted-foreground italic">
                   No answer provided
                 </div>
               )}
@@ -383,15 +383,15 @@ const QuestionFeedback: React.FC<QuestionFeedbackProps> = ({
           {/* Correct Answer */}
           {!result.isCorrect && (
             <div>
-              <h4 className="font-medium text-gray-900 mb-2 flex items-center space-x-1">
-                <CheckCircle className="h-4 w-4 text-green-600" />
+              <h4 className="font-medium text-foreground mb-2 flex items-center space-x-1">
+                <CheckCircle className="h-4 w-4 text-secondary" />
                 <span>Correct Answer:</span>
               </h4>
               <div className="space-y-1">
                 {correctAnswersText.map((answer, index) => (
                   <div
                     key={index}
-                    className={`p-2 rounded border border-green-200 bg-green-50 text-green-800 ${isArabic ? 'font-arabic' : ''}`}
+                    className={`p-2 rounded border border-secondary/50 bg-secondary/10 text-secondary ${isArabic ? 'font-arabic' : ''}`}
                   >
                     {answer}
                   </div>
@@ -403,11 +403,11 @@ const QuestionFeedback: React.FC<QuestionFeedbackProps> = ({
           {/* Explanation */}
           {result.explanation && (
             <div>
-              <h4 className="font-medium text-gray-900 mb-2 flex items-center space-x-1">
-                <Info className="h-4 w-4 text-blue-600" />
+              <h4 className="font-medium text-foreground mb-2 flex items-center space-x-1">
+                <Info className="h-4 w-4 text-primary" />
                 <span>Explanation:</span>
               </h4>
-              <div className={`p-3 rounded border border-blue-200 bg-blue-50 text-blue-800 ${isArabic ? 'font-arabic' : ''}`}>
+              <div className={`p-3 rounded border border-primary/50 bg-primary/10 text-primary ${isArabic ? 'font-arabic' : ''}`}>
                 {result.explanation}
               </div>
             </div>
@@ -480,7 +480,7 @@ export const QuizResults: React.FC<QuizResultsProps> = ({
           <span>Back to Quizzes</span>
         </Button>
         
-        <div className="flex items-center space-x-2 text-sm text-gray-600">
+        <div className="flex items-center space-x-2 text-sm text-muted-foreground">
           <Brain className="h-4 w-4" />
           <span>{quiz.title}</span>
         </div>
@@ -492,7 +492,7 @@ export const QuizResults: React.FC<QuizResultsProps> = ({
           <CardTitle className={`text-xl ${isArabic ? 'font-arabic' : ''}`}>
             Quiz Results
           </CardTitle>
-          <div className="flex items-center space-x-4 text-sm text-gray-600">
+          <div className="flex items-center space-x-4 text-sm text-muted-foreground">
             <div className="flex items-center space-x-1">
               <Timer className="h-4 w-4" />
               <span>Completed in {formatTime(results.timeTakenSeconds)}</span>
@@ -523,22 +523,22 @@ export const QuizResults: React.FC<QuizResultsProps> = ({
         <CardContent className="space-y-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="text-center">
-              <div className="text-2xl font-bold text-blue-600">{results.score}%</div>
-              <div className="text-sm text-gray-600">Your Score</div>
+              <div className="text-2xl font-bold text-primary">{results.score}%</div>
+              <div className="text-sm text-muted-foreground">Your Score</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-green-600">{progress.bestScore}%</div>
-              <div className="text-sm text-gray-600">Best Score</div>
+              <div className="text-2xl font-bold text-secondary">{progress.bestScore}%</div>
+              <div className="text-sm text-muted-foreground">Best Score</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-purple-600">{progress.attemptCount}</div>
-              <div className="text-sm text-gray-600">Attempts</div>
+              <div className="text-2xl font-bold text-accent">{progress.attemptCount}</div>
+              <div className="text-sm text-muted-foreground">Attempts</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-orange-600">
+              <div className="text-2xl font-bold text-accent">
                 {progress.maxAttempts === -1 ? '∞' : progress.maxAttempts - progress.attemptCount}
               </div>
-              <div className="text-sm text-gray-600">Remaining</div>
+              <div className="text-sm text-muted-foreground">Remaining</div>
             </div>
           </div>
           
@@ -548,10 +548,10 @@ export const QuizResults: React.FC<QuizResultsProps> = ({
               <span>Progress to 70% (Passing)</span>
               <span>{Math.min(results.score, 70)}/70%</span>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-2">
+            <div className="w-full bg-muted/80 rounded-full h-2">
               <div 
                 className={`h-2 rounded-full transition-all duration-500 ${
-                  results.score >= 70 ? 'bg-green-500' : 'bg-blue-500'
+                  results.score >= 70 ? 'bg-secondary' : 'bg-primary'
                 }`}
                 style={{ width: `${Math.min((results.score / 70) * 100, 100)}%` }}
               />
@@ -575,7 +575,7 @@ export const QuizResults: React.FC<QuizResultsProps> = ({
               <Button
                 onClick={handleRetry}
                 disabled={isRetrying}
-                className="flex-1 bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center space-x-2 disabled:opacity-50"
+                className="flex-1 bg-primary hover:bg-primary text-white flex items-center justify-center space-x-2 disabled:opacity-50"
                 size="lg"
               >
                 {isRetrying ? (
@@ -586,14 +586,14 @@ export const QuizResults: React.FC<QuizResultsProps> = ({
                 <span>{isRetrying ? 'Starting...' : 'Retake Quiz'}</span>
               </Button>
             ) : isPassed ? (
-              <div className="flex-1 text-center py-3 px-4 bg-green-100 rounded-lg">
-                <span className="text-sm text-green-600 font-medium">
+              <div className="flex-1 text-center py-3 px-4 bg-secondary/10 rounded-lg">
+                <span className="text-sm text-secondary font-medium">
                   Quiz Passed - No retake needed
                 </span>
               </div>
             ) : !progress.canAttempt ? (
-              <div className="flex-1 text-center py-3 px-4 bg-gray-100 rounded-lg">
-                <span className="text-sm text-gray-600 font-medium">
+              <div className="flex-1 text-center py-3 px-4 bg-muted rounded-lg">
+                <span className="text-sm text-muted-foreground font-medium">
                   Maximum attempts reached
                 </span>
               </div>
@@ -632,7 +632,7 @@ export const QuizResults: React.FC<QuizResultsProps> = ({
               </div>
             </div>
             
-            <div className="text-sm text-gray-600">
+            <div className="text-sm text-muted-foreground">
               {showAllQuestions 
                 ? `Showing all ${results.results.length} questions`
                 : `Showing ${incorrectQuestions.length} incorrect questions`

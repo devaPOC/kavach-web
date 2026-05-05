@@ -26,7 +26,7 @@ export function TargetAudienceSelect({
   return (
     <div className={`space-y-2 ${className}`}>
       <Label htmlFor="target-audience" className="text-sm font-medium">
-        Target Audience {required && <span className="text-red-500">*</span>}
+        Target Audience {required && <span className="text-destructive">*</span>}
       </Label>
       <Select value={value} onValueChange={onChange} disabled={disabled}>
         <SelectTrigger id="target-audience" className="w-full">
@@ -35,7 +35,7 @@ export function TargetAudienceSelect({
         <SelectContent>
           <SelectItem value="customer">
             <div className="flex items-center gap-2">
-              <User className="h-4 w-4 text-blue-500" />
+              <User className="h-4 w-4 text-primary" />
               <span>Customers</span>
               <Badge variant="secondary" className="ml-auto">
                 Customer
@@ -44,7 +44,7 @@ export function TargetAudienceSelect({
           </SelectItem>
           <SelectItem value="expert">
             <div className="flex items-center gap-2">
-              <Users className="h-4 w-4 text-green-500" />
+              <Users className="h-4 w-4 text-secondary" />
               <span>Experts</span>
               <Badge variant="secondary" className="ml-auto">
                 Expert
@@ -79,17 +79,17 @@ export function TargetAudienceInfo({
       label: 'Customers',
       icon: User,
       color: 'blue',
-      bgColor: 'bg-blue-50',
-      textColor: 'text-blue-700',
-      iconColor: 'text-blue-500'
+      bgColor: 'bg-primary/10',
+      textColor: 'text-primary',
+      iconColor: 'text-primary'
     },
     expert: {
       label: 'Experts',
       icon: Users,
       color: 'green',
-      bgColor: 'bg-green-50',
-      textColor: 'text-green-700',
-      iconColor: 'text-green-500'
+      bgColor: 'bg-secondary/10',
+      textColor: 'text-secondary',
+      iconColor: 'text-secondary'
     }
   }
 

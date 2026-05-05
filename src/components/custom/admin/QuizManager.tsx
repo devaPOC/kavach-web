@@ -230,14 +230,14 @@ export default function QuizManager() {
 
   const getLanguageBadgeColor = (language: string) => {
     return language === 'ar'
-      ? 'bg-purple-100 text-purple-800 border-purple-200'
-      : 'bg-blue-100 text-blue-800 border-blue-200'
+      ? 'bg-primary/10 text-primary border-primary/50'
+      : 'bg-primary/10 text-primary border-primary/50'
   }
 
   const getStatusBadgeColor = (isPublished: boolean) => {
     return isPublished
-      ? 'bg-green-100 text-green-800 border-green-200'
-      : 'bg-gray-100 text-gray-800 border-gray-200'
+      ? 'bg-secondary/10 text-secondary border-secondary/50'
+      : 'bg-muted text-foreground border-border'
   }
 
   // Server-side filtering - no need to filter here since API handles it
@@ -247,7 +247,7 @@ export default function QuizManager() {
     return (
       <Card>
         <CardContent className="flex items-center justify-center h-64">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary/50"></div>
         </CardContent>
       </Card>
     )
@@ -279,37 +279,37 @@ export default function QuizManager() {
         <CardContent className="space-y-4">
           {/* Quiz Statistics */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+            <div className="bg-primary/10 p-4 rounded-lg border border-primary/50">
               <div className="flex items-center gap-2">
-                <FileText className="h-4 w-4 text-blue-600" />
-                <span className="text-sm font-medium text-blue-700">Total Quizzes</span>
+                <FileText className="h-4 w-4 text-primary" />
+                <span className="text-sm font-medium text-primary">Total Quizzes</span>
               </div>
-              <p className="text-2xl font-bold text-blue-800 mt-1">{totalQuizzes}</p>
+              <p className="text-2xl font-bold text-primary mt-1">{totalQuizzes}</p>
             </div>
-            <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+            <div className="bg-secondary/10 p-4 rounded-lg border border-secondary/50">
               <div className="flex items-center gap-2">
-                <CheckCircle className="h-4 w-4 text-green-600" />
-                <span className="text-sm font-medium text-green-700">Published</span>
+                <CheckCircle className="h-4 w-4 text-secondary" />
+                <span className="text-sm font-medium text-secondary">Published</span>
               </div>
-              <p className="text-2xl font-bold text-green-800 mt-1">
+              <p className="text-2xl font-bold text-secondary mt-1">
                 {loading ? '-' : quizzes.filter(q => q.isPublished).length}
               </p>
             </div>
-            <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <div className="bg-muted/50 p-4 rounded-lg border border-border">
               <div className="flex items-center gap-2">
-                <XCircle className="h-4 w-4 text-gray-600" />
-                <span className="text-sm font-medium text-gray-700">Drafts</span>
+                <XCircle className="h-4 w-4 text-muted-foreground" />
+                <span className="text-sm font-medium text-foreground/80">Drafts</span>
               </div>
-              <p className="text-2xl font-bold text-gray-800 mt-1">
+              <p className="text-2xl font-bold text-foreground mt-1">
                 {loading ? '-' : quizzes.filter(q => !q.isPublished).length}
               </p>
             </div>
-            <div className="bg-purple-50 p-4 rounded-lg border border-purple-200">
+            <div className="bg-accent/10 p-4 rounded-lg border border-primary/50">
               <div className="flex items-center gap-2">
-                <Globe className="h-4 w-4 text-purple-600" />
-                <span className="text-sm font-medium text-purple-700">Arabic Quizzes</span>
+                <Globe className="h-4 w-4 text-accent" />
+                <span className="text-sm font-medium text-primary">Arabic Quizzes</span>
               </div>
-              <p className="text-2xl font-bold text-purple-800 mt-1">
+              <p className="text-2xl font-bold text-primary mt-1">
                 {loading ? '-' : quizzes.filter(q => q.language === 'ar').length}
               </p>
             </div>
@@ -341,7 +341,7 @@ export default function QuizManager() {
 
               <div className="flex items-center gap-4">
                 <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground/80" />
                   <Input
                     placeholder="Search quizzes..."
                     value={searchTerm}
@@ -366,57 +366,57 @@ export default function QuizManager() {
             <TabsContent value="all" className="space-y-4">
               {/* Error Display */}
               {error && (
-                <div className="p-3 bg-red-50 border border-red-200 rounded-md">
-                  <p className="text-sm text-red-600">{error}</p>
+                <div className="p-3 bg-destructive/10 border border-destructive rounded-md">
+                  <p className="text-sm text-destructive">{error}</p>
                 </div>
               )}
 
               {/* Quizzes Table */}
               <div className="border rounded-lg overflow-hidden relative">
                 {loading && (
-                  <div className="absolute inset-0 bg-white/50 flex items-center justify-center z-10">
-                    <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+                  <div className="absolute inset-0 bg-card/50 flex items-center justify-center z-10">
+                    <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary/50"></div>
                   </div>
                 )}
                 <div className="overflow-x-auto">
                   <table className="w-full">
-                    <thead className="bg-gray-50">
+                    <thead className="bg-muted/50">
                       <tr>
-                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                           Quiz
                         </th>
-                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                           Language
                         </th>
-                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                           Status
                         </th>
-                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                           Settings
                         </th>
-                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                           Created
                         </th>
-                        <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-4 py-3 text-right text-xs font-medium text-muted-foreground uppercase tracking-wider">
                           Actions
                         </th>
                       </tr>
                     </thead>
-                    <tbody className="bg-white divide-y divide-gray-200">
+                    <tbody className="bg-card divide-y divide-gray-200">
                       {displayedQuizzes.map((quiz) => (
-                        <tr key={quiz.id} className="hover:bg-gray-50">
+                        <tr key={quiz.id} className="hover:bg-muted/50">
                           <td className="px-4 py-4">
                             <div>
-                              <div className="text-sm font-medium text-gray-900">
+                              <div className="text-sm font-medium text-foreground">
                                 {quiz.title}
                               </div>
                               {quiz.description && (
-                                <div className="text-sm text-gray-500 truncate max-w-xs">
+                                <div className="text-sm text-muted-foreground truncate max-w-xs">
                                   {quiz.description}
                                 </div>
                               )}
                               <div className="flex items-center gap-2 mt-1">
-                                <span className="text-xs text-gray-400">
+                                <span className="text-xs text-muted-foreground/80">
                                   {quiz.questionCount} questions
                                 </span>
                                 {quiz.templateId && (
@@ -438,7 +438,7 @@ export default function QuizManager() {
                             </Badge>
                           </td>
                           <td className="px-4 py-4">
-                            <div className="text-sm text-gray-500">
+                            <div className="text-sm text-muted-foreground">
                               <div className="flex items-center gap-1">
                                 <Clock className="h-3 w-3" />
                                 {quiz.timeLimitMinutes}min
@@ -449,7 +449,7 @@ export default function QuizManager() {
                               </div>
                             </div>
                           </td>
-                          <td className="px-4 py-4 text-sm text-gray-500">
+                          <td className="px-4 py-4 text-sm text-muted-foreground">
                             {new Date(quiz.createdAt).toLocaleDateString()}
                           </td>
                           <td className="px-4 py-4 text-right">
@@ -528,9 +528,9 @@ export default function QuizManager() {
               {/* Empty State */}
               {displayedQuizzes.length === 0 && !loading && (
                 <div className="text-center py-12">
-                  <FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">No quizzes found</h3>
-                  <p className="text-gray-500 mb-4">
+                  <FileText className="h-12 w-12 text-muted-foreground/80 mx-auto mb-4" />
+                  <h3 className="text-lg font-medium text-foreground mb-2">No quizzes found</h3>
+                  <p className="text-muted-foreground mb-4">
                     {searchTerm ? 'Try adjusting your search terms.' : 'Get started by creating your first quiz.'}
                   </p>
                   {!searchTerm && (

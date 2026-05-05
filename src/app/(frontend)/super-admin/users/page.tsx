@@ -82,15 +82,15 @@ export default function UsersListPage() {
 
 	const getStatusBadge = (user: User) => {
 		if (user.isBanned) return <Badge variant="destructive">Banned</Badge>
-		if (user.isPaused) return <Badge variant="outline" className="text-amber-600 border-amber-600">Paused</Badge>
-		return <Badge variant="default" className="bg-green-600">Active</Badge>
+		if (user.isPaused) return <Badge variant="outline" className="text-accent border-accent/50">Paused</Badge>
+		return <Badge variant="default" className="bg-secondary">Active</Badge>
 	}
 
 	return (
 		<div className="p-4 lg:p-8">
 			<div className="mb-8">
-				<h1 className="text-3xl font-bold text-gray-900 mb-2">User Monitoring</h1>
-				<p className="text-gray-600">
+				<h1 className="text-3xl font-bold text-foreground mb-2">User Monitoring</h1>
+				<p className="text-muted-foreground">
 					Monitor and track all platform users ({total} total)
 				</p>
 			</div>
@@ -107,7 +107,7 @@ export default function UsersListPage() {
 					{/* Filters */}
 					<div className="flex flex-col sm:flex-row gap-4 mb-4">
 						<div className="relative flex-1 max-w-sm">
-							<Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+							<Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground/80" />
 							<Input
 								placeholder="Search by name or email..."
 								value={search}
@@ -132,10 +132,10 @@ export default function UsersListPage() {
 					{/* Table */}
 					{loading ? (
 						<div className="flex items-center justify-center py-12">
-							<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-violet-600" />
+							<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary/50" />
 						</div>
 					) : users.length === 0 ? (
-						<div className="text-center py-12 text-gray-500">
+						<div className="text-center py-12 text-muted-foreground">
 							No users found
 						</div>
 					) : (
@@ -158,7 +158,7 @@ export default function UsersListPage() {
 											<TableCell className="font-medium">
 												{user.firstName} {user.lastName}
 											</TableCell>
-											<TableCell className="text-gray-500">{user.email}</TableCell>
+											<TableCell className="text-muted-foreground">{user.email}</TableCell>
 											<TableCell>
 												<Badge variant={getRoleBadgeVariant(user.role)}>
 													{user.role}
@@ -166,22 +166,22 @@ export default function UsersListPage() {
 											</TableCell>
 											<TableCell>
 												{user.isEmailVerified ? (
-													<Check className="h-4 w-4 text-green-600" />
+													<Check className="h-4 w-4 text-secondary" />
 												) : (
-													<X className="h-4 w-4 text-red-600" />
+													<X className="h-4 w-4 text-destructive" />
 												)}
 											</TableCell>
 											<TableCell>
 												{user.isApproved ? (
-													<Check className="h-4 w-4 text-green-600" />
+													<Check className="h-4 w-4 text-secondary" />
 												) : (
-													<X className="h-4 w-4 text-red-600" />
+													<X className="h-4 w-4 text-destructive" />
 												)}
 											</TableCell>
 											<TableCell>
 												{getStatusBadge(user)}
 											</TableCell>
-											<TableCell className="text-gray-500">
+											<TableCell className="text-muted-foreground">
 												{new Date(user.createdAt).toLocaleDateString()}
 											</TableCell>
 										</TableRow>
@@ -202,7 +202,7 @@ export default function UsersListPage() {
 							>
 								Previous
 							</Button>
-							<span className="text-sm text-gray-500">
+							<span className="text-sm text-muted-foreground">
 								Page {page} of {totalPages}
 							</span>
 							<Button

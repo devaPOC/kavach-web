@@ -122,37 +122,37 @@ export function ResetMyHackedPassword({ onClose }: ResetMyHackedPasswordProps) {
         <div className="w-full">
             <form action={handleSubmit} className="space-y-5">
                 <DialogHeader className="space-y-2 pb-2">
-                    <DialogTitle className="text-xl font-semibold text-slate-800">
+                    <DialogTitle className="text-xl font-semibold text-foreground">
                         Hacked Account Recovery
                     </DialogTitle>
-                    <DialogDescription className="text-slate-600 text-sm">
+                    <DialogDescription className="text-muted-foreground text-sm">
                         Expert account recovery assistance for compromised accounts
                     </DialogDescription>
                 </DialogHeader>
 
-                <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-                    <p className="text-sm font-medium text-slate-700 mb-1">What to expect</p>
-                    <p className="text-sm text-slate-600">
+                <div className="bg-muted/50 border border-border rounded-lg p-4">
+                    <p className="text-sm font-medium text-foreground/80 mb-1">What to expect</p>
+                    <p className="text-sm text-muted-foreground">
                         Password reset confirmation, account security verification, and security recommendations
                     </p>
                 </div>
 
                 <div className="space-y-5">
                     <div className="space-y-4">
-                        <h3 className="text-sm font-medium text-slate-800 pb-2 border-b border-slate-100">
-                            Compromised Accounts <span className="text-slate-400">*</span>
+                        <h3 className="text-sm font-medium text-foreground pb-2 border-b border-border/50">
+                            Compromised Accounts <span className="text-muted-foreground/80">*</span>
                         </h3>
 
-                        <div className="border border-slate-200 rounded-lg p-4 space-y-3 bg-white">
+                        <div className="border border-border rounded-lg p-4 space-y-3 bg-card">
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                 <div className="space-y-2">
-                                    <Label className="text-sm font-medium text-slate-700">Account Type</Label>
+                                    <Label className="text-sm font-medium text-foreground/80">Account Type</Label>
                                     <Select value={currentCategory} onValueChange={(value) => {
                                         setCurrentCategory(value);
                                         setCurrentPlatform('');
                                         setCustomPlatform('');
                                     }}>
-                                        <SelectTrigger className="border-slate-200">
+                                        <SelectTrigger className="border-border">
                                             <SelectValue placeholder="Select type..." />
                                         </SelectTrigger>
                                         <SelectContent>
@@ -167,9 +167,9 @@ export function ResetMyHackedPassword({ onClose }: ResetMyHackedPasswordProps) {
 
                                 {currentCategory && currentCategory !== 'Other' && (
                                     <div className="space-y-2">
-                                        <Label className="text-sm font-medium text-slate-700">Platform</Label>
+                                        <Label className="text-sm font-medium text-foreground/80">Platform</Label>
                                         <Select value={currentPlatform} onValueChange={setCurrentPlatform}>
-                                            <SelectTrigger className="border-slate-200">
+                                            <SelectTrigger className="border-border">
                                                 <SelectValue placeholder="Select platform..." />
                                             </SelectTrigger>
                                             <SelectContent className="max-h-60">
@@ -185,12 +185,12 @@ export function ResetMyHackedPassword({ onClose }: ResetMyHackedPasswordProps) {
 
                                 {currentCategory === 'Other' && (
                                     <div className="space-y-2">
-                                        <Label className="text-sm font-medium text-slate-700">Platform Name</Label>
+                                        <Label className="text-sm font-medium text-foreground/80">Platform Name</Label>
                                         <Input
                                             placeholder="Enter platform name..."
                                             value={customPlatform}
                                             onChange={(e) => setCustomPlatform(e.target.value)}
-                                            className="border-slate-200 focus:border-slate-400"
+                                            className="border-border focus:border-border/80"
                                         />
                                     </div>
                                 )}
@@ -205,7 +205,7 @@ export function ResetMyHackedPassword({ onClose }: ResetMyHackedPasswordProps) {
                                     (currentCategory !== 'Other' && !currentPlatform) ||
                                     (currentCategory === 'Other' && !customPlatform.trim())
                                 }
-                                className="w-full border-dashed border-slate-300 text-slate-600"
+                                className="w-full border-dashed border-border text-muted-foreground"
                             >
                                 <Plus className="w-4 h-4 mr-2" />
                                 Add Account
@@ -217,14 +217,14 @@ export function ResetMyHackedPassword({ onClose }: ResetMyHackedPasswordProps) {
                                 {affectedAccounts.map((account, index) => (
                                     <div
                                         key={index}
-                                        className="bg-slate-100 text-slate-700 px-3 py-1.5 rounded-full text-sm flex items-center gap-2"
+                                        className="bg-muted text-foreground/80 px-3 py-1.5 rounded-full text-sm flex items-center gap-2"
                                     >
                                         <span className="font-medium">{getPlatformDisplay(account)}</span>
-                                        <span className="text-slate-500 text-xs">({account.category})</span>
+                                        <span className="text-muted-foreground text-xs">({account.category})</span>
                                         <button
                                             type="button"
                                             onClick={() => removeAccount(index)}
-                                            className="hover:text-slate-900 ml-1"
+                                            className="hover:text-foreground ml-1"
                                         >
                                             <X className="w-3.5 h-3.5" />
                                         </button>
@@ -234,36 +234,36 @@ export function ResetMyHackedPassword({ onClose }: ResetMyHackedPasswordProps) {
                         )}
 
                         {affectedAccounts.length === 0 && (
-                            <p className="text-xs text-slate-500">Please add at least one compromised account</p>
+                            <p className="text-xs text-muted-foreground">Please add at least one compromised account</p>
                         )}
                     </div>
 
                     <div className="space-y-3">
-                        <h3 className="text-sm font-medium text-slate-800 pb-2 border-b border-slate-100">
-                            What Happened? <span className="text-slate-400">*</span>
+                        <h3 className="text-sm font-medium text-foreground pb-2 border-b border-border/50">
+                            What Happened? <span className="text-muted-foreground/80">*</span>
                         </h3>
-                        <div className="max-h-48 overflow-y-auto border border-slate-200 rounded-lg bg-white p-2 space-y-1">
+                        <div className="max-h-48 overflow-y-auto border border-border rounded-lg bg-card p-2 space-y-1">
                             {whatHappenedOptions.map((option) => (
                                 <div
                                     key={option}
                                     onClick={() => handleWhatHappenedChange(option, !selectedWhatHappened.includes(option))}
-                                    className={`flex items-start gap-3 p-2 rounded-lg cursor-pointer transition-colors text-sm ${selectedWhatHappened.includes(option) ? 'bg-slate-100' : 'hover:bg-slate-50'
+                                    className={`flex items-start gap-3 p-2 rounded-lg cursor-pointer transition-colors text-sm ${selectedWhatHappened.includes(option) ? 'bg-muted' : 'hover:bg-muted/50'
                                         }`}
                                 >
                                     <Checkbox
                                         checked={selectedWhatHappened.includes(option)}
                                         className="mt-0.5 pointer-events-none"
                                     />
-                                    <span className="text-slate-700">{option}</span>
+                                    <span className="text-foreground/80">{option}</span>
                                 </div>
                             ))}
                             <div
                                 onClick={() => setShowOtherInput(!showOtherInput)}
-                                className={`flex items-start gap-3 p-2 rounded-lg cursor-pointer transition-colors text-sm ${showOtherInput ? 'bg-slate-100' : 'hover:bg-slate-50'
+                                className={`flex items-start gap-3 p-2 rounded-lg cursor-pointer transition-colors text-sm ${showOtherInput ? 'bg-muted' : 'hover:bg-muted/50'
                                     }`}
                             >
                                 <Checkbox checked={showOtherInput} className="mt-0.5 pointer-events-none" />
-                                <span className="text-slate-700">Other (please specify)</span>
+                                <span className="text-foreground/80">Other (please specify)</span>
                             </div>
                         </div>
                         {showOtherInput && (
@@ -271,19 +271,19 @@ export function ResetMyHackedPassword({ onClose }: ResetMyHackedPasswordProps) {
                                 placeholder="Please describe what happened..."
                                 value={otherWhatHappened}
                                 onChange={(e) => setOtherWhatHappened(e.target.value)}
-                                className="border-slate-200 focus:border-slate-400"
+                                className="border-border focus:border-border/80"
                             />
                         )}
                     </div>
 
                     <div className="space-y-4">
-                        <h3 className="text-sm font-medium text-slate-800 pb-2 border-b border-slate-100">
+                        <h3 className="text-sm font-medium text-foreground pb-2 border-b border-border/50">
                             Recovery Information
                         </h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div className="space-y-2">
-                                <Label htmlFor="recoveryemail" className="text-sm font-medium text-slate-700">
-                                    Recovery Email <span className="text-slate-400">*</span>
+                                <Label htmlFor="recoveryemail" className="text-sm font-medium text-foreground/80">
+                                    Recovery Email <span className="text-muted-foreground/80">*</span>
                                 </Label>
                                 <Input
                                     id="recoveryemail"
@@ -291,14 +291,14 @@ export function ResetMyHackedPassword({ onClose }: ResetMyHackedPasswordProps) {
                                     type="email"
                                     placeholder="backup@email.com"
                                     required
-                                    className="border-slate-200 focus:border-slate-400 focus:ring-slate-400"
+                                    className="border-border focus:border-border/80 focus:ring-ring"
                                 />
-                                <p className="text-xs text-slate-500">Use a secure email you still have access to</p>
+                                <p className="text-xs text-muted-foreground">Use a secure email you still have access to</p>
                             </div>
 
                             <div className="space-y-2">
-                                <Label htmlFor="recoveryphone" className="text-sm font-medium text-slate-700">
-                                    Recovery Phone <span className="text-slate-400">(Optional)</span>
+                                <Label htmlFor="recoveryphone" className="text-sm font-medium text-foreground/80">
+                                    Recovery Phone <span className="text-muted-foreground/80">(Optional)</span>
                                 </Label>
                                 <PhoneInput
                                     id="recoveryphone"
@@ -311,12 +311,12 @@ export function ResetMyHackedPassword({ onClose }: ResetMyHackedPasswordProps) {
                     </div>
                 </div>
 
-                <DialogFooter className="pt-4 border-t border-slate-100 flex gap-3">
+                <DialogFooter className="pt-4 border-t border-border/50 flex gap-3">
                     <DialogClose asChild>
                         <Button
                             variant="outline"
                             type="button"
-                            className="border-slate-200 text-slate-600 hover:bg-slate-50"
+                            className="border-border text-muted-foreground hover:bg-muted/50"
                         >
                             Cancel
                         </Button>
@@ -324,7 +324,7 @@ export function ResetMyHackedPassword({ onClose }: ResetMyHackedPasswordProps) {
                     <Button
                         type="submit"
                         disabled={isSubmitting || affectedAccounts.length === 0 || (selectedWhatHappened.length === 0 && !showOtherInput)}
-                        className="bg-slate-800 hover:bg-slate-900 text-white"
+                        className="bg-secondary hover:bg-primary text-white"
                     >
                         {isSubmitting ? 'Submitting...' : 'Start Recovery'}
                     </Button>

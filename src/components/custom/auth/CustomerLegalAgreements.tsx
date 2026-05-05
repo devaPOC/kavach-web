@@ -40,7 +40,7 @@ const CustomerLegalAgreements: React.FC<CustomerLegalAgreementsProps> = ({
 
       if (line.trim().startsWith('•')) {
         return (
-          <div key={index} className="ml-4 mb-1 text-gray-700">
+          <div key={index} className="ml-4 mb-1 text-foreground/80">
             {line.trim()}
           </div>
         );
@@ -48,7 +48,7 @@ const CustomerLegalAgreements: React.FC<CustomerLegalAgreementsProps> = ({
 
       if (/^\d+\./.test(line.trim())) {
         return (
-          <div key={index} className="font-semibold mt-6 mb-3 text-gray-900 text-base">
+          <div key={index} className="font-semibold mt-6 mb-3 text-foreground text-base">
             {line.trim()}
           </div>
         );
@@ -56,14 +56,14 @@ const CustomerLegalAgreements: React.FC<CustomerLegalAgreementsProps> = ({
 
       if (/^\d+\.\d+/.test(line.trim())) {
         return (
-          <div key={index} className="ml-2 mb-2 font-medium text-gray-800">
+          <div key={index} className="ml-2 mb-2 font-medium text-foreground">
             {line.trim()}
           </div>
         );
       }
 
       return (
-        <div key={index} className="mb-3 text-gray-700 leading-relaxed">
+        <div key={index} className="mb-3 text-foreground/80 leading-relaxed">
           {line.trim()}
         </div>
       );
@@ -94,14 +94,14 @@ const CustomerLegalAgreements: React.FC<CustomerLegalAgreementsProps> = ({
                 id={documentType}
                 checked={isAccepted}
                 onCheckedChange={(checked) => handleAgreementToggle(documentType, checked === true)}
-                className="data-[state=checked]:bg-green-600 data-[state=checked]:border-green-600"
+                className="data-[state=checked]:bg-secondary data-[state=checked]:border-secondary/50"
               />
               <div className="flex-1">
-                <label htmlFor={documentType} className="text-sm text-gray-900 cursor-pointer">
+                <label htmlFor={documentType} className="text-sm text-foreground cursor-pointer">
                   I agree to the{' '}
                   <Dialog open={openDialog === documentType} onOpenChange={(open) => setOpenDialog(open ? documentType : null)}>
                     <DialogTrigger asChild>
-                      <button className="text-blue-600 hover:text-blue-800 underline font-medium">
+                      <button className="text-primary hover:text-primary underline font-medium">
                         {document.shortName}
                       </button>
                     </DialogTrigger>
@@ -110,7 +110,7 @@ const CustomerLegalAgreements: React.FC<CustomerLegalAgreementsProps> = ({
                         <DialogTitle className="text-lg font-semibold">
                           {document.name}
                         </DialogTitle>
-                        <p className="text-sm text-gray-600">
+                        <p className="text-sm text-muted-foreground">
                           Version {document.version}
                         </p>
                       </DialogHeader>
@@ -120,7 +120,7 @@ const CustomerLegalAgreements: React.FC<CustomerLegalAgreementsProps> = ({
                         </div>
                       </div>
                       <div className="flex items-center justify-between pt-4 border-t">
-                        <p className="text-xs text-gray-500">
+                        <p className="text-xs text-muted-foreground">
                           By accepting, you agree to be legally bound by this document.
                         </p>
                         <div className="flex space-x-2">
@@ -133,7 +133,7 @@ const CustomerLegalAgreements: React.FC<CustomerLegalAgreementsProps> = ({
                           {!isAccepted && (
                             <Button
                               onClick={() => handleAcceptFromModal(documentType)}
-                              className="bg-green-600 hover:bg-green-700"
+                              className="bg-secondary hover:bg-secondary"
                             >
                               Accept Agreement
                             </Button>

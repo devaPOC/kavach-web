@@ -281,10 +281,10 @@ export default function MaterialEditDialog({
               value={formData.title}
               onChange={(e) => handleInputChange('title', e.target.value)}
               placeholder="Enter material title"
-              className={errors.title ? 'border-red-500' : ''}
+              className={errors.title ? 'border-destructive' : ''}
             />
             {errors.title && (
-              <p className="text-sm text-red-600">{errors.title}</p>
+              <p className="text-sm text-destructive">{errors.title}</p>
             )}
           </div>
 
@@ -311,14 +311,14 @@ export default function MaterialEditDialog({
                     ? 'Enter YouTube or Vimeo URL'
                     : 'Enter URL'
                 }
-                className={errors.url ? 'border-red-500' : ''}
+                className={errors.url ? 'border-destructive' : ''}
               />
 
               {/* URL Validation Feedback */}
               {urlValidation && (
                 <div className={`flex items-center gap-2 p-2 rounded-md text-sm ${urlValidation.isValid
-                  ? 'bg-green-50 border border-green-200 text-green-700'
-                  : 'bg-red-50 border border-red-200 text-red-700'
+                  ? 'bg-secondary/10 border border-secondary/50 text-secondary'
+                  : 'bg-destructive/10 border border-destructive text-destructive'
                   }`}>
                   {urlValidation.isValid ? (
                     <CheckCircle className="h-4 w-4" />
@@ -345,7 +345,7 @@ export default function MaterialEditDialog({
               )}
 
               {errors.url && (
-                <p className="text-sm text-red-600">{errors.url}</p>
+                <p className="text-sm text-destructive">{errors.url}</p>
               )}
             </div>
           </div>
@@ -364,16 +364,16 @@ export default function MaterialEditDialog({
                 }}
                 placeholder="Optional video duration"
               />
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-muted-foreground">
                 Optional: Specify video duration for better user experience
               </p>
             </div>
           )}
 
           {/* Current Material Info */}
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-            <h4 className="font-medium text-gray-900 mb-2">Current Material Info</h4>
-            <div className="space-y-1 text-sm text-gray-600">
+          <div className="bg-muted/50 border border-border rounded-lg p-4">
+            <h4 className="font-medium text-foreground mb-2">Current Material Info</h4>
+            <div className="space-y-1 text-sm text-muted-foreground">
               <div className="flex justify-between">
                 <span>Order Index:</span>
                 <span>{material.orderIndex}</span>
@@ -393,8 +393,8 @@ export default function MaterialEditDialog({
 
           {/* Preview Section */}
           {urlValidation?.isValid && formData.url && (
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-              <h4 className="font-medium text-blue-900 mb-2 flex items-center gap-2">
+            <div className="bg-primary/10 border border-primary/50 rounded-lg p-4">
+              <h4 className="font-medium text-primary mb-2 flex items-center gap-2">
                 <ExternalLink className="h-4 w-4" />
                 Updated Preview
               </h4>
@@ -405,18 +405,18 @@ export default function MaterialEditDialog({
                   <Badge variant="outline">{formData.materialType}</Badge>
                 </div>
                 {formData.description && (
-                  <p className="text-sm text-blue-700">{formData.description}</p>
+                  <p className="text-sm text-primary">{formData.description}</p>
                 )}
-                <div className="text-sm text-blue-600 break-all">
+                <div className="text-sm text-primary break-all">
                   {formData.url}
                 </div>
                 {urlValidation.type === 'youtube' && (
-                  <p className="text-xs text-blue-600">
+                  <p className="text-xs text-primary">
                     📺 YouTube video detected - will open in new tab
                   </p>
                 )}
                 {urlValidation.type === 'vimeo' && (
-                  <p className="text-xs text-blue-600">
+                  <p className="text-xs text-primary">
                     🎬 Vimeo video detected - will open in new tab
                   </p>
                 )}
@@ -425,8 +425,8 @@ export default function MaterialEditDialog({
           )}
 
           {errors.submit && (
-            <div className="p-3 bg-red-50 border border-red-200 rounded-md">
-              <p className="text-sm text-red-600">{errors.submit}</p>
+            <div className="p-3 bg-destructive/10 border border-destructive rounded-md">
+              <p className="text-sm text-destructive">{errors.submit}</p>
             </div>
           )}
 

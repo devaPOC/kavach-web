@@ -10,20 +10,20 @@ export default function NotFound() {
 			<div className="max-w-md w-full text-center space-y-6">
 				{/* Minimal Icon */}
 				<div className="flex justify-center">
-					<div className="h-20 w-20 bg-gray-100 rounded-full flex items-center justify-center">
-						<FileQuestion className="h-10 w-10 text-gray-400" />
+					<div className="h-20 w-20 bg-muted rounded-full flex items-center justify-center">
+						<FileQuestion className="h-10 w-10 text-muted-foreground/80" />
 					</div>
 				</div>
 
 				{/* Main 404 */}
-				<h1 className="text-6xl font-black tracking-tight text-gray-900">
+				<h1 className="text-6xl font-black tracking-tight text-foreground">
 					404
 				</h1>
 
 				{/* Sarcastic but clear message */}
 				<div className="space-y-2">
-					<h2 className="text-xl font-semibold text-gray-700">Well, this is awkward.</h2>
-					<p className="text-gray-500 text-sm leading-relaxed">
+					<h2 className="text-xl font-semibold text-foreground/80">Well, this is awkward.</h2>
+					<p className="text-muted-foreground text-sm leading-relaxed">
 						You're looking for something that doesn't exist.
 						Maybe it moved? Maybe it's a ghost?
 						Or maybe you just have a really creative imagination.
@@ -36,7 +36,7 @@ export default function NotFound() {
 					<Button
 						variant="default"
 						size="lg"
-						className="bg-black hover:bg-gray-800 text-white rounded-full px-8 transition-all hover:scale-105"
+						className="bg-black hover:bg-secondary text-white rounded-full px-8 transition-all hover:scale-105"
 						asChild
 					>
 						<Link href="/">
@@ -46,7 +46,7 @@ export default function NotFound() {
 					</Button>
 				</div>
 
-				<div className="pt-12 text-xs text-gray-400 font-mono">
+				<div className="pt-12 text-xs text-muted-foreground/80 font-mono">
 					Error Code: ID_10_T / Page_Not_Found
 				</div>
 			</div>

@@ -231,11 +231,11 @@ export function MultilingualButton({
   
   // Variant classes
   if (variant === 'primary') {
-    classes += ' bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500';
+    classes += ' bg-primary text-white hover:bg-primary focus:ring-primary';
   } else if (variant === 'secondary') {
-    classes += ' bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500';
+    classes += ' bg-muted/80 text-white hover:bg-muted/80 focus:ring-ring';
   } else {
-    classes += ' border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:ring-blue-500';
+    classes += ' border border-border bg-card text-foreground/80 hover:bg-muted/50 focus:ring-primary';
   }
   
   // Size classes
@@ -320,7 +320,7 @@ export function MultilingualInput({
   const needsArabicTypography = language === 'ar' || containsArabic(textContent);
   
   // Base input classes
-  let classes = 'w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors';
+  let classes = 'w-full border border-border rounded-md focus:ring-2 focus:ring-primary focus:border-primary/50 transition-colors';
   
   // Size classes
   if (size === 'sm') {
@@ -349,7 +349,7 @@ export function MultilingualInput({
   
   // Disabled state
   if (disabled) {
-    classes += ' bg-gray-100 cursor-not-allowed';
+    classes += ' bg-muted cursor-not-allowed';
   }
   
   classes += ` ${className}`;

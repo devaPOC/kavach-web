@@ -51,10 +51,10 @@ export default function ForgotPasswordPage() {
         title="Check your email"
         subtitle="We've sent password reset instructions to your inbox."
       >
-        <Card className="mx-auto w-full max-w-xl border border-white/40 bg-white/95 shadow-2xl backdrop-blur-lg">
+        <Card className="mx-auto w-full max-w-xl border border-white/40 bg-card/95 shadow-2xl backdrop-blur-lg">
           <CardContent className="space-y-6 p-6 md:p-8">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100">
-              <svg className="h-7 w-7 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-secondary/10">
+              <svg className="h-7 w-7 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
@@ -102,10 +102,10 @@ export default function ForgotPasswordPage() {
       subtitle="Enter your email and we’ll send you a secure link to reset it."
       footer={
         <div className="flex items-center justify-center gap-2 text-sm">
-          <span className="text-slate-200">Remembered it?</span>
+          <span className="text-muted-foreground/80">Remembered it?</span>
           <button
             type="button"
-            className="font-semibold text-white hover:text-indigo-200 underline-offset-4"
+            className="font-semibold text-white hover:text-primary underline-offset-4"
             onClick={() => router.push('/login')}
           >
             Back to login
@@ -113,7 +113,7 @@ export default function ForgotPasswordPage() {
         </div>
       }
     >
-      <Card className="mx-auto w-full max-w-xl border border-white/40 bg-white/95 shadow-2xl backdrop-blur-lg">
+      <Card className="mx-auto w-full max-w-xl border border-white/40 bg-card/95 shadow-2xl backdrop-blur-lg">
         <CardContent className="p-6 md:p-8">
           <form onSubmit={handleSubmit} className="space-y-6">
             {error && (
@@ -123,7 +123,7 @@ export default function ForgotPasswordPage() {
             )}
 
             <div className="space-y-2">
-              <label htmlFor="email" className="block text-sm font-medium text-slate-800">
+              <label htmlFor="email" className="block text-sm font-medium text-foreground">
                 Email address
               </label>
               <Input

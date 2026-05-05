@@ -376,10 +376,10 @@ const SignupWizard: React.FC<SignupWizardProps> = ({
             onBlur={() => handleFieldBlur('firstName')}
             required
             placeholder="First Name"
-            className={touched.firstName && allFieldErrors.firstName ? 'border-red-500' : ''}
+            className={touched.firstName && allFieldErrors.firstName ? 'border-destructive' : ''}
           />
           {touched.firstName && allFieldErrors.firstName && (
-            <p className="text-sm text-red-500">{allFieldErrors.firstName}</p>
+            <p className="text-sm text-destructive">{allFieldErrors.firstName}</p>
           )}
         </div>
 
@@ -392,10 +392,10 @@ const SignupWizard: React.FC<SignupWizardProps> = ({
             onBlur={() => handleFieldBlur('lastName')}
             required
             placeholder="Last Name"
-            className={touched.lastName && allFieldErrors.lastName ? 'border-red-500' : ''}
+            className={touched.lastName && allFieldErrors.lastName ? 'border-destructive' : ''}
           />
           {touched.lastName && allFieldErrors.lastName && (
-            <p className="text-sm text-red-500">{allFieldErrors.lastName}</p>
+            <p className="text-sm text-destructive">{allFieldErrors.lastName}</p>
           )}
         </div>
       </div>
@@ -411,26 +411,26 @@ const SignupWizard: React.FC<SignupWizardProps> = ({
             required
             autoComplete="email"
             placeholder="Email Address"
-            className={`${touched.email && allFieldErrors.email ? 'border-red-500' : ''} ${emailValidation.isAvailable === false ? 'border-red-500' : ''
-              } ${emailValidation.isAvailable === true ? 'border-green-500' : ''}`}
+            className={`${touched.email && allFieldErrors.email ? 'border-destructive' : ''} ${emailValidation.isAvailable === false ? 'border-destructive' : ''
+              } ${emailValidation.isAvailable === true ? 'border-secondary/50' : ''}`}
           />
           {emailValidation.isChecking && (
             <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-600"></div>
+              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-border/80"></div>
             </div>
           )}
         </div>
         {touched.email && allFieldErrors.email && (
-          <p className="text-sm text-red-500">{allFieldErrors.email}</p>
+          <p className="text-sm text-destructive">{allFieldErrors.email}</p>
         )}
         {emailValidation.isAvailable === false && formData.email.includes('@') && !allFieldErrors.email && (
-          <p className="text-sm text-red-500">This email is already taken</p>
+          <p className="text-sm text-destructive">This email is already taken</p>
         )}
         {emailValidation.isAvailable === true && formData.email.includes('@') && !allFieldErrors.email && (
-          <p className="text-sm text-green-600">Email is available</p>
+          <p className="text-sm text-secondary">Email is available</p>
         )}
         {emailValidation.error && (
-          <p className="text-sm text-red-500">{emailValidation.error}</p>
+          <p className="text-sm text-destructive">{emailValidation.error}</p>
         )}
       </div>
 
@@ -443,10 +443,10 @@ const SignupWizard: React.FC<SignupWizardProps> = ({
           required
           autoComplete="new-password"
           placeholder="Password"
-          className={touched.password && allFieldErrors.password ? 'border-red-500' : ''}
+          className={touched.password && allFieldErrors.password ? 'border-destructive' : ''}
         />
         {touched.password && allFieldErrors.password && (
-          <p className="text-sm text-red-500">{allFieldErrors.password}</p>
+          <p className="text-sm text-destructive">{allFieldErrors.password}</p>
         )}
       </div>
 
@@ -459,19 +459,19 @@ const SignupWizard: React.FC<SignupWizardProps> = ({
           required
           autoComplete="new-password"
           placeholder="Confirm Password"
-          className={touched.confirmPassword && allFieldErrors.confirmPassword ? 'border-red-500' : ''}
+          className={touched.confirmPassword && allFieldErrors.confirmPassword ? 'border-destructive' : ''}
         />
         {touched.confirmPassword && allFieldErrors.confirmPassword && (
-          <p className="text-sm text-red-500">{allFieldErrors.confirmPassword}</p>
+          <p className="text-sm text-destructive">{allFieldErrors.confirmPassword}</p>
         )}
       </div>
 
 
       {/* Legal Agreements */}
-      <div className="pt-6 border-t-2 border-gray-200 space-y-4 text-left">
+      <div className="pt-6 border-t-2 border-border space-y-4 text-left">
         <div>
-          <h3 className="text-lg font-semibold text-gray-900">Legal Agreements</h3>
-          <p className="text-sm text-gray-600">Please review and accept all agreements to continue.</p>
+          <h3 className="text-lg font-semibold text-foreground">Legal Agreements</h3>
+          <p className="text-sm text-muted-foreground">Please review and accept all agreements to continue.</p>
         </div>
 
         <div className="flex items-center justify-start space-x-3">
@@ -479,15 +479,15 @@ const SignupWizard: React.FC<SignupWizardProps> = ({
             id="accept-all"
             checked={allAgreementsChecked}
             onCheckedChange={(checked) => setAllAgreements(checked === true)}
-            className="data-[state=checked]:bg-green-600 data-[state=checked]:border-green-600"
+            className="data-[state=checked]:bg-secondary data-[state=checked]:border-secondary/50"
           />
-          <label htmlFor="accept-all" className="text-sm text-gray-900 cursor-pointer">
+          <label htmlFor="accept-all" className="text-sm text-foreground cursor-pointer">
             I agree to all Terms and Conditions
           </label>
         </div>
 
         <Collapsible open={showAgreements} onOpenChange={setShowAgreements} className="space-y-3">
-          <CollapsibleTrigger className="flex items-center gap-2 text-sm font-medium text-gray-900">
+          <CollapsibleTrigger className="flex items-center gap-2 text-sm font-medium text-foreground">
             <span className={`text-lg leading-none transition-transform ${showAgreements ? 'rotate-90' : ''}`}>
               ›
             </span>

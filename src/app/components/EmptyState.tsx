@@ -30,14 +30,14 @@ export default function EmptyState({
 			<CardContent className="pt-8 pb-10 flex flex-col items-center text-center">
 				<div className="mb-4">
 					{Icon ? (
-						<Icon className="h-12 w-12 text-slate-300" />
+						<Icon className="h-12 w-12 text-muted-foreground/60" />
 					) : (
-						<RefreshCw className="h-12 w-12 text-slate-300" />
+						<RefreshCw className="h-12 w-12 text-muted-foreground/60" />
 					)}
 				</div>
-				<h3 className="text-lg font-semibold text-slate-900 mb-2">{title}</h3>
+				<h3 className="text-lg font-semibold text-foreground mb-2">{title}</h3>
 				{message && (
-					<p className="text-sm text-slate-500 max-w-md mb-6">{message}</p>
+					<p className="text-sm text-muted-foreground max-w-md mb-6">{message}</p>
 				)}
 				<div className="flex flex-wrap gap-3 justify-center">
 					{onRefresh && (

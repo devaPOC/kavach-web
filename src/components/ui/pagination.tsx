@@ -95,17 +95,17 @@ export function Pagination({
     <div className={`flex flex-col sm:flex-row items-center justify-between gap-4 ${className}`}>
       {/* Info and page size selector */}
       <div className="flex flex-col sm:flex-row items-center gap-2">
-        <div className="text-sm text-gray-500">
+        <div className="text-sm text-muted-foreground">
           Showing {startItem} to {endItem} of {totalItems} items
         </div>
         {showKeyboardHints && (
-          <div className="text-xs text-gray-400 hidden sm:block">
+          <div className="text-xs text-muted-foreground/80 hidden sm:block">
             Use Ctrl+← / Ctrl+→ to navigate
           </div>
         )}
         {showPageSizeSelector && onPageSizeChange && (
           <div className="flex items-center gap-2">
-            <span className="text-sm text-gray-500">Show:</span>
+            <span className="text-sm text-muted-foreground">Show:</span>
             <Select value={pageSize.toString()} onValueChange={handlePageSizeChange}>
               <SelectTrigger className="w-20 h-8">
                 <SelectValue />
@@ -153,7 +153,7 @@ export function Pagination({
           {getPageNumbers().map((page, index) => (
             <React.Fragment key={index}>
               {page === '...' ? (
-                <span className="text-gray-400 px-2">...</span>
+                <span className="text-muted-foreground/80 px-2">...</span>
               ) : (
                 <Button
                   variant={page === currentPage ? "default" : "outline"}
@@ -171,7 +171,7 @@ export function Pagination({
         {/* Go to page input */}
         {showGoToPage && (
           <div className="flex items-center gap-1 text-sm ml-2">
-            <span className="text-gray-500">Go to:</span>
+            <span className="text-muted-foreground">Go to:</span>
             <Input
               type="number"
               min="1"
@@ -183,7 +183,7 @@ export function Pagination({
               }}
               className="w-16 h-8 text-center"
             />
-            <span className="text-gray-500">of {totalPages}</span>
+            <span className="text-muted-foreground">of {totalPages}</span>
           </div>
         )}
 

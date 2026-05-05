@@ -347,8 +347,8 @@ export default function MaterialsManager() {
 
   const getStatusBadgeColor = (isPublished: boolean) => {
     return isPublished
-      ? 'bg-green-100 text-green-800 border-green-200'
-      : 'bg-gray-100 text-gray-800 border-gray-200'
+      ? 'bg-secondary/10 text-secondary border-secondary/50'
+      : 'bg-muted text-foreground border-border'
   }
 
   const getMaterialTypeIcon = (type: string) => {
@@ -367,13 +367,13 @@ export default function MaterialsManager() {
   const getMaterialTypeBadgeColor = (type: string) => {
     switch (type) {
       case 'video':
-        return 'bg-red-100 text-red-800 border-red-200'
+        return 'bg-destructive/10 text-destructive border-destructive'
       case 'link':
-        return 'bg-blue-100 text-blue-800 border-blue-200'
+        return 'bg-primary/10 text-primary border-primary/50'
       case 'document':
-        return 'bg-green-100 text-green-800 border-green-200'
+        return 'bg-secondary/10 text-secondary border-secondary/50'
       default:
-        return 'bg-gray-100 text-gray-800 border-gray-200'
+        return 'bg-muted text-foreground border-border'
     }
   }
 
@@ -409,7 +409,7 @@ export default function MaterialsManager() {
     return (
       <Card>
         <CardContent className="flex items-center justify-center h-64">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary/50"></div>
         </CardContent>
       </Card>
     )
@@ -441,33 +441,33 @@ export default function MaterialsManager() {
         <CardContent className="space-y-4">
           {/* Statistics */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+            <div className="bg-primary/10 p-4 rounded-lg border border-primary/50">
               <div className="flex items-center gap-2">
-                <BookOpen className="h-4 w-4 text-blue-600" />
-                <span className="text-sm font-medium text-blue-700">Total Modules</span>
+                <BookOpen className="h-4 w-4 text-primary" />
+                <span className="text-sm font-medium text-primary">Total Modules</span>
               </div>
-              <p className="text-2xl font-bold text-blue-800 mt-1">{totalModules}</p>
+              <p className="text-2xl font-bold text-primary mt-1">{totalModules}</p>
             </div>
-            <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+            <div className="bg-secondary/10 p-4 rounded-lg border border-secondary/50">
               <div className="flex items-center gap-2">
-                <CheckCircle className="h-4 w-4 text-green-600" />
-                <span className="text-sm font-medium text-green-700">Published</span>
+                <CheckCircle className="h-4 w-4 text-secondary" />
+                <span className="text-sm font-medium text-secondary">Published</span>
               </div>
-              <p className="text-2xl font-bold text-green-800 mt-1">{publishedModules}</p>
+              <p className="text-2xl font-bold text-secondary mt-1">{publishedModules}</p>
             </div>
-            <div className="bg-purple-50 p-4 rounded-lg border border-purple-200">
+            <div className="bg-accent/10 p-4 rounded-lg border border-primary/50">
               <div className="flex items-center gap-2">
-                <FileText className="h-4 w-4 text-purple-600" />
-                <span className="text-sm font-medium text-purple-700">Total Materials</span>
+                <FileText className="h-4 w-4 text-accent" />
+                <span className="text-sm font-medium text-primary">Total Materials</span>
               </div>
-              <p className="text-2xl font-bold text-purple-800 mt-1">{totalMaterials}</p>
+              <p className="text-2xl font-bold text-primary mt-1">{totalMaterials}</p>
             </div>
-            <div className="bg-red-50 p-4 rounded-lg border border-red-200">
+            <div className="bg-destructive/10 p-4 rounded-lg border border-destructive">
               <div className="flex items-center gap-2">
-                <Video className="h-4 w-4 text-red-600" />
-                <span className="text-sm font-medium text-red-700">Video Content</span>
+                <Video className="h-4 w-4 text-destructive" />
+                <span className="text-sm font-medium text-destructive">Video Content</span>
               </div>
-              <p className="text-2xl font-bold text-red-800 mt-1">{videoMaterials}</p>
+              <p className="text-2xl font-bold text-destructive mt-1">{videoMaterials}</p>
             </div>
           </div>
 
@@ -501,8 +501,8 @@ export default function MaterialsManager() {
                   label: 'Status',
                   type: 'chips',
                   options: [
-                    { value: 'published', label: 'Published', icon: <CheckCircle className="h-3 w-3 text-green-500" /> },
-                    { value: 'drafts', label: 'Drafts', icon: <XCircle className="h-3 w-3 text-gray-400" /> },
+                    { value: 'published', label: 'Published', icon: <CheckCircle className="h-3 w-3 text-secondary" /> },
+                    { value: 'drafts', label: 'Drafts', icon: <XCircle className="h-3 w-3 text-muted-foreground/80" /> },
                   ]
                 },
                 {
@@ -523,13 +523,13 @@ export default function MaterialsManager() {
           <div className="space-y-4">
             {/* Error Display */}
             {error && (
-              <div className="p-3 bg-red-50 border border-red-200 rounded-md">
-                <p className="text-sm text-red-600">{error}</p>
+              <div className="p-3 bg-destructive/10 border border-destructive rounded-md">
+                <p className="text-sm text-destructive">{error}</p>
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={clearError}
-                  className="mt-2 text-red-600 hover:text-red-700"
+                  className="mt-2 text-destructive hover:text-destructive"
                 >
                   Dismiss
                 </Button>
@@ -539,15 +539,15 @@ export default function MaterialsManager() {
             {/* Modules List */}
             <div className="space-y-4 relative">
               {isLoading && (
-                <div className="absolute inset-0 bg-white/50 flex items-center justify-center z-10">
-                  <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+                <div className="absolute inset-0 bg-card/50 flex items-center justify-center z-10">
+                  <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary/50"></div>
                 </div>
               )}
               {displayedModules.map((module) => (
                 <Card
                   key={module.id}
                   className={`transition-all duration-200 ${dragState.dragOverItem?.type === 'module' && dragState.dragOverItem.id === module.id
-                    ? 'border-blue-400 bg-blue-50'
+                    ? 'border-primary/50 bg-primary/10'
                     : 'hover:shadow-md'
                     } ${dragState.draggedItem?.type === 'module' && dragState.draggedItem.id === module.id
                       ? 'opacity-50'
@@ -560,16 +560,16 @@ export default function MaterialsManager() {
                     <div className="flex items-start justify-between">
                       <div className="flex items-start gap-3 flex-1">
                         <div
-                          className="cursor-move mt-1 p-1 rounded hover:bg-gray-100 transition-colors"
+                          className="cursor-move mt-1 p-1 rounded hover:bg-muted transition-colors"
                           draggable
                           onDragStart={(e) => handleDragStart(e, 'module', module.id)}
                           onDragEnd={handleDragEnd}
                         >
-                          <GripVertical className="h-4 w-4 text-gray-400" />
+                          <GripVertical className="h-4 w-4 text-muted-foreground/80" />
                         </div>
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-2">
-                            <CardTitle className="text-lg font-semibold text-gray-900">
+                            <CardTitle className="text-lg font-semibold text-foreground">
                               {module.title}
                             </CardTitle>
                             <Badge className={getStatusBadgeColor(module.isPublished)}>
@@ -580,11 +580,11 @@ export default function MaterialsManager() {
                             </Badge>
                           </div>
                           {module.description && (
-                            <CardDescription className="text-sm text-gray-600 mb-2">
+                            <CardDescription className="text-sm text-muted-foreground mb-2">
                               {module.description}
                             </CardDescription>
                           )}
-                          <div className="flex items-center gap-4 text-xs text-gray-500">
+                          <div className="flex items-center gap-4 text-xs text-muted-foreground">
                             <span>{module.materials?.length || 0} materials</span>
                             <span>Order: {module.orderIndex}</span>
                             <span>Created {new Date(module.createdAt).toLocaleDateString()}</span>
@@ -609,7 +609,7 @@ export default function MaterialsManager() {
                           variant="outline"
                           size="sm"
                           onClick={() => handleEditModule(module)}
-                          className="flex items-center gap-1 text-green-600 hover:text-green-700 hover:bg-green-50"
+                          className="flex items-center gap-1 text-secondary hover:text-secondary hover:bg-secondary/10"
                         >
                           <Edit className="h-3 w-3" />
                           Edit
@@ -620,8 +620,8 @@ export default function MaterialsManager() {
                           onClick={() => handlePublishToggle(module)}
                           disabled={processingModuleId === module.id}
                           className={`flex items-center gap-1 ${module.isPublished
-                            ? 'text-orange-600 hover:text-orange-700 hover:bg-orange-50'
-                            : 'text-green-600 hover:text-green-700 hover:bg-green-50'
+                            ? 'text-accent hover:text-accent hover:bg-accent/10'
+                            : 'text-secondary hover:text-secondary hover:bg-secondary/10'
                             }`}
                         >
                           {module.isPublished ? <XCircle className="h-3 w-3" /> : <CheckCircle className="h-3 w-3" />}
@@ -633,7 +633,7 @@ export default function MaterialsManager() {
                           size="sm"
                           onClick={() => handleDeleteModule(module)}
                           disabled={processingModuleId === module.id}
-                          className="flex items-center gap-1 text-red-600 hover:text-red-700 hover:bg-red-50"
+                          className="flex items-center gap-1 text-destructive hover:text-destructive hover:bg-destructive/10"
                         >
                           <Trash2 className="h-3 w-3" />
                           Delete
@@ -647,7 +647,7 @@ export default function MaterialsManager() {
                     <CardContent className="pt-0">
                       <div className="border-t pt-4">
                         <div className="flex items-center justify-between mb-3">
-                          <h4 className="text-sm font-medium text-gray-700">Materials ({module.materials?.length || 0})</h4>
+                          <h4 className="text-sm font-medium text-foreground/80">Materials ({module.materials?.length || 0})</h4>
                           <Button
                             variant="outline"
                             size="sm"
@@ -655,7 +655,7 @@ export default function MaterialsManager() {
                               setSelectedModule(module)
                               setShowMaterialCreateDialog(true)
                             }}
-                            className="flex items-center gap-1 text-blue-600 hover:text-blue-700 hover:bg-blue-50"
+                            className="flex items-center gap-1 text-primary hover:text-primary hover:bg-primary/10"
                           >
                             <Plus className="h-3 w-3" />
                             Add Material
@@ -663,8 +663,8 @@ export default function MaterialsManager() {
                         </div>
 
                         {(!module.materials || module.materials.length === 0) ? (
-                          <div className="text-center py-8 text-gray-500">
-                            <FileText className="h-8 w-8 mx-auto mb-2 text-gray-400" />
+                          <div className="text-center py-8 text-muted-foreground">
+                            <FileText className="h-8 w-8 mx-auto mb-2 text-muted-foreground/80" />
                             <p className="text-sm">No materials yet</p>
                             <Button
                               variant="ghost"
@@ -673,7 +673,7 @@ export default function MaterialsManager() {
                                 setSelectedModule(module)
                                 setShowMaterialCreateDialog(true)
                               }}
-                              className="mt-2 text-blue-600 hover:text-blue-700"
+                              className="mt-2 text-primary hover:text-primary"
                             >
                               Add the first material
                             </Button>
@@ -687,8 +687,8 @@ export default function MaterialsManager() {
                                   key={material.id}
                                   className={`flex items-center gap-3 p-3 border rounded-lg transition-all duration-200 ${dragState.dragOverItem?.type === 'material' &&
                                     dragState.dragOverItem.id === material.id
-                                    ? 'border-blue-400 bg-blue-50'
-                                    : 'hover:bg-gray-50'
+                                    ? 'border-primary/50 bg-primary/10'
+                                    : 'hover:bg-muted/50'
                                     } ${dragState.draggedItem?.type === 'material' && dragState.draggedItem.id === material.id
                                       ? 'opacity-50'
                                       : ''
@@ -698,12 +698,12 @@ export default function MaterialsManager() {
                                   onDrop={(e) => handleDrop(e, 'material', material.id, module.id)}
                                 >
                                   <div
-                                    className="cursor-move p-1 rounded hover:bg-gray-200 transition-colors"
+                                    className="cursor-move p-1 rounded hover:bg-muted/80 transition-colors"
                                     draggable
                                     onDragStart={(e) => handleDragStart(e, 'material', material.id, module.id)}
                                     onDragEnd={handleDragEnd}
                                   >
-                                    <GripVertical className="h-3 w-3 text-gray-400" />
+                                    <GripVertical className="h-3 w-3 text-muted-foreground/80" />
                                   </div>
 
                                   <div className="flex items-center gap-2">
@@ -714,9 +714,9 @@ export default function MaterialsManager() {
                                   </div>
 
                                   <div className="flex-1 min-w-0">
-                                    <div className="font-medium text-sm text-gray-900 truncate">{material.title}</div>
+                                    <div className="font-medium text-sm text-foreground truncate">{material.title}</div>
                                     {material.description && (
-                                      <div className="text-xs text-gray-500">
+                                      <div className="text-xs text-muted-foreground">
                                         {material.description.length > 100 ? (
                                           <>
                                             <p className={expandedDescriptions.has(material.id) ? '' : 'line-clamp-2'}>
@@ -726,7 +726,7 @@ export default function MaterialsManager() {
                                               }
                                             </p>
                                             <button
-                                              className="text-blue-600 hover:text-blue-700 underline text-xs mt-1"
+                                              className="text-primary hover:text-primary underline text-xs mt-1"
                                               onClick={() => {
                                                 const newExpanded = new Set(expandedDescriptions);
                                                 if (expandedDescriptions.has(material.id)) {
@@ -746,7 +746,7 @@ export default function MaterialsManager() {
                                       </div>
                                     )}
                                     {material.materialData.url && (
-                                      <div className="text-xs text-blue-600 truncate">
+                                      <div className="text-xs text-primary truncate">
                                         {validateUrl(material.materialData.url).type === 'youtube' && 'YouTube'}
                                         {validateUrl(material.materialData.url).type === 'vimeo' && 'Vimeo'}
                                         {validateUrl(material.materialData.url).type === 'link' && 'External Link'}
@@ -760,7 +760,7 @@ export default function MaterialsManager() {
                                         variant="ghost"
                                         size="sm"
                                         onClick={() => handlePreviewMaterial(material)}
-                                        className="h-8 w-8 p-0 text-blue-600 hover:text-blue-700 hover:bg-blue-50"
+                                        className="h-8 w-8 p-0 text-primary hover:text-primary hover:bg-primary/10"
                                       >
                                         {material.materialType === 'video' ? (
                                           <Play className="h-3 w-3" />
@@ -773,7 +773,7 @@ export default function MaterialsManager() {
                                       variant="ghost"
                                       size="sm"
                                       onClick={() => handleEditMaterial(material)}
-                                      className="h-8 w-8 p-0 text-green-600 hover:text-green-700 hover:bg-green-50"
+                                      className="h-8 w-8 p-0 text-secondary hover:text-secondary hover:bg-secondary/10"
                                     >
                                       <Edit className="h-3 w-3" />
                                     </Button>
@@ -781,7 +781,7 @@ export default function MaterialsManager() {
                                       variant="ghost"
                                       size="sm"
                                       onClick={() => handleDeleteMaterial(material)}
-                                      className="h-8 w-8 p-0 text-red-600 hover:text-red-700 hover:bg-red-50"
+                                      className="h-8 w-8 p-0 text-destructive hover:text-destructive hover:bg-destructive/10"
                                     >
                                       <Trash2 className="h-3 w-3" />
                                     </Button>
@@ -800,9 +800,9 @@ export default function MaterialsManager() {
             {/* Empty State */}
             {displayedModules.length === 0 && !isLoading && (
               <div className="text-center py-12">
-                <BookOpen className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">No modules found</h3>
-                <p className="text-gray-500 mb-4">
+                <BookOpen className="h-12 w-12 text-muted-foreground/80 mx-auto mb-4" />
+                <h3 className="text-lg font-medium text-foreground mb-2">No modules found</h3>
+                <p className="text-muted-foreground mb-4">
                   {searchTerm || Object.keys(filters).length > 0
                     ? 'Try adjusting your search terms or filters.'
                     : 'Get started by creating your first learning module.'}

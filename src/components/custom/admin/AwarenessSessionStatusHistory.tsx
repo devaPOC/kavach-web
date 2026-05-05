@@ -77,12 +77,12 @@ export default function AwarenessSessionStatusHistory({
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'pending_admin_review': return 'text-yellow-600'
-      case 'forwarded_to_expert': return 'text-blue-600'
-      case 'confirmed': return 'text-green-600'
-      case 'rejected': return 'text-red-600'
-      case 'expert_declined': return 'text-orange-600'
-      default: return 'text-gray-600'
+      case 'pending_admin_review': return 'text-accent'
+      case 'forwarded_to_expert': return 'text-primary'
+      case 'confirmed': return 'text-secondary'
+      case 'rejected': return 'text-destructive'
+      case 'expert_declined': return 'text-accent'
+      default: return 'text-muted-foreground'
     }
   }
 
@@ -90,7 +90,7 @@ export default function AwarenessSessionStatusHistory({
     return (
       <Card className={className}>
         <CardContent className="flex items-center justify-center h-32">
-          <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+          <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary/50"></div>
         </CardContent>
       </Card>
     )
@@ -100,7 +100,7 @@ export default function AwarenessSessionStatusHistory({
     return (
       <Card className={className}>
         <CardContent className="p-4">
-          <div className="text-center text-red-600 text-sm">{error}</div>
+          <div className="text-center text-destructive text-sm">{error}</div>
         </CardContent>
       </Card>
     )
@@ -119,7 +119,7 @@ export default function AwarenessSessionStatusHistory({
       </CardHeader>
       <CardContent>
         {history.length === 0 ? (
-          <div className="text-center text-gray-500 text-sm py-4">
+          <div className="text-center text-muted-foreground text-sm py-4">
             No status history available
           </div>
         ) : (
@@ -133,12 +133,12 @@ export default function AwarenessSessionStatusHistory({
                 <div key={entry.id} className="relative">
                   {/* Timeline line */}
                   {!isLast && (
-                    <div className="absolute left-4 top-8 w-0.5 h-8 bg-gray-200"></div>
+                    <div className="absolute left-4 top-8 w-0.5 h-8 bg-muted/80"></div>
                   )}
                   
                   <div className="flex items-start gap-3">
                     {/* Status icon */}
-                    <div className={`flex-shrink-0 w-8 h-8 rounded-full bg-white border-2 border-gray-200 flex items-center justify-center ${statusColor}`}>
+                    <div className={`flex-shrink-0 w-8 h-8 rounded-full bg-card border-2 border-border flex items-center justify-center ${statusColor}`}>
                       <StatusIcon className="h-4 w-4" />
                     </div>
 
@@ -150,7 +150,7 @@ export default function AwarenessSessionStatusHistory({
                             <Badge variant="outline" className="text-xs">
                               {STATUS_LABELS[entry.previousStatus as keyof typeof STATUS_LABELS]}
                             </Badge>
-                            <ArrowRight className="h-3 w-3 text-gray-400" />
+                            <ArrowRight className="h-3 w-3 text-muted-foreground/80" />
                           </>
                         )}
                         <Badge className={`text-xs ${statusColor.replace('text-', 'bg-').replace('-600', '-100')} ${statusColor.replace('-600', '-800')} border-${statusColor.replace('text-', '').replace('-600', '-200')}`}>
@@ -158,7 +158,7 @@ export default function AwarenessSessionStatusHistory({
                         </Badge>
                       </div>
 
-                      <div className="text-sm text-gray-600 mb-1">
+                      <div className="text-sm text-muted-foreground mb-1">
                         <div className="flex items-center gap-1">
                           <User className="h-3 w-3" />
                           <span>Changed by system user</span>
@@ -166,15 +166,15 @@ export default function AwarenessSessionStatusHistory({
                       </div>
 
                       {entry.notes && (
-                        <div className="text-sm text-gray-700 bg-gray-50 p-2 rounded border-l-2 border-gray-300">
+                        <div className="text-sm text-foreground/80 bg-muted/50 p-2 rounded border-l-2 border-border">
                           <div className="flex items-start gap-1">
-                            <FileText className="h-3 w-3 mt-0.5 text-gray-400" />
+                            <FileText className="h-3 w-3 mt-0.5 text-muted-foreground/80" />
                             <span className="whitespace-pre-wrap">{entry.notes}</span>
                           </div>
                         </div>
                       )}
 
-                      <div className="text-xs text-gray-500 mt-1">
+                      <div className="text-xs text-muted-foreground mt-1">
                         {new Date(entry.createdAt).toLocaleDateString()} at{' '}
                         {new Date(entry.createdAt).toLocaleTimeString()}
                       </div>

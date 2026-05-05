@@ -45,24 +45,24 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({ completed, total,
   return (
     <div className={`flex items-center space-x-3 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border ${isArabic ? 'flex-row-reverse space-x-reverse' : ''}`}>
       <div className="flex-shrink-0">
-        <Icon className="h-8 w-8 text-blue-600" />
+        <Icon className="h-8 w-8 text-primary" />
       </div>
       <div className="flex-1">
         <div className={`flex items-center justify-between mb-1 ${isArabic ? 'flex-row-reverse' : ''}`}>
-          <span className={`text-sm font-medium text-gray-900 capitalize ${languageClasses}`}>
+          <span className={`text-sm font-medium text-foreground capitalize ${languageClasses}`}>
             {getTypeLabel()}
           </span>
-          <span className="text-sm text-gray-600">
+          <span className="text-sm text-muted-foreground">
             {completed}/{total}
           </span>
         </div>
-        <div className="w-full bg-gray-200 rounded-full h-2">
+        <div className="w-full bg-muted/80 rounded-full h-2">
           <div
-            className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+            className="bg-primary h-2 rounded-full transition-all duration-300"
             style={{ width: `${percentage}%` }}
           />
         </div>
-        <span className={`text-xs text-gray-500 mt-1 ${languageClasses}`}>
+        <span className={`text-xs text-muted-foreground mt-1 ${languageClasses}`}>
           {getCompletionText()}
         </span>
       </div>
@@ -169,8 +169,8 @@ export const AwarenessLabTab: React.FC = () => {
     return (
       <div className="space-y-4" dir={direction}>
         <div className="flex items-center justify-center py-8">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-          <span className={`ml-3 text-gray-600 ${languageClasses} ${isArabic ? 'mr-3 ml-0' : ''}`}>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary/50"></div>
+          <span className={`ml-3 text-muted-foreground ${languageClasses} ${isArabic ? 'mr-3 ml-0' : ''}`}>
             {isArabic ? 'جاري تحميل معلومات المستخدم...' : 'Loading user information...'}
           </span>
         </div>
@@ -216,28 +216,28 @@ export const AwarenessLabTab: React.FC = () => {
     <div className="space-y-6" dir={direction}>
       {/* Role-based Welcome Message */}
       {user && (
-        <div className={`bg-gradient-to-r ${isExpert ? 'from-purple-50 to-indigo-50 border-purple-200' : 'from-blue-50 to-cyan-50 border-blue-200'} border rounded-lg p-4`}>
+        <div className={`bg-gradient-to-r ${isExpert ? 'from-purple-50 to-indigo-50 border-primary/50' : 'from-blue-50 to-cyan-50 border-primary/50'} border rounded-lg p-4`}>
           <div className={`flex items-center justify-between ${isArabic ? 'flex-row-reverse' : ''}`}>
             <div className={`flex items-center space-x-3 ${isArabic ? 'flex-row-reverse space-x-reverse' : ''}`}>
-              <div className={`p-2 rounded-full ${isExpert ? 'bg-purple-100' : 'bg-blue-100'}`}>
+              <div className={`p-2 rounded-full ${isExpert ? 'bg-primary/10' : 'bg-primary/10'}`}>
                 {isExpert ? (
-                  <Brain className={`h-5 w-5 ${isExpert ? 'text-purple-600' : 'text-blue-600'}`} />
+                  <Brain className={`h-5 w-5 ${isExpert ? 'text-accent' : 'text-primary'}`} />
                 ) : (
-                  <BookOpen className="h-5 w-5 text-blue-600" />
+                  <BookOpen className="h-5 w-5 text-primary" />
                 )}
               </div>
               <div>
-                <p className={`text-sm font-medium text-gray-900 ${languageClasses}`}>
+                <p className={`text-sm font-medium text-foreground ${languageClasses}`}>
                   {isArabic ? `مرحباً ${user.firstName}` : `Welcome, ${user.firstName}`}
                 </p>
-                <p className={`text-xs text-gray-600 ${languageClasses}`}>
+                <p className={`text-xs text-muted-foreground ${languageClasses}`}>
                   {getWelcomeMessage()}
                 </p>
               </div>
             </div>
             <Badge 
               variant="outline" 
-              className={`${isExpert ? 'border-purple-300 text-purple-700 bg-purple-50' : 'border-blue-300 text-blue-700 bg-blue-50'} ${languageClasses}`}
+              className={`${isExpert ? 'border-primary/50 text-primary bg-accent/10' : 'border-primary/50 text-primary bg-primary/10'} ${languageClasses}`}
             >
               {isArabic ? (
                 isExpert ? 'خبير' : isCustomer ? 'عميل' : 'مدير'

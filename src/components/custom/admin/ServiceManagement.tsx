@@ -354,11 +354,11 @@ export default function ServiceManagement() {
     const requestQuotes = quotes[request.id] || [];
 
     return (
-      <div key={request.id} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition-colors">
+      <div key={request.id} className="border border-border rounded-lg p-4 hover:bg-muted/50 transition-colors">
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
           <div className="flex-1 space-y-2">
             <div className="flex items-center gap-2 flex-wrap">
-              <h3 className="font-semibold text-gray-900">{request.title || 'Service Request'}</h3>
+              <h3 className="font-semibold text-foreground">{request.title || 'Service Request'}</h3>
               {getStatusBadge(request.status)}
               {getPriorityBadge(request.priority)}
 
@@ -366,19 +366,19 @@ export default function ServiceManagement() {
               {buttonVisibility.showQuoteStatus && (
                 <>
                   {buttonVisibility.quoteStatusInfo.hasAcceptedQuote && (
-                    <Badge className="bg-green-100 text-green-800">
+                    <Badge className="bg-secondary/10 text-secondary">
                       <CheckCircle2 size={12} className="mr-1" />
                       Quote Accepted
                     </Badge>
                   )}
                   {buttonVisibility.quoteStatusInfo.hasActiveQuote && !buttonVisibility.quoteStatusInfo.hasAcceptedQuote && (
-                    <Badge className="bg-yellow-100 text-yellow-800">
+                    <Badge className="bg-accent/10 text-accent">
                       <Clock size={12} className="mr-1" />
                       Quote Pending
                     </Badge>
                   )}
                   {requestQuotes.length > 0 && !buttonVisibility.quoteStatusInfo.hasActiveQuote && !buttonVisibility.quoteStatusInfo.hasAcceptedQuote && (
-                    <Badge className="bg-gray-100 text-gray-800">
+                    <Badge className="bg-muted text-foreground">
                       <X size={12} className="mr-1" />
                       Quote Rejected
                     </Badge>
@@ -387,7 +387,7 @@ export default function ServiceManagement() {
               )}
             </div>
 
-            <div className="text-sm text-gray-600 space-y-1">
+            <div className="text-sm text-muted-foreground space-y-1">
               <div className="flex items-center gap-2">
                 <User size={14} />
                 <span>{request.customerName} ({request.customerEmail})</span>
@@ -406,7 +406,7 @@ export default function ServiceManagement() {
               {/* Quote information */}
               {buttonVisibility.showQuoteStatus && buttonVisibility.quoteStatusInfo.latestQuote && (
                 <div className="flex items-center gap-2">
-                  <span className="text-[10px] font-semibold text-green-700">₹</span>
+                  <span className="text-[10px] font-semibold text-secondary">₹</span>
                   <span>
                     Latest Quote: {buttonVisibility.quoteStatusInfo.latestQuote.quotedPrice} {buttonVisibility.quoteStatusInfo.latestQuote.currency}
                     {requestQuotes.length > 1 && ` (${requestQuotes.length} total)`}
@@ -416,7 +416,7 @@ export default function ServiceManagement() {
             </div>
 
             {request.description && (
-              <p className="text-sm text-gray-700 line-clamp-2">
+              <p className="text-sm text-foreground/80 line-clamp-2">
                 {request.description}
               </p>
             )}
@@ -444,7 +444,7 @@ export default function ServiceManagement() {
                   setSelectedRequest(request);
                   setShowQuoteModal(true);
                 }}
-                className="border-green-200 text-green-600 hover:bg-green-50"
+                className="border-secondary/50 text-secondary hover:bg-secondary/10"
                 title="Create a new quote for this service request"
               >
                 <span className="text-[10px] font-semibold mr-1">₹</span>
@@ -477,7 +477,7 @@ export default function ServiceManagement() {
                   setSelectedRequest(request);
                   setShowDeleteModal(true);
                 }}
-                className="border-red-200 text-red-600 hover:bg-red-50"
+                className="border-destructive text-destructive hover:bg-destructive/10"
                 title="Delete this service request"
               >
                 <Trash2 size={16} className="mr-1" />
@@ -493,7 +493,7 @@ export default function ServiceManagement() {
                   setSelectedRequest(request);
                   setShowManageModal(true);
                 }}
-                className="border-blue-200 text-blue-600 hover:bg-blue-50"
+                className="border-primary/50 text-primary hover:bg-primary/10"
                 title="Manage this assigned service request"
               >
                 <UserCheck size={16} className="mr-1" />
@@ -519,26 +519,26 @@ export default function ServiceManagement() {
       // Multiple requests - create collapsible group
       return (
         <Collapsible key={customerEmail} open={isOpen} onOpenChange={() => toggleGroup(customerEmail)}>
-          <div className="border border-gray-200 rounded-lg overflow-hidden bg-gradient-to-r from-blue-50 to-indigo-50">
+          <div className="border border-border rounded-lg overflow-hidden bg-gradient-to-r from-blue-50 to-indigo-50">
             <CollapsibleTrigger asChild>
               <div className="w-full p-4 hover:from-blue-100 hover:to-indigo-100 transition-all duration-200 cursor-pointer">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="flex items-center gap-1 transition-transform duration-200">
-                      {isOpen ? <ChevronDown size={16} className="text-blue-600" /> : <ChevronRight size={16} className="text-blue-600" />}
+                      {isOpen ? <ChevronDown size={16} className="text-primary" /> : <ChevronRight size={16} className="text-primary" />}
                     </div>
                     <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                        <User size={16} className="text-blue-600" />
+                      <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                        <User size={16} className="text-primary" />
                       </div>
                       <div>
-                        <span className="font-semibold text-gray-900">{group.customer.name}</span>
-                        <div className="text-sm text-gray-600">{group.customer.email}</div>
+                        <span className="font-semibold text-foreground">{group.customer.name}</span>
+                        <div className="text-sm text-muted-foreground">{group.customer.email}</div>
                       </div>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Badge className="bg-yellow-100 text-yellow-800 border border-yellow-200 shadow-sm">
+                    <Badge className="bg-accent/10 text-accent border border-accent/50 shadow-sm">
                       <Clock size={12} className="mr-1" />
                       {requestCount} Unassigned Task{requestCount > 1 ? 's' : ''}
                     </Badge>
@@ -548,18 +548,18 @@ export default function ServiceManagement() {
             </CollapsibleTrigger>
 
             <CollapsibleContent>
-              <div className="border-t border-gray-200">
-                <div className="p-4 space-y-3 bg-gray-50">
+              <div className="border-t border-border">
+                <div className="p-4 space-y-3 bg-muted/50">
                   {group.requests.map((request, index) => (
-                    <div key={request.id} className="bg-white rounded-lg p-3 border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-200">
+                    <div key={request.id} className="bg-card rounded-lg p-3 border border-border shadow-sm hover:shadow-md transition-shadow duration-200">
                       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-3">
                         <div className="flex-1 space-y-2">
                           <div className="flex items-center gap-2 flex-wrap">
-                            <h4 className="font-medium text-gray-900">{request.title || 'Service Request'}</h4>
+                            <h4 className="font-medium text-foreground">{request.title || 'Service Request'}</h4>
                             {getPriorityBadge(request.priority)}
                           </div>
 
-                          <div className="text-sm text-gray-600">
+                          <div className="text-sm text-muted-foreground">
                             <div className="flex items-center gap-2">
                               <Calendar size={12} />
                               <span>Created: {format(new Date(request.createdAt), 'MMM dd, yyyy HH:mm')}</span>
@@ -573,7 +573,7 @@ export default function ServiceManagement() {
                           </div>
 
                           {request.description && (
-                            <p className="text-sm text-gray-700 line-clamp-2 bg-gray-50 p-2 rounded">
+                            <p className="text-sm text-foreground/80 line-clamp-2 bg-muted/50 p-2 rounded">
                               {request.description}
                             </p>
                           )}
@@ -604,7 +604,7 @@ export default function ServiceManagement() {
                                       setSelectedRequest(request);
                                       setShowQuoteModal(true);
                                     }}
-                                    className="border-green-200 text-green-600 hover:bg-green-50"
+                                    className="border-secondary/50 text-secondary hover:bg-secondary/10"
                                     title="Create a new quote for this service request"
                                   >
                                     <span className="text-[10px] font-semibold mr-1">₹</span>
@@ -619,7 +619,7 @@ export default function ServiceManagement() {
                                       setSelectedRequest(request);
                                       setShowAssignModal(true);
                                     }}
-                                    className="bg-blue-600 hover:bg-blue-700"
+                                    className="bg-primary hover:bg-primary"
                                     title={buttonVisibility.quoteStatusInfo.hasActiveQuote ?
                                       "Assign expert to handle the quoted service" :
                                       "Assign expert to this service request"
@@ -638,7 +638,7 @@ export default function ServiceManagement() {
                                       setSelectedRequest(request);
                                       setShowDeleteModal(true);
                                     }}
-                                    className="border-red-200 text-red-600 hover:bg-red-50"
+                                    className="border-destructive text-destructive hover:bg-destructive/10"
                                     title="Delete this service request"
                                   >
                                     <Trash2 size={14} className="mr-1" />
@@ -654,7 +654,7 @@ export default function ServiceManagement() {
                                       setSelectedRequest(request);
                                       setShowManageModal(true);
                                     }}
-                                    className="border-blue-200 text-blue-600 hover:bg-blue-50"
+                                    className="border-primary/50 text-primary hover:bg-primary/10"
                                     title="Manage this assigned service request"
                                   >
                                     <UserCheck size={14} className="mr-1" />
@@ -679,12 +679,12 @@ export default function ServiceManagement() {
 
                     if (assignableRequests.length > 1) {
                       return (
-                        <div className="mt-4 pt-3 border-t border-gray-200">
+                        <div className="mt-4 pt-3 border-t border-border">
                           <div className="flex justify-between items-center">
-                            <div className="text-sm text-gray-600">
+                            <div className="text-sm text-muted-foreground">
                               <span>Assign {assignableRequests.length} tasks to the same expert?</span>
                               {hasQuotedRequests && (
-                                <div className="text-xs text-blue-600 mt-1">
+                                <div className="text-xs text-primary mt-1">
                                   Some requests have active quotes
                                 </div>
                               )}
@@ -696,7 +696,7 @@ export default function ServiceManagement() {
                                 setSelectedRequest(assignableRequests[0]);
                                 setShowAssignModal(true);
                               }}
-                              className="border-blue-200 text-blue-600 hover:bg-blue-50"
+                              className="border-primary/50 text-primary hover:bg-primary/10"
                             >
                               <UserPlus size={14} className="mr-1" />
                               Bulk Assign
@@ -723,14 +723,14 @@ export default function ServiceManagement() {
 
   const getStatusBadge = (status: string) => {
     const statusConfig = {
-      pending: { color: 'bg-yellow-100 text-yellow-800', icon: Clock, label: 'Pending' },
-      assigned: { color: 'bg-blue-100 text-blue-800', icon: UserCheck, label: 'Assigned' },
-      accepted: { color: 'bg-cyan-100 text-cyan-800', icon: UserCheck, label: 'Accepted' },
-      in_progress: { color: 'bg-orange-100 text-orange-800', icon: AlertCircle, label: 'In Progress' },
-      completed: { color: 'bg-green-100 text-green-800', icon: CheckCircle2, label: 'Completed' },
-      pending_closure: { color: 'bg-purple-100 text-purple-800', icon: Clock, label: 'Pending Closure' },
-      closed: { color: 'bg-gray-100 text-gray-800', icon: CheckCircle2, label: 'Closed' },
-      cancelled: { color: 'bg-red-100 text-red-800', icon: X, label: 'Cancelled' },
+      pending: { color: 'bg-accent/10 text-accent', icon: Clock, label: 'Pending' },
+      assigned: { color: 'bg-primary/10 text-primary', icon: UserCheck, label: 'Assigned' },
+      accepted: { color: 'bg-accent/10 text-accent', icon: UserCheck, label: 'Accepted' },
+      in_progress: { color: 'bg-accent/10 text-accent', icon: AlertCircle, label: 'In Progress' },
+      completed: { color: 'bg-secondary/10 text-secondary', icon: CheckCircle2, label: 'Completed' },
+      pending_closure: { color: 'bg-primary/10 text-primary', icon: Clock, label: 'Pending Closure' },
+      closed: { color: 'bg-muted text-foreground', icon: CheckCircle2, label: 'Closed' },
+      cancelled: { color: 'bg-destructive/10 text-destructive', icon: X, label: 'Cancelled' },
     };
 
     const config = statusConfig[status as keyof typeof statusConfig] || statusConfig.pending;
@@ -748,11 +748,11 @@ export default function ServiceManagement() {
     if (!priority) return null;
 
     const priorityConfig = {
-      emergency: 'bg-red-500 text-white',
-      urgent: 'bg-red-100 text-red-800',
-      high: 'bg-orange-100 text-orange-800',
-      normal: 'bg-blue-100 text-blue-800',
-      low: 'bg-gray-100 text-gray-800',
+      emergency: 'bg-destructive text-white',
+      urgent: 'bg-destructive/10 text-destructive',
+      high: 'bg-accent/10 text-accent',
+      normal: 'bg-primary/10 text-primary',
+      low: 'bg-muted text-foreground',
     };
 
     return (
@@ -765,7 +765,7 @@ export default function ServiceManagement() {
   if (loading) {
     return (
       <div className="flex items-center justify-center p-8">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary/50"></div>
       </div>
     );
   }
@@ -773,9 +773,9 @@ export default function ServiceManagement() {
   if (error) {
     return (
       <div className="p-4">
-        <Card className="border-red-200">
+        <Card className="border-destructive">
           <CardContent className="pt-6">
-            <p className="text-red-600">{error}</p>
+            <p className="text-destructive">{error}</p>
           </CardContent>
         </Card>
       </div>
@@ -786,8 +786,8 @@ export default function ServiceManagement() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h3 className="text-xl font-semibold text-gray-900">Service Requests</h3>
-          <p className="text-gray-600">Manage and assign service requests to experts</p>
+          <h3 className="text-xl font-semibold text-foreground">Service Requests</h3>
+          <p className="text-muted-foreground">Manage and assign service requests to experts</p>
         </div>
         <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
           {/* Expand/Collapse All Groups */}
@@ -808,7 +808,7 @@ export default function ServiceManagement() {
                       setOpenGroups(new Set(Object.keys(groupedUnassigned)));
                     }
                   }}
-                  className="border-blue-200 text-blue-600 hover:bg-blue-50"
+                  className="border-primary/50 text-primary hover:bg-primary/10"
                 >
                   {allExpanded ? 'Collapse All Groups' : 'Expand All Groups'}
                 </Button>
@@ -856,10 +856,10 @@ export default function ServiceManagement() {
           <CardContent className="pt-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Total Requests</p>
-                <p className="text-2xl font-bold text-gray-900">{totalRequests}</p>
+                <p className="text-sm font-medium text-muted-foreground">Total Requests</p>
+                <p className="text-2xl font-bold text-foreground">{totalRequests}</p>
               </div>
-              <Calendar className="h-8 w-8 text-blue-600" />
+              <Calendar className="h-8 w-8 text-primary" />
             </div>
           </CardContent>
         </Card>
@@ -867,12 +867,12 @@ export default function ServiceManagement() {
           <CardContent className="pt-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Pending</p>
-                <p className="text-2xl font-bold text-yellow-600">
+                <p className="text-sm font-medium text-muted-foreground">Pending</p>
+                <p className="text-2xl font-bold text-accent">
                   {requests.filter(r => r.status === 'pending').length}
                 </p>
               </div>
-              <Clock className="h-8 w-8 text-yellow-600" />
+              <Clock className="h-8 w-8 text-accent" />
             </div>
           </CardContent>
         </Card>
@@ -880,12 +880,12 @@ export default function ServiceManagement() {
           <CardContent className="pt-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Active Work</p>
-                <p className="text-2xl font-bold text-orange-600">
+                <p className="text-sm font-medium text-muted-foreground">Active Work</p>
+                <p className="text-2xl font-bold text-accent">
                   {requests.filter(r => ['assigned', 'accepted', 'in_progress'].includes(r.status)).length}
                 </p>
               </div>
-              <AlertCircle className="h-8 w-8 text-orange-600" />
+              <AlertCircle className="h-8 w-8 text-accent" />
             </div>
           </CardContent>
         </Card>
@@ -893,12 +893,12 @@ export default function ServiceManagement() {
           <CardContent className="pt-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Pending Closure</p>
-                <p className="text-2xl font-bold text-purple-600">
+                <p className="text-sm font-medium text-muted-foreground">Pending Closure</p>
+                <p className="text-2xl font-bold text-accent">
                   {requests.filter(r => r.status === 'pending_closure').length}
                 </p>
               </div>
-              <Clock className="h-8 w-8 text-purple-600" />
+              <Clock className="h-8 w-8 text-accent" />
             </div>
           </CardContent>
         </Card>
@@ -906,12 +906,12 @@ export default function ServiceManagement() {
           <CardContent className="pt-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Closed</p>
-                <p className="text-2xl font-bold text-gray-600">
+                <p className="text-sm font-medium text-muted-foreground">Closed</p>
+                <p className="text-2xl font-bold text-muted-foreground">
                   {requests.filter(r => r.status === 'closed').length}
                 </p>
               </div>
-              <CheckCircle2 className="h-8 w-8 text-gray-600" />
+              <CheckCircle2 className="h-8 w-8 text-muted-foreground" />
             </div>
           </CardContent>
         </Card>
@@ -919,12 +919,12 @@ export default function ServiceManagement() {
           <CardContent className="pt-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Completed</p>
-                <p className="text-2xl font-bold text-green-600">
+                <p className="text-sm font-medium text-muted-foreground">Completed</p>
+                <p className="text-2xl font-bold text-secondary">
                   {requests.filter(r => r.status === 'completed').length}
                 </p>
               </div>
-              <CheckCircle2 className="h-8 w-8 text-green-600" />
+              <CheckCircle2 className="h-8 w-8 text-secondary" />
             </div>
           </CardContent>
         </Card>
@@ -942,7 +942,7 @@ export default function ServiceManagement() {
         <CardContent>
           <div className="space-y-4">
             {requests.length === 0 ? (
-              <p className="text-center text-gray-500 py-8">No service requests found</p>
+              <p className="text-center text-muted-foreground py-8">No service requests found</p>
             ) : (
               (() => {
                 const { groupedUnassigned, assignedAndOtherRequests } = groupRequestsByCustomer();
@@ -971,7 +971,7 @@ export default function ServiceManagement() {
               >
                 Previous
               </Button>
-              <span className="text-sm text-gray-600">
+              <span className="text-sm text-muted-foreground">
                 Page {currentPage} of {totalPages}
               </span>
               <Button
@@ -999,9 +999,9 @@ export default function ServiceManagement() {
 
           {selectedRequest && (
             <div className="space-y-4">
-              <div className="bg-gray-50 p-3 rounded-lg">
+              <div className="bg-muted/50 p-3 rounded-lg">
                 <h4 className="font-medium">{selectedRequest.title}</h4>
-                <p className="text-sm text-gray-600">{selectedRequest.customerName}</p>
+                <p className="text-sm text-muted-foreground">{selectedRequest.customerName}</p>
               </div>
 
               <div className="space-y-2">
@@ -1054,12 +1054,12 @@ export default function ServiceManagement() {
             <div className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-sm font-medium text-gray-600">Customer</label>
+                  <label className="text-sm font-medium text-muted-foreground">Customer</label>
                   <p className="text-sm">{selectedRequest.customerName}</p>
-                  <p className="text-sm text-gray-500">{selectedRequest.customerEmail}</p>
+                  <p className="text-sm text-muted-foreground">{selectedRequest.customerEmail}</p>
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-gray-600">Status</label>
+                  <label className="text-sm font-medium text-muted-foreground">Status</label>
                   <div className="mt-1">
                     {getStatusBadge(selectedRequest.status)}
                   </div>
@@ -1068,20 +1068,20 @@ export default function ServiceManagement() {
 
               {selectedRequest.expertName && (
                 <div>
-                  <label className="text-sm font-medium text-gray-600">Assigned Expert</label>
+                  <label className="text-sm font-medium text-muted-foreground">Assigned Expert</label>
                   <p className="text-sm">{selectedRequest.expertName}</p>
-                  <p className="text-sm text-gray-500">{selectedRequest.expertEmail}</p>
+                  <p className="text-sm text-muted-foreground">{selectedRequest.expertEmail}</p>
                 </div>
               )}
 
               <div>
-                <label className="text-sm font-medium text-gray-600">Service Type</label>
+                <label className="text-sm font-medium text-muted-foreground">Service Type</label>
                 <p className="text-sm">{selectedRequest.serviceType || 'General Consultation'}</p>
               </div>
 
               {selectedRequest.priority && (
                 <div>
-                  <label className="text-sm font-medium text-gray-600">Priority</label>
+                  <label className="text-sm font-medium text-muted-foreground">Priority</label>
                   <div className="mt-1">
                     {getPriorityBadge(selectedRequest.priority)}
                   </div>
@@ -1090,14 +1090,14 @@ export default function ServiceManagement() {
 
               {selectedRequest.description && (
                 <div>
-                  <label className="text-sm font-medium text-gray-600">Description</label>
-                  <p className="text-sm bg-gray-50 p-3 rounded-lg whitespace-pre-wrap">
+                  <label className="text-sm font-medium text-muted-foreground">Description</label>
+                  <p className="text-sm bg-muted/50 p-3 rounded-lg whitespace-pre-wrap">
                     {selectedRequest.description}
                   </p>
                 </div>
               )}
 
-              <div className="grid grid-cols-2 gap-4 text-xs text-gray-500">
+              <div className="grid grid-cols-2 gap-4 text-xs text-muted-foreground">
                 <div>
                   <label className="font-medium">Created At</label>
                   <p>{format(new Date(selectedRequest.createdAt), 'MMM dd, yyyy HH:mm')}</p>
@@ -1124,7 +1124,7 @@ export default function ServiceManagement() {
       <Dialog open={showDeleteModal} onOpenChange={setShowDeleteModal}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-red-600">Delete Service Request</DialogTitle>
+            <DialogTitle className="text-destructive">Delete Service Request</DialogTitle>
             <DialogDescription>
               Are you sure you want to delete this service request? This action cannot be undone.
             </DialogDescription>
@@ -1132,14 +1132,14 @@ export default function ServiceManagement() {
 
           {selectedRequest && (
             <div className="space-y-4">
-              <div className="bg-red-50 border border-red-200 p-3 rounded-lg">
-                <h4 className="font-medium text-red-800">{selectedRequest.title}</h4>
-                <p className="text-sm text-red-600">Customer: {selectedRequest.customerName}</p>
-                <p className="text-sm text-red-600">Email: {selectedRequest.customerEmail}</p>
+              <div className="bg-destructive/10 border border-destructive p-3 rounded-lg">
+                <h4 className="font-medium text-destructive">{selectedRequest.title}</h4>
+                <p className="text-sm text-destructive">Customer: {selectedRequest.customerName}</p>
+                <p className="text-sm text-destructive">Email: {selectedRequest.customerEmail}</p>
               </div>
 
-              <div className="bg-amber-50 border border-amber-200 p-3 rounded-lg">
-                <p className="text-sm text-amber-800">
+              <div className="bg-accent/10 border border-accent/50 p-3 rounded-lg">
+                <p className="text-sm text-accent">
                   <strong>Note:</strong> Only pending service requests can be deleted.
                   Requests that have been assigned to experts cannot be deleted.
                 </p>

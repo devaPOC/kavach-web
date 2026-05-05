@@ -244,7 +244,7 @@ export default function QuizDuplicateDialog({
       <Dialog open={open} onOpenChange={onOpenChange}>
         <DialogContent className="max-w-md">
           <div className="flex items-center justify-center py-8">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary/50"></div>
             <span className="ml-3">Loading quiz details...</span>
           </div>
         </DialogContent>
@@ -267,33 +267,33 @@ export default function QuizDuplicateDialog({
 
         <div className="space-y-6">
           {/* Original Quiz Information */}
-          <div className="p-4 bg-gray-50 rounded-lg border">
+          <div className="p-4 bg-muted/50 rounded-lg border">
             <div className="flex items-center gap-2 mb-3">
-              <FileText className="h-4 w-4 text-gray-500" />
-              <span className="font-medium text-gray-700">Original Quiz</span>
+              <FileText className="h-4 w-4 text-muted-foreground" />
+              <span className="font-medium text-foreground/80">Original Quiz</span>
             </div>
             
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div>
-                <div className="text-gray-500">Title</div>
+                <div className="text-muted-foreground">Title</div>
                 <div className="font-medium">{quiz.title}</div>
               </div>
               
               <div>
-                <div className="text-gray-500">Questions</div>
+                <div className="text-muted-foreground">Questions</div>
                 <div className="font-medium">{quiz.questionCount}</div>
               </div>
               
               <div>
-                <div className="text-gray-500">Language</div>
+                <div className="text-muted-foreground">Language</div>
                 <Badge className={quiz.language === 'ar' ? 
-                  'bg-purple-100 text-purple-800' : 'bg-blue-100 text-blue-800'}>
+                  'bg-primary/10 text-primary' : 'bg-primary/10 text-primary'}>
                   {quiz.language === 'ar' ? 'Arabic' : 'English'}
                 </Badge>
               </div>
               
               <div>
-                <div className="text-gray-500">Settings</div>
+                <div className="text-muted-foreground">Settings</div>
                 <div className="font-medium">{quiz.timeLimitMinutes}min, {quiz.maxAttempts} attempts</div>
               </div>
             </div>
@@ -314,7 +314,7 @@ export default function QuizDuplicateDialog({
               </Label>
             </div>
             
-            <div className="text-xs text-gray-500 ml-6">
+            <div className="text-xs text-muted-foreground ml-6">
               {formData.copyQuestions 
                 ? `Will copy all ${quiz.questionCount} questions with their answers and explanations`
                 : 'Will create an empty quiz with the same settings'
@@ -334,7 +334,7 @@ export default function QuizDuplicateDialog({
               </Label>
             </div>
             
-            <div className="text-xs text-gray-500 ml-6">
+            <div className="text-xs text-muted-foreground ml-6">
               Creates a reusable template based on this quiz's structure and settings
             </div>
           </div>
@@ -398,7 +398,7 @@ export default function QuizDuplicateDialog({
               <div className="space-y-2">
                 <Label htmlFor="timeLimit">Time Limit (min) *</Label>
                 <div className="flex items-center gap-2">
-                  <Clock className="h-4 w-4 text-gray-400" />
+                  <Clock className="h-4 w-4 text-muted-foreground/80" />
                   <Input
                     id="timeLimit"
                     type="number"
@@ -416,7 +416,7 @@ export default function QuizDuplicateDialog({
               <div className="space-y-2">
                 <Label htmlFor="maxAttempts">Max Attempts *</Label>
                 <div className="flex items-center gap-2">
-                  <Users className="h-4 w-4 text-gray-400" />
+                  <Users className="h-4 w-4 text-muted-foreground/80" />
                   <Input
                     id="maxAttempts"
                     type="number"
@@ -435,10 +435,10 @@ export default function QuizDuplicateDialog({
 
           {/* Template Settings */}
           {formData.createAsTemplate && (
-            <div className="space-y-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <div className="space-y-4 p-4 bg-primary/10 rounded-lg border border-primary/50">
               <div className="flex items-center gap-2">
-                <Template className="h-4 w-4 text-blue-600" />
-                <span className="font-medium text-blue-800">Template Settings</span>
+                <Template className="h-4 w-4 text-primary" />
+                <span className="font-medium text-primary">Template Settings</span>
               </div>
               
               <div className="space-y-2">
@@ -456,8 +456,8 @@ export default function QuizDuplicateDialog({
 
           {/* Error Display */}
           {error && (
-            <div className="p-3 bg-red-50 border border-red-200 rounded-md">
-              <p className="text-sm text-red-600">{error}</p>
+            <div className="p-3 bg-destructive/10 border border-destructive rounded-md">
+              <p className="text-sm text-destructive">{error}</p>
             </div>
           )}
 

@@ -399,25 +399,25 @@ export function AwarenessSessionRequestDetails({
               </CardHeader>
               <CardContent className="space-y-4">
                 {request.adminNotes && (
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                    <div className="text-blue-800 font-medium mb-2">Admin Notes</div>
-                    <p className="text-sm text-blue-700">{request.adminNotes}</p>
+                  <div className="bg-primary/10 border border-primary/50 rounded-lg p-4">
+                    <div className="text-primary font-medium mb-2">Admin Notes</div>
+                    <p className="text-sm text-primary">{request.adminNotes}</p>
                   </div>
                 )}
 
                 {request.expertNotes && (
-                  <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                    <div className="text-green-800 font-medium mb-2">Expert Notes</div>
-                    <p className="text-sm text-green-700">{request.expertNotes}</p>
+                  <div className="bg-secondary/10 border border-secondary/50 rounded-lg p-4">
+                    <div className="text-secondary font-medium mb-2">Expert Notes</div>
+                    <p className="text-sm text-secondary">{request.expertNotes}</p>
                   </div>
                 )}
 
                 {request.rejectionReason && (
-                  <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                    <div className="text-red-800 font-medium mb-2">
+                  <div className="bg-destructive/10 border border-destructive rounded-lg p-4">
+                    <div className="text-destructive font-medium mb-2">
                       {request.status === 'rejected' ? 'Rejection Reason' : 'Expert Declined'}
                     </div>
-                    <p className="text-sm text-red-700">{request.rejectionReason}</p>
+                    <p className="text-sm text-destructive">{request.rejectionReason}</p>
                   </div>
                 )}
               </CardContent>
@@ -443,9 +443,9 @@ export function AwarenessSessionRequestDetails({
                 {statusHistory.map((entry, index) => (
                   <div key={entry.id} className="flex gap-3">
                     <div className="flex flex-col items-center">
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center ${entry.newStatus === 'confirmed' ? 'bg-green-100 text-green-600' :
-                          entry.newStatus === 'rejected' || entry.newStatus === 'expert_declined' ? 'bg-red-100 text-red-600' :
-                            'bg-blue-100 text-blue-600'
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center ${entry.newStatus === 'confirmed' ? 'bg-secondary/10 text-secondary' :
+                          entry.newStatus === 'rejected' || entry.newStatus === 'expert_declined' ? 'bg-destructive/10 text-destructive' :
+                            'bg-primary/10 text-primary'
                         }`}>
                         {getStatusIcon(entry.newStatus)}
                       </div>
@@ -483,9 +483,9 @@ export function AwarenessSessionRequestDetails({
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                    <div className="text-green-800 font-medium mb-2">Session Confirmed</div>
-                    <p className="text-sm text-green-700">
+                  <div className="bg-secondary/10 border border-secondary/50 rounded-lg p-4">
+                    <div className="text-secondary font-medium mb-2">Session Confirmed</div>
+                    <p className="text-sm text-secondary">
                       Your awareness session has been confirmed. Expert contact details
                       and session materials will be shared via email closer to the session date.
                     </p>

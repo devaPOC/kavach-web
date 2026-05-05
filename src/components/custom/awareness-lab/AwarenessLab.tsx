@@ -70,7 +70,7 @@ const QuizCard: React.FC<QuizCardProps> = ({ quiz, attempts, onStartQuiz, isStar
     }
     if (bestScore !== null && bestScore >= 70) {
       return {
-        badge: <Badge variant="default" className="bg-green-500 text-white">
+        badge: <Badge variant="default" className="bg-secondary text-white">
           <Trophy className="h-3 w-3" />
           {language === 'ar' ? 'نجح' : 'Passed'}
         </Badge>,
@@ -95,11 +95,11 @@ const QuizCard: React.FC<QuizCardProps> = ({ quiz, attempts, onStartQuiz, isStar
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1 min-w-0" dir={textDirection}>
-            <CardTitle className={`text-lg font-semibold text-gray-900 mb-1 ${languageClasses}`}>
+            <CardTitle className={`text-lg font-semibold text-foreground mb-1 ${languageClasses}`}>
               {quiz.title}
             </CardTitle>
             {quiz.description && (
-              <p className={`text-sm text-gray-600 line-clamp-2 ${languageClasses}`}>
+              <p className={`text-sm text-muted-foreground line-clamp-2 ${languageClasses}`}>
                 {quiz.description}
               </p>
             )}
@@ -110,7 +110,7 @@ const QuizCard: React.FC<QuizCardProps> = ({ quiz, attempts, onStartQuiz, isStar
 
       <CardContent className="pt-0 space-y-4">
         {/* Quiz Metadata */}
-        <div className="flex items-center justify-between text-sm text-gray-600">
+        <div className="flex items-center justify-between text-sm text-muted-foreground">
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-1">
               <Clock className="h-4 w-4" />
@@ -129,13 +129,13 @@ const QuizCard: React.FC<QuizCardProps> = ({ quiz, attempts, onStartQuiz, isStar
 
         {/* End Date Information */}
         {quiz.endDate && (
-          <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
+          <div className="bg-accent/10 border border-accent/50 rounded-lg p-3">
             <div className={`flex items-center space-x-2 text-sm ${isArabic ? 'flex-row-reverse space-x-reverse' : ''}`}>
-              <AlertCircle className="h-4 w-4 text-amber-600" />
-              <span className={`text-amber-800 font-medium ${languageClasses}`}>
+              <AlertCircle className="h-4 w-4 text-accent" />
+              <span className={`text-accent font-medium ${languageClasses}`}>
                 {language === 'ar' ? 'ينتهي في:' : 'Ends on:'}
               </span>
-              <span className="text-amber-700">
+              <span className="text-accent">
                 {new Date(quiz.endDate).toLocaleDateString(language === 'ar' ? 'ar-SA' : 'en-US', {
                   year: 'numeric',
                   month: 'long',
@@ -150,23 +150,23 @@ const QuizCard: React.FC<QuizCardProps> = ({ quiz, attempts, onStartQuiz, isStar
 
         {/* Attempt Statistics */}
         {completedAttempts.length > 0 && (
-          <div className="bg-gray-50 rounded-lg p-3 space-y-2">
+          <div className="bg-muted/50 rounded-lg p-3 space-y-2">
             <div className={`flex items-center justify-between text-sm ${isArabic ? 'flex-row-reverse' : ''}`}>
-              <span className={`text-gray-600 ${languageClasses}`}>{language === 'ar' ? 'أفضل نتيجة:' : 'Best Score:'}</span>
-              <span className={`font-semibold ${bestScore !== null && bestScore >= 70 ? 'text-green-600' : 'text-orange-600'}`}>
+              <span className={`text-muted-foreground ${languageClasses}`}>{language === 'ar' ? 'أفضل نتيجة:' : 'Best Score:'}</span>
+              <span className={`font-semibold ${bestScore !== null && bestScore >= 70 ? 'text-secondary' : 'text-accent'}`}>
                 {bestScore}%
               </span>
             </div>
             <div className={`flex items-center justify-between text-sm ${isArabic ? 'flex-row-reverse' : ''}`}>
-              <span className={`text-gray-600 ${languageClasses}`}>{language === 'ar' ? 'المحاولات:' : 'Attempts:'}</span>
-              <span className="font-medium text-gray-900">
+              <span className={`text-muted-foreground ${languageClasses}`}>{language === 'ar' ? 'المحاولات:' : 'Attempts:'}</span>
+              <span className="font-medium text-foreground">
                 {attempts.length}/{quiz.maxAttempts === -1 ? '∞' : quiz.maxAttempts}
               </span>
             </div>
             {completedAttempts.length > 1 && (
               <div className={`flex items-center justify-between text-sm ${isArabic ? 'flex-row-reverse' : ''}`}>
-                <span className={`text-gray-600 ${languageClasses}`}>{language === 'ar' ? 'متوسط النتيجة:' : 'Average Score:'}</span>
-                <span className="font-medium text-gray-900">
+                <span className={`text-muted-foreground ${languageClasses}`}>{language === 'ar' ? 'متوسط النتيجة:' : 'Average Score:'}</span>
+                <span className="font-medium text-foreground">
                   {Math.round(completedAttempts.reduce((sum, attempt) => sum + attempt.score, 0) / completedAttempts.length)}%
                 </span>
               </div>
@@ -180,7 +180,7 @@ const QuizCard: React.FC<QuizCardProps> = ({ quiz, attempts, onStartQuiz, isStar
             <Button
               onClick={() => onStartQuiz(quiz.id)}
               disabled={isStartingQuiz}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors disabled:opacity-50"
+              className="w-full bg-primary hover:bg-primary text-white font-medium transition-colors disabled:opacity-50"
               size="lg"
             >
               {isStartingQuiz ? (
@@ -197,7 +197,7 @@ const QuizCard: React.FC<QuizCardProps> = ({ quiz, attempts, onStartQuiz, isStar
             <Button
               onClick={() => onStartQuiz(quiz.id)}
               disabled={isStartingQuiz}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors disabled:opacity-50"
+              className="w-full bg-primary hover:bg-primary text-white font-medium transition-colors disabled:opacity-50"
               size="lg"
             >
               {isStartingQuiz ? (
@@ -211,21 +211,21 @@ const QuizCard: React.FC<QuizCardProps> = ({ quiz, attempts, onStartQuiz, isStar
               }
             </Button>
           ) : hasPassed ? (
-            <div className="text-center py-3 px-4 bg-green-100 rounded-lg">
-              <span className={`text-sm text-green-600 font-medium ${languageClasses}`}>
+            <div className="text-center py-3 px-4 bg-secondary/10 rounded-lg">
+              <span className={`text-sm text-secondary font-medium ${languageClasses}`}>
                 {language === 'ar' ? 'تم اجتياز الاختبار' : 'Quiz Passed'}
               </span>
-              <div className={`text-xs text-green-500 mt-1 ${languageClasses}`}>
+              <div className={`text-xs text-secondary mt-1 ${languageClasses}`}>
                 {language === 'ar' ? 'النتيجة النهائية:' : 'Final score:'} {bestScore}%
               </div>
             </div>
           ) : remainingAttempts <= 0 ? (
-            <div className="text-center py-3 px-4 bg-gray-100 rounded-lg">
-              <span className={`text-sm text-gray-600 font-medium ${languageClasses}`}>
+            <div className="text-center py-3 px-4 bg-muted rounded-lg">
+              <span className={`text-sm text-muted-foreground font-medium ${languageClasses}`}>
                 {language === 'ar' ? 'تم الوصول للحد الأقصى من المحاولات' : 'Maximum attempts reached'}
               </span>
               {bestScore !== null && (
-                <div className={`text-xs text-gray-500 mt-1 ${languageClasses}`}>
+                <div className={`text-xs text-muted-foreground mt-1 ${languageClasses}`}>
                   {language === 'ar' ? 'النتيجة النهائية:' : 'Final score:'} {bestScore}%
                 </div>
               )}
@@ -273,8 +273,8 @@ const QuizStats: React.FC<QuizStatsProps> = ({ quizzes, userQuizAttempts }) => {
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
       <Card className="text-center">
         <CardContent className="pt-4">
-          <div className="text-2xl font-bold text-blue-600">{totalQuizzes}</div>
-          <div className={`text-sm text-gray-600 ${language === 'ar' ? 'font-arabic' : ''}`}>
+          <div className="text-2xl font-bold text-primary">{totalQuizzes}</div>
+          <div className={`text-sm text-muted-foreground ${language === 'ar' ? 'font-arabic' : ''}`}>
             {language === 'ar' ? 'إجمالي الاختبارات' : 'Total Quizzes'}
           </div>
         </CardContent>
@@ -282,8 +282,8 @@ const QuizStats: React.FC<QuizStatsProps> = ({ quizzes, userQuizAttempts }) => {
 
       <Card className="text-center">
         <CardContent className="pt-4">
-          <div className="text-2xl font-bold text-green-600">{passedQuizzes}</div>
-          <div className={`text-sm text-gray-600 ${language === 'ar' ? 'font-arabic' : ''}`}>
+          <div className="text-2xl font-bold text-secondary">{passedQuizzes}</div>
+          <div className={`text-sm text-muted-foreground ${language === 'ar' ? 'font-arabic' : ''}`}>
             {language === 'ar' ? 'نجح' : 'Passed'}
           </div>
         </CardContent>
@@ -291,8 +291,8 @@ const QuizStats: React.FC<QuizStatsProps> = ({ quizzes, userQuizAttempts }) => {
 
       <Card className="text-center">
         <CardContent className="pt-4">
-          <div className="text-2xl font-bold text-orange-600">{completedQuizzes}</div>
-          <div className={`text-sm text-gray-600 ${language === 'ar' ? 'font-arabic' : ''}`}>
+          <div className="text-2xl font-bold text-accent">{completedQuizzes}</div>
+          <div className={`text-sm text-muted-foreground ${language === 'ar' ? 'font-arabic' : ''}`}>
             {language === 'ar' ? 'مكتمل' : 'Completed'}
           </div>
         </CardContent>
@@ -300,10 +300,10 @@ const QuizStats: React.FC<QuizStatsProps> = ({ quizzes, userQuizAttempts }) => {
 
       <Card className="text-center">
         <CardContent className="pt-4">
-          <div className="text-2xl font-bold text-purple-600">
+          <div className="text-2xl font-bold text-accent">
             {isNaN(averageScore) ? '0' : Math.round(averageScore)}%
           </div>
-          <div className={`text-sm text-gray-600 ${language === 'ar' ? 'font-arabic' : ''}`}>
+          <div className={`text-sm text-muted-foreground ${language === 'ar' ? 'font-arabic' : ''}`}>
             {language === 'ar' ? 'متوسط النتيجة' : 'Avg Score'}
           </div>
         </CardContent>
@@ -477,22 +477,22 @@ export const AwarenessLab: React.FC<AwarenessLabProps> = ({ user }) => {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className={`text-2xl font-bold text-gray-900 flex items-center space-x-2 ${language === 'ar' ? 'font-arabic flex-row-reverse space-x-reverse' : ''}`}>
-            <Brain className={`h-6 w-6 ${isExpert ? 'text-purple-600' : 'text-blue-600'}`} />
+          <h2 className={`text-2xl font-bold text-foreground flex items-center space-x-2 ${language === 'ar' ? 'font-arabic flex-row-reverse space-x-reverse' : ''}`}>
+            <Brain className={`h-6 w-6 ${isExpert ? 'text-accent' : 'text-primary'}`} />
             <span>{language === 'ar' ? 'مختبر الوعي' : 'Awareness Lab'}</span>
             {isExpert && (
-              <Badge variant="outline" className="ml-2 text-purple-700 border-purple-300 bg-purple-50">
+              <Badge variant="outline" className="ml-2 text-primary border-primary/50 bg-accent/10">
                 {language === 'ar' ? 'خبير' : 'Expert'}
               </Badge>
             )}
           </h2>
-          <p className={`text-gray-600 mt-1 ${language === 'ar' ? 'font-arabic text-right' : ''}`}>
+          <p className={`text-muted-foreground mt-1 ${language === 'ar' ? 'font-arabic text-right' : ''}`}>
             {getLabWelcomeMessage()}
           </p>
         </div>
 
         {filteredQuizzes.length > 0 && (
-          <div className={`flex items-center space-x-2 text-sm text-gray-600 ${language === 'ar' ? 'font-arabic flex-row-reverse space-x-reverse' : ''}`}>
+          <div className={`flex items-center space-x-2 text-sm text-muted-foreground ${language === 'ar' ? 'font-arabic flex-row-reverse space-x-reverse' : ''}`}>
             <Timer className="h-4 w-4" />
             <span>
               {language === 'ar'
@@ -500,7 +500,7 @@ export const AwarenessLab: React.FC<AwarenessLabProps> = ({ user }) => {
                 : `${filteredQuizzes.length} quizzes available`
               }
               {isExpert && Array.isArray(quizzes) && quizzes.length !== filteredQuizzes.length && (
-                <span className="text-purple-600 ml-1">
+                <span className="text-accent ml-1">
                   {language === 'ar'
                     ? ` (${quizzes.length - filteredQuizzes.length} منتهي الصلاحية)`
                     : ` (${quizzes.length - filteredQuizzes.length} expired)`

@@ -190,9 +190,9 @@ export function LazyImage({
           }}
         >
           {placeholder || (
-            <div className="animate-pulse bg-gray-200 w-full h-full flex items-center justify-center">
+            <div className="animate-pulse bg-muted/80 w-full h-full flex items-center justify-center">
               <svg
-                className="w-8 h-8 text-gray-400"
+                className="w-8 h-8 text-muted-foreground/80"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -264,9 +264,9 @@ export function LazyComponent({
 function LazyComponentSkeleton() {
   return (
     <div className="animate-pulse">
-      <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
-      <div className="h-4 bg-gray-200 rounded w-1/2 mb-2"></div>
-      <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+      <div className="h-4 bg-muted/80 rounded w-3/4 mb-2"></div>
+      <div className="h-4 bg-muted/80 rounded w-1/2 mb-2"></div>
+      <div className="h-4 bg-muted/80 rounded w-5/6"></div>
     </div>
   );
 }
@@ -361,8 +361,8 @@ export function LazyList<T>({
         
         {loading && (
           <div className="flex justify-center items-center p-4">
-            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
-            <span className="ml-2 text-sm text-gray-600">Loading more...</span>
+            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary/50"></div>
+            <span className="ml-2 text-sm text-muted-foreground">Loading more...</span>
           </div>
         )}
       </div>
@@ -434,9 +434,9 @@ export function LazyVideo({
           }}
         />
       ) : hasError ? (
-        <div className="lazy-video-error bg-red-50 border border-red-200 rounded p-4 text-center">
+        <div className="lazy-video-error bg-destructive/10 border border-destructive rounded p-4 text-center">
           <svg
-            className="w-8 h-8 text-red-500 mx-auto mb-2"
+            className="w-8 h-8 text-destructive mx-auto mb-2"
             fill="currentColor"
             viewBox="0 0 20 20"
           >
@@ -446,10 +446,10 @@ export function LazyVideo({
               clipRule="evenodd"
             />
           </svg>
-          <p className="text-sm text-red-700">Failed to load video</p>
+          <p className="text-sm text-destructive">Failed to load video</p>
         </div>
       ) : (
-        <div className="lazy-video-placeholder bg-gray-100 rounded flex items-center justify-center min-h-[200px]">
+        <div className="lazy-video-placeholder bg-muted rounded flex items-center justify-center min-h-[200px]">
           {poster ? (
             <img
               src={poster}
@@ -459,7 +459,7 @@ export function LazyVideo({
           ) : (
             <div className="text-center">
               <svg
-                className="w-12 h-12 text-gray-400 mx-auto mb-2"
+                className="w-12 h-12 text-muted-foreground/80 mx-auto mb-2"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -469,7 +469,7 @@ export function LazyVideo({
                   clipRule="evenodd"
                 />
               </svg>
-              <p className="text-sm text-gray-500">Video will load when visible</p>
+              <p className="text-sm text-muted-foreground">Video will load when visible</p>
             </div>
           )}
         </div>

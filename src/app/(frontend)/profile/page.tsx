@@ -86,10 +86,10 @@ export default function ProfilePage() {
 
   const getRoleColor = (role: string) => {
     switch (role) {
-      case 'admin': return 'bg-red-100 text-red-800'
-      case 'expert': return 'bg-blue-100 text-blue-800'
-      case 'customer': return 'bg-green-100 text-green-800'
-      default: return 'bg-gray-100 text-gray-800'
+      case 'admin': return 'bg-destructive/10 text-destructive'
+      case 'expert': return 'bg-primary/10 text-primary'
+      case 'customer': return 'bg-secondary/10 text-secondary'
+      default: return 'bg-muted text-foreground'
     }
   }
 
@@ -156,7 +156,7 @@ export default function ProfilePage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-muted/50">
         <div className="container mx-auto p-6">
           <Card>
             <CardContent className="flex items-center justify-center p-6">
@@ -170,7 +170,7 @@ export default function ProfilePage() {
 
   if (error || !user) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-muted/50">
         <div className="container mx-auto p-6">
           <Alert variant="destructive">
             <AlertDescription>{error || 'Failed to load user data'}</AlertDescription>
@@ -181,7 +181,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-muted/50">
       <Navbar
         user={user}
         showProfileMenu={false}
@@ -189,8 +189,8 @@ export default function ProfilePage() {
 
       <div className="container mx-auto p-6 max-w-4xl">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Profile Settings</h1>
-          <p className="text-gray-600">
+          <h1 className="text-3xl font-bold text-foreground mb-2">Profile Settings</h1>
+          <p className="text-muted-foreground">
             Manage your account information and preferences
           </p>
         </div>
@@ -278,14 +278,14 @@ export default function ProfilePage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center space-x-4">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
-                  <User className="h-8 w-8 text-blue-600" />
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
+                  <User className="h-8 w-8 text-primary" />
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold">
                     {user.firstName} {user.lastName}
                   </h3>
-                  <p className="text-gray-600">{user.email}</p>
+                  <p className="text-muted-foreground">{user.email}</p>
                   <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium mt-1 ${getRoleColor(user.role)}`}>
                     {user.role}
                   </span>
@@ -317,9 +317,9 @@ export default function ProfilePage() {
                     id="email"
                     value={formData.email}
                     disabled={true}
-                    className="bg-gray-50"
+                    className="bg-muted/50"
                   />
-                  <p className="text-xs text-gray-500 mt-1">
+                  <p className="text-xs text-muted-foreground mt-1">
                     Email cannot be changed
                   </p>
                 </div>
@@ -340,24 +340,24 @@ export default function ProfilePage() {
             <CardContent className="space-y-4">
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
-                  <Mail className="h-4 w-4 text-gray-500" />
+                  <Mail className="h-4 w-4 text-muted-foreground" />
                   <div>
                     <p className="text-sm font-medium">Email Verification</p>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-muted-foreground">
                       {user.isEmailVerified ? (
-                        <span className="text-green-600">✓ Verified</span>
+                        <span className="text-secondary">✓ Verified</span>
                       ) : (
-                        <span className="text-yellow-600">⚠ Pending verification</span>
+                        <span className="text-accent">⚠ Pending verification</span>
                       )}
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <Calendar className="h-4 w-4 text-gray-500" />
+                  <Calendar className="h-4 w-4 text-muted-foreground" />
                   <div>
                     <p className="text-sm font-medium">Member Since</p>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-muted-foreground">
                       {new Date(user.createdAt).toLocaleDateString('en-US', {
                         year: 'numeric',
                         month: 'long',
@@ -368,16 +368,16 @@ export default function ProfilePage() {
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <Shield className="h-4 w-4 text-gray-500" />
+                  <Shield className="h-4 w-4 text-muted-foreground" />
                   <div>
                     <p className="text-sm font-medium">Account Status</p>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-muted-foreground">
                       {user.role === 'expert' && user.isBanned ? (
-                        <span className="text-red-600">Banned</span>
+                        <span className="text-destructive">Banned</span>
                       ) : user.role === 'customer' && user.isPaused ? (
-                        <span className="text-orange-600">Paused</span>
+                        <span className="text-accent">Paused</span>
                       ) : (
-                        <span className="text-green-600">Active</span>
+                        <span className="text-secondary">Active</span>
                       )}
                     </p>
                   </div>
@@ -401,24 +401,24 @@ export default function ProfilePage() {
                 <CardContent className="space-y-6">
                   {/* Personal Information */}
                   <div>
-                    <h4 className="font-medium text-gray-900 mb-3">Personal Information</h4>
+                    <h4 className="font-medium text-foreground mb-3">Personal Information</h4>
                     <div className="grid gap-4 md:grid-cols-2">
                       {profileData.profile.phoneNumber && (
                         <div className="flex items-center gap-3">
-                          <Phone className="h-4 w-4 text-gray-500" />
+                          <Phone className="h-4 w-4 text-muted-foreground" />
                           <div>
                             <p className="text-sm font-medium">Phone</p>
-                            <p className="text-sm text-gray-600">{profileData.profile.phoneNumber}</p>
+                            <p className="text-sm text-muted-foreground">{profileData.profile.phoneNumber}</p>
                           </div>
                         </div>
                       )}
 
                       {profileData.profile.dateOfBirth && (
                         <div className="flex items-center gap-3">
-                          <Calendar className="h-4 w-4 text-gray-500" />
+                          <Calendar className="h-4 w-4 text-muted-foreground" />
                           <div>
                             <p className="text-sm font-medium">Date of Birth</p>
-                            <p className="text-sm text-gray-600">
+                            <p className="text-sm text-muted-foreground">
                               {new Date(profileData.profile.dateOfBirth).toLocaleDateString()}
                             </p>
                           </div>
@@ -427,20 +427,20 @@ export default function ProfilePage() {
 
                       {profileData.profile.nationality && (
                         <div className="flex items-center gap-3">
-                          <Globe className="h-4 w-4 text-gray-500" />
+                          <Globe className="h-4 w-4 text-muted-foreground" />
                           <div>
                             <p className="text-sm font-medium">Nationality</p>
-                            <p className="text-sm text-gray-600">{profileData.profile.nationality}</p>
+                            <p className="text-sm text-muted-foreground">{profileData.profile.nationality}</p>
                           </div>
                         </div>
                       )}
 
                       {(profileData.profile.governorate || profileData.profile.wilayat) && (
                         <div className="flex items-center gap-3">
-                          <MapPin className="h-4 w-4 text-gray-500" />
+                          <MapPin className="h-4 w-4 text-muted-foreground" />
                           <div>
                             <p className="text-sm font-medium">Location</p>
-                            <p className="text-sm text-gray-600">
+                            <p className="text-sm text-muted-foreground">
                               {[profileData.profile.wilayat, profileData.profile.governorate].filter(Boolean).join(', ')}
                             </p>
                           </div>
@@ -451,26 +451,26 @@ export default function ProfilePage() {
 
                   {/* Professional Information */}
                   <div>
-                    <h4 className="font-medium text-gray-900 mb-3">Professional Information</h4>
+                    <h4 className="font-medium text-foreground mb-3">Professional Information</h4>
                     <div className="space-y-4">
                       {profileData.profile.areasOfSpecialization && (
                         <div>
-                          <p className="text-sm font-medium text-gray-700">Areas of Specialization</p>
-                          <p className="text-sm text-gray-600 mt-1">{profileData.profile.areasOfSpecialization}</p>
+                          <p className="text-sm font-medium text-foreground/80">Areas of Specialization</p>
+                          <p className="text-sm text-muted-foreground mt-1">{profileData.profile.areasOfSpecialization}</p>
                         </div>
                       )}
 
                       {profileData.profile.professionalExperience && (
                         <div>
-                          <p className="text-sm font-medium text-gray-700">Professional Experience</p>
-                          <p className="text-sm text-gray-600 mt-1">{profileData.profile.professionalExperience}</p>
+                          <p className="text-sm font-medium text-foreground/80">Professional Experience</p>
+                          <p className="text-sm text-muted-foreground mt-1">{profileData.profile.professionalExperience}</p>
                         </div>
                       )}
 
                       {profileData.profile.currentEmploymentStatus && (
                         <div>
-                          <p className="text-sm font-medium text-gray-700">Employment Status</p>
-                          <p className="text-sm text-gray-600 mt-1 capitalize">
+                          <p className="text-sm font-medium text-foreground/80">Employment Status</p>
+                          <p className="text-sm text-muted-foreground mt-1 capitalize">
                             {profileData.profile.currentEmploymentStatus?.replace('-', ' ') || ''}
                           </p>
                         </div>
@@ -478,15 +478,15 @@ export default function ProfilePage() {
 
                       {profileData.profile.currentEmployer && (
                         <div>
-                          <p className="text-sm font-medium text-gray-700">Current Employer</p>
-                          <p className="text-sm text-gray-600 mt-1">{profileData.profile.currentEmployer}</p>
+                          <p className="text-sm font-medium text-foreground/80">Current Employer</p>
+                          <p className="text-sm text-muted-foreground mt-1">{profileData.profile.currentEmployer}</p>
                         </div>
                       )}
 
                       {profileData.profile.availability && (
                         <div>
-                          <p className="text-sm font-medium text-gray-700">Availability</p>
-                          <p className="text-sm text-gray-600 mt-1 capitalize">
+                          <p className="text-sm font-medium text-foreground/80">Availability</p>
+                          <p className="text-sm text-muted-foreground mt-1 capitalize">
                             {profileData.profile.availability?.replace('-', ' ') || ''}
                           </p>
                         </div>
@@ -509,20 +509,20 @@ export default function ProfilePage() {
                   <div className="grid gap-4 md:grid-cols-2">
                     {profileData.profile.phoneNumber && (
                       <div className="flex items-center gap-3">
-                        <Phone className="h-4 w-4 text-gray-500" />
+                        <Phone className="h-4 w-4 text-muted-foreground" />
                         <div>
                           <p className="text-sm font-medium">Phone</p>
-                          <p className="text-sm text-gray-600">{profileData.profile.phoneNumber}</p>
+                          <p className="text-sm text-muted-foreground">{profileData.profile.phoneNumber}</p>
                         </div>
                       </div>
                     )}
 
                     {profileData.profile.dateOfBirth && (
                       <div className="flex items-center gap-3">
-                        <Calendar className="h-4 w-4 text-gray-500" />
+                        <Calendar className="h-4 w-4 text-muted-foreground" />
                         <div>
                           <p className="text-sm font-medium">Date of Birth</p>
-                          <p className="text-sm text-gray-600">
+                          <p className="text-sm text-muted-foreground">
                             {new Date(profileData.profile.dateOfBirth).toLocaleDateString()}
                           </p>
                         </div>
@@ -531,20 +531,20 @@ export default function ProfilePage() {
 
                     {profileData.profile.nationality && (
                       <div className="flex items-center gap-3">
-                        <Globe className="h-4 w-4 text-gray-500" />
+                        <Globe className="h-4 w-4 text-muted-foreground" />
                         <div>
                           <p className="text-sm font-medium">Nationality</p>
-                          <p className="text-sm text-gray-600">{profileData.profile.nationality}</p>
+                          <p className="text-sm text-muted-foreground">{profileData.profile.nationality}</p>
                         </div>
                       </div>
                     )}
 
                     {(profileData.profile.governorate || profileData.profile.wilayat) && (
                       <div className="flex items-center gap-3">
-                        <MapPin className="h-4 w-4 text-gray-500" />
+                        <MapPin className="h-4 w-4 text-muted-foreground" />
                         <div>
                           <p className="text-sm font-medium">Location</p>
-                          <p className="text-sm text-gray-600">
+                          <p className="text-sm text-muted-foreground">
                             {[profileData.profile.wilayat, profileData.profile.governorate].filter(Boolean).join(', ')}
                           </p>
                         </div>
@@ -559,7 +559,7 @@ export default function ProfilePage() {
               <Card>
                 <CardContent className="flex items-center justify-center p-6">
                   <div className="text-center">
-                    <p className="text-gray-500 mb-4">
+                    <p className="text-muted-foreground mb-4">
                       {user.role === 'expert' ? 'Expert profile not completed' : 'Customer profile not completed'}
                     </p>
                     <Button
@@ -588,19 +588,19 @@ export default function ProfilePage() {
             <CardContent>
               <div className="space-y-6">
                 <div>
-                  <h4 className="font-medium text-gray-900 mb-4">Change Password</h4>
+                  <h4 className="font-medium text-foreground mb-4">Change Password</h4>
 
                   {passwordChangeError && (
-                    <Alert className="mb-4 border-red-200 bg-red-50">
-                      <AlertDescription className="text-red-800">
+                    <Alert className="mb-4 border-destructive bg-destructive/10">
+                      <AlertDescription className="text-destructive">
                         {passwordChangeError}
                       </AlertDescription>
                     </Alert>
                   )}
 
                   {passwordChangeSuccess && (
-                    <Alert className="mb-4 border-green-200 bg-green-50">
-                      <AlertDescription className="text-green-800">
+                    <Alert className="mb-4 border-secondary/50 bg-secondary/10">
+                      <AlertDescription className="text-secondary">
                         {passwordChangeSuccess}
                       </AlertDescription>
                     </Alert>
@@ -625,7 +625,7 @@ export default function ProfilePage() {
                         <button
                           type="button"
                           onClick={() => togglePasswordVisibility('current')}
-                          className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground/80"
                           disabled={isChangingPassword}
                         >
                           {showPasswords.current ? (
@@ -655,7 +655,7 @@ export default function ProfilePage() {
                         <button
                           type="button"
                           onClick={() => togglePasswordVisibility('new')}
-                          className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground/80"
                           disabled={isChangingPassword}
                         >
                           {showPasswords.new ? (
@@ -665,28 +665,28 @@ export default function ProfilePage() {
                           )}
                         </button>
                       </div>
-                      <p className="text-sm text-gray-500 mt-1">
+                      <p className="text-sm text-muted-foreground mt-1">
                         Must be at least 8 characters with uppercase, lowercase, number, and special character
                       </p>
                       {passwordChangeData.newPassword && (
                         <div className="mt-2">
                           <div className="flex items-center gap-2">
                             <span className="text-sm font-medium">Password strength:</span>
-                            <span className={`text-sm font-medium ${assessPasswordStrength(passwordChangeData.newPassword) === PasswordStrength.WEAK ? 'text-red-500' :
-                              assessPasswordStrength(passwordChangeData.newPassword) === PasswordStrength.FAIR ? 'text-yellow-500' :
-                                assessPasswordStrength(passwordChangeData.newPassword) === PasswordStrength.GOOD ? 'text-blue-500' :
-                                  'text-green-500'
+                            <span className={`text-sm font-medium ${assessPasswordStrength(passwordChangeData.newPassword) === PasswordStrength.WEAK ? 'text-destructive' :
+                              assessPasswordStrength(passwordChangeData.newPassword) === PasswordStrength.FAIR ? 'text-accent' :
+                                assessPasswordStrength(passwordChangeData.newPassword) === PasswordStrength.GOOD ? 'text-primary' :
+                                  'text-secondary'
                               }`}>
                               {assessPasswordStrength(passwordChangeData.newPassword).charAt(0).toUpperCase() +
                                 assessPasswordStrength(passwordChangeData.newPassword).slice(1)}
                             </span>
                           </div>
-                          <div className="w-full bg-gray-200 rounded-full h-2 mt-1">
+                          <div className="w-full bg-muted/80 rounded-full h-2 mt-1">
                             <div
-                              className={`h-2 rounded-full transition-all duration-300 ${assessPasswordStrength(passwordChangeData.newPassword) === PasswordStrength.WEAK ? 'bg-red-500 w-1/4' :
-                                assessPasswordStrength(passwordChangeData.newPassword) === PasswordStrength.FAIR ? 'bg-yellow-500 w-2/4' :
-                                  assessPasswordStrength(passwordChangeData.newPassword) === PasswordStrength.GOOD ? 'bg-blue-500 w-3/4' :
-                                    'bg-green-500 w-full'
+                              className={`h-2 rounded-full transition-all duration-300 ${assessPasswordStrength(passwordChangeData.newPassword) === PasswordStrength.WEAK ? 'bg-destructive w-1/4' :
+                                assessPasswordStrength(passwordChangeData.newPassword) === PasswordStrength.FAIR ? 'bg-accent w-2/4' :
+                                  assessPasswordStrength(passwordChangeData.newPassword) === PasswordStrength.GOOD ? 'bg-primary w-3/4' :
+                                    'bg-secondary w-full'
                                 }`}
                             />
                           </div>
@@ -712,7 +712,7 @@ export default function ProfilePage() {
                         <button
                           type="button"
                           onClick={() => togglePasswordVisibility('confirm')}
-                          className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground/80"
                           disabled={isChangingPassword}
                         >
                           {showPasswords.confirm ? (

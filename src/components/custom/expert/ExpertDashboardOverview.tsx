@@ -117,15 +117,15 @@ export default function ExpertDashboardOverview({ expertId, userRole }: ExpertDa
   const getActivityIcon = (type: string) => {
     switch (type) {
       case 'assignment':
-        return <User className="h-4 w-4 text-indigo-500" />
+        return <User className="h-4 w-4 text-primary" />
       case 'acceptance':
-        return <CheckCircle className="h-4 w-4 text-emerald-500" />
+        return <CheckCircle className="h-4 w-4 text-secondary" />
       case 'completion':
-        return <Award className="h-4 w-4 text-violet-500" />
+        return <Award className="h-4 w-4 text-primary" />
       case 'rejection':
-        return <AlertCircle className="h-4 w-4 text-red-500" />
+        return <AlertCircle className="h-4 w-4 text-destructive" />
       default:
-        return <Clock className="h-4 w-4 text-slate-400" />
+        return <Clock className="h-4 w-4 text-muted-foreground/80" />
     }
   }
 
@@ -149,14 +149,14 @@ export default function ExpertDashboardOverview({ expertId, userRole }: ExpertDa
       <div className="space-y-6">
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {[...Array(4)].map((_, i) => (
-            <Card key={i} className="border-slate-200/60">
+            <Card key={i} className="border-border/60">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <div className="animate-pulse bg-slate-100 h-4 w-20 rounded"></div>
-                <div className="animate-pulse bg-slate-100 h-4 w-4 rounded"></div>
+                <div className="animate-pulse bg-muted h-4 w-20 rounded"></div>
+                <div className="animate-pulse bg-muted h-4 w-4 rounded"></div>
               </CardHeader>
               <CardContent>
-                <div className="animate-pulse bg-slate-100 h-8 w-12 rounded mb-2"></div>
-                <div className="animate-pulse bg-slate-100 h-3 w-24 rounded"></div>
+                <div className="animate-pulse bg-muted h-8 w-12 rounded mb-2"></div>
+                <div className="animate-pulse bg-muted h-3 w-24 rounded"></div>
               </CardContent>
             </Card>
           ))}
@@ -169,61 +169,61 @@ export default function ExpertDashboardOverview({ expertId, userRole }: ExpertDa
     <div className="space-y-6">
       {/* Statistics Cards */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card className="border-slate-200/60 hover:shadow-md hover:border-amber-200 transition-all duration-300">
+        <Card className="border-border/60 hover:shadow-md hover:border-accent/50 transition-all duration-300">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-slate-600">Pending Acceptance</CardTitle>
-            <div className="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center">
-              <AlertCircle className="h-4 w-4 text-amber-500" />
+            <CardTitle className="text-sm font-medium text-muted-foreground">Pending Acceptance</CardTitle>
+            <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center">
+              <AlertCircle className="h-4 w-4 text-accent" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-slate-900">{stats.pendingAcceptance}</div>
-            <p className="text-xs text-slate-500 mt-1">
+            <div className="text-2xl font-bold text-foreground">{stats.pendingAcceptance}</div>
+            <p className="text-xs text-muted-foreground mt-1">
               Require your response
             </p>
           </CardContent>
         </Card>
 
-        <Card className="border-slate-200/60 hover:shadow-md hover:border-indigo-200 transition-all duration-300">
+        <Card className="border-border/60 hover:shadow-md hover:border-primary/50 transition-all duration-300">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-slate-600">In Progress</CardTitle>
-            <div className="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center">
-              <Clock className="h-4 w-4 text-indigo-500" />
+            <CardTitle className="text-sm font-medium text-muted-foreground">In Progress</CardTitle>
+            <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+              <Clock className="h-4 w-4 text-primary" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-slate-900">{stats.inProgress}</div>
-            <p className="text-xs text-slate-500 mt-1">
+            <div className="text-2xl font-bold text-foreground">{stats.inProgress}</div>
+            <p className="text-xs text-muted-foreground mt-1">
               Active tasks
             </p>
           </CardContent>
         </Card>
 
-        <Card className="border-slate-200/60 hover:shadow-md hover:border-emerald-200 transition-all duration-300">
+        <Card className="border-border/60 hover:shadow-md hover:border-secondary/50 transition-all duration-300">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-slate-600">Completed</CardTitle>
-            <div className="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center">
-              <CheckCircle className="h-4 w-4 text-emerald-500" />
+            <CardTitle className="text-sm font-medium text-muted-foreground">Completed</CardTitle>
+            <div className="w-8 h-8 rounded-lg bg-secondary/10 flex items-center justify-center">
+              <CheckCircle className="h-4 w-4 text-secondary" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-slate-900">{stats.completed}</div>
-            <p className="text-xs text-slate-500 mt-1">
+            <div className="text-2xl font-bold text-foreground">{stats.completed}</div>
+            <p className="text-xs text-muted-foreground mt-1">
               This month
             </p>
           </CardContent>
         </Card>
 
-        <Card className="border-slate-200/60 hover:shadow-md hover:border-emerald-200 transition-all duration-300">
+        <Card className="border-border/60 hover:shadow-md hover:border-secondary/50 transition-all duration-300">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-slate-600">Monthly Earnings</CardTitle>
-            <div className="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center">
-              <span className="text-[10px] font-bold text-emerald-600">₹</span>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Monthly Earnings</CardTitle>
+            <div className="w-8 h-8 rounded-lg bg-secondary/10 flex items-center justify-center">
+              <span className="text-[10px] font-bold text-secondary">₹</span>
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-emerald-600">₹ {(earningsStats.monthlyEarnings || 0).toFixed(2)}</div>
-            <p className="text-xs text-slate-500 mt-1">
+            <div className="text-2xl font-bold text-secondary">₹ {(earningsStats.monthlyEarnings || 0).toFixed(2)}</div>
+            <p className="text-xs text-muted-foreground mt-1">
               {earningsStats.completedTasks || 0} tasks completed
             </p>
           </CardContent>
@@ -232,15 +232,15 @@ export default function ExpertDashboardOverview({ expertId, userRole }: ExpertDa
 
       <div className="grid gap-6 md:grid-cols-2">
         {/* Quick Actions */}
-        <Card className="border-slate-200/60">
+        <Card className="border-border/60">
           <CardHeader className="pb-4">
-            <CardTitle className="flex items-center gap-3 text-slate-900">
+            <CardTitle className="flex items-center gap-3 text-foreground">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center shadow-sm">
                 <TrendingUp className="h-5 w-5 text-white" />
               </div>
               <div>
                 <span className="block">Quick Actions</span>
-                <span className="text-sm font-normal text-slate-500">Common tasks and shortcuts</span>
+                <span className="text-sm font-normal text-muted-foreground">Common tasks and shortcuts</span>
               </div>
             </CardTitle>
           </CardHeader>
@@ -248,82 +248,82 @@ export default function ExpertDashboardOverview({ expertId, userRole }: ExpertDa
             {/* RBAC: Only show Awareness Sessions to trainers */}
             {isTrainer && (
               <Link href="/expert/awareness-sessions" className="group">
-                <div className="flex items-center gap-4 p-4 rounded-xl border border-slate-200/80 bg-gradient-to-r from-violet-50/50 to-transparent hover:from-violet-100/80 hover:border-violet-200 hover:shadow-sm transition-all duration-300">
-                  <div className="w-12 h-12 rounded-xl bg-violet-100 group-hover:bg-violet-200 flex items-center justify-center transition-colors duration-300 flex-shrink-0">
-                    <Users className="h-5 w-5 text-violet-600" />
+                <div className="flex items-center gap-4 p-4 rounded-xl border border-border/80 bg-gradient-to-r from-violet-50/50 to-transparent hover:from-violet-100/80 hover:border-primary/50 hover:shadow-sm transition-all duration-300">
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 group-hover:bg-primary flex items-center justify-center transition-colors duration-300 flex-shrink-0">
+                    <Users className="h-5 w-5 text-primary" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h4 className="font-medium text-slate-800 group-hover:text-violet-700 transition-colors">Awareness Sessions</h4>
-                    <p className="text-sm text-slate-500">Manage training sessions</p>
+                    <h4 className="font-medium text-foreground group-hover:text-primary transition-colors">Awareness Sessions</h4>
+                    <p className="text-sm text-muted-foreground">Manage training sessions</p>
                   </div>
-                  <ArrowRight className="h-5 w-5 text-slate-300 group-hover:text-violet-500 group-hover:translate-x-1 transition-all duration-300 flex-shrink-0" />
+                  <ArrowRight className="h-5 w-5 text-muted-foreground/60 group-hover:text-primary group-hover:translate-x-1 transition-all duration-300 flex-shrink-0" />
                 </div>
               </Link>
             )}
 
             <Link href="/expert/tasks" className="group">
-              <div className="flex items-center gap-4 p-4 rounded-xl border border-slate-200/80 bg-gradient-to-r from-indigo-50/50 to-transparent hover:from-indigo-100/80 hover:border-indigo-200 hover:shadow-sm transition-all duration-300">
-                <div className="w-12 h-12 rounded-xl bg-indigo-100 group-hover:bg-indigo-200 flex items-center justify-center transition-colors duration-300 flex-shrink-0">
-                  <Briefcase className="h-5 w-5 text-indigo-600" />
+              <div className="flex items-center gap-4 p-4 rounded-xl border border-border/80 bg-gradient-to-r from-indigo-50/50 to-transparent hover:from-indigo-100/80 hover:border-primary/50 hover:shadow-sm transition-all duration-300">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 group-hover:bg-primary flex items-center justify-center transition-colors duration-300 flex-shrink-0">
+                  <Briefcase className="h-5 w-5 text-primary" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h4 className="font-medium text-slate-800 group-hover:text-indigo-700 transition-colors">My Tasks</h4>
-                  <p className="text-sm text-slate-500">View assigned projects</p>
+                  <h4 className="font-medium text-foreground group-hover:text-primary transition-colors">My Tasks</h4>
+                  <p className="text-sm text-muted-foreground">View assigned projects</p>
                 </div>
-                <ArrowRight className="h-5 w-5 text-slate-300 group-hover:text-indigo-500 group-hover:translate-x-1 transition-all duration-300 flex-shrink-0" />
+                <ArrowRight className="h-5 w-5 text-muted-foreground/60 group-hover:text-primary group-hover:translate-x-1 transition-all duration-300 flex-shrink-0" />
               </div>
             </Link>
 
             <Link href="/expert/awareness-lab" className="group">
-              <div className="flex items-center gap-4 p-4 rounded-xl border border-slate-200/80 bg-gradient-to-r from-emerald-50/50 to-transparent hover:from-emerald-100/80 hover:border-emerald-200 hover:shadow-sm transition-all duration-300">
-                <div className="w-12 h-12 rounded-xl bg-emerald-100 group-hover:bg-emerald-200 flex items-center justify-center transition-colors duration-300 flex-shrink-0">
-                  <Brain className="h-5 w-5 text-emerald-600" />
+              <div className="flex items-center gap-4 p-4 rounded-xl border border-border/80 bg-gradient-to-r from-emerald-50/50 to-transparent hover:from-emerald-100/80 hover:border-secondary/50 hover:shadow-sm transition-all duration-300">
+                <div className="w-12 h-12 rounded-xl bg-secondary/10 group-hover:bg-secondary flex items-center justify-center transition-colors duration-300 flex-shrink-0">
+                  <Brain className="h-5 w-5 text-secondary" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h4 className="font-medium text-slate-800 group-hover:text-emerald-700 transition-colors">Awareness Lab</h4>
-                  <p className="text-sm text-slate-500">Access learning materials</p>
+                  <h4 className="font-medium text-foreground group-hover:text-secondary transition-colors">Awareness Lab</h4>
+                  <p className="text-sm text-muted-foreground">Access learning materials</p>
                 </div>
-                <ArrowRight className="h-5 w-5 text-slate-300 group-hover:text-emerald-500 group-hover:translate-x-1 transition-all duration-300 flex-shrink-0" />
+                <ArrowRight className="h-5 w-5 text-muted-foreground/60 group-hover:text-secondary group-hover:translate-x-1 transition-all duration-300 flex-shrink-0" />
               </div>
             </Link>
           </CardContent>
         </Card>
 
         {/* Recent Activity */}
-        <Card className="border-slate-200/60">
+        <Card className="border-border/60">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-slate-900">
-              <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center">
-                <FileText className="h-4 w-4 text-slate-600" />
+            <CardTitle className="flex items-center gap-2 text-foreground">
+              <div className="w-8 h-8 rounded-lg bg-muted flex items-center justify-center">
+                <FileText className="h-4 w-4 text-muted-foreground" />
               </div>
               Recent Activity
             </CardTitle>
-            <CardDescription className="text-slate-500">
+            <CardDescription className="text-muted-foreground">
               Your latest task interactions
             </CardDescription>
           </CardHeader>
           <CardContent>
             {recentActivity.length === 0 ? (
               <div className="text-center py-8">
-                <div className="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center mx-auto mb-3">
-                  <Clock className="h-5 w-5 text-slate-400" />
+                <div className="w-12 h-12 rounded-xl bg-muted/50 flex items-center justify-center mx-auto mb-3">
+                  <Clock className="h-5 w-5 text-muted-foreground/80" />
                 </div>
-                <p className="text-sm text-slate-500">
+                <p className="text-sm text-muted-foreground">
                   No recent activity
                 </p>
               </div>
             ) : (
               <div className="space-y-3">
                 {recentActivity.map((activity) => (
-                  <div key={activity.id} className="flex items-start gap-3 p-3 rounded-xl bg-slate-50/50 hover:bg-slate-50 transition-colors duration-200">
-                    <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center shadow-sm">
+                  <div key={activity.id} className="flex items-start gap-3 p-3 rounded-xl bg-muted/50/50 hover:bg-muted/50 transition-colors duration-200">
+                    <div className="w-8 h-8 rounded-lg bg-card flex items-center justify-center shadow-sm">
                       {getActivityIcon(activity.type)}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-slate-800 line-clamp-1">
+                      <p className="text-sm font-medium text-foreground line-clamp-1">
                         {getActivityText(activity)}
                       </p>
-                      <p className="text-xs text-slate-500 flex items-center gap-1 mt-1">
+                      <p className="text-xs text-muted-foreground flex items-center gap-1 mt-1">
                         <Calendar className="h-3 w-3" />
                         {format(new Date(activity.timestamp), 'MMM dd, yyyy HH:mm')}
                       </p>

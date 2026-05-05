@@ -74,7 +74,7 @@ export const QuizPagination: React.FC<QuizPaginationProps> = ({
   return (
     <div className={`flex items-center justify-between ${className}`}>
       {/* Page info */}
-      <div className="text-sm text-gray-600">
+      <div className="text-sm text-muted-foreground">
         {language === 'ar' 
           ? `الصفحة ${currentPage} من ${totalPages}`
           : `Page ${currentPage} of ${totalPages}`
@@ -102,7 +102,7 @@ export const QuizPagination: React.FC<QuizPaginationProps> = ({
           {getPageNumbers().map((page, index) => (
             page === 'ellipsis' ? (
               <div key={`ellipsis-${index}`} className="px-2">
-                <MoreHorizontal className="h-4 w-4 text-gray-400" />
+                <MoreHorizontal className="h-4 w-4 text-muted-foreground/80" />
               </div>
             ) : (
               <Button

@@ -276,7 +276,7 @@ export default function QuestionBuilder({
       <div className="flex items-center justify-between">
         <div>
           <h3 className="text-lg font-medium">Questions ({questions.length})</h3>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-muted-foreground">
             Build your quiz questions with multiple question types
           </p>
         </div>
@@ -293,9 +293,9 @@ export default function QuestionBuilder({
       {questions.length === 0 ? (
         <Card>
           <CardContent className="flex flex-col items-center justify-center py-12">
-            <List className="h-12 w-12 text-gray-400 mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">No questions yet</h3>
-            <p className="text-gray-500 mb-4 text-center">
+            <List className="h-12 w-12 text-muted-foreground/80 mb-4" />
+            <h3 className="text-lg font-medium text-foreground mb-2">No questions yet</h3>
+            <p className="text-muted-foreground mb-4 text-center">
               Start building your quiz by adding your first question
             </p>
             <Button onClick={addQuestion} disabled={disabled}>
@@ -311,7 +311,7 @@ export default function QuestionBuilder({
             const isExpanded = expandedQuestion === index
 
             return (
-              <Card key={index} className={`${errors.length > 0 ? 'border-red-200' : ''}`}>
+              <Card key={index} className={`${errors.length > 0 ? 'border-destructive' : ''}`}>
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
@@ -373,7 +373,7 @@ export default function QuestionBuilder({
                         size="sm"
                         onClick={() => removeQuestion(index)}
                         disabled={disabled}
-                        className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                        className="text-destructive hover:text-destructive hover:bg-destructive/10"
                       >
                         <Trash2 className="h-4 w-4" />
                       </Button>
@@ -381,13 +381,13 @@ export default function QuestionBuilder({
                   </div>
 
                   {!isExpanded && question.questionData.question && (
-                    <div className="text-sm text-gray-600 truncate">
+                    <div className="text-sm text-muted-foreground truncate">
                       {question.questionData.question}
                     </div>
                   )}
 
                   {errors.length > 0 && (
-                    <div className="text-sm text-red-600">
+                    <div className="text-sm text-destructive">
                       {errors.map((error, i) => (
                         <div key={i}>• {error}</div>
                       ))}
@@ -529,7 +529,7 @@ export default function QuestionBuilder({
                                 size="sm"
                                 onClick={() => removeOption(index, optionIndex)}
                                 disabled={disabled || (question.questionData.options?.length || 0) <= 2}
-                                className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                                className="text-destructive hover:text-destructive hover:bg-destructive/10"
                               >
                                 <Trash2 className="h-4 w-4" />
                               </Button>
@@ -537,7 +537,7 @@ export default function QuestionBuilder({
                           ))}
                         </div>
 
-                        <div className="text-xs text-gray-500">
+                        <div className="text-xs text-muted-foreground">
                           {question.questionType === 'mcq'
                             ? 'Select one correct answer'
                             : 'Select all correct answers'
@@ -556,7 +556,7 @@ export default function QuestionBuilder({
                         placeholder="Provide an explanation for the correct answer..."
                         disabled={disabled}
                       />
-                      <div className="text-xs text-gray-500">
+                      <div className="text-xs text-muted-foreground">
                         This explanation will be shown to users after they complete the quiz
                       </div>
                     </div>
