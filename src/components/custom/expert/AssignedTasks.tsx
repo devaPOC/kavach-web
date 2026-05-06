@@ -298,33 +298,6 @@ export default function AssignedTasks() {
                     </Badge>
                   </div>
                 </div>
-                <div className="flex gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => {
-                      setSelectedTask(task)
-                      setShowDetailsDialog(true)
-                    }}
-                  >
-                    <Eye className="h-4 w-4 mr-1" />
-                    View Details
-                  </Button>
-                  {task.completionReport && (
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => {
-                        setSelectedTask(task)
-                        setShowReportModal(true)
-                      }}
-                      className="bg-primary/10 hover:bg-primary/10"
-                    >
-                      <FileText className="h-4 w-4 mr-1" />
-                      View Report
-                    </Button>
-                  )}
-                </div>
               </div>
             </CardHeader>
             <CardContent className="pt-0">
