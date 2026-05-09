@@ -2,6 +2,7 @@ import { eq, and, or, desc, asc, sql, inArray, gte, lte } from 'drizzle-orm';
 import { db } from '../connection';
 import { awarenessSessionRequests, awarenessSessionStatusHistory } from '../schema';
 import type { Transaction } from '../transaction-service';
+import { broadcastUpdate } from '../../utils/websocket';
 import type {
   AwarenessSessionRequest,
   AwarenessSessionStatusHistory,
@@ -64,6 +65,7 @@ export class AwarenessSessionRepository {
         throw new Error('Failed to create awareness session request');
       }
 
+      await broadcastUpdate('awareness_session_created', sessionRequest);
       return this.mapDatabaseToEntity(sessionRequest);
     } catch (error) {
       throw new Error(`Failed to create awareness session request: ${error instanceof Error ? error.message : 'Unknown error'}`);
@@ -91,6 +93,7 @@ export class AwarenessSessionRepository {
         throw new Error('Failed to create awareness session request');
       }
 
+      await broadcastUpdate('awareness_session_created', sessionRequest);
       return this.mapDatabaseToEntity(sessionRequest);
     } catch (error) {
       throw new Error(`Failed to create awareness session request in transaction: ${error instanceof Error ? error.message : 'Unknown error'}`);
@@ -637,6 +640,9 @@ export class AwarenessSessionRepository {
         .where(eq(awarenessSessionRequests.id, id))
         .returning();
 
+      if (sessionRequest) {
+        await broadcastUpdate('awareness_session_updated', sessionRequest);
+      }
       return sessionRequest ? this.mapDatabaseToEntity(sessionRequest) : null;
     } catch (error) {
       throw new Error(`Failed to update awareness session request: ${error instanceof Error ? error.message : 'Unknown error'}`);
@@ -659,6 +665,9 @@ export class AwarenessSessionRepository {
         .where(eq(awarenessSessionRequests.id, id))
         .returning();
 
+      if (sessionRequest) {
+        await broadcastUpdate('awareness_session_updated', sessionRequest);
+      }
       return sessionRequest ? this.mapDatabaseToEntity(sessionRequest) : null;
     } catch (error) {
       throw new Error(`Failed to update awareness session request in transaction: ${error instanceof Error ? error.message : 'Unknown error'}`);
@@ -701,6 +710,9 @@ export class AwarenessSessionRepository {
         .where(eq(awarenessSessionRequests.id, id))
         .returning();
 
+      if (sessionRequest) {
+        await broadcastUpdate('awareness_session_status_updated', sessionRequest);
+      }
       return sessionRequest ? this.mapDatabaseToEntity(sessionRequest) : null;
     } catch (error) {
       throw new Error(`Failed to update awareness session request status: ${error instanceof Error ? error.message : 'Unknown error'}`);
@@ -743,6 +755,9 @@ export class AwarenessSessionRepository {
         .where(eq(awarenessSessionRequests.id, id))
         .returning();
 
+      if (sessionRequest) {
+        await broadcastUpdate('awareness_session_status_updated', sessionRequest);
+      }
       return sessionRequest ? this.mapDatabaseToEntity(sessionRequest) : null;
     } catch (error) {
       throw new Error(`Failed to update awareness session request status in transaction: ${error instanceof Error ? error.message : 'Unknown error'}`);
@@ -771,6 +786,9 @@ export class AwarenessSessionRepository {
         .where(eq(awarenessSessionRequests.id, id))
         .returning();
 
+      if (sessionRequest) {
+        await broadcastUpdate('awareness_session_expert_assigned', sessionRequest);
+      }
       return sessionRequest ? this.mapDatabaseToEntity(sessionRequest) : null;
     } catch (error) {
       throw new Error(`Failed to assign expert to awareness session request: ${error instanceof Error ? error.message : 'Unknown error'}`);

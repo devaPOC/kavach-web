@@ -27,8 +27,10 @@ const client = postgres(connectionString, {
   onnotice: () => { }, // Suppress notices in development
 });
 
+import * as schema from './schema';
+
 // Create drizzle instance
-export const db = drizzle(client);
+export const db = drizzle(client, { schema });
 
 // Export the client for direct access if needed
 export { client };

@@ -139,31 +139,35 @@ export class AnalyticsRepository {
         dateConditions.push(lte(quizAttempts.startedAt, dateRange.to));
       }
 
-      // Get basic attempt statistics
-      const totalAttemptsResult = await dbInstance
-        .select({ count: sql`count(*)` })
-        .from(quizAttempts)
-        .where(and(...dateConditions));
-
-      const completedAttemptsResult = await dbInstance
-        .select({ count: sql`count(*)` })
-        .from(quizAttempts)
-        .where(and(...dateConditions, eq(quizAttempts.isCompleted, true)));
-
-      const scoreStatsResult = await dbInstance
-        .select({
-          avgScore: avg(quizAttempts.score),
-          maxScore: max(quizAttempts.score),
-          minScore: min(quizAttempts.score),
-          avgTime: avg(quizAttempts.timeTakenSeconds)
-        })
-        .from(quizAttempts)
-        .where(and(...dateConditions, eq(quizAttempts.isCompleted, true)));
-
-      const uniqueUsersResult = await dbInstance
-        .select({ count: sql`count(distinct ${quizAttempts.userId})` })
-        .from(quizAttempts)
-        .where(and(...dateConditions));
+      // Get basic attempt statistics in parallel to optimize database performance
+      const [
+        totalAttemptsResult,
+        completedAttemptsResult,
+        scoreStatsResult,
+        uniqueUsersResult
+      ] = await Promise.all([
+        dbInstance
+          .select({ count: sql`count(*)` })
+          .from(quizAttempts)
+          .where(and(...dateConditions)),
+        dbInstance
+          .select({ count: sql`count(*)` })
+          .from(quizAttempts)
+          .where(and(...dateConditions, eq(quizAttempts.isCompleted, true))),
+        dbInstance
+          .select({
+            avgScore: avg(quizAttempts.score),
+            maxScore: max(quizAttempts.score),
+            minScore: min(quizAttempts.score),
+            avgTime: avg(quizAttempts.timeTakenSeconds)
+          })
+          .from(quizAttempts)
+          .where(and(...dateConditions, eq(quizAttempts.isCompleted, true))),
+        dbInstance
+          .select({ count: sql`count(distinct ${quizAttempts.userId})` })
+          .from(quizAttempts)
+          .where(and(...dateConditions))
+      ]);
 
       // Get user engagement metrics
       const userEngagementResult = await dbInstance
@@ -297,66 +301,42 @@ export class AnalyticsRepository {
     const dbInstance = tx || this.database;
 
     try {
-      // Quiz statistics
-      const totalQuizzesResult = await dbInstance
-        .select({ count: sql`count(*)` })
-        .from(quizzes);
-
-      const publishedQuizzesResult = await dbInstance
-        .select({ count: sql`count(*)` })
-        .from(quizzes)
-        .where(eq(quizzes.isPublished, true));
-
       // Attempt statistics with date filter
-      let attemptDateConditions = [];
+      let attemptDateConditions: any[] = [];
       if (dateRange) {
         attemptDateConditions.push(gte(quizAttempts.startedAt, dateRange.from));
         attemptDateConditions.push(lte(quizAttempts.startedAt, dateRange.to));
       }
 
-      const totalAttemptsResult = await dbInstance
-        .select({ count: sql`count(*)` })
-        .from(quizAttempts)
-        .where(attemptDateConditions.length > 0 ? and(...attemptDateConditions) : undefined);
+      // Fetch overview statistics in parallel for performance optimization
+      const [
+        totalQuizzesResult,
+        publishedQuizzesResult,
+        totalAttemptsResult,
+        completedAttemptsResult,
+        averageScoreResult
+      ] = await Promise.all([
+        dbInstance.select({ count: sql`count(*)` }).from(quizzes),
+        dbInstance.select({ count: sql`count(*)` }).from(quizzes).where(eq(quizzes.isPublished, true)),
+        dbInstance.select({ count: sql`count(*)` }).from(quizAttempts).where(attemptDateConditions.length > 0 ? and(...attemptDateConditions) : undefined),
+        dbInstance.select({ count: sql`count(*)` }).from(quizAttempts).where(attemptDateConditions.length > 0 ? and(...attemptDateConditions, eq(quizAttempts.isCompleted, true)) : eq(quizAttempts.isCompleted, true)),
+        dbInstance.select({ avgScore: avg(quizAttempts.score) }).from(quizAttempts).where(attemptDateConditions.length > 0 ? and(...attemptDateConditions, eq(quizAttempts.isCompleted, true)) : eq(quizAttempts.isCompleted, true))
+      ]);
 
-      const completedAttemptsResult = await dbInstance
-        .select({ count: sql`count(*)` })
-        .from(quizAttempts)
-        .where(attemptDateConditions.length > 0
-          ? and(...attemptDateConditions, eq(quizAttempts.isCompleted, true))
-          : eq(quizAttempts.isCompleted, true));
-
-      const averageScoreResult = await dbInstance
-        .select({ avgScore: avg(quizAttempts.score) })
-        .from(quizAttempts)
-        .where(attemptDateConditions.length > 0
-          ? and(...attemptDateConditions, eq(quizAttempts.isCompleted, true))
-          : eq(quizAttempts.isCompleted, true));
-
-      // User statistics
-      const totalUsersResult = await dbInstance
-        .select({ count: sql`count(*)` })
-        .from(users);
-
-      const activeUsersResult = await dbInstance
-        .select({ count: sql`count(distinct ${quizAttempts.userId})` })
-        .from(quizAttempts)
-        .where(attemptDateConditions.length > 0 ? and(...attemptDateConditions) : undefined);
-
-      // Learning module statistics
-      const totalModulesResult = await dbInstance
-        .select({ count: sql`count(*)` })
-        .from(learningModules);
-
-      const publishedModulesResult = await dbInstance
-        .select({ count: sql`count(*)` })
-        .from(learningModules)
-        .where(eq(learningModules.isPublished, true));
-
-      const completedMaterialsResult = await dbInstance
-        .select({ count: sql`count(*)` })
-        .from(learningProgress)
-        .where(eq(learningProgress.isCompleted, true));
+      // Fetch user and learning module statistics in parallel
+      const [
+        totalUsersResult,
+        activeUsersResult,
+        totalModulesResult,
+        publishedModulesResult,
+        completedMaterialsResult
+      ] = await Promise.all([
+        dbInstance.select({ count: sql`count(*)` }).from(users),
+        dbInstance.select({ count: sql`count(distinct ${quizAttempts.userId})` }).from(quizAttempts).where(attemptDateConditions.length > 0 ? and(...attemptDateConditions) : undefined),
+        dbInstance.select({ count: sql`count(*)` }).from(learningModules),
+        dbInstance.select({ count: sql`count(*)` }).from(learningModules).where(eq(learningModules.isPublished, true)),
+        dbInstance.select({ count: sql`count(*)` }).from(learningProgress).where(eq(learningProgress.isCompleted, true))
+      ]);
 
       // Top performing quizzes
       const topQuizzesResult = await dbInstance

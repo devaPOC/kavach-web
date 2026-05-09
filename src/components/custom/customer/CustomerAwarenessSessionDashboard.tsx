@@ -33,6 +33,7 @@ import {
 import FilterToolbar from '@/app/components/filters/FilterToolbar';
 import EmptyState from '@/app/components/EmptyState';
 import PaginationControls from '@/app/components/pagination/PaginationControls';
+import { useWebsocket } from '@/hooks/useWebsocket';
 
 interface CustomerAwarenessSessionDashboardProps {
   onCreateNew?: () => void;
@@ -74,6 +75,12 @@ export function CustomerAwarenessSessionDashboard({
   useEffect(() => {
     if (typeof search === 'string') setSearchTerm(search);
   }, [search]);
+
+  useWebsocket((payload) => {
+    if (payload.event.startsWith('awareness_session_')) {
+      fetchRequests(currentPage);
+    }
+  });
 
   // Fetch user's awareness session requests
   useEffect(() => {

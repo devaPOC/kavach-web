@@ -50,6 +50,7 @@ import { useServerPagination } from '@/hooks/useServerPagination'
 import { AdminDashboardLayout } from '@/app/components/admin/AdminDashboardLayout'
 import AdminLoadingSkeleton, { AdminTilesSkeleton, AdminTableSkeleton } from '@/app/components/admin/AdminLoadingSkeleton'
 import { AdminEmptyState } from '@/app/components/admin/AdminEmptyState'
+import { useWebsocket } from '@/hooks/useWebsocket'
 
 interface AdminAwarenessSessionDashboardProps {
     onRefresh?: () => void
@@ -135,6 +136,12 @@ export default function AdminAwarenessSessionDashboard({ onRefresh }: AdminAware
     })
 
     useEffect(() => { fetchExperts() }, [])
+
+    useWebsocket((payload) => {
+        if (payload.event.startsWith('awareness_session_')) {
+            fetchRequests(currentPage, statusFilter === 'all' ? undefined : statusFilter)
+        }
+    })
 
     const handleStatusFilterChange = (status: string) => {
         const newStatus = (status === 'all' ? 'all' : status) as AwarenessSessionStatus | 'all'

@@ -19,6 +19,7 @@ import {
 } from 'lucide-react'
 import { format } from 'date-fns'
 import Link from 'next/link'
+import { useWebsocket } from '@/hooks/useWebsocket'
 
 interface DashboardStats {
   totalAssigned: number
@@ -66,6 +67,12 @@ export default function ExpertDashboardOverview({ expertId, userRole }: ExpertDa
 
   // RBAC: Check if user is a trainer (trainers can access awareness sessions)
   const isTrainer = userRole === 'trainer'
+
+  useWebsocket((payload) => {
+    if (payload.event.startsWith('awareness_session_')) {
+      fetchDashboardData();
+    }
+  });
 
   useEffect(() => {
     fetchDashboardData()

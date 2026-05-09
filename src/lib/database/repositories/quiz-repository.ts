@@ -2,6 +2,7 @@ import { eq, and, desc, asc, sql, inArray } from 'drizzle-orm';
 import { db } from '../connection';
 import { quizzes, quizQuestions, quizTemplates } from '../schema';
 import type { Transaction } from '../transaction-service';
+import { broadcastUpdate } from '../../utils/websocket';
 
 export interface CreateQuizData {
   title: string;
@@ -125,6 +126,7 @@ export class QuizRepository {
           .where(eq(quizTemplates.id, quizData.templateId));
       }
 
+      await broadcastUpdate('quiz_created', quiz);
       return quiz;
     } catch (error) {
       throw new Error(`Failed to create quiz: ${error instanceof Error ? error.message : 'Unknown error'}`);
@@ -285,6 +287,9 @@ export class QuizRepository {
         .where(eq(quizzes.id, id))
         .returning();
 
+      if (quiz) {
+        await broadcastUpdate('quiz_updated', quiz);
+      }
       return quiz || null;
     } catch (error) {
       throw new Error(`Failed to update quiz: ${error instanceof Error ? error.message : 'Unknown error'}`);
@@ -304,6 +309,9 @@ export class QuizRepository {
         .where(eq(quizzes.id, id))
         .returning();
 
+      if (result.length > 0) {
+        await broadcastUpdate('quiz_deleted', { id });
+      }
       return result.length > 0;
     } catch (error) {
       throw new Error(`Failed to delete quiz: ${error instanceof Error ? error.message : 'Unknown error'}`);
@@ -314,7 +322,11 @@ export class QuizRepository {
    * Publish/unpublish quiz (transaction-aware)
    */
   async setPublished(id: string, isPublished: boolean, tx?: Transaction): Promise<any | null> {
-    return this.update(id, { isPublished }, tx);
+    const result = await this.update(id, { isPublished }, tx);
+    if (result) {
+      await broadcastUpdate('quiz_published_status_changed', result);
+    }
+    return result;
   }
 
   /**
