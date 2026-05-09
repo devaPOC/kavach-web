@@ -138,7 +138,7 @@ export default function AdminAwarenessSessionDashboard({ onRefresh }: AdminAware
     useEffect(() => { fetchExperts() }, [])
 
     useWebsocket((payload) => {
-        if (payload.event.startsWith('awareness_session_')) {
+        if (payload.event.startsWith('awareness_session_') || payload.event === 'poll_update') {
             fetchRequests(currentPage, statusFilter === 'all' ? undefined : statusFilter)
         }
     })

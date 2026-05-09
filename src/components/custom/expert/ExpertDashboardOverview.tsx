@@ -69,7 +69,7 @@ export default function ExpertDashboardOverview({ expertId, userRole }: ExpertDa
   const isTrainer = userRole === 'trainer'
 
   useWebsocket((payload) => {
-    if (payload.event.startsWith('awareness_session_')) {
+    if (payload.event.startsWith('awareness_session_') || payload.event === 'poll_update') {
       fetchDashboardData();
     }
   });

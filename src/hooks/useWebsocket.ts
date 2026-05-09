@@ -9,7 +9,21 @@ export function useWebsocket(onEvent: (event: WebSocketEvent) => void) {
   const ws = useRef<WebSocket | null>(null);
 
   useEffect(() => {
-    // In dev, connect to localhost:8080.
+    // Check if we are running in Vercel (or a non-local environment)
+    const isVercel = process.env.NEXT_PUBLIC_VERCEL_ENV || process.env.NODE_ENV === 'production';
+
+    if (isVercel) {
+      console.log('Running in production/Vercel. Falling back to HTTP polling.');
+      
+      const pollInterval = setInterval(() => {
+        // Emit a generic polling event
+        onEvent({ event: 'poll_update', data: null });
+      }, 5000); // 5 seconds interval for polling
+      
+      return () => clearInterval(pollInterval);
+    }
+
+    // In dev, connect to localhost WS server.
     const wsUrl = process.env.NEXT_PUBLIC_WS_URL || 'ws://localhost:8080';
     ws.current = new WebSocket(wsUrl);
 

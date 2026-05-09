@@ -77,7 +77,7 @@ export function CustomerAwarenessSessionDashboard({
   }, [search]);
 
   useWebsocket((payload) => {
-    if (payload.event.startsWith('awareness_session_')) {
+    if (payload.event.startsWith('awareness_session_') || payload.event === 'poll_update') {
       fetchRequests(currentPage);
     }
   });
