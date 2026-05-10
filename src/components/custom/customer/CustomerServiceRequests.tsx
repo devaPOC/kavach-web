@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Calendar, Clock, User, AlertCircle, CheckCircle2, FileText, MessageSquare, ChevronLeft, ChevronRight, RefreshCw, Download, Paperclip } from 'lucide-react';
+import { Calendar, Clock, User, AlertCircle, CheckCircle2, FileText, MessageSquare, ChevronLeft, ChevronRight, RefreshCw, Download, Paperclip, Eye } from 'lucide-react';
 import { notify } from '@/lib/utils/notify';
 import { format } from 'date-fns';
 import { getServiceTypeDisplayName } from '@/lib/utils/fieldNameFormatter';
@@ -516,7 +516,7 @@ export default function CustomerServiceRequests() {
                     <p className="text-muted-foreground">No active service requests found.</p>
                   </div>
                 ) : (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
+                  <div className="space-y-4">
                     {requests.map((request) => (
                       <div
                         key={request.id}
@@ -524,74 +524,72 @@ export default function CustomerServiceRequests() {
                           setSelectedRequest(request);
                           setShowDetailsModal(true);
                         }}
-                        className="group relative bg-card border border-border rounded-xl p-5 shadow-sm hover:shadow-lg hover:border-primary/50 hover:-translate-y-1 transition-all duration-300 ease-out cursor-pointer overflow-hidden hover:bg-primary/10/30 flex flex-col h-full"
+                        className="group relative flex flex-col md:flex-row md:items-start lg:items-center justify-between p-5 border rounded-xl bg-card hover:border-primary/20 transition-all duration-300 ease-out cursor-pointer hover:bg-primary/5 shadow-sm gap-4"
                       >
-                        {/* Status Tags */}
-                        <div className="flex items-center justify-between mb-4">
-                          {getStatusBadge(request.status)}
-                          {getPriorityBadge(request.priority)}
-                        </div>
-
-                        {/* Title */}
-                        <h3 className="font-semibold text-foreground text-lg mb-2 line-clamp-2 group-hover:text-primary transition-colors">
-                          {request.title}
-                        </h3>
-
-                        {/* Service Type */}
-                        <div className="text-xs font-medium text-primary bg-primary/10 inline-block px-2.5 py-1 rounded-full mb-4 w-fit group-hover:bg-primary/10 transition-colors">
-                          {getServiceTypeName(request.serviceType)}
-                        </div>
-
-                        {/* Details Grid */}
-                        <div className="grid gap-2 text-sm text-muted-foreground mb-4 flex-1">
-                          {request.expertName && (
-                            <div className="flex items-center gap-2">
-                              <User className="w-4 h-4 text-muted-foreground/80 group-hover:text-primary transition-colors" />
-                              <span>{request.expertName}</span>
+                        <div className="space-y-3 flex-1">
+                          <div className="flex justify-between items-start">
+                            <div className="space-y-1">
+                              <h3 className="text-lg font-semibold group-hover:text-primary transition-colors">{request.title}</h3>
+                              <div className="flex items-center gap-2 flex-wrap">
+                                {getServiceTypeName(request.serviceType) && (
+                                  <div className="text-xs font-medium text-primary bg-primary/10 inline-block px-2.5 py-1 rounded-full group-hover:bg-primary/20 transition-colors">
+                                    {getServiceTypeName(request.serviceType)}
+                                  </div>
+                                )}
+                                {getPriorityBadge(request.priority)}
+                                {getStatusBadge(request.status)}
+                              </div>
                             </div>
-                          )}
-                          <div className="flex items-center gap-2">
-                            <Calendar className="w-4 h-4 text-muted-foreground/80 group-hover:text-primary transition-colors" />
-                            <span>{format(new Date(request.createdAt), 'MMM dd, yyyy')}</span>
                           </div>
+
                           {request.description && (
-                            <p className="text-muted-foreground text-xs mt-2 line-clamp-2 italic">
+                            <p className="text-muted-foreground line-clamp-2 text-sm italic">
                               "{request.description}"
                             </p>
                           )}
+
+                          <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                            {request.expertName && (
+                              <div className="flex items-center gap-1">
+                                <User className="w-4 h-4 text-muted-foreground/80 group-hover:text-primary transition-colors" />
+                                <span>{request.expertName}</span>
+                              </div>
+                            )}
+                            <div className="flex items-center gap-1">
+                              <Calendar className="w-4 h-4 text-muted-foreground/80 group-hover:text-primary transition-colors" />
+                              <span>{format(new Date(request.createdAt), 'MMM dd, yyyy')}</span>
+                            </div>
+                          </div>
                         </div>
 
-                        {/* Actions Footer */}
-                        <div className="pt-4 mt-auto border-t border-border/50 flex items-center justify-between gap-2">
-                          <span className="text-xs font-medium text-primary group-hover:underline flex items-center gap-1">
+                        <div className="flex flex-col gap-2 min-w-[140px]" onClick={(e) => e.stopPropagation()}>
+                          <span className="text-xs font-medium text-primary group-hover:underline flex items-center md:justify-end gap-1 mb-2">
                             View Details <ChevronRight className="w-3 h-3" />
                           </span>
 
-                          <div className="flex gap-2" onClick={(e) => e.stopPropagation()}>
-                            {request.data?.completionReport && (
-                              <Button
-                                size="sm"
-                                variant="outline"
-                                onClick={() => {
-                                  setSelectedRequestForReport(request);
-                                  setShowReportModal(true);
-                                }}
-                                className="h-8 px-2 border-primary/50 text-primary hover:bg-primary/10"
-                              >
-                                <FileText className="w-3 h-3 mr-1" /> Report
-                              </Button>
-                            )}
+                          {request.data?.completionReport && (
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => {
+                                setSelectedRequestForReport(request);
+                                setShowReportModal(true);
+                              }}
+                              className="w-full justify-start border-primary/50 text-primary hover:bg-primary/10"
+                            >
+                              <FileText className="w-4 h-4 mr-2" /> View Report
+                            </Button>
+                          )}
 
-                            {request.status === 'pending_closure' && request.data?.completionReport && (
-                              <Button
-                                size="sm"
-                                onClick={() => handleCloseTask(request.id)}
-                                className="h-8 px-2 bg-secondary hover:bg-secondary text-white"
-                              >
-                                <CheckCircle2 className="w-3 h-3 mr-1" /> Approve
-                              </Button>
-                            )}
-                          </div>
+                          {request.status === 'pending_closure' && request.data?.completionReport && (
+                            <Button
+                              size="sm"
+                              onClick={() => handleCloseTask(request.id)}
+                              className="w-full justify-start bg-secondary hover:bg-secondary text-white"
+                            >
+                              <CheckCircle2 className="w-4 h-4 mr-2" /> Approve
+                            </Button>
+                          )}
                         </div>
                       </div>
                     ))}
@@ -647,73 +645,82 @@ export default function CustomerServiceRequests() {
                     <p className="text-muted-foreground">No quotes received yet.</p>
                   </div>
                 ) : (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
+                  <div className="space-y-4">
                     {quotes.map((quote) => (
                       <div
                         key={quote.id}
-                        className="group relative bg-card border border-border rounded-xl p-5 shadow-sm hover:shadow-lg hover:border-primary/50 hover:-translate-y-1 transition-all duration-300 ease-out flex flex-col h-full overflow-hidden hover:bg-muted/50/50"
+                        className="group relative flex flex-col md:flex-row md:items-start lg:items-center justify-between p-5 border rounded-xl bg-card hover:border-primary/20 transition-all duration-300 ease-out shadow-sm gap-4 hover:bg-primary/5"
                       >
-                        <div className="flex items-center justify-between mb-4">
-                          {getQuoteStatusBadge(quote.status)}
-                          {isQuoteExpired(quote.validUntil) && quote.status === 'pending' && (
-                            <span className="text-xs font-medium text-destructive bg-destructive/10 px-2 py-0.5 rounded-full border border-destructive">Expired</span>
-                          )}
-                        </div>
-
-                        <h3 className="font-semibold text-foreground text-lg mb-1 group-hover:text-primary transition-colors">
-                          {quote.serviceTitle}
-                        </h3>
-
-                        <div className="text-2xl font-bold text-foreground mb-4 tracking-tight">
-                          {formatPrice(quote.quotedPrice, quote.currency)}
-                        </div>
-
-                        <div className="grid gap-2 text-sm text-muted-foreground mb-6 flex-1">
-                          <div className="flex items-center gap-2">
-                            <User className="w-4 h-4 text-muted-foreground/80" />
-                            <span>From: {quote.adminName}</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <Calendar className="w-4 h-4 text-muted-foreground/80" />
-                            <span>{format(new Date(quote.createdAt), 'MMM dd, yyyy')}</span>
-                          </div>
-                          {quote.validUntil && (
-                            <div className="flex items-center gap-2 text-accent">
-                              <Clock className="w-4 h-4" />
-                              <span>Valid until: {format(new Date(quote.validUntil), 'MMM dd')}</span>
+                        <div className="space-y-3 flex-1">
+                          <div className="flex justify-between items-start">
+                            <div className="space-y-1">
+                              <h3 className="text-lg font-semibold group-hover:text-primary transition-colors">{quote.serviceTitle}</h3>
+                              <div className="flex items-center gap-2 flex-wrap">
+                                {getQuoteStatusBadge(quote.status)}
+                                {isQuoteExpired(quote.validUntil) && quote.status === 'pending' && (
+                                  <span className="text-xs font-medium text-destructive bg-destructive/10 px-2 py-0.5 rounded-full border border-destructive">Expired</span>
+                                )}
+                              </div>
                             </div>
-                          )}
+                          </div>
+
+                          <div className="text-2xl font-bold text-foreground tracking-tight">
+                            {formatPrice(quote.quotedPrice, quote.currency)}
+                          </div>
+
+                          <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+                            <div className="flex items-center gap-1">
+                              <User className="w-4 h-4 text-muted-foreground/80 group-hover:text-primary transition-colors" />
+                              <span>From: {quote.adminName}</span>
+                            </div>
+                            <div className="flex items-center gap-1">
+                              <Calendar className="w-4 h-4 text-muted-foreground/80 group-hover:text-primary transition-colors" />
+                              <span>{format(new Date(quote.createdAt), 'MMM dd, yyyy')}</span>
+                            </div>
+                            {quote.validUntil && (
+                              <div className="flex items-center gap-2 text-accent">
+                                <Clock className="w-4 h-4" />
+                                <span>Valid until: {format(new Date(quote.validUntil), 'MMM dd')}</span>
+                              </div>
+                            )}
+                          </div>
                         </div>
 
-                        <div className="pt-4 mt-auto border-t border-border/50 flex flex-col gap-2">
+                        <div className="flex flex-col gap-2 min-w-[140px]">
                           <Button
                             variant="outline"
-                            className="w-full border-border text-foreground/80 hover:bg-card hover:border-primary/50 hover:text-primary"
+                            className="w-full justify-start border-border text-foreground/80 hover:bg-card hover:border-primary/50 hover:text-primary"
+                            size="sm"
                             onClick={() => {
                               setSelectedQuote(quote);
                               setShowQuoteModal(true);
                             }}
                           >
+                            <Eye className="w-4 h-4 mr-2" />
                             View Details
                           </Button>
 
                           {quote.status === 'pending' || quote.status === 'sent' ? (
                             !isQuoteExpired(quote.validUntil) && (
-                              <div className="grid grid-cols-2 gap-2">
+                              <div className="flex flex-col gap-2">
                                 <Button
+                                  size="sm"
                                   onClick={() => acceptQuote(quote.id)}
-                                  className="w-full bg-secondary hover:bg-secondary text-white"
+                                  className="w-full justify-start bg-secondary hover:bg-secondary text-white"
                                 >
+                                  <CheckCircle2 className="w-4 h-4 mr-2" />
                                   Accept
                                 </Button>
                                 <Button
                                   variant="outline"
+                                  size="sm"
                                   onClick={() => {
                                     setSelectedQuote(quote);
                                     setShowNegotiationModal(true);
                                   }}
-                                  className="w-full border-primary/50 text-primary hover:bg-primary/10"
+                                  className="w-full justify-start border-primary/50 text-primary hover:bg-primary/10"
                                 >
+                                  <MessageSquare className="w-4 h-4 mr-2" />
                                   Negotiate
                                 </Button>
                               </div>

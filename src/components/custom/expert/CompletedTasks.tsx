@@ -67,8 +67,7 @@ export default function CompletedTasks() {
     try {
       const params = new URLSearchParams({
         page: page.toString(),
-        limit: limit.toString(),
-        status: 'completed,closed'
+        limit: limit.toString()
       })
 
       const response = await fetch(`/api/v1/expert/assigned-tasks?${params}`, {
@@ -147,33 +146,37 @@ export default function CompletedTasks() {
   return (
     <div className="space-y-4">
       {tasks.length === 0 ? (
-        <Card>
-          <CardContent className="py-8 text-center">
-            <CheckCircle className="h-12 w-12 text-muted-foreground/80 mx-auto mb-4" />
-            <p className="text-muted-foreground">No completed tasks</p>
-            <p className="text-sm text-muted-foreground/80 mt-2">
-              Tasks that you've completed and submitted reports for will appear here.
-            </p>
-          </CardContent>
-        </Card>
+        <div className="text-center py-12 border-2 border-dashed border-border rounded-xl bg-muted/50/50">
+          <CheckCircle className="h-12 w-12 text-muted-foreground/80 mx-auto mb-4" />
+          <p className="text-muted-foreground">No completed tasks</p>
+          <p className="text-sm text-muted-foreground/80 mt-2">
+            Tasks that you've completed and submitted reports for will appear here.
+          </p>
+        </div>
       ) : (
-        tasks.map((task) => (
-          <Card key={task.id} className="hover:shadow-md transition-shadow">
-            <CardHeader className="pb-3">
-              <div className="flex justify-between items-start">
-                <div className="space-y-2">
-                  <CardTitle className="text-lg">{task.title}</CardTitle>
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <Badge className={getPriorityColor(task.priority)}>
-                      {task.priority.toUpperCase()}
-                    </Badge>
-                    <Badge variant="outline" className={`flex items-center gap-1 ${getStatusColor(task.status)}`}>
-                      <CheckCircle className="h-4 w-4" />
-                      {task.status === 'closed' ? 'CLOSED' : 'COMPLETED'}
-                    </Badge>
+        <>
+          <div className="space-y-4">
+            {tasks.map((task) => (
+              <div key={task.id} className="flex flex-col md:flex-row md:items-start lg:items-center justify-between p-5 border rounded-xl bg-card hover:border-primary/20 transition-colors gap-4 shadow-sm">
+                <div className="space-y-3 flex-1">
+                  <div className="flex justify-between items-start">
+                    <div className="space-y-1">
+                      <h3 className="text-lg font-semibold">{task.title}</h3>
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <Badge className={getPriorityColor(task.priority)}>
+                          {task.priority.toUpperCase()}
+                        </Badge>
+                        <Badge variant="outline" className={`flex items-center gap-1 ${getStatusColor(task.status)}`}>
+                          <CheckCircle className="h-4 w-4" />
+                          {task.status === 'closed' ? 'CLOSED' : 'COMPLETED'}
+                        </Badge>
+                      </div>
+                    </div>
                   </div>
+                  <p className="text-muted-foreground line-clamp-2 text-sm">{task.description}</p>
                 </div>
-                <div className="flex gap-2">
+
+                <div className="flex flex-col gap-2 min-w-[140px]">
                   <Button
                     variant="outline"
                     size="sm"
@@ -181,8 +184,9 @@ export default function CompletedTasks() {
                       setSelectedTask(task)
                       setShowDetailsDialog(true)
                     }}
+                    className="w-full justify-start"
                   >
-                    <Eye className="h-4 w-4 mr-1" />
+                    <Eye className="h-4 w-4 mr-2" />
                     View Details
                   </Button>
                   {task.completionReport && (
@@ -193,84 +197,64 @@ export default function CompletedTasks() {
                         setSelectedTask(task)
                         setShowReportModal(true)
                       }}
-                      className="bg-primary/10 hover:bg-primary/10"
+                      className="bg-primary/10 hover:bg-primary/10 w-full justify-start"
                     >
-                      <FileText className="h-4 w-4 mr-1" />
+                      <FileText className="h-4 w-4 mr-2" />
                       View Report
+                    </Button>
+                  )}
+                  {task.status === 'completed' && task.completionReport && (
+                    <Button
+                      size="sm"
+                      onClick={() => handleRequestClosure(task.id)}
+                      className="bg-accent hover:bg-accent w-full justify-start"
+                    >
+                      <MessageSquare className="h-4 w-4 mr-2" />
+                      Request Closure
                     </Button>
                   )}
                 </div>
               </div>
-            </CardHeader>
-            <CardContent className="pt-0">
-              <div className="space-y-3">
-                <p className="text-muted-foreground line-clamp-2">{task.description}</p>
-                <div className="flex items-center justify-between text-sm text-muted-foreground">
-                  <div className="flex items-center gap-4">
-                    <div className="flex items-center gap-1">
-                      <User className="h-4 w-4" />
-                      {task.customer.firstName} {task.customer.lastName}
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Calendar className="h-4 w-4" />
-                      Assigned: {format(new Date(task.assignedAt), 'MMM dd, yyyy')}
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    {task.status === 'completed' && task.completionReport && (
-                      <Button
-                        size="sm"
-                        onClick={() => handleRequestClosure(task.id)}
-                        className="bg-accent hover:bg-accent"
-                      >
-                        <MessageSquare className="h-4 w-4 mr-1" />
-                        Request Closure
-                      </Button>
-                    )}
-                    {task.status === 'closed' && (
-                      <div className="text-secondary font-medium">Task Closed</div>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        ))
+            ))}
+          </div>
+        </>
       )}
 
       {/* Pagination */}
-      {totalPages > 1 && (
-        <div className="flex items-center justify-between mt-6">
-          <div className="text-sm text-muted-foreground">
-            Showing {((currentPage - 1) * limit) + 1} to {Math.min(currentPage * limit, totalTasks)} of {totalTasks} tasks
+      {
+        totalPages > 1 && (
+          <div className="flex items-center justify-between mt-6">
+            <div className="text-sm text-muted-foreground">
+              Showing {((currentPage - 1) * limit) + 1} to {Math.min(currentPage * limit, totalTasks)} of {totalTasks} tasks
+            </div>
+            <div className="flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                disabled={currentPage === 1}
+                className="flex items-center gap-1"
+              >
+                <ChevronLeft className="h-3 w-3" />
+                Previous
+              </Button>
+              <span className="text-sm text-muted-foreground">
+                Page {currentPage} of {totalPages}
+              </span>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                disabled={currentPage === totalPages}
+                className="flex items-center gap-1"
+              >
+                Next
+                <ChevronRight className="h-3 w-3" />
+              </Button>
+            </div>
           </div>
-          <div className="flex items-center gap-2">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-              disabled={currentPage === 1}
-              className="flex items-center gap-1"
-            >
-              <ChevronLeft className="h-3 w-3" />
-              Previous
-            </Button>
-            <span className="text-sm text-muted-foreground">
-              Page {currentPage} of {totalPages}
-            </span>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-              disabled={currentPage === totalPages}
-              className="flex items-center gap-1"
-            >
-              Next
-              <ChevronRight className="h-3 w-3" />
-            </Button>
-          </div>
-        </div>
-      )}
+        )
+      }
 
       {/* Task Details Dialog */}
       <Dialog open={showDetailsDialog} onOpenChange={setShowDetailsDialog}>
@@ -475,6 +459,6 @@ export default function CompletedTasks() {
           )}
         </DialogContent>
       </Dialog>
-    </div>
+    </div >
   )
 }

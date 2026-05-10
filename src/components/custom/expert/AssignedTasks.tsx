@@ -276,33 +276,29 @@ export default function AssignedTasks() {
   return (
     <div className="space-y-4">
       {tasks.length === 0 ? (
-        <Card>
-          <CardContent className="py-8 text-center">
-            <p className="text-muted-foreground">No assigned tasks at the moment</p>
-          </CardContent>
-        </Card>
+        <div className="text-center py-12 border-2 border-dashed border-border rounded-xl bg-muted/50/50">
+          <p className="text-muted-foreground">No assigned tasks at the moment</p>
+        </div>
       ) : (
-        tasks.map((task) => (
-          <Card key={task.id} className="hover:shadow-md transition-shadow">
-            <CardHeader className="pb-3">
-              <div className="flex justify-between items-start">
-                <div className="space-y-2">
-                  <CardTitle className="text-lg">{task.title}</CardTitle>
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <Badge className={getPriorityColor(task.priority)}>
-                      {task.priority.toUpperCase()}
-                    </Badge>
-                    <Badge variant="outline" className="flex items-center gap-1">
-                      {getStatusIcon(task.status)}
-                      {getStatusDisplayName(task.status).toUpperCase()}
-                    </Badge>
+        <div className="space-y-4">
+          {tasks.map((task) => (
+            <div key={task.id} className="flex flex-col md:flex-row md:items-start lg:items-center justify-between p-5 border rounded-xl bg-card hover:border-primary/20 transition-colors gap-4 shadow-sm">
+              <div className="space-y-3 flex-1">
+                <div className="flex justify-between items-start">
+                  <div className="space-y-1">
+                    <h3 className="text-lg font-semibold">{task.title}</h3>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <Badge className={getPriorityColor(task.priority)}>
+                        {task.priority.toUpperCase()}
+                      </Badge>
+                      <Badge variant="outline" className="flex items-center gap-1">
+                        {getStatusIcon(task.status)}
+                        {getStatusDisplayName(task.status).toUpperCase()}
+                      </Badge>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </CardHeader>
-            <CardContent className="pt-0">
-              <div className="space-y-3">
-                <p className="text-muted-foreground line-clamp-2">{task.description}</p>
+                <p className="text-muted-foreground line-clamp-2 text-sm">{task.description}</p>
 
                 {/* Pricing Information */}
                 {task.pricing && (
@@ -423,9 +419,9 @@ export default function AssignedTasks() {
                   </div>
                 </div>
               </div>
-            </CardContent>
-          </Card>
-        ))
+            </div>
+          ))}
+        </div>
       )}
 
       {/* Pagination */}

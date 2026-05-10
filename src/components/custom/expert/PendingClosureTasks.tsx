@@ -124,54 +124,25 @@ export default function PendingClosureTasks() {
           </CardContent>
         </Card>
       ) : (
-        tasks.map((task) => (
-          <Card key={task.id} className="hover:shadow-md transition-shadow">
-            <CardHeader className="pb-3">
-              <div className="flex justify-between items-start">
-                <div className="space-y-2">
-                  <CardTitle className="text-lg">{task.title}</CardTitle>
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <Badge className={getPriorityColor(task.priority)}>
-                      {task.priority.toUpperCase()}
-                    </Badge>
-                    <Badge variant="outline" className="flex items-center gap-1 text-accent border-accent/50">
-                      <Clock className="h-4 w-4" />
-                      AWAITING CUSTOMER APPROVAL
-                    </Badge>
+        <div className="space-y-4">
+          {tasks.map((task) => (
+            <div key={task.id} className="flex flex-col md:flex-row md:items-start lg:items-center justify-between p-5 border rounded-xl bg-card hover:border-primary/20 transition-colors gap-4 shadow-sm">
+              <div className="space-y-3 flex-1">
+                <div className="flex justify-between items-start">
+                  <div className="space-y-1">
+                    <h3 className="text-lg font-semibold">{task.title}</h3>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <Badge className={getPriorityColor(task.priority)}>
+                        {task.priority.toUpperCase()}
+                      </Badge>
+                      <Badge variant="outline" className="flex items-center gap-1 text-accent border-accent/50">
+                        <Clock className="h-4 w-4" />
+                        AWAITING CUSTOMER APPROVAL
+                      </Badge>
+                    </div>
                   </div>
                 </div>
-                <div className="flex gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => {
-                      setSelectedTask(task)
-                      setShowDetailsDialog(true)
-                    }}
-                  >
-                    <Eye className="h-4 w-4 mr-1" />
-                    View Details
-                  </Button>
-                  {task.completionReport && (
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => {
-                        setSelectedTask(task)
-                        setShowReportModal(true)
-                      }}
-                      className="bg-primary/10 hover:bg-primary/10"
-                    >
-                      <FileText className="h-4 w-4 mr-1" />
-                      View Report
-                    </Button>
-                  )}
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent className="pt-0">
-              <div className="space-y-3">
-                <p className="text-muted-foreground line-clamp-2">{task.description}</p>
+                <p className="text-muted-foreground line-clamp-2 text-sm">{task.description}</p>
                 <div className="flex items-center justify-between text-sm text-muted-foreground">
                   <div className="flex items-center gap-4">
                     <div className="flex items-center gap-1">
@@ -183,15 +154,40 @@ export default function PendingClosureTasks() {
                       Assigned: {format(new Date(task.assignedAt), 'MMM dd, yyyy')}
                     </div>
                   </div>
-                  <div className="text-right">
-                    <div className="text-accent font-medium">Pending Customer Approval</div>
-                    <div className="text-xs">Customer will review and close</div>
-                  </div>
                 </div>
               </div>
-            </CardContent>
-          </Card>
-        ))
+
+              <div className="flex flex-col gap-2 min-w-[140px]">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    setSelectedTask(task)
+                    setShowDetailsDialog(true)
+                  }}
+                  className="w-full justify-start"
+                >
+                  <Eye className="h-4 w-4 mr-2" />
+                  View Details
+                </Button>
+                {task.completionReport && (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      setSelectedTask(task)
+                      setShowReportModal(true)
+                    }}
+                    className="bg-primary/10 hover:bg-primary/10 w-full justify-start"
+                  >
+                    <FileText className="h-4 w-4 mr-2" />
+                    View Report
+                  </Button>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
       )}
 
       {/* Pagination */}
